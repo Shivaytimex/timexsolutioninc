@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { images } from "./images";
 import { useState, useEffect } from "react";
+import "swiper/swiper-bundle.css";
+
 
 function HeroSection() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); // Default based on initial width
