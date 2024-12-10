@@ -21,7 +21,7 @@ function HeroSection() {
   return (
     <>
       <Swiper
-        className="mt-3"
+        className="mt-16 rounded-md"
         modules={[Autoplay, Pagination]}
         spaceBetween={50}
         slidesPerView={1}
