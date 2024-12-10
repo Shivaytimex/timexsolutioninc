@@ -28,17 +28,16 @@ const StatsSection = () => {
     ];
 
     return (
-        <div className="py-10 my-10">
-            <div className="px-8 grid grid-cols-1 md:md:grid-cols-[22%,auto] gap-8 relative">
-                <div className="absolute inset-0 bg-[#e9d2fa] z-[1] rounded-lg top-[20%] hidden lg:flex" style={{ height: '60%' }}></div>
+        <div className="bg-gray-50 py-10">
+            <div className="px-8">
                 {/* Section Title */}
-                <div className="flex justify-center flex-col relative z-10">
-                    <h2 className="text-4xl md:text-2xl font-bold text-PurpleEnd">
+                <div className="mb-8">
+                    <h2 className="text-2xl md:text-4xl font-bold text-purple-600">
                         What sets us apart
                     </h2>
-                    <p className="text-gray-600 text-base md:text-sm flex items-center">
+                    <p className="text-gray-600 text-sm md:text-base flex items-center">
                         What sets us apart from other providers in the industry?{" "}
-                        <span className="ml-2 text-PurpleEnd">&rarr;</span>
+                        <span className="ml-2 text-purple-600">&rarr;</span>
                     </p>
                 </div>
 
@@ -47,13 +46,11 @@ const StatsSection = () => {
                     {cardData.map((card) => (
                         <div
                             key={card.id}
-                            className="relative z-10 bg-PurpleEnd text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg transform hover:scale-105 transition duration-300"
+                            className="bg-purple-600 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300"
                         >
-                            {/* Background Layer */}
-                            {/* <div className="absolute inset-0 bg-PurpleEnd z-[-1] rounded-lg" style={{ height: '90%' }}></div> */}
                             <h3 className="text-4xl font-bold">{card.value}</h3>
                             <p className="mt-2 text-lg font-semibold">{card.title}</p>
-                            <p className="mt-2 text-xs font-thin">{card.description}</p>
+                            <p className="mt-2 text-sm font-thin">{card.description}</p>
                         </div>
                     ))}
                 </div>
