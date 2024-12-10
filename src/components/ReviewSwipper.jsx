@@ -2,9 +2,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 // import { Navigation } from "swiper"; 
 import "swiper/css/navigation";
-import { ImNotification } from "react-icons/im";
 
 function ReviewSwipper() {
+
+  
   const reviews = [
     {
       id: 1,
