@@ -38,7 +38,7 @@ const StatsSection = () => {
                     </h2>
                     <p className="text-gray-600 text-base md:text-sm flex items-center">
                         What sets us apart from other providers in the industry?{" "}
-                        <span className="ml-2 text-PurpleEnd">&rarr;</span>
+                        <span className="ml-2 text-PurpleEnd text-4xl">&rarr;</span>
                     </p>
                 </div>
 
