@@ -1,4 +1,10 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 const StatsSection = () => {
+    const cardRef = useRef()
+    const cardAsideRef = useRef()
+    const isInView = useInView(cardRef, { once: 'true' })
+    const cardsAsideView = useInView(cardAsideRef, { once: 'true' })
 
     const cardData = [
         {
@@ -32,7 +38,14 @@ const StatsSection = () => {
             <div className="px-8 grid grid-cols-1 md:md:grid-cols-[22%,auto] gap-8 relative">
                 <div className="absolute inset-0 bg-[#e9d2fa] z-[1] rounded-lg top-[20%] hidden lg:flex" style={{ height: '60%' }}></div>
                 {/* Section Title */}
-                <div className="flex justify-center flex-col relative z-10">
+                <motion.div ref={cardAsideRef}
+                    initial={{ x: -100, opacity: 0 }}
+                    animate={{
+                        x: cardsAsideView ? 0 : -100,
+                        opacity: cardsAsideView ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6 }}
+                    className="flex justify-center flex-col relative z-10">
                     <h2 className="text-4xl md:text-2xl font-bold text-PurpleEnd">
                         What sets us apart
                     </h2>
@@ -40,25 +53,29 @@ const StatsSection = () => {
                         What sets us apart from other providers in the industry?{" "}
                         <span className="ml-2 text-PurpleEnd text-4xl">&rarr;</span>
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {cardData.map((card) => (
-                        <div
+                <motion.div
+                    ref={cardRef}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {cardData.map((card, index) => (
+                        <motion.div
                             key={card.id}
-                            className="relative z-10 bg-PurpleEnd text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg transform hover:scale-105 transition duration-300"
+                            className="relative z-10 bg-PurpleEnd text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg"
+                            initial={{ y: 400, opacity: 0 }} animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.2, }}
                         >
                             {/* Background Layer */}
                             {/* <div className="absolute inset-0 bg-PurpleEnd z-[-1] rounded-lg" style={{ height: '90%' }}></div> */}
                             <h3 className="text-4xl font-bold">{card.value}</h3>
                             <p className="mt-2 text-lg font-semibold">{card.title}</p>
                             <p className="mt-2 text-xs font-thin">{card.description}</p>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+import TypewriterEffect from './TypewriterEffect';
+
 function HeroSection1() {
   return (
     <section className="container mx-auto px-4 py-12 relative">
@@ -19,11 +22,8 @@ function HeroSection1() {
           <h1 className="lg:text-6xl text-3xl font-bold text-gray-800 leading-tight mb-4 text-center">
             Your <br /> Partner in <br />
             Compliance
-            <br /> &
-            <span className="text-purple-600">
-              <br />
-              Digital Growth
-            </span>
+            <br /> & <br />
+            <TypewriterEffect />
           </h1>
           <p className="text-lg text-gray-600 mb-6">
             Helping businesses grow while ensuring digital compliance in a
