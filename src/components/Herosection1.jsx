@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 function HeroSection1() {
   return (
     <section className="container mx-auto px-4 py-12 relative">

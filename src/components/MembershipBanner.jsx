@@ -1,4 +1,4 @@
-import { inView, motion, useInView } from "framer-motion";
+import {  motion, useInView } from "framer-motion";
 import { useRef } from "react";
 const MembershipBanner = () => {
     const ref = useRef()
