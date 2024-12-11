@@ -6,7 +6,7 @@ const MembershipBanner = () => {
   <div className="absolute w-32 h-32 bg-purple-200 rounded-full top-[100px] left-[-60px] z-0"></div>
   <div className="absolute w-16 h-16 bg-purple-100 rounded-full bottom-[-40px]  z-0"></div>
   <div className="absolute w-28 h-28 bg-purple-300 rounded-full top-[-50px] right-[0px] md:right-[20px] z-0 "></div>
-  <div className="absolute w-28 h-28 bg-purple-200 rounded-full top-[150px] right-[-10px] z-0 lg:right-[-40px]"></div>
+  <div className="absolute w-28 h-28 bg-purple-200 rounded-full top-[150px] right-[-10px] z-0 lg:right-[-10px]"></div>
   <div className="absolute w-20 h-20 bg-purple-100 rounded-full bottom-[-50px] right-[-10px] z-0"></div>
 
   {/* Main Content */}

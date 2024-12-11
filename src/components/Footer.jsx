@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <div className="bg-black text-white px-20">
+        <div className="bg-black text-white px-5 md:px-10 lg:px-20">
             <div className="grid grid-cols-1 md:grid-cols-[38%,auto] gap-6 py-10 px-5 lg:px-20">
-                <div className="pt-6">
+                <div className="p-4 md:p-6">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         Are you ready to discover what makes JST unique?
                     </h2>
@@ -14,7 +14,7 @@ function Footer() {
                         Fill out this form and a member of our team will reach out shortly.
                     </p>
                 </div>
-                <form className="text-white p-6 rounded-lg space-y-3">
+                <form className="text-white p-4 md:p-6 rounded-lg space-y-3">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <input
                             type="text"
