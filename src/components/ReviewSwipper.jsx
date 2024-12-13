@@ -76,7 +76,7 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-purple-950 p-14 rounded-xl mt-8 text-gray-300">
+            <div className="bg-[#a585ff] p-14 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="flex items-center justify-between mt-5">
                 <em className="font-semibold text-lg lg:text-xl">

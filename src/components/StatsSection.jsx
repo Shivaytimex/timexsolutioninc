@@ -62,7 +62,7 @@ const StatsSection = () => {
                     {cardData.map((card, index) => (
                         <motion.div
                             key={card.id}
-                            className="relative z-10 bg-PurpleEnd text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg"
+                            className="relative z-10 bg-[#a585ff] text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg"
                             initial={{ y: 400, opacity: 0 }} animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
                             transition={{ duration: 0.5, delay: index * 0.2, }}
                         >
