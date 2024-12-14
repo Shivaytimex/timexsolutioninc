@@ -2,7 +2,7 @@ export const images = [
   {
     id: 1,
     src: {
-      lgSrc: "/website-cover-khali.jpg",
+      lgSrc: "/website-cover-khali.webp",
       mdSrc: "/2-md-1568x591.jpg",
     },
     alt: "Loading image",
@@ -15,7 +15,7 @@ export const images = [
   {
     id: 2,
     src: {
-      lgSrc: "/recruitment-khali.jpg",
+      lgSrc: "/recruitment-khali.webp",
       mdSrc: "/2-md-1568x591.jpg",
     },
     alt: "Loading image",
@@ -28,7 +28,7 @@ export const images = [
   {
     id: 3,
     src: {
-      lgSrc: "/app-cover.jpg",
+      lgSrc: "/app-cover.webp",
       mdSrc: "/2-md-1568x591.jpg",
     },
     alt: "Loading image",
