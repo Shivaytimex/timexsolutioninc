@@ -43,7 +43,7 @@ function HeroSection() {
                 className="w-full h-auto"
               />
               {/* The Overlay Div */}
-              <div className="lg:absolute sm:static order-first lg:top-1/2 lg:left-14 lg:transform lg:-translate-y-1/2 lg:w-[550px] lg:h-[295px] text-black shadow-lg lg:rounded-2xl bg-gradient-to-l   p-6 rounded-t-2xl">
+              <div className="lg:absolute sm:static order-first lg:top-1/2 lg:left-14 lg:transform lg:-translate-y-1/2 lg:w-[550px] lg:h-[295px] bg-[#d3c0fc] lg:bg-transparent text-black shadow-lg lg:rounded-2xl bg-gradient-to-l   p-6 rounded-t-2xl">
                 <h1 className="font-semibold text-[23px] md:text-[30px] lg:text-[45px] lg:leading-10 leading-6">
                   {image.content.title}
                 </h1>

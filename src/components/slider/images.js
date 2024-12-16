@@ -3,9 +3,9 @@ export const images = [
     id: 1,
     src: {
       lgSrc: "/website-cover-khali.webp",
-      mdSrc: "/2-md-1568x591.jpg",
+      mdSrc: "/sm-website-cover.webp",
     },
-    alt: "Loading image",
+    alt: "Website Development",
     content: {
       title: "Website and Design Development",
       detail:
@@ -16,9 +16,9 @@ export const images = [
     id: 2,
     src: {
       lgSrc: "/recruitment-khali.webp",
-      mdSrc: "/2-md-1568x591.jpg",
+      mdSrc: "/sm-recruitment-banner.webp",
     },
-    alt: "Loading image",
+    alt: "Team Recruitment",
     content: {
       title: "Empowering Your Team with Exceptional Talent",
       detail:
@@ -29,9 +29,9 @@ export const images = [
     id: 3,
     src: {
       lgSrc: "/app-cover.webp",
-      mdSrc: "/2-md-1568x591.jpg",
+      mdSrc: "/sm-app-cover-banner.webp",
     },
-    alt: "Loading image",
+    alt: "Android Apps",
     content: {
       title: "Crafting Android App Experiences",
       detail:
@@ -44,7 +44,7 @@ export const images = [
       lgSrc: "/4-1568x591.webp",
       mdSrc: "2-md-1568x591.jpg",
     },
-    alt: "Loading image",
+    alt: "DOT Support",
     content: {
       title: "Stay Prepared and Confident with our DOT Audit Support!",
       detail:
@@ -57,7 +57,7 @@ export const images = [
       lgSrc: "/5-1568x591.webp",
       mdSrc: "/2-md-1568x591.jpg",
     },
-    alt: "Loading image",
+    alt: "Trucking Permits",
     content: {
       title: "Stay Prepared and Confident with our DOT Audit Support!",
       detail:
