@@ -44,7 +44,7 @@ function HeroSection1() {
 
           <div className="w-full">
             <img
-              src=""
+              src="userimage.webp"
               alt="Business Team"
               className="rounded-lg shadow-md h-72 lg:h-80 w-[100%] lg:w-[90%] mx-auto object-cover"
             />
