@@ -77,12 +77,7 @@ function ReviewSwipper() {
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
             <div
-              className="bg-[#a585ff] p-14 rounded-xl mt-8 text-white"
-              style={{
-                backgroundImage: "url(review-swiper-demo1.jpg)", // Replace with your image path
-                backgroundSize: "cover", // Ensures the image covers the full div
-                backgroundPosition: "center", // Centers the background image
-              }}
+              className="bg-purple-600 p-14 rounded-xl mt-8 text-white"
             >
               <i>{review.text}</i>
               <div className="flex items-center justify-between mt-5">

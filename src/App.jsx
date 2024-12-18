@@ -1,40 +1,43 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Use react-router-dom
 import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { SyncLoader } from "react-spinners";
 
+// Lazy load pages
+const Home = lazy(() => import("./pages/Home"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+
 function App() {
-  const Home = lazy(() => import("./pages/Home"));
   return (
-    <>
-      <div className="container mx-auto">
-        {/* md:px-8 lg:px-16 lx:px-32 2xl:px-64 */}
-        <Router>
-          <Navbar />
-          <Suspense
-            fallback={
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100vh",
-                }}
-              >
-                <SyncLoader color="#9234eb" size={15} />
-              </div>
-            }
-          >
-            <Routes>
-              <Route index path="/" element={<Home />} />
-            </Routes>
-          </Suspense>
-          <Footer />
-        </Router>
-      </div>
-    </>
+    <div className="container mx-auto">
+      {/* Container padding can be controlled here */}
+      <Router>
+        <Navbar />
+        <Suspense
+          fallback={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <SyncLoader color="#9234eb" size={15} />
+            </div>
+          }
+        >
+          <Routes>
+            {/* Define routes here */}
+            <Route index path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+          </Routes>
+        </Suspense>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

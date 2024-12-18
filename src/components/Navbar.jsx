@@ -66,7 +66,7 @@ const Navbar = () => {
             Services
           </Link>
           <Link
-            to="/"
+            to="/about"
             onClick={() => setOpen(false)}
             className="text-white hover:text-PurpleEnd transition duration-300"
           >
@@ -101,7 +101,7 @@ const Navbar = () => {
       <div className="hidden lg:flex items-center gap-6 xl:gap-9 font-medium">
         <Link to="/" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">Home</Link>
         <Link to="/" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">Services</Link>
-        <Link to="/" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">About Us</Link>
+        <Link to="/about" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">About Us</Link>
         <Link to="/" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">Contact</Link>
         <Link to="/" onClick={() => setOpen(false)} className="text-gray-600 font-medium text-sm hover:text-PurpleEnd transition duration-300">Blog</Link>
       </div>
