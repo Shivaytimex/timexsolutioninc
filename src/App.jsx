@@ -11,7 +11,7 @@ const AboutUs = lazy(() => import("./pages/AboutUs"));
 
 function App() {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto bg-gradient-to-br from-purple-50 to-indigo-50">
       {/* Container padding can be controlled here */}
       <Router>
         <Navbar />

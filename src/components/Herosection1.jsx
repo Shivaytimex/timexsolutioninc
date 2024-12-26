@@ -31,7 +31,7 @@ function HeroSection1() {
           </p>
           <a
             href="#"
-            className="inline-block py-2 px-6 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition duration-300"
+            className="inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-md hover:from-purple-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-300  items-center"
           >
             Get Started
           </a>
