@@ -44,7 +44,7 @@ export default function AboutSection() {
             }}
             className="space-y-6 pl-6 border-b-2 lg:border-b-0 border-purple-300 py-8 lg:border-l-2 lg:border-black-200 lg:relative "
           >
-            <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-white">
+            <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-inherit">
               <span className="text-purple-500 font-medium">ABOUT</span>
               <h2 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight">
                 Your Partner in Digital Marketing Excellence
