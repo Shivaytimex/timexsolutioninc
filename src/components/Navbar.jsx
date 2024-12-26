@@ -13,10 +13,11 @@ const Navbar = () => {
     width: 0,
     opacity: 0,
   });
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   const listRef = useRef(null);
 
-  const handleMouseEnter = (event) => {
+  const handleMouseEnter = (event, index) => {
     const { width, left } = event.target.getBoundingClientRect();
     const parentLeft = listRef.current.getBoundingClientRect().left;
     setPosition({
@@ -24,10 +25,12 @@ const Navbar = () => {
       opacity: 1,
       left: left - parentLeft,
     });
+    setHoveredItem(index);
   };
 
   const handleMouseLeave = () => {
     setPosition((prev) => ({ ...prev, opacity: 0 }));
+    setHoveredItem(null);
   };
 
   return (
@@ -120,67 +123,34 @@ const Navbar = () => {
       </div>
 
       {/* DESKTOP MENU */}
-      <div className="hidden lg:flex items-center gap-6 lg:gap-9 font-medium">
+      <div className="hidden lg:flex items-center  xl:gap-9 font-medium">
         <ul
           ref={listRef}
-          className="flex relative gap-7 rounded-full px-4 py-3 items-center justify-center overflow-hidden  z-50"
+          className="flex relative rounded-full gap-6  px-4 py-3 items-center justify-center overflow-hidden z-50"
           onMouseLeave={handleMouseLeave}
         >
-          <li
-            onMouseEnter={handleMouseEnter}
-            className=" cursor-pointer z-10 relative"
-          >
-            <Link
-              to="/"
-              className="text-gray-600  px-3  py-2 hover:text-white font-medium text-sm  transition duration-300 mix-blend-difference"
-            >
-              Home
-            </Link>
-          </li>
-          <li
-            onMouseEnter={handleMouseEnter}
-            className=" cursor-pointer z-10 relative"
-          >
-            <Link
-              to="/"
-              className="text-gray-600 px-3 py-2 font-medium text-sm hover:text-white transition duration-300 mix-blend-difference"
-            >
-              Services
-            </Link>
-          </li>
-          <li
-            onMouseEnter={handleMouseEnter}
-            className=" cursor-pointer z-10 relative"
-          >
-            <Link
-              to="/about"
-              className="text-gray-600 px-3 py-2 font-medium text-sm hover:text-white transition duration-300 mix-blend-difference"
-            >
-              About Us
-            </Link>
-          </li>
-          <li
-            onMouseEnter={handleMouseEnter}
-            className=" cursor-pointer z-10 relative"
-          >
-            <Link
-              to="/contact"
-              className="text-gray-600 px-3 py-2 font-medium text-sm hover:text-white transition duration-300 mix-blend-difference"
-            >
-              Contact
-            </Link>
-          </li>
-          <li
-            onMouseEnter={handleMouseEnter}
-            className=" cursor-pointer z-10 relative"
-          >
-            <Link
-              to="/"
-              className="text-gray-600 px-3 py-2 font-medium text-sm hover:text-white transition duration-300 mix-blend-difference"
-            >
-              Blog
-            </Link>
-          </li>
+          {["Home", "Services", "About", "Contact", "Blog"].map(
+            (item, index) => (
+              <li
+                key={item}
+                onMouseEnter={(e) => handleMouseEnter(e, index)}
+                className="cursor-pointer z-10 relative"
+              >
+                <Link
+                  to={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "-")}`
+                  }
+                  className={`px-3 py-2 font-medium text-sm transition duration-300 ${
+                    hoveredItem === index ? "text-white" : "text-gray-600"
+                  }`}
+                >
+                  {item}
+                </Link>
+              </li>
+            )
+          )}
           <motion.li
             animate={position}
             initial={false}
@@ -189,7 +159,7 @@ const Navbar = () => {
               stiffness: 300,
               damping: 30,
             }}
-            className="bg-purple-600   absolute rounded-3xl px-2 py-6"
+            className="bg-purple-600 absolute rounded-3xl px-2 py-6"
           ></motion.li>
         </ul>
       </div>
