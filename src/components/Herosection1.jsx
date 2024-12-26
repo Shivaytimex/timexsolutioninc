@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import TypewriterEffect from './TypewriterEffect';
+import TypewriterEffect from "./TypewriterEffect";
 
 function HeroSection1() {
   return (
