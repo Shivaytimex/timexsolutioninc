@@ -23,7 +23,7 @@ export function WhyChooseUs() {
   return (
     <>
       <BackgroundBeamsWithCollision>
-        <section className="bg-[#0a192f] py-20 px-12 sm:px-16 lg:px-40 h-full">
+        <section className="bg-primary py-20 px-12 sm:px-16 lg:px-40 h-full">
           <div className="max-w-7xl mx-auto text-center">
             <motion.h2
               className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-4 md:px-10"
@@ -62,7 +62,7 @@ export function WhyChooseUs() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full blur-sm opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-[#fcd2d2]/50 rounded-full blur-sm opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <button className="relative px-6 py-2 text-xs sm:text-sm text-white border border-white/20 rounded-full bg-[#0a192f]/50 backdrop-blur-sm hover:border-white/40 transition-colors duration-300">
                         {feature}
                       </button>

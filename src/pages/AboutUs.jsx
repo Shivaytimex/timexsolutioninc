@@ -1,13 +1,17 @@
 import AboutSection from "../components/AboutFirstCompo";
+import ParallaxTeam from "../components/ParallaxTeam";
 import ScrollToTop from "../components/swipe-to-top";
-import { WhyChooseUs } from "../components/WhyChooseUs";
+// import TeamSection from "../components/TeamsSections";
+// import { WhyChooseUs } from "../components/WhyChooseUs";
 
 function AboutUs() {
   return (
     <>
       <AboutSection />
-      <WhyChooseUs/>
+      {/* <WhyChooseUs/> */}
       <ScrollToTop />
+      {/* <TeamSection/> */}
+      <ParallaxTeam/>
     </>
   );
 }

@@ -112,7 +112,7 @@ export const FloatingNav = () => {
               stiffness: 300,
               damping: 30,
             }}
-            className="bg-purple-600 absolute rounded-3xl px-2 py-5"
+            className="bg-primary absolute rounded-3xl px-2 py-5"
           ></motion.li>
         </ul>
       </motion.div>

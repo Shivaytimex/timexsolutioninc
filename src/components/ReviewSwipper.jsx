@@ -9,28 +9,28 @@ function ReviewSwipper() {
   const reviews = [
     {
       id: 1,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda impedit numquam doloremque, illum eum dolor ipsam consectetur quasi laudantium ad dignissimos inventore quis aspernatur nemo vitae veniam iste? Ex, ut.",
-      author: "Jaspreet Bumra",
+      text: "The app development team delivered an exceptional product that met all our requirements. Their dedication and attention to detail were evident in every aspect of the project. Highly recommended!",
+      author: "Arjun Kapoor",
     },
     {
       id: 2,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda impedit numquam doloremque, illum eum dolor ipsam consectetur quasi laudantium ad dignissimos inventore quis aspernatur nemo vitae veniam iste? Ex, ut.",
-      author: "Jaspreet Bumra",
+      text: "Their web development service is outstanding. They crafted a beautiful, functional, and responsive website that has significantly improved our online presence. The team was professional, skilled, and easy to work with.",
+      author: "Sophia Carter",
     },
     {
       id: 3,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda impedit numquam doloremque, illum eum dolor ipsam consectetur quasi laudantium ad dignissimos inventore quis aspernatur nemo vitae veniam iste? Ex, ut.",
-      author: "Jaspreet Bumra",
+      text: "We opted for their tech solutions, and it was a game changer for our business. The team provided innovative strategies and tools that enhanced our efficiency and streamlined operations effectively.",
+      author: "Ryan Martinez",
     },
     {
       id: 4,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda impedit numquam doloremque, illum eum dolor ipsam consectetur quasi laudantium ad dignissimos inventore quis aspernatur nemo vitae veniam iste? Ex, ut.",
-      author: "Jaspreet Bumra",
+      text: "Staffing solutions provided by this team were excellent. They connected us with highly skilled professionals who fit perfectly into our organization. The process was smooth, quick, and extremely efficient.",
+      author: "Priya Sharma",
     },
     {
       id: 5,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda impedit numquam doloremque, illum eum dolor ipsam consectetur quasi laudantium ad dignissimos inventore quis aspernatur nemo vitae veniam iste? Ex, ut.",
-      author: "Jaspreet Bumra",
+      text: "Their IT solutions were exactly what we needed. The team resolved our technical issues with ease, offering excellent support and creative approaches to solve problems. Outstanding service overall!",
+      author: "James Nguyen",
     },
   ];
 
@@ -47,7 +47,7 @@ function ReviewSwipper() {
   return (
     <section className="my-24">
       <div className="flex flex-col md:flex-row items-center gap-5 justify-center">
-        <h1 className="text-purple-600 text-center text-4xl font-semibold">
+        <h1 className="text-primary text-center text-4xl font-semibold">
           What Our Happy Clients Say
         </h1>
         <img className="h-16 w-16" src="/reveiw.webp" alt="review" />
@@ -76,13 +76,13 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-gradient-to-br from-purple-950 to-indigo-950 p-14 rounded-xl mt-8 text-white">
+            <div className="bg-primary h-[350px] lg:h-[260px]  p-14 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="flex items-center justify-between mt-5">
-                <em className="font-semibold text-lg lg:text-xl">
+                <em className="font-semibold text-md lg:text-xl">
                   {review.author}
                 </em>
-                <div className="flex text-yellow-300 gap-2">
+                <div className="flex text-yellow-300 text-md lg:text-xl lg:gap-2">
                   <FaStar />
                   <FaStar />
                   <FaStar />
@@ -102,7 +102,7 @@ function ReviewSwipper() {
             key={index}
             onClick={() => handleDotClick(index)} // Handle click to go to the slide
             className={`w-2 h-2 rounded-full ${
-              activeIndex === index ? "bg-purple-600" : "bg-gray-400"
+              activeIndex === index ? "bg-primary" : "bg-gray-400"
             }`}
           />
         ))}

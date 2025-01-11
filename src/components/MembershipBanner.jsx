@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+
 const MembershipBanner = () => {
   const ref = useRef();
   const IsinView = useInView(ref, { once: "true" });
@@ -21,11 +22,11 @@ const MembershipBanner = () => {
       <div className="absolute w-20 h-20 bg-purple-100 rounded-full bottom-[-50px] right-[-10px] z-0"></div>
 
       {/* Main Content */}
-      <div className="border-2 border-[#9234eb] md:w-[90%] mx-auto rounded-lg p-6 md:p-8 text-center relative bg-white z-10 ">
-        <h1 className="text-purple-600 font-bold text-2xl md:text-3xl leading-6">
+      <div className="border-2 border-primary md:w-[90%] mx-auto rounded-lg p-6 md:p-8 text-center relative bg-white z-10 ">
+        <h1 className="text-primary font-bold text-xl md:text-3xl leading-6">
           We are the proud member of SAPAA, IFTA INC, NDASA & IRP INC
         </h1>
-        <p className="text-black leading-4 text-sm md:text-base mt-6">
+        <p className="text-gray-800 leading-4 text-sm md:text-base mt-6">
           To ensure the highest standards of practice in Dot Drug and Alcohol
           Testing program
         </p>
