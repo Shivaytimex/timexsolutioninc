@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import CountUp from "../utils/CountUp";
 const StatsSection = () => {
   const cardRef = useRef();
   const cardAsideRef = useRef();
@@ -9,19 +10,49 @@ const StatsSection = () => {
   const cardData = [
     {
       id: 1,
-      value: "14+",
+      value: (
+        <CountUp
+        from={0}
+        to={14}
+        separator=","
+        direction="up"
+        duration={2}
+        className="count-up-text"
+        suffix=""
+      /> 
+      ),
       title: "Years of Experience",
       description: "Allowing us to navigate the industry's nuances with ease.",
     },
     {
       id: 2,
-      value: "15K+",
+      value: (
+        <CountUp
+        from={0}
+        to={15}
+        separator=","
+        direction="up"
+        duration={2}
+        className="count-up-text"
+        suffix="k+"
+      />      
+      ),
       title: "Clients Trust Us",
       description: "Let us show you why they choose us.",
     },
     {
       id: 3,
-      value: "4",
+      value: (
+        <CountUp
+        from={0}
+        to={4}
+        separator=","
+        direction="up"
+        duration={0.2}
+        className="count-up-text"
+        suffix="k+"
+      /> 
+      ),
       title: "Convenient Branches",
       description: "We're here to help whenever you need us.",
     },
@@ -37,7 +68,7 @@ const StatsSection = () => {
     <div className="py-10 my-10">
       <div className="px-8 grid grid-cols-1 md:md:grid-cols-[22%,auto] gap-8 relative">
         <div
-          className="absolute inset-0 bg-[#e9d2fa] z-[1] rounded-lg top-[20%] hidden lg:flex"
+          className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex"
           style={{ height: "60%" }}
         ></div>
         {/* Section Title */}
@@ -51,10 +82,10 @@ const StatsSection = () => {
           transition={{ duration: 0.6 }}
           className="flex justify-center flex-col relative z-10"
         >
-          <h2 className="text-4xl md:text-2xl font-bold text-PurpleEnd">
+          <h2 className="text-4xl md:text-2xl font-bold text-DarkText">
             What sets us apart
           </h2>
-          <p className="text-gray-600 text-base md:text-sm flex items-center">
+          <p className="text-DarkText md:text-sm flex items-center">
             What sets us apart from other providers in the industry?{" "}
             <span className="ml-2 text-PurpleEnd text-4xl">&rarr;</span>
           </p>
@@ -68,7 +99,7 @@ const StatsSection = () => {
           {cardData.map((card, index) => (
             <motion.div
               key={card.id}
-              className="relative z-10 bg-[#a585ff] text-white p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-lg"
+              className="relative z-10 bg-cover text-white bg-center bg-primary bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
               initial={{ y: 400, opacity: 0 }}
               animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}

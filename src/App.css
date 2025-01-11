@@ -1,0 +1,24 @@
+ /* Ensure the smooth-scrollbar container has a visible scrollbar 
+  .smooth-scrollbar {
+    position: relative;   
+   } 
+   
+   .smooth-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);  
+ }  
+   
+  .smooth-scrollbar-track-x, .smooth-scrollbar-track-y {
+    position: absolute;
+    z-index: 1; 
+     border-radius: 10px; 
+   } 
+
+   .smooth-scrollbar-thumb {
+    background-color: rgba(146, 52, 235, 0.8);   
+     border-radius: 10px;
+   }  
+   html, body { 
+     overflow: hidden; 
+     height: 100%; 
+   } 
+   */

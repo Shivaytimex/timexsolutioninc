@@ -18,6 +18,6 @@ export const TypeWriterText = ({ text, speed = 85 }) => {
   }, [text, speed]);
 
   return (
-    <p className="text-lg text-gray-700 leading-relaxed">{displayedText}</p>
+    <i className="text-lg text-gray-700 leading-relaxed">{displayedText}</i>
   );
 };

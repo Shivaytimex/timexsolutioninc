@@ -29,9 +29,11 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="bg-purple-500 text-white p-3 rounded-full shadow-lg hover:bg-purple-600 focus:outline-none"
+          className="bg-PurpleHeading bg-opacity-80 text-white p-3 rounded-full shadow-lg focus:outline-none group"
         >
-          ↑
+          <span className="transform transition-transform duration-100 group-hover:scale-110 group-:">
+            ↑
+          </span>
         </button>
       )}
     </div>

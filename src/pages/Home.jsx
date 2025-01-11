@@ -4,6 +4,7 @@ import StatsSection from "../components/StatsSection";
 import MembershipBanner from "../components/MembershipBanner";
 import ReviewSwipper from "../components/ReviewSwipper";
 import ScrollToTop from "../components/swipe-to-top";
+import { WhatMakesUsUnique } from "../components/services/WhatMakesUsUnique";
 
 function Home() {
   return (
@@ -11,8 +12,9 @@ function Home() {
       <HeroSection1 />
       <HeroSection />
       <StatsSection />
-      <MembershipBanner/>
-      <ReviewSwipper/>
+      <WhatMakesUsUnique></WhatMakesUsUnique>
+      <MembershipBanner />
+      <ReviewSwipper />
       <ScrollToTop />
     </div>
   );
