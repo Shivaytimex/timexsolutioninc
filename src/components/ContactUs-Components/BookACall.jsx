@@ -4,6 +4,7 @@ import webDev from "./webDev.jpg";
 import appDev from "./appDev.jpeg";
 import graphicDesign from "./graphicDesign.jpeg";
 import { Stars } from "./Stars";
+import ShinyText from "../../utils/ShinyText";
 
 export default function BookACall() {
   return (
@@ -11,7 +12,7 @@ export default function BookACall() {
       className="relative overflow-hidden py-16 lg:py-24"
       style={{
         background:
-          "linear-gradient(to bottom, black 0%,  #A64FF3 50%, black 100%)",
+          "linear-gradient(to bottom, black 0%,  #751f8c 50%, black 100%)",
       }}
     >
       <Stars />
@@ -29,7 +30,7 @@ export default function BookACall() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.7 }}
                 transition={{ delay: 0.2 }}
-                className="text-sm text-purple-300 font-semibold tracking-wider uppercase"
+                className="text-sm text-purple-300 font-semibold tracking-wider uppercase "
               >
                 Dispatch, Tracking, and Timesheets
               </motion.p>
@@ -40,8 +41,15 @@ export default function BookACall() {
                 className="text-5xl md:text-6xl font-bold text-white leading-tight"
               >
                 Let&apos;s create an{" "}
-                <span className="text-transparent  z-10 bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark">
-                  amazing website
+                <span className="z-10">
+                  <ShinyText
+                    text="amazing website"
+                    disabled={false}
+                    speed={3}
+                    className="bg-primary"
+                  >
+                    
+                  </ShinyText>
                 </span>{" "}
                 together
               </motion.h1>
@@ -141,11 +149,11 @@ export default function BookACall() {
       </div>
 
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+      {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
+      </div> */}
     </div>
   );
 }

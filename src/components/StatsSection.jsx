@@ -1,6 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import CountUp from "../utils/CountUp";
+import { Stars } from "./Stars";
+import { FaUsers } from "react-icons/fa";
 const StatsSection = () => {
   const cardRef = useRef();
   const cardAsideRef = useRef();
@@ -58,17 +60,17 @@ const StatsSection = () => {
     },
     {
       id: 4,
-      value: "Icon",
+      value: <FaUsers />,
       title: "Expert Guidance",
       description: "We'll support you every step of the way.",
     },
   ];
-
   return (
-    <div className="py-10 my-10">
-      <div className="px-8 grid grid-cols-1 md:md:grid-cols-[22%,auto] gap-8 relative">
+    <div className="pt-20    bg-gradient-to-b from-black to-black ">
+      <div className="px-8 grid grid-cols-1  bg-gradient-to-br from-transparent  to-transparent  md:md:grid-cols-[22%,auto] gap-8 relative">
+      <Stars/>
         <div
-          className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex"
+          className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex lg:mx-4"
           style={{ height: "60%" }}
         ></div>
         {/* Section Title */}
@@ -82,10 +84,10 @@ const StatsSection = () => {
           transition={{ duration: 0.6 }}
           className="flex justify-center flex-col relative z-10"
         >
-          <h2 className="text-4xl md:text-2xl font-bold text-DarkText">
+          <h2 className="text-4xl md:text-2xl  font-bold text-white">
             What sets us apart
           </h2>
-          <p className="text-DarkText md:text-sm flex items-center">
+          <p className="text-white md:text-sm flex items-center">
             What sets us apart from other providers in the industry?{" "}
             <span className="ml-2 text-PurpleEnd text-4xl">&rarr;</span>
           </p>
@@ -99,7 +101,7 @@ const StatsSection = () => {
           {cardData.map((card, index) => (
             <motion.div
               key={card.id}
-              className="relative z-10 bg-cover text-white bg-center bg-primary bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
+              className="relative lg:w-52 z-10 bg-cover text-white bg-center bg-white/10 backdrop-blur-sm  bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
               initial={{ y: 400, opacity: 0 }}
               animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}

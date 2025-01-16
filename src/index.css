@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 .custom-pagination .swiper-pagination-bullet {
-  background-color: #979696;
+  background-color: #751f8c;
   width: 48px;
-  height: 3px;
+  height: 5px;
   border-radius: 0px !important;
+  
 
 }
 .custom-pagination .swiper-pagination-bullet-active {
-  background: linear-gradient(to right, #7a38a7, #9b63b49f);
+  background: #751f8c;
 }

@@ -160,9 +160,9 @@ export default function WhereWeAre() {
                 Remote Team
               </h2>
               <p className="text-purple-200 text-lg max-w-xl">
-                We're building a team of passionate individuals who thrive in a
-                remote environment. Join us in creating innovative solutions
-                that shape the future.
+                We&apos;re building a team of passionate individuals who thrive
+                in a remote environment. Join us in creating innovative
+                solutions that shape the future.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -236,14 +236,14 @@ export default function WhereWeAre() {
               variants={rightDivVariants}
               className="md:absolute  md:right-5 md:-top-5 md:h-[30%] md:w-[35%] lg:w-[25%] m-12 md:m-0 bg-purple-900/30 backdrop-blur-sm border border-purple-500/20 md:z-10 rounded-xl"
             >
-              <div className="text-white p-4 text-sm px-5 py-4 ">
+              <div className="text-white p-4 text-sm px-5 py-4">
                 <div className="flex justify-around md:justify-start items-center mb-2 gap-2">
                   <h1 className="text-xl md:text-2xl font-bold text-white">
                     Mission
                   </h1>
                   <FaUsers className="inline-block rounded-full ml-2  text-3xl  md:text-4xl text-white bg-gradient-to-r from-PurpleLight to-PurpleDark p-2" />
                 </div>
-                <p className="text-xs  lg:text-sm">
+                <p className="text-xs">
                   As we look ahead, our vision is to continue shaping the future
                   of digital excellence. We aspire to be the architects of
                   transformative digital experiences.
@@ -251,7 +251,7 @@ export default function WhereWeAre() {
               </div>
             </motion.div>
             {/* main div */}
-            <div className=" md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:h-[70%] md:w-[80%] lg:w-[60%] rounded-xl  border    to-PurpleHeading z-1 md:flex md:items-center md:p-8 text-white">
+            <div className=" md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:h-[70%] md:w-[80%] lg:w-[60%] rounded-xl  border    to-PurpleHeading z-1 md:flex md:items-center md:p-16 text-white">
               <div className="text-center mb-16 space-y-8 mt-16">
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold leading-tight max-w-4xl mx-auto text-white">
                   Where We Are Now & Where We Intend To Go
@@ -271,14 +271,14 @@ export default function WhereWeAre() {
               variants={leftDivVariants}
               className="md:absolute md:left-5 md:-bottom-5 m-12 md:m-0  md:h-[30%] md:w-[35%] lg:w-[25%]  bg-purple-900/30 backdrop-blur-sm border border-purple-500/20 md:z-10 rounded-xl"
             >
-              <div className="text-white p-4  text-sm px-5 py-4">
-                <div className="flex justify-around md:justify-start items-center  mb-2 gap-2">
+              <div className="text-white p-4 text-sm px-5 py-4">
+                <div className="flex justify-around md:justify-start items-center mb-2 gap-2">
                   <h1 className="text-xl md:text-2xl font-bold text-white">
                     Vision
                   </h1>
                   <FaEye className="inline-block rounded-full ml-2 text-3xl md:text-4xl text-white bg-gradient-to-r from-PurpleLight to-PurpleDark p-2" />
                 </div>
-                <p className="text-xs lg:text-sm">
+                <p className="text-xs">
                   As we look ahead, our vision is to continue shaping the future
                   of digital excellence. We aspire to be the architects of
                   transformative digital experiences.
@@ -290,10 +290,10 @@ export default function WhereWeAre() {
       </div>
 
       {/* Background Blobs */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+      <div className="absolute top-8 left-0 w-full h-full z-0">
+        <div className="absolute top-3 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute bottom-8 left-20 z-[20] w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
     </div>
   );

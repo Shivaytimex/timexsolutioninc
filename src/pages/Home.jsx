@@ -1,20 +1,17 @@
 import HeroSection from "../components/slider/Herosection";
 import HeroSection1 from "../components/Herosection1";
 import StatsSection from "../components/StatsSection";
-import MembershipBanner from "../components/MembershipBanner";
-import ReviewSwipper from "../components/ReviewSwipper";
 import ScrollToTop from "../components/swipe-to-top";
-import { WhatMakesUsUnique } from "../components/services/WhatMakesUsUnique";
-
+import { WhatMakesUsUnique } from "../components/WhatMakesUsUnique";
+import Service from "../components/services/Index";
 function Home() {
   return (
-    <div className="px-4">
+    <div className="bg-black">
       <HeroSection1 />
       <HeroSection />
       <StatsSection />
-      <WhatMakesUsUnique></WhatMakesUsUnique>
-      <MembershipBanner />
-      <ReviewSwipper />
+      <WhatMakesUsUnique />
+      <Service />
       <ScrollToTop />
     </div>
   );

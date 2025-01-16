@@ -4,8 +4,7 @@ import { lazy, Suspense, useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { SyncLoader } from "react-spinners";
-// import BackgroundWrapper from "./components/BackgroundWrapper";
-import SplashScreen from "./components/splashScreen/SplashScreen"; // New component
+import SplashScreen from "./components/splashScreen/SplashScreen";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -19,22 +18,29 @@ const TechIT = lazy(() => import("./services/tech-it-solutions"));
 const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 5000); // Adjust splash screen duration as needed
-    return () => clearTimeout(timer);
+    const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+    const splashShownThisSession = sessionStorage.getItem('splashShownThisSession');
+
+    if (!hasVisitedBefore || !splashShownThisSession) {
+      setShowSplash(true);
+      localStorage.setItem('hasVisitedBefore', 'true');
+      sessionStorage.setItem('splashShownThisSession', 'true');
+    }
   }, []);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
 
   return (
     <>
       {showSplash ? (
-        <SplashScreen />
+        <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        // <BackgroundWrapper>
-        <div className="container mx-auto">
+        <div className="mx-auto">
           <Router>
             <Navbar />
             <Suspense
@@ -66,10 +72,10 @@ function App() {
             <Footer />
           </Router>
         </div>
-        // </BackgroundWrapper>
       )}
     </>
   );
 }
 
 export default App;
+

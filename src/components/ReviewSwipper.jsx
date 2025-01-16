@@ -4,6 +4,7 @@ import "swiper/css/navigation";
 import { FaStar } from "react-icons/fa6";
 import { Autoplay } from "swiper/modules";
 import { useState } from "react";
+import AnimatedReveiwsCircle from "./AnimatedReveiws";
 
 function ReviewSwipper() {
   const reviews = [
@@ -46,11 +47,11 @@ function ReviewSwipper() {
 
   return (
     <section className="my-24">
-      <div className="flex flex-col md:flex-row items-center gap-5 justify-center">
-        <h1 className="text-primary text-center text-4xl font-semibold">
+      <div className="flex flex-col md:flex-row items-center gap-5 justify-center ">
+        <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight text-center text-4xl font-semibold p-2">
           What Our Happy Clients Say
         </h1>
-        <img className="h-16 w-16" src="/reveiw.webp" alt="review" />
+        <AnimatedReveiwsCircle />
       </div>
 
       <Swiper
@@ -76,7 +77,7 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-primary h-[350px] lg:h-[260px]  p-14 rounded-xl mt-8 text-white">
+            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[350px] lg:h-[260px]  p-14 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="flex items-center justify-between mt-5">
                 <em className="font-semibold text-md lg:text-xl">
@@ -102,7 +103,7 @@ function ReviewSwipper() {
             key={index}
             onClick={() => handleDotClick(index)} // Handle click to go to the slide
             className={`w-2 h-2 rounded-full ${
-              activeIndex === index ? "bg-primary" : "bg-gray-400"
+              activeIndex === index ? "bg-PurpleDark" : "bg-gray-400"
             }`}
           />
         ))}

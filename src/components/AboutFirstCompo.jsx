@@ -1,20 +1,21 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { TypeWriterText } from "./TypeWriterText";
-// import ParaTypeWriter from "./AboutUsTypeWritter/ParaTypeWriter";
 import Header from "../components/ContactUs-Components/header";
-import {Stars} from "./Stars";
+import { Stars } from "./Stars";
 import TiltedScroll from "../utils/TiltedScroll";
+import norwayVideo from './video/video.mp4';
+import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 export default function AboutSection() {
   const aboutRef = useRef(null);
   const aboutPicRef = useRef(null);
   const ref = useRef(null);
-  // const missionRef = useRef(null);
-  // const missionRefInView = useInView(missionRef, { once: true }); 
+  const videoRef = useRef(null);
   const InView = useInView(ref, { once: true });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     setIsLoading(false);
@@ -23,11 +24,18 @@ export default function AboutSection() {
   const isInViewAbout = useInView(aboutRef, { once: true });
   const isInViewAboutPic = useInView(aboutPicRef, { once: true });
 
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   const paragraphText = 
     "Founded in 1998, Performics is a performance pioneer, originally operating as an affiliate network, and rolling out search marketing services in the early 2000s. Today, Performance Marketing has moved from a specialty service to the strategic center for brands. We're connecting marketing investment to consumer intent, redefining performance by using data, consumer intent signals, technology, media and content in novel ways. We've built Growth Solutions to foster innovation. And we're structured globally to serve multi-market clients at scale.";
 
   return (
-    <div className="relative bg-gradient-to-b  from-black  to-black min-h-screen text-white overflow-hidden mt-7">
+    <div className="relative bg-gradient-to-b from-black to-black min-h-screen text-white overflow-hidden">
       <Stars />
       <Header name="About US" />
 
@@ -41,9 +49,9 @@ export default function AboutSection() {
               x: isInViewAbout ? 0 : -500,
               opacity: isInViewAbout ? 1 : 0,
             }}
-            className="space-y-6 pl-6 border-b-2 lg:border-b-0 border-purple-300 py-8 lg:border-l-2 lg:border-purple-200 lg:relative"
+            className="space-y-6 pl-6 border-b-2 lg:border-b-0 border-purple-300 bg-black py-8 lg:border-l-2 lg:border-purple-200 lg:relative"
           >
-            <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-inherit">
+            <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-inherit ">
               <span className="text-purple-500 font-medium">ABOUT</span>
               <h2 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight">
                 Your Partner in Digital Marketing Excellence
@@ -87,10 +95,10 @@ export default function AboutSection() {
             }}
             transition={{ duration: 0.7 }}
             ref={aboutPicRef}
-            className="mx-auto md:block relative h-[300px] w-60 md:w-96 border lg:h-[370px] lg:w-[330px] bg-slate-400"
+            className="mx-auto md:block relative h-[300px] w-60 md:w-96  lg:h-[370px] lg:w-[330px] "
           >
             <img
-              src="/about-partner-img.png"
+              src="/about-first-img.webp"
               alt="About Partner"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -98,29 +106,38 @@ export default function AboutSection() {
         </div>
       </section>
 
-<TiltedScroll />
+      <TiltedScroll />
 
       <div className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-12 space-y-8 lg:space-y-0">
           <div className="w-full lg:w-1/2">
             <motion.div
-              className="w-full h-48 md:h-60 lg:w-full lg:h-[400px] mx-auto relative"
+              className="w-full h-48 md:h-60 lg:w-full lg:h-[400px] mx-auto relative rounded-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: InView ? 1 : 0, scale: InView ? 1 : 0 }}
               transition={{ duration: 1 }}
             >
-              <div className="w-full h-full flex items-center justify-center bg-purple-500 bg-opacity-50 rounded-lg overflow-hidden">
-                <video
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  loop
-                  muted
-                >
-                  <source src="path-to-your-video.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+              >
+                <source src={norwayVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button
+                onClick={toggleMute}
+                className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
+              >
+                {isMuted ? (
+                  <FaVolumeMute className="w-6 h-6 text-white" />
+                ) : (
+                  <FaVolumeUp className="w-6 h-6 text-white" />
+                )}
+              </button>
             </motion.div>
           </div>
 

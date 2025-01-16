@@ -6,9 +6,9 @@ export function PricingPackages({ packages }) {
   return (
     // <section className="py-20 px-2 sm:px-4 lg:px-6">
     <div className="max-w-7xl mx-auto pt-16 pb-8 px-2 sm:px-4 lg:px-6 border border-purple-950 relative rounded-[32px] flex justify-center items-center">
-      <div className="bg-gradient-to-br from-purple-50 to-blue-50 absolute -top-4 md:-top-6 px-5">
+      <div className="bg-purple-900/60 backdrop-blur-sm   p-5 rounded-ss-full rounded-ee-full bg-opacity-90  absolute -top-4 md:-top-12 ">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pb-1 bg-primary bg-clip-text text-transparent"
+          className="text-2xl sm:text-3xl md:text-4xl  font-bold text-center   bg-primary bg-clip-text text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -22,7 +22,7 @@ export function PricingPackages({ packages }) {
         {packages.map((pkg, index) => (
           <motion.div
             key={pkg.name}
-            className="bg-white rounded-[32px] overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg flex flex-col min-h-full"
+            className="bg-purple-900/40 backdrop-blur-sm  border-purple-500/60  bg-opacity-90 rounded-[32px] overflow-hidden border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg flex flex-col min-h-full"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -30,7 +30,7 @@ export function PricingPackages({ packages }) {
           >
             {/* Top Colored Section */}
             <div
-              className={`px-6 pt-5 pb-6 rounded-ee-[128px] shadow-inherit shadow-2xl bg-primary/80`}
+              className={`px-6 pt-5 pb-6 rounded-ee-[128px] shadow-inherit shadow-2xl bg-gradient-to-b from-PurpleLight to-PurpleDark `}
             >
               <div className="space-y-[10px]">
                 <div>
@@ -70,9 +70,9 @@ export function PricingPackages({ packages }) {
                   {pkg.services.map((service, i) => (
                     <li key={i} className="flex items-start">
                       {/* <Check className={`w-4 h-4 ${pkg.dotColor} mt-0.5 mr-2 flex-shrink-0`} /> */}
-                      <FaCheck className="w-4 h-4 text-gray-50 p-[3px] rounded-full mt-0.5 mr-2 flex-shrink-0 bg-primary/80" />
+                      <FaCheck className="w-4 h-4 text-gray-50 p-[3px] rounded-full mt-0.5 mr-2 flex-shrink-0 bg-gradient-to-r from-PurpleDark to-PurpleLight" />
 
-                      <span className="text-sm text-gray-600 leading-snug">
+                      <span className="text-sm text-gray-200 leading-snug">
                         {service}
                       </span>
                     </li>
@@ -97,7 +97,7 @@ export function PricingPackages({ packages }) {
                                         />
                                     </svg>
                                 </button> */}
-              <button className="w-full bottom-0 mt-6 px-6 py-2 bg-primary/80 text-white rounded-3xl hover:from-purple-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-300 transition-colors duration-200 flex items-center justify-center">
+              <button className="w-full bottom-0 mt-6 px-6 py-2 bg-gradient-to-r from-PurpleDark to-PurpleLight text-white rounded-3xl hover:from-purple-600  hover:to-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-300 transition-colors duration-200 flex items-center justify-center">
                 <span className="font-medium">Get Started</span>
                 <motion.div
                   className="w-2 h-2 rounded-full bg-white ml-2"

@@ -14,10 +14,10 @@ const footerSections = {
     {
       name: "Address: 123 Main St, City, Country",
       icon: FaMapMarkerAlt,
-      href: "#",
+      href: "",
     },
     {
-      name: "Email: info@example.com",
+      name: "Email: timexsolutions@example.com",
       icon: FaEnvelope,
       href: "mailto:info@example.com",
     },

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 
 export const TypeWriterText = ({ text, speed = 85 }) => {
@@ -18,6 +19,6 @@ export const TypeWriterText = ({ text, speed = 85 }) => {
   }, [text, speed]);
 
   return (
-    <i className="text-lg text-gray-700 leading-relaxed">{displayedText}</i>
+    <i className="text-lg text-gray-400 leading-relaxed">{displayedText}</i>
   );
 };
