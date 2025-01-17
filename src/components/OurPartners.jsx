@@ -1,61 +1,70 @@
 /* eslint-disable react/prop-types */
 
 import { motion } from "framer-motion";
-import {
-  FaExpandArrowsAlt,
-  FaSearch,
-  FaMagic,
-  FaPalette,
-  FaCode,
-  FaColumns,
-  FaLayerGroup,
-  FaMousePointer,
-} from "react-icons/fa";
+import { FaLayerGroup, FaMousePointer } from "react-icons/fa";
 
 const features = [
   {
-    icon: FaExpandArrowsAlt,
-    title: "Responsive design",
+    url: {
+      src: "/logos/logo-1.webp",
+      alt: "Arrive-Logistics",
+    },
+    title: "Arrive Logistics",
     description: "Adapts perfectly to any screen size",
   },
   {
-    icon: FaSearch,
-    title: "Powerful search",
+    url: {
+      src: "/logos/logo-2.webp",
+      alt: "Black-Bear-Diner",
+    },
+    title: "Black Bear Diner",
     description: "Find anything instantly",
   },
   {
-    icon: FaMagic,
-    title: "Cool animations",
+    url: {
+      src: "/logos/logo-3.webp",
+      alt: "C.R.England",
+    },
+    title: "C.R.England",
     description: "Smooth transitions and effects",
   },
   {
-    icon: FaPalette,
-    title: "Customization",
+    url: {
+      src: "/logos/logo-4.webp",
+      alt: "Cheema-Freightlines",
+    },
+    title: "Cheema Freightlines",
     description: "Tailor to your needs",
   },
   {
-    icon: FaCode,
-    title: "SEO friendly code",
+    url: {
+      src: "/logos/logo-5.webp",
+      alt: "Jack",
+    },
+    title: "Jack",
     description: "Optimized for search engines",
   },
   {
-    icon: FaColumns,
-    title: "Flexible UI",
+    url: {
+      src: "/logos/logo-6.webp",
+      alt: "Kay-Jewelers",
+    },
+    title: "Kay Jewelers",
     description: "Adaptable interface elements",
   },
   {
-    icon: FaLayerGroup,
+    url: FaLayerGroup,
     title: "Varied layouts",
     description: "Multiple layout options",
   },
   {
-    icon: FaMousePointer,
+    url: FaMousePointer,
     title: "Parallax",
     description: "Engaging scroll effects",
   },
 ];
 
-const FeatureCard = ({ icon: Icon, title, description }) => (
+const FeatureCard = ({ url, title, description }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -64,8 +73,12 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
     className="bg-purple-900/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 group hover:bg-purple-800/40 transition-all duration-300"
   >
     <div className="flex flex-col items-center text-center">
-      <div className="p-3 rounded-full bg-gradient-to-r from-PurpleDark to-PurpleLight mb-4 group-hover:scale-110 transition-transform duration-300">
-        <Icon className="w-6 h-6 text-white" />
+      <div className="rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+        <img
+          src={url.src}
+          alt={url.alt}
+          className="w-36  md:w-36  h-auto rounded-full object-cover"
+        />
       </div>
       <h3 className="text-white font-semibold mb-2">{title}</h3>
       <p className="text-purple-200 text-sm">{description}</p>
@@ -106,7 +119,7 @@ export default function OurParners() {
       `}</style> */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-800/30 to-transparent pointer-events-none "></div>
 
-      <div className="contaier mx-auto px-4 relative z-10">
+      <div className="contaier mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Features Section */}
         <div className="mb-4">
           <motion.div

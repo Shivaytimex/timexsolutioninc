@@ -13,14 +13,14 @@ export default function AnimatedReveiwsCircle() {
         animate={{ rotate: 360 }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       >
-        <svg viewBox="0 0 200 200" className="w-full h-full">
+        <svg viewBox="0 0 200 200" className="w-full h-full p-2">
           <circle cx="100" cy="100" r="90" className="fill-black-300" />
           <path
             id="innerCirclePath"
             fill="none"
             d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
           />
-          <text className="text-2xl font-bold fill-white">
+          <text className="text-2xl font-light fill-white">
             <textPath
               href="#innerCirclePath"
               className="uppercase tracking-[0.3em]"
@@ -29,7 +29,7 @@ export default function AnimatedReveiwsCircle() {
             </textPath>
           </text>
         </svg>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

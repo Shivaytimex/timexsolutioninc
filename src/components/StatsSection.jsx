@@ -3,6 +3,9 @@ import { useRef } from "react";
 import CountUp from "../utils/CountUp";
 import { Stars } from "./Stars";
 import { FaUsers } from "react-icons/fa";
+
+// optimized
+
 const StatsSection = () => {
   const cardRef = useRef();
   const cardAsideRef = useRef();
@@ -66,9 +69,9 @@ const StatsSection = () => {
     },
   ];
   return (
-    <div className="pt-20    bg-gradient-to-b from-black to-black ">
+    <div className="pt-20 bg-gradient-to-b from-black to-black">
       <div className="px-8 grid grid-cols-1  bg-gradient-to-br from-transparent  to-transparent  md:md:grid-cols-[22%,auto] gap-8 relative">
-      <Stars/>
+      <Stars />
         <div
           className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex lg:mx-4"
           style={{ height: "60%" }}
@@ -101,7 +104,7 @@ const StatsSection = () => {
           {cardData.map((card, index) => (
             <motion.div
               key={card.id}
-              className="relative lg:w-52 z-10 bg-cover text-white bg-center bg-white/10 backdrop-blur-sm  bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
+              className="relative lg:w-52 z-10 bg-cover text-white bg-center bg-white/10 backdrop-blur-2xl bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
               initial={{ y: 400, opacity: 0 }}
               animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}

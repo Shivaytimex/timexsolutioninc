@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import { Link } from "react-scroll";
 
 const perspective = {
   initial: {
@@ -58,7 +59,7 @@ const links = [
   },
   {
     title: "Services",
-    href: "/",
+    href: "service-home",
     submenu: [
       { title: "App Development", href: "/services/app-development" },
       { title: "Web Development", href: "/services/web-development" },
@@ -117,12 +118,26 @@ export default function Nav() {
                 exit="exit"
               >
                 <div className="flex items-center">
-                  <a
-                    href={href}
-                    className="text-white/90 text-[22px] no-underline mr-2"
-                  >
-                    {title}
-                  </a>
+                  {title === "Services" ? (
+                    <Link
+                      to={href}
+                      spy={true}
+                      smooth={true}
+                      offset={50}
+                      duration={500}
+                      className="text-white/90 text-[22px] no-underline mr-2 cursor-pointer"
+                    >
+                      {title}
+                    </Link>
+                  ) : (
+                    <a
+                      href={href}
+                      className="text-white/90 text-[22px] no-underline mr-2"
+                    >
+                      {title}
+                    </a>
+                  )}
+
                   {submenu && (
                     <button
                       onClick={() =>

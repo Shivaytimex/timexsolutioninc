@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ParallaxScroll } from "./ui/parallax-scroll";
 import { PricingPackages } from "./PricingPackages";
@@ -77,7 +78,7 @@ export function ServicePage({
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      <div className="container mx-auto max-w-7xl space-y-20 py-20 px-4 relative">
+      <div className="space-y-20 py-20 relative">
         <div className="relative">
           <Stars />
           <div className="relative z-10">
@@ -238,7 +239,7 @@ export function ServicePage({
               whileInView="show"
               viewport={{ once: true }}
             >
-              {features.map((feature, index) => (
+              {features.map((feature) => (
                 <motion.div
                   key={feature.title}
                   className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-sm border border-purple-500/30 rounded-[32px] p-8 shadow-lg relative overflow-hidden"

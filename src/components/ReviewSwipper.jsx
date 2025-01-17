@@ -36,7 +36,7 @@ function ReviewSwipper() {
   ];
 
   const [swiperInstance, setSwiperInstance] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0); // Track active index using state
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Function to handle slide change using the custom dots
   const handleDotClick = (index) => {

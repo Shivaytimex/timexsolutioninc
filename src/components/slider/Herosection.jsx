@@ -35,7 +35,7 @@ function HeroSection() {
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>
-            <div className="relative bg-gradient-to-t from-black  from-15% via-primary via-100% to-black to-90% min-h-screen overflow-hidden ">
+            <div className="relative bg-gradient-to-t from-black  from-15% via-primary via-100% to-black to-90% min-h-[80vh] overflow-hidden ">
               <Stars />
               <div className="lg:absolute sm:static order-first lg:top-1/2 lg:left-14 lg:transform lg:-translate-y-1/2 lg:w-[550px] lg:h-[295px]  text-white rounded-xl rounded-b-none lg:rounded-b-xl  border-b-0 lg:border-b border border-slate-300 lg:shadow-2xl p-6  ">
                 <h1 className="font-semibold text-[23px] md:text-[30px] lg:text-[45px] lg:leading-10 leading-6">
@@ -49,14 +49,14 @@ function HeroSection() {
                 <img
                   loading="lazy"
                   className="w-full h-full object-cover block md:w-3/4 lg:w-full mx-auto "
-                  src={image?.Src} 
+                  src={image?.Src}
                 />
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="hidden md:block custom-pagination cursor-pointer  space-x-2 absolute  left-1/2 transform -translate-x-1/2 "></div>
+      <div className="custom-pagination cursor-pointer  space-x-2 absolute  left-1/2 transform -translate-x-1/2 "></div>
     </>
   );
 }

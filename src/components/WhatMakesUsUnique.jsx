@@ -33,7 +33,7 @@ const features = [
 
 export function WhatMakesUsUnique() {
   return (
-    <section className="relative bg-gradient-to-b from-black overflow-hidden  to-black py-20 space-y-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-gradient-to-b from-black overflow-hidden  to-black py-20 space-y-20">
       {/* <style>{`
            @keyframes blob {
              0% {
@@ -84,23 +84,23 @@ export function WhatMakesUsUnique() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr,auto,1fr] gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr,auto,1fr] gap-8 lg:gap-12 items-center px-4 sm:px-6">
             {/* Left Features */}
             <div className="space-y-12">
               {features.slice(0, 2).map((feature, index) => (
                 <motion.div
                   key={feature.number}
-                  className="text-left md:text-right"
+                  className="text-left lg:text-right"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <div className="flex items-center justify-start md:justify-end mb-2">
-                    <h3 className="text-xl font-bold text-white mr-3">
+                  <div className="flex items-center justify-start lg:justify-end mb-2">
+                    <h3 className="text-xl font-bold text-white lg:mr-3 order-2 lg:order-1">
                       {feature.title}
                     </h3>
-                    <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark">
+                    <span className="text-4xl font-bold text-transparent mr-3 lg:mr-0 bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark order-1 lg:order-2">
                       {feature.number}
                     </span>
                   </div>
@@ -158,7 +158,7 @@ export function WhatMakesUsUnique() {
           <OurPartners />
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 px-4 sm:px-6 lg:px-8">
           <ReviewSwipper />
         </div>
       </div>
