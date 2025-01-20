@@ -1,11 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense, useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { SyncLoader } from "react-spinners";
-// import BackgroundWrapper from "./components/BackgroundWrapper";
-import SplashScreen from "./components/splashScreen/SplashScreen"; // New component
+import SplashScreen from "./components/splashScreen/SplashScreen";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -17,26 +15,33 @@ const AppDevelopment = lazy(() => import("./services/app-development"));
 const DigitalMarketing = lazy(() => import("./services/digital-marketing"));
 const TechIT = lazy(() => import("./services/tech-it-solutions"));
 const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
+const Navbar = lazy(() => import("./components/Navbar"));
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 5000); // Adjust splash screen duration as needed
-    return () => clearTimeout(timer);
+    const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
+    const splashShownThisSession = sessionStorage.getItem("splashShownThisSession");
+
+    if (!hasVisitedBefore || !splashShownThisSession) {
+      setShowSplash(true);
+      localStorage.setItem("hasVisitedBefore", "true");
+      sessionStorage.setItem("splashShownThisSession", "true");
+    }
   }, []);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
 
   return (
     <>
       {showSplash ? (
-        <SplashScreen />
+        <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        // <BackgroundWrapper>
-        <div className="container mx-auto">
+        <div className="mx-auto ">
           <Router>
-            <Navbar />
             <Suspense
               fallback={
                 <div
@@ -51,22 +56,24 @@ function App() {
                 </div>
               }
             >
-              <Routes>
-                <Route index path="/" element={<Home />} />
-                <Route path="/about" element={<AboutUs />} />
-                <Route path="/contact" element={<ContactUs />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/services/web-development" element={<WebDevelopment />} />
-                <Route path="/services/app-development" element={<AppDevelopment />} />
-                <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-                <Route path="/services/tech-it-solutions" element={<TechIT />} />
-                <Route path="/services/staffing-solutions" element={<StaffingSolutions />} />
-              </Routes>
+              <Navbar /> {/* Navbar will be rendered immediately */}
+              
+              {/* Wrap the routes inside the SmoothScroll */}
+                <Routes>
+                  <Route index path="/" element={<Home />} />
+                  <Route path="/about" element={<AboutUs />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/services/web-development" element={<WebDevelopment />} />
+                  <Route path="/services/app-development" element={<AppDevelopment />} />
+                  <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+                  <Route path="/services/tech-it-solutions" element={<TechIT />} />
+                  <Route path="/services/staffing-solutions" element={<StaffingSolutions />} />
+                </Routes>
             </Suspense>
             <Footer />
           </Router>
         </div>
-        // </BackgroundWrapper>
       )}
     </>
   );

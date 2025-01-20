@@ -1,3 +1,4 @@
+import AnimatedReveiwsCircle from "../components/AnimatedReveiws";
 import ShinyText from "./ShinyText";
 
 const TiltedScroll = () => {
@@ -106,16 +107,12 @@ const TiltedScroll = () => {
           </div>
         </div>
         <div className="md:w-[40%] gap-4 text-center flex md:flex-col items-center justify-center">
-          <img
-            className="w-auto h-14 md:h-20 lg:h-24 md:order-none order-1"
-            src="/reveiw.webp"
-            alt=""
-          />
+          <AnimatedReveiwsCircle />
           <ShinyText
             text="Happy clients About us"
             disabled={false}
             speed={3}
-            className="font-bold text-3xl md:text-4xl lg:text-6xl  lg:leading-[90px]"
+            className="font-bold text-3xl md:text-4xl lg:text-6xl lg:leading-[90px] bg-PurpleHeading"
           />
         </div>
       </div>

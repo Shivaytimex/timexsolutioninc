@@ -1,48 +1,35 @@
-import { useEffect, useRef } from "react";
-import Scrollbar from "smooth-scrollbar";
+/* eslint-disable react/prop-types */
+import { useEffect, useRef } from 'react';
+import Lenis from '@studio-freight/lenis'; // Import Lenis
 
 const SmoothScroll = ({ children }) => {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef(null); // Ref for the scroll container
 
   useEffect(() => {
-    const options = {
-      damping: 0.1,
-      alwaysShowTracks: true,
-    };
+    // Initialize Lenis when the component mounts
+    const lenis = new Lenis({
+      duration: 1.2, // Scroll duration (higher value = slower scrolling)
+      easing: (t) => t, // Custom easing function (optional)
+      direction: 'vertical', // Set to 'horizontal' for horizontal scrolling
+    });
 
-    // Initialize smooth-scrollbar on the container
-    const scrollbar = Scrollbar.init(scrollRef.current, options);
+    // Create a RAF function to continuously update Lenis
+    function raf(time) {
+      lenis.raf(time); // Update Lenis with each animation frame
+      requestAnimationFrame(raf); // Request the next animation frame
+    }
 
-    // Custom keyboard scrolling logic
-    const handleKeyboardNavigation = (e) => {
-      const scrollStep = 300; // Scroll step size (pixels)
-      if (e.key === "ArrowDown") {
-        scrollbar.scrollTo(0, scrollbar.offset.y + scrollStep, 800); // Scroll down
-      } else if (e.key === "ArrowUp") {
-        scrollbar.scrollTo(0, scrollbar.offset.y - scrollStep, 800); // Scroll up
-      }
-    };
+    // Start the animation frame loop
+    requestAnimationFrame(raf);
 
-    // Listen for keyboard events
-    window.addEventListener("keydown", handleKeyboardNavigation);
-
-    // Cleanup on unmount
     return () => {
-      if (scrollbar) {
-        scrollbar.destroy();
-      }
-      window.removeEventListener("keydown", handleKeyboardNavigation);
+      // Cleanup Lenis instance when the component unmounts
+      lenis.destroy();
     };
   }, []);
 
   return (
-    <div
-      ref={scrollRef}
-      style={{
-        height: "100vh", // Full height to enable scrolling
-        overflow: "hidden", // Hide native scrollbars
-      }}
-    >
+    <div ref={scrollRef} style={{ overflow: 'hidden', height: '100vh' }}>
       {children}
     </div>
   );

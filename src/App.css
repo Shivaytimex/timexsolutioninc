@@ -22,3 +22,16 @@
      height: 100%; 
    } 
    */
+   /* App.css */
+
+/* html, body, #root, .mx-auto {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.mx-auto {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+} */

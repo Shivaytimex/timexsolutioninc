@@ -1,33 +1,34 @@
-"use client";
-import React from 'react'
-import { motion, useInView } from 'framer-motion'
-import { 
-  FaMapMarkerAlt, 
-  FaEnvelope, 
-  FaPhone, 
-  FaFacebookF, 
-  FaInstagram, 
-  FaTwitter, 
-  FaYoutube 
-} from 'react-icons/fa'
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhone,
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
+  transition: { duration: 0.6 },
+};
 
 const staggerChildren = {
   visible: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const AnimatedSection = ({ children, className }) => {
-  const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <motion.div
@@ -39,54 +40,192 @@ const AnimatedSection = ({ children, className }) => {
     >
       {children}
     </motion.div>
-  )
-}
+  );
+};
 
 export default function ContactPage() {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission
-  }
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState({}); // State to store form errors
+  const [formData, setFormData] = useState({
+    name: "",
+    companyName: "",
+    phoneNumber: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  // Handle input changes to update formData state
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Validation function
+  const validateForm = () => {
+    const errors = {};
+
+    // Required fields
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Email is invalid";
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    }
+
+    // Optional: Validate phone number format (basic)
+    if (
+      formData.phoneNumber &&
+      !/^\+?[0-9]{7,15}$/.test(formData.phoneNumber)
+    ) {
+      errors.phoneNumber = "Phone number is invalid";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+  
+    const errors = validateForm();
+  
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setIsSubmitting(false);
+      return;
+    }
+  
+    setFormErrors({}); // Reset errors
+  
+    // Construct custom subject based on the user's name
+    const customSubject = `${formData.name} sent you a message from timexsolutions`;
+  
+    // Prepare data for submission with the custom subject
+    const submissionData = {
+      ...formData,
+      subject: customSubject, // Override the subject field
+      access_key: "895c1bb9-0830-466c-bcfb-da8c6c789acd",
+    };
+    
+    // Optionally, remove the 'subject' field from formData if it's no longer needed
+    // delete submissionData.subject;
+  
+    const json = JSON.stringify(submissionData);
+  
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      });
+  
+      const res = await response.json();
+  
+      if (res.success) {
+        Swal.fire({
+          title: "Thanks for reaching us!",
+          text: "Your message has been sent successfully!",
+          icon: "success",
+        });
+        // Reset form fields after successful submission
+        setFormData({
+          name: "",
+          companyName: "",
+          phoneNumber: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        Swal.fire({
+          title: "Oops!",
+          text: "Something went wrong. Please try again later.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      Swal.fire({
+        title: "Oops!",
+        text: "There was an error submitting the form. Please try again.",
+        icon: "error",
+      });
+    }
+  
+    setIsSubmitting(false);
+  };
+  
 
   return (
-    <div className="min-h-screen bg-gradient-to-br  from-black  to-black text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-black to-black text-white  relative px-4 py-16 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         <AnimatedSection className="bg-white/5 backdrop-blur-lg rounded-3xl overflow-hidden">
-          <div className="lg:grid lg:grid-cols-2">
+          <div className="lg:grid lg:grid-cols-2 ">
             {/* Left Column - Contact Info */}
-            <AnimatedSection className="p-8 lg:p-12 bg-gradient-to-br from-PurpleDark/30 to-PurpleLight/30">
-              <motion.h2 
+            <AnimatedSection className="p-8 lg:p-12 bg-gradient-to-br from-primary/20  0 to-primary/90">
+              <motion.h2
                 className="text-4xl font-extrabold text-center mb-6"
                 variants={fadeInUp}
               >
                 Get in touch
               </motion.h2>
-              <motion.p 
+              <motion.p
                 className="text-white/80 mb-10 text-lg"
                 variants={fadeInUp}
               >
-                Sociosqu viverra lectus placerat sem efficitur molestie vehicula cubilia leo etiam nam.
+                Sociosqu viverra lectus placerat sem efficitur molestie vehicula
+                cubilia leo etiam nam.
               </motion.p>
 
               {/* Contact Details */}
               <AnimatedSection className="space-y-8 mb-12">
                 {[
-                  { icon: FaMapMarkerAlt, title: "Head Office", details: ["Jalan Cempaka Wangi No 22", "Jakarta - Indonesia"] },
-                  { icon: FaEnvelope, title: "Email Us", details: ["support@yourdomain.tld", "hello@yourdomain.tld"] },
-                  { icon: FaPhone, title: "Call Us", details: ["Phone: +6221.2002.2012", "Fax: +6221.2002.2013"] }
+                  {
+                    icon: FaMapMarkerAlt,
+                    title: "Head Office",
+                    details: [
+                      "Jalan Cempaka Wangi No 22",
+                      "Jakarta - Indonesia",
+                    ],
+                  },
+                  {
+                    icon: FaEnvelope,
+                    title: "Email Us",
+                    details: ["support@yourdomain.tld", "hello@yourdomain.tld"],
+                  },
+                  {
+                    icon: FaPhone,
+                    title: "Call Us",
+                    details: ["Phone: +6221.2002.2012", "Fax: +6221.2002.2013"],
+                  },
                 ].map((item, index) => (
-                  <motion.div 
-                    key={index} 
+                  <motion.div
+                    key={index}
                     className="flex items-start space-x-4"
                     variants={fadeInUp}
                   >
-                    <div className="bg-gradient-to-br from-PurpleLight/50 to-PurpleDark/50 p-3 rounded-full">
+                    <div className="bg-gradient-to-r from-PurpleLight to-PurpleDark p-3 rounded-full">
                       <item.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-xl text-PurpleLight">{item.title}</h3>
+                      <h3 className="font-semibold text-xl text-PurpleLight">
+                        {item.title}
+                      </h3>
                       {item.details.map((detail, idx) => (
-                        <p key={idx} className="text-white/80">{detail}</p>
+                        <p key={idx} className="text-white/80">
+                          {detail}
+                        </p>
                       ))}
                     </div>
                   </motion.div>
@@ -95,81 +234,186 @@ export default function ContactPage() {
 
               {/* Social Media */}
               <motion.div variants={fadeInUp}>
-                <h3 className="font-semibold text-xl text-PurpleLight mb-4">Follow our social media</h3>
+                <h3 className="font-semibold text-xl text-PurpleLight mb-4">
+                  Follow our social media
+                </h3>
                 <div className="flex space-x-4">
-                  {[FaFacebookF, FaInstagram, FaTwitter, FaYoutube].map((Icon, index) => (
-                    <motion.a
-                      key={index}
-                      href="#"
-                      className="bg-gradient-to-br from-PurpleLight/50 to-PurpleDark/50 p-3 rounded-full hover:from-PurpleDark/50 hover:to-PurpleLight/50 transition-all duration-500 group"
-                      whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                      whileTap={{ scale: 0.95, transition: { duration: 0.3 } }}
-                    >
-                      <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-500" />
-                    </motion.a>
-                  ))}
+                  {[FaFacebookF, FaInstagram, FaTwitter, FaYoutube].map(
+                    (Icon, index) => (
+                      <motion.a
+                        key={index}
+                        href="#"
+                        className="bg-gradient-to-r from-PurpleLight to-PurpleDark p-3 rounded-full hover:from-PurpleDark/50 hover:to-PurpleLight/50 transition-all duration-500 group"
+                        whileHover={{
+                          scale: 1.05,
+                          transition: { duration: 0.3 },
+                        }}
+                        whileTap={{
+                          scale: 0.95,
+                          transition: { duration: 0.3 },
+                        }}
+                      >
+                        <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-500" />
+                      </motion.a>
+                    )
+                  )}
                 </div>
               </motion.div>
             </AnimatedSection>
 
             {/* Right Column - Contact Form */}
-            <AnimatedSection className="p-8 lg:p-12 bg-gradient-to-tl from-PurpleDark/30 to-PurpleLight/30">
-              <motion.h2 
+            <AnimatedSection className="p-8 lg:p-12 bg-gradient-to-bl from-primary/20 to-primary/90">
+              <motion.h2
                 className="text-4xl text-center font-black mb-6"
                 variants={fadeInUp}
               >
                 Send us a message
               </motion.h2>
               <AnimatedSection className="space-y-6">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                   <div className="grid md:grid-cols-2 gap-6">
-                    <motion.input 
-                      type="text" 
-                      placeholder="Name" 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white"
-                      variants={fadeInUp}
-                    />
-                    <motion.input 
-                      type="text" 
-                      placeholder="Company" 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white"
-                      variants={fadeInUp}
-                    />
+                    {/* Name Field */}
+                    <div className="relative">
+                      <motion.input
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                          formErrors.name
+                            ? "border-red-500"
+                            : "border-PurpleLight/30"
+                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        variants={fadeInUp}
+                      />
+                      {formErrors.name && (
+                        <p className="absolute text-red-500 text-sm mt-1">
+                          {formErrors.name}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Company Name Field */}
+                    <div className="relative">
+                      <motion.input
+                        type="text"
+                        placeholder="Company"
+                        name="companyName"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        variants={fadeInUp}
+                      />
+                      {/* Company Name is optional; no error message */}
+                    </div>
                   </div>
+
                   <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <motion.input 
-                      type="tel" 
-                      placeholder="Phone" 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white"
-                      variants={fadeInUp}
-                    />
-                    <motion.input 
-                      type="email" 
-                      placeholder="Email" 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white"
-                      variants={fadeInUp}
-                    />
+                    {/* Phone Number Field */}
+                    <div className="relative">
+                      <motion.input
+                        type="tel"
+                        name="phoneNumber"
+                        placeholder="Phone"
+                        value={formData.phoneNumber}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                          formErrors.phoneNumber
+                            ? "border-red-500"
+                            : "border-PurpleLight/30"
+                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        variants={fadeInUp}
+                      />
+                      {formErrors.phoneNumber && (
+                        <p className="absolute text-red-500 text-sm mt-1">
+                          {formErrors.phoneNumber}
+                        </p>
+                      )}
+                    </div>
+                    {/* Email Field */}
+                    <div className="relative">
+                      <motion.input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
+                          formErrors.email
+                            ? "border-red-500"
+                            : "border-PurpleLight/30"
+                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        variants={fadeInUp}
+                      />
+                      {formErrors.email && (
+                        <p className="absolute text-red-500 text-sm mt-1">
+                          {formErrors.email}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <motion.input 
-                    type="text" 
-                    placeholder="Subject" 
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white mt-6"
-                    variants={fadeInUp}
-                  />
-                  <motion.textarea 
-                    placeholder="Message" 
-                    rows={4}
-                    className="w-full h-[220px] px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white resize-none mt-6"
-                    variants={fadeInUp}
-                  />
-                  <motion.button 
+
+                  {/* Subject Field */}
+                  <div className="relative">
+                    <motion.input
+                      type="text"
+                      placeholder="Subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 rounded-lg bg-white/10 border border-PurpleLight/30 focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white mt-6`}
+                      variants={fadeInUp}
+                    />
+                    {/* Subject is optional; no error message */}
+                  </div>
+
+                  {/* Message Field */}
+                  <div className="relative">
+                    <motion.textarea
+                      placeholder="Message"
+                      rows={4}
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className={`w-full h-[220px] px-4 py-3 rounded-lg bg-white/10 border ${
+                        formErrors.message
+                          ? "border-red-500"
+                          : "border-PurpleLight/30"
+                      } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white resize-none mt-6`}
+                      variants={fadeInUp}
+                    />
+                    {formErrors.message && (
+                      <p className="absolute text-red-500 text-sm mt-1">
+                        {formErrors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Submit Button */}
+                  <motion.button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-PurpleLight/80 to-PurpleDark/80 hover:from-PurpleDark/80 hover:to-PurpleLight/80 text-white py-4 px-6 rounded-lg transition-all duration-500 font-semibold text-lg transform hover:-translate-y-1 mt-6"
+                    className={`w-full bg-gradient-to-r from-PurpleLight/80 to-PurpleDark/80 text-white py-4 px-6 rounded-lg transition-all duration-500 font-semibold text-lg transform hover:-translate-y-1 mt-6 ${
+                      isSubmitting
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:from-PurpleDark/80 hover:to-PurpleLight/80"
+                    }`}
                     variants={fadeInUp}
-                    whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-                    whileTap={{ scale: 0.98, transition: { duration: 0.3 } }}
+                    whileHover={
+                      !isSubmitting && {
+                        scale: 1.02,
+                        transition: { duration: 0.3 },
+                      }
+                    }
+                    whileTap={
+                      !isSubmitting && {
+                        scale: 0.98,
+                        transition: { duration: 0.3 },
+                      }
+                    }
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </motion.button>
                 </form>
               </AnimatedSection>
@@ -188,11 +432,18 @@ export default function ContactPage() {
               allowFullScreen
               loading="lazy"
               className="w-full h-[400px] rounded-2xl"
+              title="Google Maps"
             ></iframe>
           </motion.div>
         </AnimatedSection>
       </div>
-    </div>
-  )
+   
+     {/* Background decorative elements */}
+      {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute top-96 left-1/3 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div> */}
+     </div>
+  );
 }
-

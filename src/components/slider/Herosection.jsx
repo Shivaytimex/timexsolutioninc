@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { images } from "./images";
 import { useState, useEffect } from "react";
 import "swiper/swiper-bundle.css";
+import { Stars } from "../Stars";
 
 function HeroSection() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); // Default based on initial width
-
   // Update isLargeScreen state based on window size
   useEffect(() => {
     const handleResize = () => {
@@ -22,9 +23,9 @@ function HeroSection() {
   return (
     <>
       <Swiper
-        className="mt-16 rounded-md"
+        className="relative"
         modules={[Autoplay, Pagination]}
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         autoplay={{
           delay: 4000,
@@ -34,40 +35,28 @@ function HeroSection() {
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>
-            {/* Container for image with overlay */}
-            <div className="relative w-full h-auto grid">
-              {/* The Image */}
-              <img
-                src={isLargeScreen ? image.src.lgSrc : image.src.mdSrc}
-                alt={image.alt}
-                className="w-full h-auto"
-              />
-              {/* The Overlay Div */}
-              <div className="lg:absolute sm:static order-first lg:top-1/2 lg:left-14 lg:transform lg:-translate-y-1/2 lg:w-[550px] lg:h-[295px] bg-primary md:text-white lg:bg-transparent lg:text-gray-800 shadow-lg lg:rounded-2xl bg-gradient-to-l   p-6 rounded-t-2xl">
+            <div className="relative bg-gradient-to-t from-black  from-15% via-primary via-100% to-black to-90% min-h-[80vh] overflow-hidden ">
+              <Stars />
+              <div className="lg:absolute sm:static order-first lg:top-1/2 lg:left-14 lg:transform lg:-translate-y-1/2 lg:w-[550px] lg:h-[295px]  text-white rounded-xl rounded-b-none lg:rounded-b-xl  border-b-0 lg:border-b border border-slate-300 lg:shadow-2xl p-6  ">
                 <h1 className="font-semibold text-[23px] md:text-[30px] lg:text-[45px] lg:leading-10 leading-6">
                   {image.content.title}
                 </h1>
-                <p className="mt-4 leading-5 text-sm md:text-[1rem]">
+                <p className="mt-4 lg:mt-12 leading-5 text-sm md:text-lg lg:text-base">
                   {image.content.detail}
                 </p>
-                <div className="relative">
-                  <button className="absolute -left-2 p-2 bg-white rounded-3xl mt-2 font-semibold text-[15px] flex items-center gap-3 overflow-hidden lg:mt-10">
-                    Get Started Today
-                    <div>
-                      <img
-                        className="h-6 w-12 transform transition-transform duration-300 hover:translate-x-2"
-                        src="/IMG_20241208_144247.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </button>
-                </div>
+              </div>
+              <div className="lg:absolute w-full lg:w-1/3 lg:top-[10%] lg:right-28  border border-slate-300 lg:border-none  border-t-0 border-b-2 lg:border-t rounded-xl rounded-t-none lg:rounded-t-xl overflow-hidden">
+                <img
+                  loading="lazy"
+                  className="w-full h-full object-cover block md:w-3/4 lg:w-full mx-auto "
+                  src={image?.Src}
+                />
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="custom-pagination mt-4 flex justify-center space-x-2"></div>
+      <div className="custom-pagination cursor-pointer  space-x-2 absolute  left-1/2 transform -translate-x-1/2 "></div>
     </>
   );
 }

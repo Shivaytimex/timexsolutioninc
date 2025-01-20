@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 
-
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { FaUsers, FaRocket, FaGlobeAmericas, FaAward } from 'react-icons/fa';
-import p1 from './Team/p1.jpeg'
-import p2 from './Team/p2.jpeg'
-import p3 from './Team/p3.jpeg'
-import p4 from './Team/p4.jpg'
-import p5 from './Team/p5.jpg'
-import p6 from './Team/p6.jpeg'
-import { Stars } from './Stars';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { FaUsers, FaRocket, FaGlobeAmericas, FaAward } from "react-icons/fa";
+import p1 from "./Team/p1.jpeg";
+import p2 from "./Team/p2.jpeg";
+import p3 from "./Team/p3.jpeg";
+import p4 from "./Team/p4.jpg";
+import p5 from "./Team/p5.jpg";
+import p6 from "./Team/p6.jpeg";
+import { Stars } from "./Stars";
 
 const StatCard = ({ icon: Icon, title, value }) => (
   <motion.div
@@ -17,7 +17,7 @@ const StatCard = ({ icon: Icon, title, value }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+    className="bg-white/10 backdrop-blur-sm border-white/20 rounded-lg p-6 border "
   >
     <div className="flex items-center space-x-4">
       <div className="p-3 rounded-full bg-gradient-to-r from-PurpleLight to-PurpleDark">
@@ -57,7 +57,7 @@ export default function ParallaxTeam() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 0]);
@@ -73,12 +73,15 @@ export default function ParallaxTeam() {
     { image: p6, name: "Rachel Nguyen", role: "Senior Developer", y: y3 },
   ];
   return (
-    <div className="min-h-screen   p-4 bg-gradient-to-br from-black  to-PurpleDark relative overflow-hidden" ref={containerRef}>
+    <div
+      className="min-h-screen   p-4 bg-gradient-to-br from-black  to-PurpleDark relative overflow-hidden 
+      "
+      ref={containerRef}
+    >
       {/* Background decorative elements */}
-    
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark text-center mb-24"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +89,7 @@ export default function ParallaxTeam() {
         >
           Our Exceptional Team
         </motion.h1>
-        
+
         {/* Stats Section */}
         <section className="mb-16">
           <motion.div
@@ -114,10 +117,13 @@ export default function ParallaxTeam() {
             className="space-y-8"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Join Our Fast-Growing <br />Remote Team
+              Join Our Fast-Growing <br />
+              Remote Team
             </h2>
             <p className="text-gray-300 text-lg max-w-xl">
-              We're building a team of passionate individuals who thrive in a remote environment. Join us in creating innovative solutions that shape the future.
+              We&apos;re building a team of passionate individuals who thrive in
+              a remote environment. Join us in creating innovative solutions
+              that shape the future.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -143,7 +149,7 @@ export default function ParallaxTeam() {
                 { title: "Remote First", desc: "Work from anywhere" },
                 { title: "Flexible Hours", desc: "Choose your schedule" },
                 { title: "Growth Focus", desc: "Learn & develop" },
-                { title: "Global Team", desc: "Diverse culture" }
+                { title: "Global Team", desc: "Diverse culture" },
               ].map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -162,32 +168,28 @@ export default function ParallaxTeam() {
           {/* Image Grid with Parallax-like effect */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {teamMembers.map((member, index) => (
-              <motion.div 
-              key={index} 
-              style={{ y: window.innerWidth >= 1024 ? member.y : 0 }} // 1024px corresponds to 'lg'
-            >
-              <TeamMember 
-                image={member.image} 
-                name={member.name} 
-                role={member.role}
-                delay={index * 0.1}
-              />
-            </motion.div>
-            
+              <motion.div
+                key={index}
+                style={{ y: window.innerWidth >= 1024 ? member.y : 0 }} // 1024px corresponds to 'lg'
+              >
+                <TeamMember
+                  image={member.image}
+                  name={member.name}
+                  role={member.role}
+                  delay={index * 0.1}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Call to Action */}
-    
-        
       </div>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <div className="absolute top-0 z[-1] -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-                <div className="absolute top-0 z[-1] -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-                <div className="absolute -bottom-8 z[-1] left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-            </div>
+        <div className="absolute top-0 z[-1] -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 z[-1] -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 z[-1] left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      </div>
     </div>
   );
 }
-

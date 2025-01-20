@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FaInstagram,
   FaTwitter,
@@ -6,7 +7,7 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const footerSections = {
   CONTACT: [
@@ -14,7 +15,7 @@ const footerSections = {
     {
       name: "Address: 123 Main St, City, Country",
       icon: FaMapMarkerAlt,
-      href: "#",
+      href: "https://www.google.com/maps?q=123+Main+St,City,Country",
     },
     {
       name: "Email: info@example.com",
@@ -25,45 +26,40 @@ const footerSections = {
   SERVICES: [
     { name: "Web Development", href: "/services/web-development" },
     { name: "App Development", href: "/services/app-development" },
-    { name: "Digital Marketing", href: "/services/app-development" },
-    { name: "Graphic Designing", href: "/services/digital-marketing" },
+    { name: "Digital Marketing", href: "/services/digital-marketing" },
+    { name: "Graphic Designing", href: "/services/graphic-designing" },
   ],
   ABOUT: [
     { name: "About Us", href: "/about" },
-    { name: "ContactUs", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
   ],
   CLIENTS: [
-    { name: "ABC", href: "/about" },
-    { name: "LMN", href: "/contact" },
-    { name: "XYZ", href: "#" },
+    { name: "ABC", href: "/clients/abc" },
+    { name: "LMN", href: "/clients/lmn" },
+    { name: "XYZ", href: "/clients/xyz" },
   ],
 };
 
 const GradientTextWithFooter = () => {
-  return (
-    <div className="relative bg-black flex z-[-10] flex-col justify-between ">
-      {/* Grid Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(51, 51, 51, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(51, 51, 51, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: "50px 50px",
-        }}
-      />
+  // Function to handle page scroll to top
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
 
+  return (
+    <div
+      className="relative bg-black flex z-10 flex-col justify-between "
+      style={{ height: 500 }}
+    >
       {/* Gradient Text */}
-      <div className="relative flex-grow sm:flex  items-center justify-center overflow-hidden bg-black">
+      <div className="relative flex-grow flex items-center justify-center  overflow-hidden ">
         <h1
-          className="text-[5rem] md:text-[10rem] lg:text-[15rem]  xl:text-[20rem] font-bold tracking-wider text-center leading-none"
+          className="text-[5rem] text-gray-200  md:text-[10rem] lg:text-[15rem] xl:text-[20rem] font-bold tracking-wider text-center leading-none"
           style={{
             background:
               "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0) 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
           }}
         >
           TIMEX
@@ -71,10 +67,10 @@ const GradientTextWithFooter = () => {
       </div>
 
       {/* Footer */}
-      <footer className="relative py-10  px-4 pb-4">
+      <footer className="relative py-10 px-4 pb-4 bg-black bg-opacity-50">
         <div className="max-w-7xl mx-auto">
           {/* Navigation Grid */}
-          <div className="sm:grid   lg:grid-cols-4 md:grid-cols-2 gap-8 space-y-8 sm:space-y-0 mb-8 justify-items-center">
+          <div className="sm:grid lg:grid-cols-4 md:grid-cols-2 gap-8 space-y-8 sm:space-y-0 mb-8 justify-items-center">
             {Object.entries(footerSections).map(([title, links]) => (
               <div key={title} className="space-y-4">
                 <h2 className="text-gray-500 font-medium text-sm text-center">
@@ -83,13 +79,29 @@ const GradientTextWithFooter = () => {
                 <ul className="space-y-2">
                   {links.map((link) => (
                     <li key={link.name} className="text-center">
-                      <Link
-                        to={link.href}
-                        className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
-                      >
-                        {link.icon && <link.icon className="mr-2" />}{" "}
-                        {link.name}
-                      </Link>
+                      {link.href.startsWith("http") ||
+                      link.href.startsWith("tel:") ||
+                      link.href.startsWith("mailto:") ? (
+                        <a
+                          href={link.href}
+                          className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={handleLinkClick} // Scroll to top on external links
+                        >
+                          {link.icon && <link.icon className="mr-2" />}{" "}
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
+                          onClick={handleLinkClick} // Scroll to top on internal links
+                        >
+                          {link.icon && <link.icon className="mr-2" />}{" "}
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -102,22 +114,31 @@ const GradientTextWithFooter = () => {
             {/* Social Icons */}
             <div className="flex space-x-6 mb-4 md:mb-0">
               <a
-                href="#"
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
                 <FaInstagram className="w-5 h-5" />
                 <span className="sr-only">Instagram</span>
               </a>
               <a
-                href="#"
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
                 <FaTwitter className="w-5 h-5" />
                 <span className="sr-only">Twitter</span>
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
                 <FaFacebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
@@ -126,24 +147,27 @@ const GradientTextWithFooter = () => {
 
             {/* Policy Links */}
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-xs">
-              <a
-                href="#"
+              <Link
+                to="/cookie-policy"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
                 COOKIE POLICY
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/privacy-policy"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
                 PRIVACY POLICY
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/terms-and-conditions"
                 className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
+                onClick={handleLinkClick}
               >
-                TERMS & CONDITION
-              </a>
+                TERMS & CONDITIONS
+              </Link>
             </div>
           </div>
         </div>

@@ -44,10 +44,10 @@ const Typewriter = () => {
 
   return (
     <>
-      <span className="text-transparent bg-clip-text bg-primary">
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark">
         {currentText}
       </span>
-      <span className="animate-pulse text-transparent bg-clip-text bg-primary">
+      <span className="animate-pulse text-transparent bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark">
         |
       </span>{" "}
       {/* Blinking cursor */}
