@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { motion } from "framer-motion";
-import { FaLayerGroup, FaMousePointer } from "react-icons/fa";
 
 const features = [
   {
@@ -53,12 +52,18 @@ const features = [
     description: "Adaptable interface elements",
   },
   {
-    url: FaLayerGroup,
+    url: {
+      src: "/logos/logo-7.webp",
+      alt: "Varied layouts",
+    },
     title: "Varied layouts",
     description: "Multiple layout options",
   },
   {
-    url: FaMousePointer,
+    url: {
+      src: "/logos/logo-8.webp",
+      alt: "Parallax",
+    },
     title: "Parallax",
     description: "Engaging scroll effects",
   },

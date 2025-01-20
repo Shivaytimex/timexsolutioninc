@@ -154,7 +154,6 @@ export function WhatMakesUsUnique() {
         </div>
 
         <div className="relative z-10">
-          {/* <MembershipBanner /> */}
           <OurPartners />
         </div>
 
