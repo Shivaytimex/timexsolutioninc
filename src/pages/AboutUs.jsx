@@ -1,17 +1,19 @@
+import { Helmet } from "react-helmet";
 import AboutSection from "../components/AboutFirstCompo";
 import ParallaxTeam from "../components/ParallaxTeam";
 import ScrollToTop from "../components/swipe-to-top";
-// import TeamSection from "../components/TeamsSections";
-// import { WhyChooseUs } from "../components/WhyChooseUs";
+
 
 function AboutUs() {
+  const pageTitle = "Timexsolution Inc - About";
   return (
     <>
+      <Helmet>
+        <title>{pageTitle}</title>
+      </Helmet>
       <AboutSection />
-      {/* <WhyChooseUs/> */}
       <ScrollToTop />
-      {/* <TeamSection/> */}
-      <ParallaxTeam/>
+      <ParallaxTeam />
     </>
   );
 }

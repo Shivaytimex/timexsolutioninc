@@ -1,11 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { TypeWriterText } from "./TypeWriterText";
-import Header from "../components/ContactUs-Components/header";
 import { Stars } from "./Stars";
 import TiltedScroll from "../utils/TiltedScroll";
-import norwayVideo from './video/video.mp4';
-import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import norwayVideo from "./video/video.mp4";
+import { LampContainer } from "./ui/lamp";
 
 export default function AboutSection() {
   const aboutRef = useRef(null);
@@ -15,7 +14,6 @@ export default function AboutSection() {
   const InView = useInView(ref, { once: true });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     setIsLoading(false);
@@ -24,20 +22,26 @@ export default function AboutSection() {
   const isInViewAbout = useInView(aboutRef, { once: true });
   const isInViewAboutPic = useInView(aboutPicRef, { once: true });
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const paragraphText = 
+  const paragraphText =
     "Founded in 1998, Performics is a performance pioneer, originally operating as an affiliate network, and rolling out search marketing services in the early 2000s. Today, Performance Marketing has moved from a specialty service to the strategic center for brands. We're connecting marketing investment to consumer intent, redefining performance by using data, consumer intent signals, technology, media and content in novel ways. We've built Growth Solutions to foster innovation. And we're structured globally to serve multi-market clients at scale.";
 
   return (
     <div className="relative bg-gradient-to-b from-black to-black min-h-screen text-white overflow-hidden">
       <Stars />
-      <Header name="About US" />
+      <LampContainer>
+        <motion.h1
+          initial={{ opacity: 0.5, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-bold tracking-tight text-transparent md:text-8xl"
+        >
+          About US
+        </motion.h1>
+      </LampContainer>
 
       <section className="container mx-auto w-[90%] lg:w-[100%] px-5 py-8 lg:px-40 mt-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -119,30 +123,19 @@ export default function AboutSection() {
             >
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-fit"
                 autoPlay
                 loop
-                muted={isMuted}
                 playsInline
               >
                 <source src={norwayVideo} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <button
-                onClick={toggleMute}
-                className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all duration-300"
-              >
-                {isMuted ? (
-                  <FaVolumeMute className="w-6 h-6 text-white" />
-                ) : (
-                  <FaVolumeUp className="w-6 h-6 text-white" />
-                )}
-              </button>
             </motion.div>
           </div>
 
           <div className="w-full lg:w-1/2" ref={ref}>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-5 text-purple-300">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-5 text-PurpleHeading">
               The Original Performance Marketing Firm
             </h1>
             {isLoading ? (
@@ -156,4 +149,3 @@ export default function AboutSection() {
     </div>
   );
 }
-

@@ -1,8 +1,9 @@
+
 /* eslint-disable react/prop-types */
-export const AniButton = ({ text }) => {
+export const AniButton = ({ text, buttonClass, textClass }) => {
   return (
-    <button className="group relative overflow-hidden bg-primary text-white font-semibold px-10 py-5 rounded-full border-2 border-white scale-50 cursor-pointer transition-all duration-300 ease-custom">
-      <span className="absolute border inset-0 bg-white text-primary grid place-content-center text-3xl transition-transform duration-300 ease-custom group-hover:translate-y-full">
+    <button className={`group relative overflow-hidden scale-50 cursor-pointer transition-all duration-300 ease-custom ${buttonClass}`}>
+      <span className={`absolute border inset-0 grid place-content-center transition-transform duration-300 ease-custom group-hover:translate-y-full ${textClass}`}>
         {text}
       </span>
       <div className="inline-flex text-3xl whitespace-pre">

@@ -8,10 +8,10 @@ import { AniButton } from "../utils/ButtonAnimation";
 // optimized code
 function HeroSection1() {
   return (
-    <div className="relative bg-gradient-to-b from-black  from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden">
-      <section className="bg-gradient-to-b  from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative py-0">
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% max-h-screen overflow-hidden">
+      <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
           {/* First Column: Heading Text */}
           <div className="text-center relative">
             <motion.h1
@@ -42,7 +42,11 @@ function HeroSection1() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Link to={"/contact"}>
-                <AniButton text={"Get Started"}></AniButton>
+                <AniButton
+                  text="Get Started"
+                  buttonClass="bg-primary text-white font-semibold px-10 py-5 rounded-full border-2 border-white"
+                  textClass="bg-white text-primary text-3xl"
+                />
               </Link>
             </motion.div>
           </div>

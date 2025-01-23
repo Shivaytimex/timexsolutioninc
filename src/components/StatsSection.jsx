@@ -17,14 +17,14 @@ const StatsSection = () => {
       id: 1,
       value: (
         <CountUp
-        from={0}
-        to={14}
-        separator=","
-        direction="up"
-        duration={2}
-        className="count-up-text"
-        suffix=""
-      /> 
+          from={0}
+          to={14}
+          separator=","
+          direction="up"
+          duration={2}
+          className="count-up-text"
+          suffix="+"
+        />
       ),
       title: "Years of Experience",
       description: "Allowing us to navigate the industry's nuances with ease.",
@@ -33,14 +33,14 @@ const StatsSection = () => {
       id: 2,
       value: (
         <CountUp
-        from={0}
-        to={15}
-        separator=","
-        direction="up"
-        duration={2}
-        className="count-up-text"
-        suffix="k+"
-      />      
+          from={0}
+          to={15}
+          separator=","
+          direction="up"
+          duration={2}
+          className="count-up-text"
+          suffix="k+"
+        />
       ),
       title: "Clients Trust Us",
       description: "Let us show you why they choose us.",
@@ -49,14 +49,14 @@ const StatsSection = () => {
       id: 3,
       value: (
         <CountUp
-        from={0}
-        to={4}
-        separator=","
-        direction="up"
-        duration={0.2}
-        className="count-up-text"
-        suffix="k+"
-      /> 
+          from={0}
+          to={4}
+          separator=","
+          direction="up"
+          duration={0.2}
+          className="count-up-text"
+          suffix="k+"
+        />
       ),
       title: "Convenient Branches",
       description: "We're here to help whenever you need us.",
@@ -69,9 +69,9 @@ const StatsSection = () => {
     },
   ];
   return (
-    <div className="pt-20 bg-gradient-to-b from-black to-black">
+    <div className="pt-20 bg-gradient-to-b from-black to-black relative z-20">
       <div className="px-8 grid grid-cols-1  bg-gradient-to-br from-transparent  to-transparent  md:md:grid-cols-[22%,auto] gap-8 relative">
-      <Stars />
+        <Stars />
         <div
           className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex lg:mx-4"
           style={{ height: "60%" }}

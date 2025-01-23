@@ -22,7 +22,9 @@ function App() {
 
   useEffect(() => {
     const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
-    const splashShownThisSession = sessionStorage.getItem("splashShownThisSession");
+    const splashShownThisSession = sessionStorage.getItem(
+      "splashShownThisSession"
+    );
 
     if (!hasVisitedBefore || !splashShownThisSession) {
       setShowSplash(true);
@@ -40,7 +42,7 @@ function App() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <div className="mx-auto ">
+        <div className="mx-auto">
           <Router>
             <Suspense
               fallback={
@@ -57,21 +59,35 @@ function App() {
               }
             >
               <Navbar /> {/* Navbar will be rendered immediately */}
-              
               {/* Wrap the routes inside the SmoothScroll */}
-                <Routes>
-                  <Route index path="/" element={<Home />} />
-                  <Route path="/about" element={<AboutUs />} />
-                  <Route path="/contact" element={<ContactUs />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/services/web-development" element={<WebDevelopment />} />
-                  <Route path="/services/app-development" element={<AppDevelopment />} />
-                  <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
-                  <Route path="/services/tech-it-solutions" element={<TechIT />} />
-                  <Route path="/services/staffing-solutions" element={<StaffingSolutions />} />
-                </Routes>
+              <Routes>
+                <Route index path="/" element={<Home />} />
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/contact" element={<ContactUs />} />
+                <Route path="/services" element={<Services />} />
+                <Route
+                  path="/services/web-development"
+                  element={<WebDevelopment />}
+                />
+                <Route
+                  path="/services/app-development"
+                  element={<AppDevelopment />}
+                />
+                <Route
+                  path="/services/digital-marketing"
+                  element={<DigitalMarketing />}
+                />
+                <Route
+                  path="/services/tech-it-solutions"
+                  element={<TechIT />}
+                />
+                <Route
+                  path="/services/staffing-solutions"
+                  element={<StaffingSolutions />}
+                />
+              </Routes>
+              <Footer />
             </Suspense>
-            <Footer />
           </Router>
         </div>
       )}

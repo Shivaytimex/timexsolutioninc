@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   FaInstagram,
   FaTwitter,
@@ -7,7 +7,7 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const footerSections = {
   CONTACT: [
@@ -40,40 +40,65 @@ const footerSections = {
   ],
 };
 
-const GradientTextWithFooter = () => {
-  // Function to handle page scroll to top
-  const handleLinkClick = () => {
+const TimexFooter = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
     window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  const handleLinkClick = (href) => {
+    // Scroll to top and navigate to the new page
+    navigate(href); // Navigate to the provided href
   };
 
   return (
-    <div
-      className="relative bg-black flex z-10 flex-col justify-between "
-      style={{ height: 500 }}
-    >
-      {/* Gradient Text */}
-      <div className="relative flex-grow flex items-center justify-center  overflow-hidden ">
-        <h1
-          className="text-[5rem] text-gray-200  md:text-[10rem] lg:text-[15rem] xl:text-[20rem] font-bold tracking-wider text-center leading-none"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          TIMEX
+    <div className="relative bg-gradient-to-b from-gray-900 to-black flex z-10 flex-col justify-between min-h-[500px]">
+      {/* Gradient Text with Horse Logo */}
+      <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden">
+        <div className=" mb-4 opacity-70">
+          <img
+            src="/FOOTER1.jpg"
+            alt="Timex Horse Logo"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <h1 className="text-[5rem] md:text-[10rem] lg:text-[15rem] xl:text-[20rem] font-bold tracking-wider text-center leading-none relative">
+          <span
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, #ffffff 0%, #808080 50%, #404040 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+            }}
+          >
+            TIMEX
+          </span>
+          <span
+            className="absolute inset-0 transform translate-y-[1px]"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "blur(1px)",
+            }}
+          >
+            TIMEX
+          </span>
         </h1>
       </div>
 
       {/* Footer */}
-      <footer className="relative py-10 px-4 pb-4 bg-black bg-opacity-50">
+      <footer className="relative py-10 px-4 pb-4 bg-black bg-opacity-50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           {/* Navigation Grid */}
           <div className="sm:grid lg:grid-cols-4 md:grid-cols-2 gap-8 space-y-8 sm:space-y-0 mb-8 justify-items-center">
             {Object.entries(footerSections).map(([title, links]) => (
               <div key={title} className="space-y-4">
-                <h2 className="text-gray-500 font-medium text-sm text-center">
+                <h2 className="text-gray-400 font-medium text-sm text-center">
                   {title}
                 </h2>
                 <ul className="space-y-2">
@@ -84,23 +109,21 @@ const GradientTextWithFooter = () => {
                       link.href.startsWith("mailto:") ? (
                         <a
                           href={link.href}
-                          className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
+                          className="flex items-center justify-center text-gray-500 hover:text-gray-300 transition-colors duration-200 text-sm"
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={handleLinkClick} // Scroll to top on external links
                         >
-                          {link.icon && <link.icon className="mr-2" />}{" "}
+                          {link.icon && <link.icon className="mr-2" />}
                           {link.name}
                         </a>
                       ) : (
-                        <Link
-                          to={link.href}
-                          className="flex items-center justify-center text-gray-400 hover:text-gray-300 transition-colors duration-200 text-sm"
-                          onClick={handleLinkClick} // Scroll to top on internal links
+                        <button
+                          onClick={() => handleLinkClick(link.href)}
+                          className="flex items-center justify-center text-gray-500 hover:text-gray-300 transition-colors duration-200 text-sm"
                         >
-                          {link.icon && <link.icon className="mr-2" />}{" "}
+                          {link.icon && <link.icon className="mr-2" />}
                           {link.name}
-                        </Link>
+                        </button>
                       )}
                     </li>
                   ))}
@@ -117,8 +140,7 @@ const GradientTextWithFooter = () => {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 <FaInstagram className="w-5 h-5" />
                 <span className="sr-only">Instagram</span>
@@ -127,8 +149,7 @@ const GradientTextWithFooter = () => {
                 href="https://www.twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 <FaTwitter className="w-5 h-5" />
                 <span className="sr-only">Twitter</span>
@@ -137,8 +158,7 @@ const GradientTextWithFooter = () => {
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 <FaFacebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
@@ -147,27 +167,24 @@ const GradientTextWithFooter = () => {
 
             {/* Policy Links */}
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-xs">
-              <Link
-                to="/cookie-policy"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+              <button
+                onClick={() => handleLinkClick("/cookie-policy")}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 COOKIE POLICY
-              </Link>
-              <Link
-                to="/privacy-policy"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+              </button>
+              <button
+                onClick={() => handleLinkClick("/privacy-policy")}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 PRIVACY POLICY
-              </Link>
-              <Link
-                to="/terms-and-conditions"
-                className="text-gray-400 hover:text-gray-300 transition-colors duration-200"
-                onClick={handleLinkClick}
+              </button>
+              <button
+                onClick={() => handleLinkClick("/terms-and-conditions")}
+                className="text-gray-500 hover:text-gray-300 transition-colors duration-200"
               >
                 TERMS & CONDITIONS
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -176,4 +193,4 @@ const GradientTextWithFooter = () => {
   );
 };
 
-export default GradientTextWithFooter;
+export default TimexFooter;

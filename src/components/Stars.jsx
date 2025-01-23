@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
 
 const Star = ({ top, left, size, opacity }) => (
   <div
@@ -23,7 +23,7 @@ export const Stars = () => {
   }))
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1000]">
       {stars.map((star) => (
         <Star key={star.id} {...star} />
       ))}

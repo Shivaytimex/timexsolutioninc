@@ -7,7 +7,7 @@ const Navbar = () => {
       {/* LOGO */}
       <Link
         to="/"
-        className="flex items-center relative left-6 md:left-8 top-2 md:top-4"
+        className="flex items-center fixed left-6 md:left-8 top-2 md:top-4"
       >
         <img
           src="/nav-logo.webp"

@@ -23,7 +23,7 @@ function HeroSection() {
   return (
     <>
       <Swiper
-        className="relative"
+        className="relative  z-20 bg-black"
         modules={[Autoplay, Pagination]}
         spaceBetween={0}
         slidesPerView={1}

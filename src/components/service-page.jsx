@@ -65,8 +65,6 @@ const containerVariants = {
   },
 };
 
-
-
 export function ServicePage({
   serviceName,
   description,
@@ -305,7 +303,9 @@ function SubServiceCard({
           <subService.icon className="w-6 h-6 text-white" />
         </motion.div>
         <div className="relative z-10">
-          <h3 className="font-semibold bg-gradient-to-r from-PurpleDark to-PurpleLight text-transparent bg-clip-text mb-2">{subService.name}</h3>
+          <h3 className="font-semibold bg-gradient-to-r from-PurpleDark to-PurpleLight text-transparent bg-clip-text mb-2">
+            {subService.name}
+          </h3>
           <p className="text-sm text-gray-200">
             Specialized {subService.name.toLowerCase()} services tailored to
             your needs.
@@ -315,4 +315,3 @@ function SubServiceCard({
     </motion.div>
   );
 }
-

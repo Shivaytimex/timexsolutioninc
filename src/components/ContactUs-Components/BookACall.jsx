@@ -5,6 +5,7 @@ import appDev from "./appDev.jpeg";
 import graphicDesign from "./graphicDesign.jpeg";
 import { Stars } from "./Stars";
 import ShinyText from "../../utils/ShinyText";
+import { PopupButton } from "react-calendly";
 
 export default function BookACall() {
   return (
@@ -47,9 +48,7 @@ export default function BookACall() {
                     disabled={false}
                     speed={3}
                     className="bg-primary"
-                  >
-                    
-                  </ShinyText>
+                  ></ShinyText>
                 </span>{" "}
                 together
               </motion.h1>
@@ -69,7 +68,6 @@ export default function BookACall() {
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 0 20px rgba(167, 139, 250, 0.5)",
@@ -77,9 +75,12 @@ export default function BookACall() {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 rounded-full bg-gradient-to-r from-PurpleLight to-PurpleDark text-white font-medium text-lg hover:shadow-lg transition-all duration-200"
             >
-              Book a Call
+              <PopupButton
+                url="https://calendly.com/kmiano015"
+                rootElement={document.getElementById("root")}
+                text="Schedule meeting"
+              />
             </motion.button>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -149,11 +150,11 @@ export default function BookACall() {
       </div>
 
       {/* Background decorative elements */}
-      {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div> */}
+      </div>
     </div>
   );
 }

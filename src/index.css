@@ -7,11 +7,7 @@
   width: 48px;
   height: 5px;
   border-radius: 0px !important;
-  
-
 }
 .custom-pagination .swiper-pagination-bullet-active {
   background: #751f8c;
 }
-
-/* Ensure the root container and body have the right height and overflow properties */

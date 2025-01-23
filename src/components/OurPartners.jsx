@@ -133,12 +133,12 @@ export default function OurParners() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight">
-              All our websites can offer a wide variety of useful features
+            <h2 className="text-4xl p-2 md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight">
+              Trusted by Leading Brands Across Multiple Industries
             </h2>
-            <p className="text-purple-200 text-lg max-w-2xl mx-auto">
-              We provide comprehensive solutions with cutting-edge features to
-              enhance your web presence
+            <p className="text-purple-200 text-lg max-w-2xl mx-auto ">
+              We build lasting relationships with our clients, delivering
+              exceptional results every time.
             </p>
           </motion.div>
 
