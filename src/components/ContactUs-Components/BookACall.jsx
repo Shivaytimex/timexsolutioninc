@@ -1,8 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import webDev from "./webDev.jpg";
-import appDev from "./appDev.jpeg";
-import graphicDesign from "./graphicDesign.jpeg";
 import { Stars } from "./Stars";
 import ShinyText from "../../utils/ShinyText";
 import { PopupButton } from "react-calendly";
@@ -114,7 +111,7 @@ export default function BookACall() {
               className="absolute top-[120px] z-10 right-0 w-80 p-2 bg-white shadow-2xl rounded-lg overflow-hidden transform rotate-6"
             >
               <img
-                src={webDev}
+                src="/webdev.webp"
                 alt="Business website mockup"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -127,7 +124,7 @@ export default function BookACall() {
               className="absolute top-[232px] left-22 w-96 h-auto p-2 bg-white shadow-xl rounded-lg overflow-hidden transform -rotate-6"
             >
               <img
-                src={appDev}
+                src="/appdev.webp"
                 alt="Money transfer website mockup"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -140,7 +137,7 @@ export default function BookACall() {
               className="absolute bottom-10 right-20 w-64 h-auto p-2 bg-white shadow-xl rounded-lg overflow-hidden transform rotate-12"
             >
               <img
-                src={graphicDesign}
+                src="/graphicDesign.webp"
                 alt="Nature website mockup"
                 className="w-full h-full object-cover rounded-lg"
               />
