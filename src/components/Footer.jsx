@@ -58,7 +58,7 @@ const TimexFooter = () => {
       <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden">
         <div className=" mb-4 opacity-70">
           <img
-            src="/FOOTER1.jpg"
+            src="/FOOTER1.webp"
             alt="Timex Horse Logo"
             className="w-full h-full object-cover"
           />

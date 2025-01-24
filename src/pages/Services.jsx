@@ -5,22 +5,18 @@ import { AnimatedShapes } from "./../components/services/AnimatedShapes";
 import { WhyChooseUs } from "../components/services/WhyChooseUs";
 import { WhatMakesUsUnique } from "../components/services/WhatMakesUsUnique";
 import IndustriesWeCater from "../components/services/IndustriesWeCater​";
-// import { FeaturesSectionDemo } from '../components/ui/HoverCards';
-// import { FAQSection } from '../components/services/FaqSection';
-// import { PricingPackages } from '../components/PricingPackages';
 
 const services = [
-  { name: "App Development", img: "/app-development.jpg" },
-  { name: "Web Development", img: "/web-development.jpg" },
-  { name: "Digital Marketing", img: "/digital-marketing.jpg" },
-  { name: "Staffing Solutions", img: "/staffing-solutions.jpg" },
-  { name: "Tech/IT Solutions", img: "/tech-it-solutions.jpg" },
+  { name: "App Development", img: "/app-development.webp" },
+  { name: "Web Development", img: "/web-development.webp" },
+  { name: "Digital Marketing", img: "/digital-marketing.webp" },
+  { name: "Staffing Solutions", img: "/staffing-solutions.webp" },
+  { name: "Tech/IT Solutions", img: "/tech-it-solutions.webp" },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden">
-      {/* <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">bg-custom-gradient */}
       <div className="py-12 px-4">
         <div className="mb-12">
           <div className="text-center mb-12 relative">
@@ -78,9 +74,6 @@ export default function ServicesPage() {
         <WhyChooseUs />
         <WhatMakesUsUnique />
         <IndustriesWeCater />
-        {/* <FeaturesSectionDemo /> */}
-        {/* <FAQSection /> */}
-        {/* <PricingPackages /> */}
       </div>
     </div>
   );

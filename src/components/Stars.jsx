@@ -23,7 +23,7 @@ export const Stars = () => {
   }))
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1000]">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {stars.map((star) => (
         <Star key={star.id} {...star} />
       ))}
