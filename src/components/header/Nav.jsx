@@ -101,7 +101,7 @@ export default function Nav() {
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
   return (
-    <div className="flex flex-col justify-between p-[60px_30px_30px_30px] h-full box-border">
+    <div className="flex flex-col justify-between p-[60px_30px_30px_30px]  w-full h-full box-border ">
       <div className="flex gap-2.5 flex-col mb-6 md:mb-8">
         {links.map((link, i) => {
           const { title, href, submenu } = link;

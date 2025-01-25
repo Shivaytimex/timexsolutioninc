@@ -1,4 +1,3 @@
-// import Image from 'next/image'
 import { motion } from "framer-motion";
 import { ServiceCard } from "./../components/services/ServiceCard";
 import { AnimatedShapes } from "./../components/services/AnimatedShapes";

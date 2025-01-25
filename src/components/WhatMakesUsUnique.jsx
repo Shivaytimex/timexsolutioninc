@@ -76,7 +76,7 @@ export function WhatMakesUsUnique() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-PurpleLight to-PurpleDark mb-6">
               What Makes Us Unique
             </h2>
-            <p className="max-w-3xl mx-auto text-purple-200 text-lg">
+            <p className="max-w-3xl mx-auto p-6 md:p-2 text-purple-200 text-lg">
               At the heart of TIMEXSOLUTIONX is a team of dreamers and doers who
               are laser-focused on delivering value to clients. We have a
               collective can-do attitude, the right skills to conquer challenges
@@ -119,7 +119,7 @@ export function WhatMakesUsUnique() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/digital-marketing.jpg"
+                  src="/digital-marketing.webp"
                   alt="Our-Team"
                   className="object-cover"
                 />

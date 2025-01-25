@@ -3,7 +3,6 @@ import AboutSection from "../components/AboutFirstCompo";
 import ParallaxTeam from "../components/ParallaxTeam";
 import ScrollToTop from "../components/swipe-to-top";
 
-
 function AboutUs() {
   const pageTitle = "Timexsolution Inc - About";
   return (

@@ -107,74 +107,74 @@ export const ServiceCard = ({ service }) => {
 
   return (
     <>
-    <Link to={''} className="cursor-pointer"></Link>
-    <motion.div
-      className="bg-white/90 overflow-hidden rounded-3xl shadow-md transition-all duration-300 hover:shadow-lg relative h-full"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Image Section */}
-      <div className="relative h-48 ">
-        <img
-          src={service.img || "/placeholder-image.jpg"}
-          alt={service.name || "Service"}
-          className="w-full h-full p-2 object-cover transition-transform duration-300 ease-in-out rounded-3xl"
-        />
-        {/* Gradient Overlay */}
-        <motion.div
-          className="absolute m-2 inset-0 bg-gradient-to-t from-black to-transparent rounded-2xl"
-          animate={{ opacity: isHovered ? 0.7 : 0.5 }}
-          transition={{ duration: 0.3 }}
-        />
-        <div className="absolute w-16 h-16 inset-0 left-8 top-40 flex items-center justify-center rounded-full bg-primary">
-          <FaWordpress className="w-8 h-8 text-gray-50" />
+      <Link to={""} className="cursor-pointer"></Link>
+      <motion.div
+        className="bg-white/90 overflow-hidden rounded-3xl shadow-md transition-all duration-300 hover:shadow-lg relative h-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Image Section */}
+        <div className="relative h-48 ">
+          <img
+            src={service.img || "/placeholder-image.jpg"}
+            alt={service.name || "Service"}
+            className="w-full h-full p-2 object-cover transition-transform duration-300 ease-in-out rounded-3xl"
+          />
+          {/* Gradient Overlay */}
+          <motion.div
+            className="absolute m-2 inset-0 bg-gradient-to-t from-black to-transparent rounded-2xl"
+            animate={{ opacity: isHovered ? 0.7 : 0.5 }}
+            transition={{ duration: 0.3 }}
+          />
+          <div className="absolute w-16 h-16 inset-0 left-8 top-40 flex items-center justify-center rounded-full bg-primary">
+            <FaWordpress className="w-8 h-8 text-gray-50" />
+          </div>
         </div>
-      </div>
 
-      {/* Content Section */}
-      <div className="p-6 mt-7">
-        <h3 className="text-2xl font-bold pb-3.5 bg-primary bg-clip-text text-transparent">
-          {service.name || "Unknown Service"}
-        </h3>
-        <div className="bg-primary rounded-full h-[1.5px] mb-7"></div>
-        {/* <p className="text-gray-700 mb-4 text-sm">
+        {/* Content Section */}
+        <div className="p-6 mt-7">
+          <h3 className="text-2xl font-bold pb-3.5 bg-primary bg-clip-text text-transparent">
+            {service.name || "Unknown Service"}
+          </h3>
+          <div className="bg-primary rounded-full h-[1.5px] mb-7"></div>
+          {/* <p className="text-gray-700 mb-4 text-sm">
                     {content.description}
                 </p> */}
-        <div className="grid grid-cols-1 gap-2 mb-4">
-          {content.subServices.map((subService, index) => (
-            <div key={index} className="flex items-center">
-              {subService.icon && (
-                <subService.icon className="w-4 h-4 text-gray-50 p-[3px] rounded-full mt-0.5 mr-2 flex-shrink-0 bg-primary" />
-              )}
-              <span className="text-sm text-gray-600 leading-snug">
-                {subService.name}
-              </span>
-            </div>
-          ))}
+          <div className="grid grid-cols-1 gap-2 mb-4">
+            {content.subServices.map((subService, index) => (
+              <div key={index} className="flex items-center">
+                {subService.icon && (
+                  <subService.icon className="w-4 h-4 text-gray-50 p-[3px] rounded-full mt-0.5 mr-2 flex-shrink-0 bg-primary" />
+                )}
+                <span className="text-sm text-gray-600 leading-snug">
+                  {subService.name}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Learn More Button */}
+          <motion.button
+            className="px-4 py-[6px] text-white text-sm rounded-2xl bg-primary hover:from-purple-600 hover:to-primary transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Get a {service.name || "Unknown Service"} Quote
+          </motion.button>
         </div>
 
-        {/* Learn More Button */}
-        <motion.button
-          className="px-4 py-[6px] text-white text-sm rounded-2xl bg-primary hover:from-purple-600 hover:to-primary transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Get a {service.name || "Unknown Service"} Quote
-        </motion.button>
-      </div>
-
-      {/* Hover Line Animation */}
-      <motion.div
-        className="absolute bottom-0 left-0 w-full h-1 bg-primary"
-        animate={{ scaleX: isHovered ? 1 : 0 }}
-        initial={{ scaleX: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        style={{ transformOrigin: "center" }}
-      />
-    </motion.div>
+        {/* Hover Line Animation */}
+        <motion.div
+          className="absolute bottom-0 left-0 w-full h-1 bg-primary"
+          animate={{ scaleX: isHovered ? 1 : 0 }}
+          initial={{ scaleX: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          style={{ transformOrigin: "center" }}
+        />
+      </motion.div>
     </>
   );
 };

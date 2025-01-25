@@ -5,10 +5,10 @@ import { FaCheck } from "react-icons/fa";
 export function PricingPackages({ packages }) {
   return (
     // <section className="py-20 px-2 sm:px-4 lg:px-6">
-    <div className="max-w-7xl mx-auto pt-16 pb-8 px-2 sm:px-4 lg:px-6 border border-purple-950 relative rounded-[32px] flex justify-center items-center">
-      <div className="bg-purple-900/60 backdrop-blur-sm   p-5 rounded-ss-full rounded-ee-full bg-opacity-90  absolute -top-4 md:-top-12 ">
+    <div className="max-w-7xl mx-auto pt-16 pb-8 px-4 lg:px-6 border border-purple-950 relative rounded-[32px] flex justify-center items-center mt-7 lg:mt-10">
+      <div className="bg-purple-900/60 backdrop-blur-sm p-4 rounded-ss-full rounded-ee-full bg-opacity-90 absolute -top-4 md:-top-12">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl  font-bold text-center   bg-primary bg-clip-text text-white"
+          className="text-lg md:text-4xl md:font-normal lg:font-bold text-center  bg-primary bg-clip-text text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

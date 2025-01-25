@@ -3,7 +3,7 @@ import Header from "./header/Index";
 
 const Navbar = () => {
   return (
-    <div className="w-full overflow-hidden h-20 md:h-24 lg:h-28 xl:h-32 bg-black">
+    <div className="w-full overflow-hidden h-24 lg:h-28 xl:h-32 bg-black">
       {/* LOGO */}
       <Link
         to="/"

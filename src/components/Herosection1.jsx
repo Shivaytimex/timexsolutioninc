@@ -8,7 +8,7 @@ import { AniButton } from "../utils/ButtonAnimation";
 // optimized code
 function HeroSection1() {
   return (
-    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% max-h-screen overflow-hidden">
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-10">
       <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
@@ -55,7 +55,7 @@ function HeroSection1() {
           <div className="relative">
             {/* Circular Background for Second Column */}
             <motion.div
-              className="absolute hidden md:block top-[350px] md:top-[-100px] lg:top-[-90px] right-[10px] md:right-[-30px] lg:right-[-30px] bg-gradient-to-r from-PurpleLight to-PurpleDark opacity-30 w-32 h-32 rounded-full -z-10"
+              className="absolute hidden md:block top-[350px] md:top-[-100px] lg:top-[-90px] right-[10px] md:right-[-30px] lg:right-[-30px] bg-gradient-to-r from-PurpleLight to-PurpleDark opacity-30 w-32 h-32 rounded-full  -z-10"
               animate={{
                 scale: [1, 1.1, 1],
                 opacity: [0.3, 0.5, 0.3],

@@ -57,7 +57,7 @@ export const services = {
       { name: "UI/UX Design", icon: FaPaintBrush },
       { name: "App Maintenance", icon: FaWrench },
     ],
-    img: "/app-development.jpg",
+    img: "/app-development.webp",
     link: "/services/app-development",
   },
   "Digital Marketing": {
@@ -71,7 +71,7 @@ export const services = {
       { name: "Email Marketing", icon: FaEnvelope },
       { name: "Analytics and Reporting", icon: FaChartBar },
     ],
-    img: "/digital-marketing.jpg",
+    img: "/digital-marketing.webp",
     link: "/services/digital-marketing",
   },
   "Staffing Solutions": {
@@ -85,7 +85,7 @@ export const services = {
       { name: "Contract-to-Hire", icon: FaFileContract },
       { name: "Payroll Services", icon: FaMoneyCheckAlt },
     ],
-    img: "/staffing-solutions.jpg",
+    img: "/staffing-solutions.webp",
     link: "/services/staffing-solutions",
   },
   "Tech/IT Solutions": {
@@ -99,7 +99,7 @@ export const services = {
       { name: "AI and Machine Learning", icon: FaBrain },
       { name: "IoT Solutions", icon: FaMicrochip },
     ],
-    img: "/tech-it-solutions.jpg",
+    img: "/tech-it-solutions.webp",
     link: "/services/tech-it-solutions",
   },
 };

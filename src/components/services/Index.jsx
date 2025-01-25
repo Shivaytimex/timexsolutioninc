@@ -14,7 +14,10 @@ export default function Service() {
   const serviceEntries = Object.entries(services);
 
   return (
-    <div className="pt-10 md:mb-28 lg:mb-0 bg-black z-20 relative" id="service-home">
+    <div
+      className="pt-10 md:mb-28 lg:mb-0 bg-black z-20 relative"
+      id="service-home"
+    >
       <SectionHeader headingText="OUR SERVICES" />
       <main ref={container} className="relative">
         {serviceEntries.map(([title, service], i) => {

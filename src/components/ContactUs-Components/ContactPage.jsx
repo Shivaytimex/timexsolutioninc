@@ -94,34 +94,34 @@ export default function ContactPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-  
+
     const errors = validateForm();
-  
+
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       setIsSubmitting(false);
       return;
     }
-  
+
     setFormErrors({}); // Reset errors
-  
+
     // Construct custom subject based on the user's name
     const customSubject = `${formData.name} sent you a message from timexsolutions`;
-  
+
     // Prepare data for submission with the custom subject
     const submissionData = {
       ...formData,
-      subject: customSubject, // Override the subject field
-      access_key: "afef6c9d-b5d0-480e-83fe-78e9ebb6d197",
+      subject: customSubject,
+      access_key: import.meta.env.VITE_ACCESS_KEY,
     };
-    
+
     // Optionally, remove the 'subject' field from formData if it's no longer needed
     // delete submissionData.subject;
-  
+
     const json = JSON.stringify(submissionData);
-  
+
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,9 +129,9 @@ export default function ContactPage() {
         },
         body: json,
       });
-  
+
       const res = await response.json();
-  
+
       if (res.success) {
         Swal.fire({
           title: "Thanks for reaching us!",
@@ -162,10 +162,8 @@ export default function ContactPage() {
         icon: "error",
       });
     }
-  
     setIsSubmitting(false);
   };
-  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-black text-white  relative px-4 py-16 sm:px-6 lg:px-8">
@@ -420,7 +418,6 @@ export default function ContactPage() {
             </AnimatedSection>
           </div>
         </AnimatedSection>
-
         {/* Map Section */}
         <AnimatedSection className="mt-12 rounded-3xl overflow-hidden bg-white/5 backdrop-blur-lg p-2">
           <motion.div variants={fadeInUp}>
@@ -437,13 +434,13 @@ export default function ContactPage() {
           </motion.div>
         </AnimatedSection>
       </div>
-   
-     {/* Background decorative elements */}
+
+      {/* Background decorative elements */}
       {/* <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-96 left-1/3 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div> */}
-     </div>
+    </div>
   );
 }

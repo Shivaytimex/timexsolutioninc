@@ -76,10 +76,10 @@ export function ServicePage({
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      <div className="space-y-20 py-20 relative">
+      <div className="  relative ">
         <div className="relative">
           <Stars />
-          <div className="relative z-10">
+          <div className="relative z-10 ">
             <Header name={serviceName} />
           </div>
         </div>

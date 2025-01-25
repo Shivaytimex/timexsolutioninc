@@ -5,6 +5,8 @@ import ShinyText from "../../utils/ShinyText";
 import { PopupButton } from "react-calendly";
 
 export default function BookACall() {
+  const url = import.meta.env.VITE_CALENDLY_URL;
+
   return (
     <div
       className="relative overflow-hidden py-16 lg:py-24"
@@ -73,7 +75,7 @@ export default function BookACall() {
               className="px-8 py-4 rounded-full bg-gradient-to-r from-PurpleLight to-PurpleDark text-white font-medium text-lg hover:shadow-lg transition-all duration-200"
             >
               <PopupButton
-                url="https://calendly.com/kmiano015"
+                url={url}
                 rootElement={document.getElementById("root")}
                 text="Schedule meeting"
               />

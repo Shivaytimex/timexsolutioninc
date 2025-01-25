@@ -23,7 +23,7 @@ function HeroSection() {
   return (
     <>
       <Swiper
-        className="relative  z-20 bg-black"
+        className="relative z-20 bg-black"
         modules={[Autoplay, Pagination]}
         spaceBetween={0}
         slidesPerView={1}
@@ -45,10 +45,10 @@ function HeroSection() {
                   {image.content.detail}
                 </p>
               </div>
-              <div className="lg:absolute w-full lg:w-1/3 lg:top-[10%] lg:right-28  border border-slate-300 lg:border-none  border-t-0 border-b-2 lg:border-t rounded-xl rounded-t-none lg:rounded-t-xl overflow-hidden">
+              <div className="lg:absolute w-full lg:w-1/3 lg:top-[10%] lg:right-28  border border-slate-300 lg:border-none  border-t-0 border-b-2 lg:border-t rounded-xl rounded-t-none lg:rounded-t-xl overflow-hidden  ">
                 <img
                   loading="lazy"
-                  className="w-full h-full object-cover block md:w-3/4 lg:w-full mx-auto "
+                  className="w-full h-full object-cover block md:w-3/4 lg:w-full mx-auto relative z-50"
                   src={image?.Src}
                 />
               </div>

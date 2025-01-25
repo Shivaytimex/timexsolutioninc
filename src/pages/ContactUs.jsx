@@ -26,7 +26,6 @@ export default function ContactUs() {
       <BookACall />
       <ContactPage />
       <FaqSection />
-      {/* <ParallaxTeam /> */}
     </div>
   );
 }
