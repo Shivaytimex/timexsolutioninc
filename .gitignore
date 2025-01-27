@@ -29,11 +29,11 @@ dist-ssr
 *.sw?
 
 # Ignored folders
-ContactUs-Components/
-header/
-services/
-slider/
-splashScreen/
-Team/
-ui/
-video/
+src/components/ContactUs-Components
+src/components/header
+src/components/services
+src/components/slider
+src/components/splashScreen
+src/components/Team
+src/components/ui
+src/components/video
