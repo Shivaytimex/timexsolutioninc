@@ -33,39 +33,10 @@ const features = [
 
 export function WhatMakesUsUnique() {
   return (
-    <section className="relative bg-gradient-to-b from-black overflow-hidden  to-black py-20 space-y-20">
-      {/* <style>{`
-           @keyframes blob {
-             0% {
-               transform: translate(0px, 0px) scale(1);
-             }
-             33% {
-               transform: translate(30px, -50px) scale(1.1);
-             }
-             66% {
-               transform: translate(-20px, 20px) scale(0.9);
-             }
-             100% {
-               transform: translate(0px, 0px) scale(1);
-             }
-           }
-   
-           .animate-blob {
-             animation: blob 7s infinite;
-           }
-   
-           .animation-delay-2000 {
-             animation-delay: 2s;
-           }
-   
-           .animation-delay-4000 {
-             animation-delay: 4s;
-           }
-         `}</style> */}
-
+    <section className="relative bg-black overflow-hidden pt-10 space-y-20">
       <div className="bg-gradient-to-b from-transparent via-PurpleDark/5 to-transparent">
         <Stars />
-        <div className="container mx-auto relative z-10 mb-32">
+        <div className="relative z-10 mb-10">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}

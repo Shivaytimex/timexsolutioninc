@@ -1,23 +1,40 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./header/Index";
+// import StickyCursor from "./Cursor";
 
 const Navbar = () => {
-  return (
-    <div className="w-full overflow-hidden h-24 lg:h-28 xl:h-32 bg-black">
-      {/* LOGO */}
-      <Link
-        to="/"
-        className="flex items-center fixed left-6 md:left-8 top-2 md:top-4"
-      >
-        <img
-          src="/nav-logo.webp"
-          alt="Company Logo"
-          className="w-32 h-auto sm:w-24 md:w-28 lg:w-32 xl:w-36"
-        />
-        {/* <span className="bg-gradient-to-r from-PurpleStart to-PurpleEnd bg-clip-text text-transparent">TimeXsolutionInc</span> */}
-      </Link>
+  const [isScrolled, setIsScrolled] = useState(false);
+  // const stickyElement = useRef(null);
 
-      <Header />
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // Adjust threshold as needed
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className={`w-full overflow-hidden ${isScrolled ? "h-16 md:h-20 lg:h-24" : "h-24 lg:h-28 xl:h-32"} fixed top-0 z-50 transition-all duration-300s ${isScrolled ? "bg-black/75" : "bg-black"} rounded-b-3xl`}>
+      <div className="">
+        <Link
+          to="/"
+          className={`fixed left-6 md:left-8 ${isScrolled ? "top-3" : "top-4"} transition-all duration-300`}
+
+        >
+          <img
+            src="/nav-logo.webp"
+            alt="Company Logo"
+            className={`transition-all duration-300 ${isScrolled ? "w-16 md:w-20 lg:w-24" : "w-24 md:w-28 lg:w-32"
+              } h-auto`}
+          />
+        </Link>
+        <Header isScrolled={isScrolled} />
+        {/* <StickyCursor stickyElement={stickyElement} /> */}
+      </div>
     </div>
   );
 };

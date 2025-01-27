@@ -75,7 +75,7 @@ const FeatureCard = ({ url, title, description }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
-    className="bg-purple-900/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20 group hover:bg-purple-800/40 transition-all duration-300"
+    className="bg-purple-900/30 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/20 group hover:bg-purple-800/40 transition-all duration-300"
   >
     <div className="flex flex-col items-center text-center">
       <div className="rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -85,46 +85,17 @@ const FeatureCard = ({ url, title, description }) => (
           className="w-36  md:w-36  h-auto rounded-full object-cover"
         />
       </div>
-      <h3 className="text-white font-semibold mb-2">{title}</h3>
-      <p className="text-purple-200 text-sm">{description}</p>
+      <h3 className="text-white font-semibold text-base md:text-lg mb-2">{title}</h3>
+      <p className="text-purple-200 text-xs md:text-sm">{description}</p>
     </div>
   </motion.div>
 );
 
 export default function OurParners() {
   return (
-    <section className="relative min-h-screen w-full py-20">
-      {/* <style>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style> */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-800/30 to-transparent pointer-events-none "></div>
-
-      <div className="contaier mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="relative min-h-screen w-full py-10">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-800/30 to-transparent pointer-events-none"></div>
+      <div className="px-3 md:px-8 relative z-10">
         {/* Features Section */}
         <div className="mb-4">
           <motion.div
@@ -142,7 +113,7 @@ export default function OurParners() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {features.map((feature, index) => (
               <FeatureCard key={index} {...feature} />
             ))}

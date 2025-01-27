@@ -42,7 +42,7 @@ function App() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <div className="mx-auto">
+        <div className="mx-auto bg-black">
           <Router>
             <Suspense
               fallback={
@@ -58,8 +58,7 @@ function App() {
                 </div>
               }
             >
-              <Navbar /> {/* Navbar will be rendered immediately */}
-              {/* Wrap the routes inside the SmoothScroll */}
+              <Navbar />
               <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/about" element={<AboutUs />} />
