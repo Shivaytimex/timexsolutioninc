@@ -10,6 +10,7 @@ lerna-debug.log*
 # Dependency directories
 node_modules
 .env
+public
 # Build directories
 dist
 dist-ssr

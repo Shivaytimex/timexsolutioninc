@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SplitText } from "./SplitText";
 
@@ -49,7 +49,7 @@ export default function SplashScreen({ onComplete }) {
             >
               <SplitText
                 text={words[currentWordIndex]}
-                className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold"
+                className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] font-bold"
                 delay={50}
               />
             </motion.div>
@@ -59,5 +59,3 @@ export default function SplashScreen({ onComplete }) {
     </AnimatePresence>
   );
 }
-
-  
