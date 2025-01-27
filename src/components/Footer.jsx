@@ -55,40 +55,14 @@ const TimexFooter = () => {
   return (
     <div className="relative bg-gradient-to-b from-gray-900 to-black flex z-10 flex-col justify-between min-h-[500px]">
       {/* Gradient Text with Horse Logo */}
-      <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden">
-        <div className=" mb-4 opacity-70">
+      <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden ">
+        <div className="opacity-70">
           <img
             src="/FOOTER1.webp"
             alt="Timex Horse Logo"
             className="w-full h-full object-cover"
           />
         </div>
-        <h1 className="text-[5rem] md:text-[10rem] lg:text-[15rem] xl:text-[20rem] font-bold tracking-wider text-center leading-none relative">
-          <span
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, #ffffff 0%, #808080 50%, #404040 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-            }}
-          >
-            TIMEX
-          </span>
-          <span
-            className="absolute inset-0 transform translate-y-[1px]"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: "blur(1px)",
-            }}
-          >
-            TIMEX
-          </span>
-        </h1>
       </div>
 
       {/* Footer */}

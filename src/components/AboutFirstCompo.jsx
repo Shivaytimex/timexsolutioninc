@@ -6,21 +6,46 @@ import TiltedScroll from "../utils/TiltedScroll";
 import norwayVideo from "./video/video.mp4";
 import { LampContainer } from "./ui/lamp";
 
+// 1) A small hook to detect if screen is >= 1024px (Tailwind’s lg breakpoint).
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+
+    return () => {
+      media.removeEventListener("change", listener);
+    };
+  }, [matches, query]);
+
+  return matches;
+}
+
 export default function AboutSection() {
   const aboutRef = useRef(null);
   const aboutPicRef = useRef(null);
   const ref = useRef(null);
   const videoRef = useRef(null);
+
+  // 2) Intersection Observers, as before
+  const isInViewAbout = useInView(aboutRef, { once: true });
+  const isInViewAboutPic = useInView(aboutPicRef, { once: true });
+
+  // 3) Also track the intersection for the video/TypeWriter section
   const InView = useInView(ref, { once: true });
 
-  const [isLoading, setIsLoading] = useState(true);
+  // 4) Check if screen is "large" (>=1024px)
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
 
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setIsLoading(false);
   }, []);
-
-  const isInViewAbout = useInView(aboutRef, { once: true });
-  const isInViewAboutPic = useInView(aboutPicRef, { once: true });
 
   const paragraphText =
     "Founded in 1998, Performics is a performance pioneer, originally operating as an affiliate network, and rolling out search marketing services in the early 2000s. Today, Performance Marketing has moved from a specialty service to the strategic center for brands. We're connecting marketing investment to consumer intent, redefining performance by using data, consumer intent signals, technology, media and content in novel ways. We've built Growth Solutions to foster innovation. And we're structured globally to serve multi-market clients at scale.";
@@ -45,14 +70,28 @@ export default function AboutSection() {
 
       <section className="container mx-auto w-[90%] lg:w-[100%] px-5 py-8 lg:px-40 mt-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* 5) About Text Motion Div */}
           <motion.div
             ref={aboutRef}
-            initial={{ x: -500, opacity: 0 }}
-            transition={{ duration: 0.7 }}
-            animate={{
-              x: isInViewAbout ? 0 : -500,
-              opacity: isInViewAbout ? 1 : 0,
+            // If it's a large screen, start off-screen (-500), else just show at (0)
+            initial={{
+              x: isLargeScreen ? -500 : 0,
+              opacity: isLargeScreen ? 0 : 1,
             }}
+            // Animate to visible only if large AND in view
+            animate={{
+              x: isLargeScreen
+                ? isInViewAbout
+                  ? 0
+                  : -500
+                : 0,
+              opacity: isLargeScreen
+                ? isInViewAbout
+                  ? 1
+                  : 0
+                : 1,
+            }}
+            transition={{ duration: 0.7 }}
             className="space-y-6 pl-6 border-b-2 lg:border-b-0 border-purple-300 bg-black py-8 lg:border-l-2 lg:border-purple-200 lg:relative"
           >
             <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-inherit ">
@@ -91,15 +130,29 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
+          {/* 6) About Image Motion Div */}
           <motion.div
-            initial={{ x: 500, opacity: 0 }}
+            ref={aboutPicRef}
+            // If it's a large screen, start off-screen (500), else at 0
+            initial={{
+              x: isLargeScreen ? 500 : 0,
+              opacity: isLargeScreen ? 0 : 1,
+            }}
+            // Animate to visible only if large AND in view
             animate={{
-              x: isInViewAboutPic ? 0 : 500,
-              opacity: isInViewAboutPic ? 1 : 0,
+              x: isLargeScreen
+                ? isInViewAboutPic
+                  ? 0
+                  : 500
+                : 0,
+              opacity: isLargeScreen
+                ? isInViewAboutPic
+                  ? 1
+                  : 0
+                : 1,
             }}
             transition={{ duration: 0.7 }}
-            ref={aboutPicRef}
-            className="mx-auto md:block relative h-[300px] w-60 md:w-96  lg:h-[370px] lg:w-[330px] "
+            className="mx-auto md:block relative h-[300px] w-60 md:w-96 lg:h-[370px] lg:w-[330px]"
           >
             <img
               src="/about-first-img.webp"

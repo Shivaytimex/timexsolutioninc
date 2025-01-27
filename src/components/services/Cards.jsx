@@ -18,7 +18,7 @@ const Card = ({ i, title, description, img, subServices, color, progress, range,
   return (
     <div
       ref={container}
-      className="min-h-screen md:h-screen flex items-center justify-center mb-10 md:mb-0 md:sticky md:top-0"
+      className="min-h-screen md:h-screen flex items-center justify-center md:mb-0 md:sticky md:top-0"
     >
       <div className="min-h-[90vh] w-full border rounded-3xl bg-black">
         <motion.div
