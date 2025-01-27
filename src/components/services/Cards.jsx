@@ -18,7 +18,7 @@ const Card = ({ i, title, description, img, subServices, color, progress, range,
   return (
     <div
       ref={container}
-      className="min-h-screen md:h-screen flex items-center bg-gradient-to-b from-black to-black justify-center mb-10 md:mb-0 md:sticky md:top-0"
+      className="min-h-screen md:h-screen flex items-center bg-gradient-to-b from-black to-black justify-center md:mb-0 md:sticky md:top-0"
     >
   <motion.div
   className="flex flex-col md:flex-row gap-8 bg-gradient-to-b from-transparent via-primary/70 via-[35%] to-transparent relative min-h-[90vh] w-full rounded-3xl p-[20px] md:p-[50px] origin-top"
