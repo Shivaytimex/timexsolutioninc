@@ -68,7 +68,7 @@ export default function AboutSection() {
         </motion.h1>
       </LampContainer>
 
-      <section className="container mx-auto w-[90%] lg:w-[100%] px-5 py-8 lg:px-40 mt-8 relative z-10">
+      <section className="container mx-auto w-[90%] lg:w-[100%] py-8 lg:px-40 mt-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* 5) About Text Motion Div */}
           <motion.div
@@ -92,9 +92,9 @@ export default function AboutSection() {
                 : 1,
             }}
             transition={{ duration: 0.7 }}
-            className="space-y-6 pl-6 border-b-2 lg:border-b-0 border-purple-300 bg-black py-8 lg:border-l-2 lg:border-purple-200 lg:relative"
+            className="space-y-6 lg:pl-6 border-b-2 lg:border-b-0 border-purple-300 bg-black py-8 lg:border-l-2 lg:border-purple-200 lg:relative"
           >
-            <div className="lg:absolute lg:-left-14 lg:top-10 px-4 py-5 bg-inherit ">
+            <div className="lg:absolute lg:-left-14 lg:top-10 lg:px-4 py-5 bg-inherit ">
               <span className="text-purple-500 font-medium">ABOUT</span>
               <h2 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight">
                 Your Partner in Digital Marketing Excellence
