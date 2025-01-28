@@ -15,7 +15,7 @@ export default function Service() {
 
   return (
     <div
-      className="pt-10 md:mb-28 lg:mb-0 bg-black z-20 relative"
+      className="pt-10 md:mb-28 lg:mb-0 bg-black z-[100] relative"
       id="service-home"
     >
       <SectionHeader headingText="OUR SERVICES" />

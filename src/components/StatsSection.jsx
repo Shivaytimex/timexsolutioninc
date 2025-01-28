@@ -69,8 +69,8 @@ const StatsSection = () => {
     },
   ];
   return (
-    <div className="pt-20 bg-gradient-to-b from-black to-black relative z-20">
-      <div className="px-8 grid grid-cols-1  bg-gradient-to-br from-transparent  to-transparent  md:md:grid-cols-[22%,auto] gap-8 relative">
+    <div className="py-10 bg-gradient-to-b from-black to-black relative z-20 overflow-hidden">
+      <div className="px-3 md:px-8 grid grid-cols-1 bg-gradient-to-br from-transparent to-transparent md:grid-cols-[22%,auto] gap-8 relative">
         <Stars />
         <div
           className="absolute inset-0 bg-primary opacity-20 z-[1] rounded-lg top-[20%] hidden lg:flex lg:mx-4"
@@ -85,7 +85,7 @@ const StatsSection = () => {
             opacity: cardsAsideView ? 1 : 0,
           }}
           transition={{ duration: 0.6 }}
-          className="flex justify-center flex-col relative z-10"
+          className="flex justify-center flex-col relative z-10 px-5 md:px-0"
         >
           <h2 className="text-4xl md:text-2xl  font-bold text-white">
             What sets us apart
@@ -99,20 +99,18 @@ const StatsSection = () => {
         {/* Stats Cards */}
         <motion.div
           ref={cardRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6"
         >
           {cardData.map((card, index) => (
             <motion.div
               key={card.id}
-              className="relative lg:w-52 z-10 bg-cover text-white bg-center bg-white/10 backdrop-blur-2xl bg-opacity-90 p-4 h-[250px] flex flex-col justify-center rounded-lg shadow-2xl"
+              className="relative lg:w-52 z-10 bg-cover text-white bg-center bg-white/10 backdrop-blur-2xl bg-opacity-90 p-3.5 md:p-4 min-h-[250px] flex flex-col justify-center rounded-2xl shadow-2xl"
               initial={{ y: 400, opacity: 0 }}
               animate={{ y: isInView ? 0 : 400, opacity: isInView ? 1 : 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              {/* Background Layer */}
-              {/* <div className="absolute inset-0 bg-PurpleEnd z-[-1] rounded-lg" style={{ height: '90%' }}></div> */}
-              <h3 className="text-4xl font-bold">{card.value}</h3>
-              <p className="mt-2 text-lg font-semibold">{card.title}</p>
+              <h3 className="text-3xl md:text-4xl font-bold">{card.value}</h3>
+              <p className="mt-2 text-base md:text-lg font-semibold">{card.title}</p>
               <p className="mt-2 text-xs font-thin">{card.description}</p>
             </motion.div>
           ))}

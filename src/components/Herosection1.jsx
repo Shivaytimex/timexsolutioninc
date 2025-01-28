@@ -8,7 +8,7 @@ import { AniButton } from "../utils/ButtonAnimation";
 // optimized code
 function HeroSection1() {
   return (
-    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-10">
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28 xl:mt-32">
       <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
@@ -52,36 +52,21 @@ function HeroSection1() {
           </div>
 
           {/* Second Column: Image */}
-          <div className="relative">
-            {/* Circular Background for Second Column */}
+          <div className="w-full h-full relative">
             <motion.div
-              className="absolute hidden md:block top-[350px] md:top-[-100px] lg:top-[-90px] right-[10px] md:right-[-30px] lg:right-[-30px] bg-gradient-to-r from-PurpleLight to-PurpleDark opacity-30 w-32 h-32 rounded-full  -z-10"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            ></motion.div>
-            <div className="w-full h-full">
-              <motion.div
-                className="h-auto lg:w-[470px] lg:-mt-2 mx-auto object-cover"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <Magnet padding={50} disabled={false} magnetStrength={50}>
-                  <img
-                    src="/Web-Banner-1.webp"
-                    alt="Web-Banner"
-                    className="rounded-lg object-cover"
-                  />
-                </Magnet>
-              </motion.div>
-            </div>
+              className="h-auto lg:w-[470px] lg:-mt-2 mx-auto object-cover"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <Magnet padding={50} disabled={false} magnetStrength={50}>
+                <img
+                  src="/Web-Banner-1.webp"
+                  alt="Web-Banner"
+                  className="rounded-lg object-cover"
+                />
+              </Magnet>
+            </motion.div>
           </div>
         </div>
       </section>

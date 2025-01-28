@@ -7,7 +7,7 @@ import { WhatMakesUsUnique } from "../components/WhatMakesUsUnique";
 import Service from "../components/services/Index";
 
 function Home() {
-  const pageTitle = "Timexsolution Inc - Home"; 
+  const pageTitle = "Timexsolutioninc";
 
   return (
     <div className="bg-black">

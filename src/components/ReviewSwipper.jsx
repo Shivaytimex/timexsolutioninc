@@ -46,8 +46,8 @@ function ReviewSwipper() {
   };
 
   return (
-    <section className="my-24">
-      <div className="flex flex-col md:flex-row items-center gap-5 justify-center ">
+    <section className="py-10">
+      <div className="flex flex-col md:flex-row items-center gap-5 justify-center">
         <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight text-center text-4xl font-semibold p-2">
           What Our Happy Clients Say
         </h1>
@@ -77,7 +77,7 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-white/10 relative text-sm lg:text-base backdrop-blur-sm border-white/20 min-h-[240px] border p-3 md:p-14 rounded-xl mt-8 text-white">
+            <div className="bg-white/10 relative text-sm lg:text-base backdrop-blur-sm border-white/20 min-h-[240px] border p-3 md:p-14 rounded-2xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="relative">
                 <div className="flex items-center gap-20  lg:gap-52 absolute -bottom-20 md:-bottom-12 lg:-bottom-20">
@@ -104,7 +104,7 @@ function ReviewSwipper() {
           <button
             key={index}
             onClick={() => handleDotClick(index)} // Handle click to go to the slide
-            className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${
+            className={`w-2 h-2 rounded-full ${
               activeIndex === index ? "bg-PurpleDark" : "bg-gray-400"
             }`}
           />
