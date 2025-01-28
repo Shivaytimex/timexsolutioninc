@@ -7,10 +7,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   // const stickyElement = useRef(null);
 
-  // Add scroll event listener
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Adjust threshold as needed
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -18,11 +17,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`w-full overflow-hidden ${isScrolled ? "h-16 md:h-20 lg:h-24" : "h-24 lg:h-28 xl:h-32"} fixed top-0 z-50 transition-all duration-300s ${isScrolled ? "bg-black/75" : "bg-black"} rounded-b-3xl`}>
+    <div className={`w-full overflow-hidden ${isScrolled ? "h-16 md:h-20" : "h-24 lg:h-28 xl:h-32"} fixed top-0 z-50 transition-all duration-300s ${isScrolled ? "bg-black/75" : "bg-black"} rounded-b-3xl`}>
       <div className="">
         <Link
           to="/"
-          className={`fixed left-6 md:left-8 ${isScrolled ? "top-3" : "top-4"} transition-all duration-300`}
+          className={`fixed left-6 md:left-8 ${isScrolled ? "top-2" : "top-4"} transition-all duration-300`}
 
         >
           <img

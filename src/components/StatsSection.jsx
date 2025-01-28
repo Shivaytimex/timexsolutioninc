@@ -3,6 +3,7 @@ import { useRef } from "react";
 import CountUp from "../utils/CountUp";
 import { Stars } from "./Stars";
 import { FaUsers } from "react-icons/fa";
+// import Magnetic from "./Magnetic";
 
 // optimized
 

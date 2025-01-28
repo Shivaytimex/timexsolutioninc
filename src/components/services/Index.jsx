@@ -15,11 +15,11 @@ export default function Service() {
 
   return (
     <div
-      className="pt-10 md:mb-28 lg:mb-0 bg-black z-[100] relative"
+      className="py-10 bg-black z-[20] md:z-[100] relative"
       id="service-home"
     >
       <SectionHeader headingText="OUR SERVICES" />
-      <main ref={container} className="relative">
+      <main ref={container} className="relative gap-10 flex flex-col md:flex-none">
         {serviceEntries.map(([title, service], i) => {
           const targetScale = 1 - (serviceEntries.length - 1) * 0.05;
           const range = [i * 0.25, (i + 1) * 0.25];

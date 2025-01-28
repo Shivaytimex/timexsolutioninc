@@ -14,7 +14,7 @@ const SectionHeader = ({ headingText }) => {
 
   return (
     <motion.section
-      className="relative z-20 w-full px-6"
+      className="relative z-20 w-full px-6 mb-10 md:mb-32 lg:mb-10"
       initial="hidden"
       animate="visible"
     >

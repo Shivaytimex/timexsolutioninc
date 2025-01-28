@@ -76,15 +76,15 @@ export function ServicePage({
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      <div className="  relative ">
+      <div className="relative">
         <div className="relative">
           <Stars />
-          <div className="relative z-10 ">
+          <div className="relative z-10">
             <Header name={serviceName} />
           </div>
         </div>
 
-        <section className="relative grid gap-6 bg-gradient-to-b from-transparent via-PurpleDark/30 to-transparent rounded-3xl p-8">
+        <section className="relative grid gap-6 bg-gradient-to-b from-transparent via-PurpleDark/30 to-transparent rounded-3xl px-8 py-10">
           <Stars />
           <section className="grid lg:grid-cols-2 gap-6 relative z-10">
             <div className="space-y-6 p-6 bg-gradient-to-r from-PurpleLight to-PurpleDark rounded-3xl relative overflow-hidden">
@@ -178,7 +178,7 @@ export function ServicePage({
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative"
+          className="relative py-10"
         >
           <Stars />
           <div className="relative z-10">
@@ -190,7 +190,7 @@ export function ServicePage({
         </motion.section>
 
         <motion.section
-          className="rounded-[32px] bg-gradient-to-b from-black via-PurpleDark/40 to-black px-4 sm:px-8 lg:px-12 py-16 relative overflow-hidden"
+          className="rounded-3xl bg-gradient-to-b from-black via-PurpleDark/40 to-black px-4 sm:px-8 lg:px-12 py-16 relative overflow-hidden"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -240,7 +240,7 @@ export function ServicePage({
               {features.map((feature) => (
                 <motion.div
                   key={feature.title}
-                  className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-sm border border-purple-500/30 rounded-[32px] p-8 shadow-lg relative overflow-hidden"
+                  className="bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-8 shadow-lg relative overflow-hidden"
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     show: { opacity: 1, y: 0 },

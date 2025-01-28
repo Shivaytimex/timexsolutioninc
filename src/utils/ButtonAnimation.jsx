@@ -3,7 +3,7 @@
 export const AniButton = ({ text, buttonClass, textClass }) => {
   return (
     <button className={`group relative overflow-hidden scale-50 cursor-pointer transition-all duration-300 ease-custom ${buttonClass}`}>
-      <span className={`absolute border inset-0 grid place-content-center transition-transform duration-300 ease-custom group-hover:translate-y-full ${textClass}`}>
+      <span className={`absolute border inset-0 grid place-content-center transition-transform duration-300 ease-custom group-hover:translate-y-full hover:translate-y-full ${textClass}`}>
         {text}
       </span>
       <div className="inline-flex text-3xl whitespace-pre">
