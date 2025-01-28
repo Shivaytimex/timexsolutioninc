@@ -106,7 +106,7 @@ const TiltedScroll = () => {
             ))}
           </div>
         </div>
-        <div className="md:w-[40%] gap-4 text-center flex md:flex-col items-center justify-center">
+        <div className="md:w-[40%] text-center flex md:flex-col items-center justify-center">
           <AnimatedReveiwsCircle />
           <ShinyText
             text="Happy clients About us"

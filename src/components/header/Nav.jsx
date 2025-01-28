@@ -81,7 +81,7 @@ const links = [
 const footerLinks = [
   {
     title: "Facebook",
-    href: "/",
+    href: "https://www.facebook.com/share/15tRLbGLS9/",
   },
   {
     title: "LinkedIn",
@@ -89,7 +89,7 @@ const footerLinks = [
   },
   {
     title: "Instagram",
-    href: "/",
+    href: "https://www.instagram.com/timexsolutioninc?igsh=MWZodjU5cnZ4OGw0YQ==",
   },
   {
     title: "Twitter",

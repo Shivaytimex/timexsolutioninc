@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { motion } from "framer-motion";
 import { FaCheck } from "react-icons/fa";
+import { Link } from "react-router";
 
 export function PricingPackages({ packages }) {
   return (
@@ -79,32 +80,18 @@ export function PricingPackages({ packages }) {
                   ))}
                 </ul>
               </div>
-              {/* <button
-                                    className="w-full mt-6 bg-[#FF0033] hover:bg-[#E60000] text-white py-2.5 px-4 rounded-md transition-colors duration-200 flex items-center justify-center space-x-2"
-                                >
-                                    <span className="font-medium">Get Started</span>
-                                    <svg
-                                        className="w-5 h-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                        />
-                                    </svg>
-                                </button> */}
-              <button className="w-full bottom-0 mt-6 px-6 py-2 bg-gradient-to-r from-PurpleDark to-PurpleLight text-white rounded-3xl hover:from-purple-600  hover:to-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-300 transition-colors duration-200 flex items-center justify-center">
+           
+              <Link
+                to={"/contact"}
+                className="w-full bottom-0 mt-6 px-6 py-2 bg-gradient-to-r from-PurpleDark to-PurpleLight text-white rounded-3xl hover:from-purple-600  hover:to-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-300 transition-colors duration-200 flex items-center justify-center"
+              >
                 <span className="font-medium">Get Started</span>
                 <motion.div
                   className="w-2 h-2 rounded-full bg-white ml-2"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
                 />
-              </button>
+              </Link>
             </div>
           </motion.div>
         ))}

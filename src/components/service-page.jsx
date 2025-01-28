@@ -182,7 +182,7 @@ export function ServicePage({
         >
           <Stars />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white lg:mt-12 text-center">
               Timexsolutionx Creative Collection
             </h2>
             <ParallaxScroll images={images} />

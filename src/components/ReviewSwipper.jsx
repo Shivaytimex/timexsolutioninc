@@ -15,7 +15,7 @@ function ReviewSwipper() {
     },
     {
       id: 2,
-      text: "Their web development service is outstanding. They crafted a beautiful, functional, and responsive website that has significantly improved our online presence. The team was professional, skilled, and easy to work with.",
+      text: "Their web development service is outstanding. They crafted a beautiful, functional, and responsive website that has significantly improved our online presence. The team was professional and easy to work with.",
       author: "Sophia Carter",
     },
     {
@@ -77,18 +77,20 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[350px] lg:h-[260px]  p-14 rounded-2xl mt-8 text-white">
+            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[350px] lg:h-[260px]  p-14 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
-              <div className="flex items-center justify-between mt-5">
-                <em className="font-semibold text-md lg:text-xl">
-                  {review.author}
-                </em>
-                <div className="flex text-yellow-300 text-md lg:text-xl lg:gap-2">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+              <div className="relative">
+                <div className="flex items-center gap-20  lg:gap-52 absolute -bottom-20 md:-bottom-12 lg:-bottom-20">
+                  <em className="font-semibold text-sm lg:text-xl">
+                    {review.author}
+                  </em>
+                  <div className="flex text-yellow-300 text-sm lg:text-xl lg:gap-2">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,8 +104,9 @@ function ReviewSwipper() {
           <button
             key={index}
             onClick={() => handleDotClick(index)} // Handle click to go to the slide
-            className={`w-2 h-2 rounded-full ${activeIndex === index ? "bg-PurpleDark" : "bg-gray-400"
-              }`}
+            className={`w-2 h-2 rounded-full ${
+              activeIndex === index ? "bg-PurpleDark" : "bg-gray-400"
+            }`}
           />
         ))}
       </div>
