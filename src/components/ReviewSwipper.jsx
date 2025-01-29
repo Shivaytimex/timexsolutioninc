@@ -15,7 +15,7 @@ function ReviewSwipper() {
     },
     {
       id: 2,
-      text: "Their web development service is outstanding. They crafted a beautiful, functional, and responsive website that has significantly improved our online presence. The team was professional and easy to work with.",
+      text: "Their web development service is outstanding. They crafted a beautiful and responsive website that has significantly improved our online presence. The team was professional and easy to work with.",
       author: "Sophia Carter",
     },
     {
@@ -25,7 +25,7 @@ function ReviewSwipper() {
     },
     {
       id: 4,
-      text: "Staffing solutions provided by this team were excellent. They connected us with highly skilled professionals who fit perfectly into our organization. The process was smooth, quick, and extremely efficient.",
+      text: "Staffing solutions provided by this team were excellent. They connected us with highly skilled professionals who fit perfectly into our organization. The process was smooth extremely efficient.",
       author: "Priya Sharma",
     },
     {
@@ -77,7 +77,7 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[350px] lg:h-[260px]  p-14 rounded-xl mt-8 text-white">
+            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[230px] lg:h-[260px]  py-6 px-3 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="relative">
                 <div className="flex items-center gap-20  lg:gap-52 absolute -bottom-20 md:-bottom-12 lg:-bottom-20">
