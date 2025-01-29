@@ -54,10 +54,6 @@ const links = [
     href: "/",
   },
   {
-    title: "Agency",
-    href: "/",
-  },
-  {
     title: "Services",
     href: "service-home",
     submenu: [
