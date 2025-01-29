@@ -26,6 +26,14 @@ const staggerChildren = {
   },
 };
 
+const socialLinks = [
+  { Icon: FaFacebookF, href: "https://www.facebook.com/share/15tRLbGLS9/" },
+  { Icon: FaInstagram, href: "https://www.instagram.com/timexsolutioninc?igsh=MWZodjU5cnZ4OGw0YQ==" },
+  { Icon: FaTwitter, href: "https://twitter.com" }, // Replace with actual Twitter link
+  { Icon: FaYoutube, href: "https://youtube.com" } // Replace with actual YouTube link
+];
+
+
 const AnimatedSection = ({ children, className }) => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -166,7 +174,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-black text-white  relative px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen text-white relative px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="bg-white/5 backdrop-blur-lg rounded-3xl overflow-hidden">
           <div className="lg:grid lg:grid-cols-2 ">
@@ -191,21 +199,21 @@ export default function ContactPage() {
                 {[
                   {
                     icon: FaMapMarkerAlt,
-                    title: "Head Office",
+                    title: "Office",
                     details: [
-                      "Jalan Cempaka Wangi No 22",
-                      "Jakarta - Indonesia",
+                      "715 P St, Sacramento, California 95814",
+                      "2nd office - 3661 Westshield Ave Fresno CA 93722",
                     ],
                   },
                   {
                     icon: FaEnvelope,
                     title: "Email Us",
-                    details: ["support@yourdomain.tld", "hello@yourdomain.tld"],
+                    details: ["team@timexsolutioninc.com"],
                   },
                   {
                     icon: FaPhone,
                     title: "Call Us",
-                    details: ["Phone: +6221.2002.2012", "Fax: +6221.2002.2013"],
+                    details: [" +1 916-535-8383 , +1 888-730-8990"],
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -236,25 +244,26 @@ export default function ContactPage() {
                   Follow our social media
                 </h3>
                 <div className="flex space-x-4">
-                  {[FaFacebookF, FaInstagram, FaTwitter, FaYoutube].map(
-                    (Icon, index) => (
-                      <motion.a
-                        key={index}
-                        href="#"
-                        className="bg-gradient-to-r from-PurpleLight to-PurpleDark p-3 rounded-full hover:from-PurpleDark/50 hover:to-PurpleLight/50 transition-all duration-500 group"
-                        whileHover={{
-                          scale: 1.05,
-                          transition: { duration: 0.3 },
-                        }}
-                        whileTap={{
-                          scale: 0.95,
-                          transition: { duration: 0.3 },
-                        }}
-                      >
-                        <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-500" />
-                      </motion.a>
-                    )
-                  )}
+                  {socialLinks.map(({ Icon, href }, index) => (
+                    <motion.a
+                      key={index}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-gradient-to-r from-PurpleLight to-PurpleDark p-3 rounded-full hover:from-PurpleDark/50 hover:to-PurpleLight/50 transition-all duration-500 group"
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.3 },
+                      }}
+                      whileTap={{
+                        scale: 0.95,
+                        transition: { duration: 0.3 },
+                      }}
+                    >
+                      <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-500" />
+                    </motion.a>
+                  ))}
+
                 </div>
               </motion.div>
             </AnimatedSection>
@@ -278,11 +287,10 @@ export default function ContactPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
-                          formErrors.name
-                            ? "border-red-500"
-                            : "border-PurpleLight/30"
-                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${formErrors.name
+                          ? "border-red-500"
+                          : "border-PurpleLight/30"
+                          } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
                         variants={fadeInUp}
                       />
                       {formErrors.name && (
@@ -316,11 +324,10 @@ export default function ContactPage() {
                         placeholder="Phone"
                         value={formData.phoneNumber}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
-                          formErrors.phoneNumber
-                            ? "border-red-500"
-                            : "border-PurpleLight/30"
-                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${formErrors.phoneNumber
+                          ? "border-red-500"
+                          : "border-PurpleLight/30"
+                          } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
                         variants={fadeInUp}
                       />
                       {formErrors.phoneNumber && (
@@ -337,11 +344,10 @@ export default function ContactPage() {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${
-                          formErrors.email
-                            ? "border-red-500"
-                            : "border-PurpleLight/30"
-                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
+                        className={`w-full px-4 py-3 rounded-lg bg-white/10 border ${formErrors.email
+                          ? "border-red-500"
+                          : "border-PurpleLight/30"
+                          } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white`}
                         variants={fadeInUp}
                       />
                       {formErrors.email && (
@@ -374,11 +380,10 @@ export default function ContactPage() {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      className={`w-full h-[220px] px-4 py-3 rounded-lg bg-white/10 border ${
-                        formErrors.message
-                          ? "border-red-500"
-                          : "border-PurpleLight/30"
-                      } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white resize-none mt-6`}
+                      className={`w-full h-[220px] px-4 py-3 rounded-lg bg-white/10 border ${formErrors.message
+                        ? "border-red-500"
+                        : "border-PurpleLight/30"
+                        } focus:outline-none focus:ring-2 focus:ring-PurpleLight focus:border-transparent placeholder-white/50 text-white resize-none mt-6`}
                       variants={fadeInUp}
                     />
                     {formErrors.message && (
@@ -391,11 +396,10 @@ export default function ContactPage() {
                   {/* Submit Button */}
                   <motion.button
                     type="submit"
-                    className={`w-full bg-gradient-to-r from-PurpleLight/80 to-PurpleDark/80 text-white py-4 px-6 rounded-lg transition-all duration-500 font-semibold text-lg transform hover:-translate-y-1 mt-6 ${
-                      isSubmitting
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:from-PurpleDark/80 hover:to-PurpleLight/80"
-                    }`}
+                    className={`w-full bg-gradient-to-r from-PurpleLight/80 to-PurpleDark/80 text-white py-4 px-6 rounded-lg transition-all duration-500 font-semibold text-lg transform hover:-translate-y-1 mt-6 ${isSubmitting
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:from-PurpleDark/80 hover:to-PurpleLight/80"
+                      }`}
                     variants={fadeInUp}
                     whileHover={
                       !isSubmitting && {
@@ -422,7 +426,7 @@ export default function ContactPage() {
         <AnimatedSection className="mt-12 rounded-3xl overflow-hidden bg-white/5 backdrop-blur-lg p-2">
           <motion.div variants={fadeInUp}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9931.776359708595!2d-0.12174198287730645!3d51.50736485407781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c38c8cd1d9%3A0xb78f2474b9a45aa9!2sWestminster%2C%20London%2C%20UK!5e0!3m2!1sen!2s!4v1644933391159!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.2181820981364!2d-121.4994815!3d38.5748232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad1582a57fff5%3A0x56e8852876990b86!2sTIMEX%20SOLUTION%20INC!5e0!3m2!1sen!2s!4v1738173142111!5m2!1sen!2s"
               width="100%"
               height="400"
               style={{ border: 0 }}

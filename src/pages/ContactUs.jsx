@@ -1,15 +1,22 @@
 import ContactPage from "../components/ContactUs-Components/ContactPage";
 import FaqSection from "../components/ContactUs-Components/FaqSection";
 import BookACall from "../components/ContactUs-Components/BookACall";
-import { motion } from "framer-motion";
-import { LampContainer } from "../components/ui/lamp";
+// import { motion } from "framer-motion";
+// import { LampContainer } from "../components/ui/lamp";
 import { Stars } from "../components/Stars";
+import Header from "../components/CommonHeader";
 
 export default function ContactUs() {
   return (
     <div className="bg-black relative z-20">
       <Stars />
-      <LampContainer>
+      {/* <div className="relative">
+        <Stars />
+        <div className="relative z-10"> */}
+      <Header name="Contact US" />
+      {/* </div> */}
+      {/* </div> */}
+      {/* <LampContainer>
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +29,7 @@ export default function ContactUs() {
         >
           Contact US
         </motion.h1>
-      </LampContainer>
+      </LampContainer> */}
       <BookACall />
       <ContactPage />
       <FaqSection />
