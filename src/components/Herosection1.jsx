@@ -8,22 +8,23 @@ import { AniButton } from "../utils/ButtonAnimation";
 // optimized code
 function HeroSection1() {
   return (
-    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28 xl:mt-32">
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28  xl:mt-28">
       <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
           {/* First Column: Heading Text */}
-          <div className="text-center relative">
+          <div className="text-center relative lg:mt-12">
             <motion.h1
-              className="lg:text-6xl text-white text-3xl font-bold leading-tight mb-4 text-center"
+              className="lg:text-5xl text-white text-3xl font-bold leading-tight mb-4 text-center"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="text-transparent bg-clip-text bg-white">
-                Your <br /> Partner in <br />
-                <span className="">Compliance</span>
-                <br /> & <br />
+              <div className="text-transparent bg-clip-text bg-white/90">
+                Connecting <br />
+                your brand to the
+                <br />
+                <span className=""> world</span>
               </div>
               <TypewriterEffect />
             </motion.h1>
@@ -52,7 +53,7 @@ function HeroSection1() {
           </div>
 
           {/* Second Column: Image */}
-          <div className="w-full h-full relative">
+          <div className="w-full h-full relative ">
             <motion.div
               className="h-auto lg:w-[470px] lg:-mt-2 mx-auto object-cover"
               initial={{ opacity: 0, scale: 0.8 }}

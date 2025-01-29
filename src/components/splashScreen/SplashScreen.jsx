@@ -6,7 +6,7 @@ import { SplitText } from "./SplitText";
 export default function SplashScreen({ onComplete }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const words = ["WELCOME", "TO", "TIMEXSOLUTIONS"];
+  const words = ["Welcome", "To", "Timex Solution Inc."];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -49,7 +49,7 @@ export default function SplashScreen({ onComplete }) {
             >
               <SplitText
                 text={words[currentWordIndex]}
-                className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] font-bold"
+                className="text-[1.8rem] md:text-[5rem] lg:text-[6rem] font-bold"
                 delay={50}
               />
             </motion.div>
