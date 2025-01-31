@@ -3,7 +3,7 @@
 export default function PrivacyPolicy() {
     return (
         <div className="py-20 mt-24 lg:mt-28 xl:mt-28">
-            <div className="w-full max-w-4xl mx-auto border rounded-3xl p-10">
+            <div className="w-full max-w-4xl mx-auto border rounded-3xl p-4 md:p-8">
                 <h3 className="text-4xl font-bold text-white mb-5">Privacy Policy</h3>
                 <div className="">
                     <div className="space-y-6 text-base text-gray-300">

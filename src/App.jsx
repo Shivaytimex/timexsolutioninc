@@ -43,7 +43,7 @@ function App() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <div className="container mx-auto bg-black">
+        <div className="2xl:container mx-auto bg-black">
           <Router>
             <Suspense
               fallback={

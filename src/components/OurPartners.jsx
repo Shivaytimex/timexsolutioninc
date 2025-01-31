@@ -93,7 +93,7 @@ const FeatureCard = ({ url, title, description }) => (
 
 export default function OurParners() {
   return (
-    <section className="relative min-h-screen w-full py-10">
+    <section className="relative w-full py-10">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-800/30 to-transparent pointer-events-none"></div>
       <div className="px-3 md:px-8 relative z-10">
         {/* Features Section */}

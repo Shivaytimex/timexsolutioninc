@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 // import MembershipBanner from "./MembershipBanner";
-import OurPartners from "./OurPartners";
+// import OurPartners from "./OurPartners";
 import ReviewSwipper from "./ReviewSwipper";
 import { Stars } from "./Stars";
+import InfiniteMovingPartners from "./partners/Index";
 
 const features = [
   {
@@ -124,8 +125,11 @@ export function WhatMakesUsUnique() {
           </div>
         </div>
 
-        <div className="relative z-10">
+        {/* <div className="relative z-10">
           <OurPartners />
+        </div> */}
+        <div className="relative z-10 ">
+          <InfiniteMovingPartners />
         </div>
 
         <div className="relative z-10 px-4 sm:px-6 lg:px-8">

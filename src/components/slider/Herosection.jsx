@@ -35,9 +35,9 @@ function HeroSection() {
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>
-            <div className="relative border p-4 md:p-8 lg:p-12 xl:p-16 mx-4 md:mx-8 lg:mx-0 rounded-3xl overflow-hidden">
+            <div className="relative border lg:border-none p-4 md:p-8 lg:p-12 xl:p-16 mx-4 md:mx-8 lg:mx-0 rounded-3xl">
               <Stars />
-              <div className="flex flex-col lg:flex-row items-center gap-0 md:gap-10 xl:gap-20 relative z-20">
+              <div className="flex flex-col lg:flex-row justify-around items-center gap-0 md:gap-10 xl:gap-20 relative z-20 min-h-[70vh] sm:min-h-[60vh] md:min-h-[80vh] lg:min-h-[400px]">
                 <div className="lg:w-[550px] lg:h-[295px] text-white rounded-3xl lg:border lg:shadow-2xl p-2 md:p-6">
                   <h1 className="font-semibold text-[23px] md:text-[30px] lg:text-[45px] lg:leading-10 leading-6">
                     {image.content.title}
