@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import { Link } from "react-router";
 import TypewriterEffect from "./TypewriterEffect";
 import Magnet from "../utils/Magnet";
@@ -34,8 +35,7 @@ function HeroSection1() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Helping businesses grow while ensuring digital compliance in a
-              fast-evolving world.
+              Transforming Business tymes with Next-Gen Web Solutions, Powerful Software, and Results-Driven Marketing.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
