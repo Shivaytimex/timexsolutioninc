@@ -63,11 +63,11 @@ export const InfiniteMovingCards = ({
                     ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""}`}
             >
                 {items.map((item, idx) => (
-                    <li key={idx} className="w-[150px] max-w-full relative flex-shrink-0">
+                    <li key={idx} className="w-[80px] sm:w-[100px] md:w-[150px] max-w-full relative flex-shrink-0">
                         <img
                             src={item.src || "/placeholder.svg"}
                             alt={item.alt}
-                            className="object-contain h-[100px] w-[150px]"
+                            className="object-contain w-full h-auto"
                         />
                     </li>
                 ))}
