@@ -2,8 +2,8 @@ import { InfiniteMovingCards } from "./../ui/infinite-moving-cards"
 
 export default function InfiniteMovingPartners() {
     return (
-        <div className="px-4 md:px-8">
-            <div className="rounded-3xl py-10 bg-purple-900/30 flex flex-col antialiased items-center justify-center relative overflow-hidden">
+        <div className="px-4 md:px-8 bg-gradient-to-b from-transparent via-primary/90 via-[50%] to-transparent">
+            <div className="rounded-3xl py-10 flex flex-col antialiased items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards items={logos} direction="left" speed="slow" />
                 <div className="h-8" /> {/* Spacer */}
                 <InfiniteMovingCards items={logos} direction="right" speed="slow" />

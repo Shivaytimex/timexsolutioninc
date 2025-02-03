@@ -20,10 +20,10 @@ const Card = ({ i, title, description, img, subServices, color, progress, range,
       ref={container}
       className="min-h-screen md:h-screen flex items-center justify-center md:mb-0 md:sticky md:top-0"
     >
-      <div className="min-h-[99vh] w-full flex items-center justify-center rounded-3xl">
-        <div className="rounded-3xl bg-black">
+      <div className="h-full w-full flex items-center justify-center rounded-3xl">
+        <div className="rounded-3xl bg-black h-[90%]">
           <motion.div
-            className="flex flex-col md:flex-row gap-8 bg-gradient-to-b from-transparent via-primary/70 via-[35%] to-transparent relative min-h-[90vh] w-full border rounded-3xl p-[20px] md:p-[50px] origin-top"
+            className="flex flex-col md:flex-row gap-8 bg-gradient-to-b from-transparent via-primary/90 via-[35%] to-transparent relative h-full w-full border rounded-3xl p-[20px] md:p-[50px] origin-top"
           >
 
             {/* Left Content */}

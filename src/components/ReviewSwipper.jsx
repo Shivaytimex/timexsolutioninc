@@ -77,7 +77,7 @@ function ReviewSwipper() {
       >
         {reviews.map((review) => (
           <SwiperSlide key={review.id}>
-            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[230px] lg:h-[260px]  py-6 px-3 rounded-xl mt-8 text-white">
+            <div className="bg-white/10 backdrop-blur-sm border-white/20 h-[230px] lg:h-[260px] py-6 px-4 md:px-8 rounded-xl mt-8 text-white">
               <i>{review.text}</i>
               <div className="relative">
                 <div className="flex items-center gap-20  lg:gap-52 absolute -bottom-20 md:-bottom-12 lg:-bottom-20">

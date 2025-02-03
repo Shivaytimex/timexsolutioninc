@@ -91,7 +91,7 @@ export function WhatMakesUsUnique() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/digital-marketing.webp"
+                  src="/digital-marketing-1.webp"
                   alt="Our-Team"
                   className="object-cover"
                 />
