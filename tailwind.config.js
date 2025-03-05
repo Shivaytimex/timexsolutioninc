@@ -10,8 +10,15 @@ export default {
         slide: "slide 2s ease-in-out",
         "skew-scroll": "skew-scroll 20s linear infinite",
         shine: "shine 5s linear infinite",
+        scroll:
+          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
       keyframes: {
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
         "shake-rotate": {
           "0%": { transform: "rotate(0deg)" },
           "25%": { transform: "rotate(-15deg)" },
@@ -51,7 +58,7 @@ export default {
         PurpleDark: "#A64FF3",
         VeryLight: "#F2E6FD",
         PurpleHeading: "#9039db",
-        DarkText : '#3d3d3d'
+        DarkText: '#3d3d3d'
       },
     },
   },

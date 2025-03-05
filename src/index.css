@@ -8,10 +8,32 @@
   height: 5px;
   border-radius: 0px !important;
 }
+
 .custom-pagination .swiper-pagination-bullet-active {
   background: #751f8c;
 }
 
-body{
+body {
   background-color: black;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  /* Scrollbar width */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
+  /* Transparent Blur Effect */
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  /* background: rgba(128, 0, 128, 0.6); */
+  background: black;
+  /* Purple color */
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
 }

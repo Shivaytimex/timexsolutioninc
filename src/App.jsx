@@ -4,6 +4,7 @@ import { lazy, Suspense, useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import { SyncLoader } from "react-spinners";
 import SplashScreen from "./components/splashScreen/SplashScreen";
+import PrivacyPolicy from "./pages/Privacy";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -42,7 +43,7 @@ function App() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <div className="mx-auto bg-black">
+        <div className="2xl:container mx-auto bg-black">
           <Router>
             <Suspense
               fallback={
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/contact" element={<ContactUs />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route
                   path="/services/web-development"
                   element={<WebDevelopment />}

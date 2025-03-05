@@ -19,7 +19,7 @@ const StatsSection = () => {
       value: (
         <CountUp
           from={0}
-          to={14}
+          to={5}
           separator=","
           direction="up"
           duration={2}
@@ -35,12 +35,12 @@ const StatsSection = () => {
       value: (
         <CountUp
           from={0}
-          to={15}
+          to={370}
           separator=","
           direction="up"
           duration={2}
           className="count-up-text"
-          suffix="k+"
+          suffix="+"
         />
       ),
       title: "Clients Trust Us",
@@ -51,12 +51,12 @@ const StatsSection = () => {
       value: (
         <CountUp
           from={0}
-          to={4}
+          to={3}
           separator=","
           direction="up"
-          duration={0.2}
+          duration={2}
           className="count-up-text"
-          suffix="k+"
+          suffix="+"
         />
       ),
       title: "Convenient Branches",

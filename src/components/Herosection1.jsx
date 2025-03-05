@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import { Link } from 'react-router'
 import TypewriterEffect from './TypewriterEffect'
 import Magnet from '../utils/Magnet'
@@ -8,8 +9,8 @@ import { AniButton } from '../utils/ButtonAnimation'
 // optimized code
 function HeroSection1() {
   return (
-    <div className='relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28  xl:mt-28'>
-      <section className='bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative'>
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28  xl:mt-28">
+      <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 relative'>
           {/* First Column: Heading Text */}
@@ -34,8 +35,7 @@ function HeroSection1() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Helping businesses grow while ensuring digital compliance in a
-              fast-evolving world.
+              Transforming Business tymes with Next-Gen Web Solutions, Powerful Software, and Results-Driven Marketing.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
