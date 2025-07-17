@@ -128,9 +128,9 @@ export function WhatMakesUsUnique() {
         {/* <div className="relative z-10">
           <OurPartners />
         </div> */}
-        <div className="relative z-10 ">
+        {/* <div className="relative z-10 ">
           <InfiniteMovingPartners />
-        </div>
+        </div> */}
 
         <div className="relative z-10 px-4 sm:px-6 lg:px-8">
           <ReviewSwipper />
