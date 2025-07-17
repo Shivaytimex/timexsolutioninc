@@ -41,10 +41,10 @@ export function PricingPackages({ packages }) {
                     <div className="h-[1px] flex-1 bg-white"></div>
                   </div>
                 </div>
-                <div className="flex items-start gap-1 text-white">
+                {/* <div className="flex items-start gap-1 text-white">
                   <div className="flex items-center gap-5">
                     <span className="text-7xl font-bold text-white leading-none tracking-tighter">
-                      ${pkg.price}
+                      {pkg.price}
                     </span>
                     <div className="space-y-0.5">
                       <p className="text-white text-sm font-medium">ONE TIME</p>
@@ -52,7 +52,7 @@ export function PricingPackages({ packages }) {
                       <p className="text-white text-sm font-medium">PAYMENT</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <p className="text-sm mt-10 text-white/90 leading-tight pr-10">
                   {pkg.description}
                 </p>
