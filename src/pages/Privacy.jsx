@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
                             <strong className="text-white">Email:</strong> team@timexsolutioninc.com
                         </p>
                         <p>
-                            <strong className="text-white">Contact:</strong> +1 (916) 535-8383
+                            <strong className="text-white">Contact:</strong> +1 559-505-3443
                         </p>
 
                         <h3 className="text-xl font-semibold text-white">1. INFORMATION WE MAY COLLECT</h3>
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
                             <li>The right to request deletion of your data</li>
                             <li>The right to opt out of data sales (we do not sell your data)</li>
                         </ul>
-                        <p>To make a CCPA request, email us at team@timexsolutioninc.com or call +1 (916) 535-8383.</p>
+                        <p>To make a CCPA request, email us at team@timexsolutioninc.com or call +1 559-505-3443.</p>
 
                         <h3 className="text-xl font-semibold text-white">8. UPDATES TO THIS POLICY</h3>
                         <p>We may update this policy from time to time. Please check back periodically for any changes.</p>

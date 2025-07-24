@@ -100,7 +100,7 @@ const Footer = () => {
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <MdPhone className="w-5 h-5" />
-                    <Link to="tel:+12345678901" target="_blank" className="">+1 916-535-8383</Link>
+                    <Link to="tel:+15595053443" target="_blank" className="">+1 559-505-3443</Link>
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <MdEmail className="w-5 h-5" />
@@ -203,7 +203,7 @@ const Footer = () => {
           </p>
           <p><strong>Registered Address:</strong> 715 P St, Sacramento, CA 95814, United States</p>
           <p><strong>Email:</strong> team@timexsolutioninc.com</p>
-          <p><strong>Contact:</strong> +1 (916) 535-8383</p>
+          <p><strong>Contact:</strong> +1 559-505-3443</p>
 
           <h3 className="text-lg font-semibold">1. INFORMATION WE MAY COLLECT</h3>
           <p><strong>a) Information Related to Website Use</strong></p>
@@ -294,7 +294,7 @@ const Footer = () => {
             <li>• The right to request deletion of your data</li>
             <li>• The right to opt out of data sales (we do not sell your data)</li>
           </ul>
-          <p>To make a CCPA request, email us at team@timexsolutioninc.com or call +1 (916) 535-8383.</p>
+          <p>To make a CCPA request, email us at team@timexsolutioninc.com or call +1 559-505-3443.</p>
 
           <h3 className="text-lg font-semibold">8. UPDATES TO THIS POLICY</h3>
           <p>We may update this policy from time to time. Please check back periodically for any changes.</p>

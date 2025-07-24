@@ -213,7 +213,7 @@ export default function ContactPage() {
                   {
                     icon: FaPhone,
                     title: "Call Us",
-                    details: [" +1 916-535-8383 , +1 888-730-8990"],
+                    details: [" +1 559-505-3443 , +1 888-730-8990"],
                   },
                 ].map((item, index) => (
                   <motion.div
