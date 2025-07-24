@@ -15,6 +15,7 @@ const WebDevelopment = lazy(() => import("./services/web-development"));
 const AppDevelopment = lazy(() => import("./services/app-development"));
 const DigitalMarketing = lazy(() => import("./services/digital-marketing"));
 const TechIT = lazy(() => import("./services/tech-it-solutions"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
 const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
 const Navbar = lazy(() => import("./components/Navbar"));
 
@@ -86,6 +87,7 @@ function App() {
                   path="/services/staffing-solutions"
                   element={<StaffingSolutions />}
                 />
+                <Route path="/portfolio" element={<Portfolio />} />
               </Routes>
               <Footer />
             </Suspense>
