@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PortfolioShowcase from '../components/PortfolioShowcase';
-
+import { Stars } from '../components/Stars';
+import { AniButton } from '../utils/ButtonAnimation';
 export default function Portfolio() {
   // Device Slider State
   const [deviceSlide, setDeviceSlide] = useState(0)
@@ -78,8 +79,9 @@ export default function Portfolio() {
   const currentExample = beforeAfterExamples[beforeAfterSlide]
   return (
     <>
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 px-4 md:px-16 py-12">
+    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-primary via-black to-primary px-4 md:px-16 py-12">
       {/* Left Side */}
+      <Stars />
       <div className="flex-1 max-w-xl text-white space-y-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center text-sm mb-4 opacity-80">
@@ -99,7 +101,11 @@ export default function Portfolio() {
           <li className="flex items-center"><span className="text-cyan-300 mr-2">&#10003;</span> Attract Qualified Traffic</li>
         </ul>
         {/* Button */}
-        <button className="mt-4 px-6 py-3 bg-white text-blue-700 font-bold rounded shadow hover:bg-blue-100 transition">REQUEST A QUOTE <span className="ml-2">&rarr;</span></button>
+        <AniButton  
+          text='REQUEST A QUOTE'
+          buttonClass='bg-primary text-white font-semibold px-10 py-5 rounded-full border-2 border-white'
+          textClass='bg-white text-primary text-3xl'
+        />
         {/* Awards */}
         <div className="flex items-center space-x-8 mt-8">
           <div className="flex items-center space-x-2">
@@ -149,47 +155,83 @@ export default function Portfolio() {
       </div>
     </section>
     {/* Portfolio Stats & Categories Section */}
-    <section className="w-full bg-gradient-to-b from-blue-700 to-blue-900 py-16 px-4 flex flex-col items-center text-center">
-      <div className="max-w-3xl mx-auto">
+
+
+
+
+
+    <section className="w-full bg-gradient-to-bl from-primary via-black to-primary py-16 px-4 flex flex-col items-center text-center relative">
+      <Stars className="absolute inset-0 z-0" />
+      <div className="max-w-3xl mx-auto relative z-10">
         <div className="text-white text-sm font-bold tracking-widest mb-2">OUR CUSTOM WEB DESIGN PORTFOLIO</div>
         <div className="text-4xl md:text-5xl font-extrabold text-white mb-4">700+ Completed Projects</div>
         <div className="text-lg md:text-xl text-white/90 mb-2">Custom B2C, B2B and eCommerce solutions</div>
         <div className="text-2xl md:text-2xl font-bold text-white mt-2 mb-10">optimized for traffic, engagement and conversion.</div>
       </div>
       {/* Category Cards */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8 relative z-10">
         {/* Featured Card */}
-        <div className="bg-white text-blue-900 rounded-lg shadow-lg px-10 py-8 flex flex-col items-center min-w-[180px] mb-4 md:mb-0">
+        <div className="bg-white/5 hover:bg-white text-white hover:text-blue-900 rounded-lg shadow-lg px-10 py-8 flex flex-col items-center min-w-[180px] mb-4 md:mb-0 cursor-pointer transition-all duration-300 transform hover:scale-105 group backdrop-blur-sm">
           {/* Star Icon */}
-          <svg className="mb-2" width="32" height="32" fill="none" stroke="#1e3a8a" strokeWidth="2" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.3 9 9"/></svg>
+          <svg className="mb-2 stroke-current" width="32" height="32" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <polygon points="12 2 15 9 22 9.3 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.3 9 9"/>
+          </svg>
           <div className="font-bold text-lg mb-1">FEATURED</div>
           {/* Down Arrow */}
-          <svg width="24" height="24" fill="none" stroke="#1e3a8a" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          <svg className="stroke-current" width="24" height="24" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
         {/* B2B Card */}
-        <div className="flex flex-col items-center text-white min-w-[120px]">
+        <div className="bg-white/5 hover:bg-white text-white hover:text-blue-900 rounded-lg shadow-lg px-10 py-8 flex flex-col items-center min-w-[180px] cursor-pointer transition-all duration-300 transform hover:scale-105 group">
           {/* Handshake Icon */}
-          <svg className="mb-2" width="32" height="32" fill="none" stroke="white" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 12l1.5-1.5a2 2 0 012.8 0l1.2 1.2a2 2 0 002.8 0l1.2-1.2a2 2 0 012.8 0L20 12"/><path d="M2 16l4-4m12 4l4-4"/></svg>
-          <div className="font-bold text-lg">B2B</div>
+          <svg className="mb-2 stroke-current" width="32" height="32" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M4 12l1.5-1.5a2 2 0 012.8 0l1.2 1.2a2 2 0 002.8 0l1.2-1.2a2 2 0 012.8 0L20 12"/>
+            <path d="M2 16l4-4m12 4l4-4"/>
+          </svg>
+          <div className="font-bold text-lg mb-1">B2B</div>
+          {/* Down Arrow */}
+          <svg className="stroke-current opacity-0 group-hover:opacity-100 transition-opacity" width="24" height="24" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
         {/* B2C Card */}
-        <div className="flex flex-col items-center text-white min-w-[120px]">
+        <div className="bg-white/5 hover:bg-white text-white hover:text-blue-900 rounded-lg shadow-lg px-10 py-8 flex flex-col items-center min-w-[180px] cursor-pointer transition-all duration-300 transform hover:scale-105 group">
           {/* Credit Card Icon */}
-          <svg className="mb-2" width="32" height="32" fill="none" stroke="white" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
-          <div className="font-bold text-lg">B2C</div>
+          <svg className="mb-2 stroke-current" width="32" height="32" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <path d="M2 10h20"/>
+          </svg>
+          <div className="font-bold text-lg mb-1">B2C</div>
+          {/* Down Arrow */}
+          <svg className="stroke-current opacity-0 group-hover:opacity-100 transition-opacity" width="24" height="24" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
         {/* ECOMMERCE Card */}
-        <div className="flex flex-col items-center text-white min-w-[120px]">
+        <div className="bg-white/5 hover:bg-white text-white hover:text-blue-900 rounded-lg shadow-lg px-10 py-8 flex flex-col items-center min-w-[180px] cursor-pointer transition-all duration-300 transform hover:scale-105 group">
           {/* Cart Icon */}
-          <svg className="mb-2" width="32" height="32" fill="none" stroke="white" strokeWidth="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h2l3.6 7.59a1 1 0 00.83.41H19a1 1 0 00.96-.74l3.24-9.26A1 1 0 0022.24 0H6.21"/></svg>
-          <div className="font-bold text-lg">ECOMMERCE</div>
+          <svg className="mb-2 stroke-current" width="32" height="32" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h2l3.6 7.59a1 1 0 00.83.41H19a1 1 0 00.96-.74l3.24-9.26A1 1 0 0022.24 0H6.21"/>
+          </svg>
+          <div className="font-bold text-lg mb-1">ECOMMERCE</div>
+          {/* Down Arrow */}
+          <svg className="stroke-current opacity-0 group-hover:opacity-100 transition-opacity" width="24" height="24" fill="none" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
       </div>
     </section>
 
+
+
+
+
     {/* Portfolio Showcase Section */}
-    <section className="w-full bg-[#061c38] px-4 py-12 md:py-20">
-      <div className="max-w-7xl mx-auto flex flex-col gap-16">
+    <section className="w-full">
+      <div className="flex flex-col">
         <PortfolioShowcase
           image={
             <img src="/public/web-development.webp" alt="Hi-Tech eCommerce Store" className="rounded-lg shadow-2xl w-full max-w-md" />
@@ -206,7 +248,7 @@ export default function Portfolio() {
             <img src="/public/app-development.webp" alt="Reimagined eSports Platform" className="rounded-lg shadow-2xl w-full max-w-md" />
           }
           title="Reimagined eSports Platform"
-          description={`Working with G2 eSports’ community-based identity, we developed a custom eCommerce platform to reinforce the organization’s legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
+          description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
           buttons={[
             { label: 'LAUNCH WEBSITE', href: '#' },
             { label: 'REQUEST A QUOTE', href: '#' }
@@ -229,7 +271,7 @@ export default function Portfolio() {
             <img src="/public/app-development.webp" alt="Reimagined eSports Platform" className="rounded-lg shadow-2xl w-full max-w-md" />
           }
           title="Reimagined eSports Platform"
-          description={`Working with G2 eSports’ community-based identity, we developed a custom eCommerce platform to reinforce the organization’s legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
+          description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
           buttons={[
             { label: 'LAUNCH WEBSITE', href: '#' },
             { label: 'REQUEST A QUOTE', href: '#' }
@@ -240,7 +282,8 @@ export default function Portfolio() {
     </section>
 
     {/* Before & After Web Design Agency Examples Section */}
-    <section className="w-full bg-gradient-to-b from-[#1a174d] to-[#060c1c] py-16 px-4 flex flex-col items-center text-center relative overflow-x-hidden">
+    <section className="w-full bg-gradient-to-br from-primary via-black to-primary py-16 px-4 flex flex-col items-center text-center relative overflow-x-hidden">
+      <Stars />
       <div className="max-w-5xl mx-auto w-full">
         <div className="text-white text-sm font-bold tracking-widest mb-2 uppercase opacity-80">BEFORE & AFTER WEB DESIGN AGENCY EXAMPLES</div>
         <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-12">A Trusted Custom Website Design Company</h2>
@@ -286,9 +329,11 @@ export default function Portfolio() {
         </div>
         {/* Request a Quote Button */}
         <div className="mt-12 flex justify-center">
-          <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-bold text-lg rounded shadow-lg border-2 border-cyan-400 hover:from-cyan-300 hover:to-blue-500 transition">
-            REQUEST A QUOTE &rarr;
-          </button>
+        <AniButton
+          text='REQUEST A QUOTE'
+          buttonClass='bg-primary text-white font-semibold px-10 py-5 rounded-full border-2 border-white'
+          textClass='bg-white text-primary text-3xl'
+          />
         </div>
       </div>
     </section>
