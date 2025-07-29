@@ -183,11 +183,11 @@ export default function Portfolio() {
             className="text-xs md:text-lg md:text-xl opacity-90 text-center md:text-left"
             variants={fadeInUp}
           >
-            Partner with a top-rated custom website design company to create a fully optimized website, ready to drive engagement and conversions.
+            Partner with a top-rated custom website design company <br/> to  create a fully optimized website,<br/> ready to drive engagement and conversions.
           </motion.p>
           {/* Bullet Points */}
           <motion.ul 
-            className="space-y-2"
+            className="space-y-2 flex flex-col items-center md:items-start"
             variants={staggerContainer}
           >
             <motion.li className="flex items-center" variants={staggerItem}>
@@ -216,13 +216,13 @@ export default function Portfolio() {
             className="flex items-center space-x-8 mt-8"
             variants={staggerContainer}
           >
-            <motion.div className="flex items-center space-x-2" variants={staggerItem}>
+            <motion.div className="flex flex-col md:flex-row items-center space-x-2" variants={staggerItem}>
               <motion.span className="text-cyan-300 text-2xl" variants={scaleIn}>&#11088;</motion.span>
-              <motion.span className="font-semibold" variants={fadeIn}>5 Star DesignRush Reviews</motion.span>
+              <motion.span className="font-semibold text-center md:text-left " variants={fadeIn}>5 Star DesignRush Reviews</motion.span>
             </motion.div>
-            <motion.div className="flex items-center space-x-2 border-l border-white pl-4" variants={staggerItem}>
+            <motion.div className="flex flex-col md:flex-row items-center space-x-2 border-l border-white md:pl-4" variants={staggerItem}>
               <motion.span className="text-white text-xl" variants={scaleIn}>&#127942;</motion.span>
-              <motion.span className="font-semibold" variants={fadeIn}>Web Design Excellence Award</motion.span>
+              <motion.span className="font-semibold text-center md:text-left" variants={fadeIn}>Web Design Excellence Award</motion.span>
             </motion.div>
           </motion.div>
         </motion.div>
