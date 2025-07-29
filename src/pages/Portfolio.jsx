@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PortfolioShowcase from '../components/PortfolioShowcase';
 import { Stars } from '../components/Stars';
 import { AniButton } from '../utils/ButtonAnimation';
@@ -566,8 +566,8 @@ export default function Portfolio() {
               title="Hi-Tech eCommerce Store"
               description={`By creating a distinctive design tailored for a high-end electronics eCommerce store, we helped position Bang & Olufsen as a tech market innovator.\n\nWith a unique design and a streamlined sales funnel, our digital solutions targeted both UX and UI to grow brand visibility and customer engagement.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: '#' },
-                { label: 'REQUEST A QUOTE', href: '#' }
+                { label: 'LAUNCH WEBSITE', href: '/about' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
             />
           </motion.div>
@@ -587,8 +587,8 @@ export default function Portfolio() {
               title="Reimagined eSports Platform"
               description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: '#' },
-                { label: 'REQUEST A QUOTE', href: '#' }
+                { label: 'LAUNCH WEBSITE', href: '/about' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
               reverse
             />
@@ -609,8 +609,8 @@ export default function Portfolio() {
               title="Hi-Tech eCommerce Store"
               description={`By creating a distinctive design tailored for a high-end electronics eCommerce store, we helped position Bang & Olufsen as a tech market innovator.\n\nWith a unique design and a streamlined sales funnel, our digital solutions targeted both UX and UI to grow brand visibility and customer engagement.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: '#' },
-                { label: 'REQUEST A QUOTE', href: '#' }
+                { label: 'LAUNCH WEBSITE', href: '/about' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
             />
           </motion.div>
@@ -630,8 +630,8 @@ export default function Portfolio() {
               title="Reimagined eSports Platform"
               description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: '#' },
-                { label: 'REQUEST A QUOTE', href: '#' }
+                { label: 'LAUNCH WEBSITE', href: '/about' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
               reverse
             />
@@ -862,9 +862,9 @@ export default function Portfolio() {
           <motion.div className="mt-12 flex justify-center" variants={scaleIn}>
             <AniButton
               text='VIEW ALL PROJECTS'
-              buttonClass='bg-transparent text-white font-semibold px-8 py-4 rounded-full border-2 border-white hover:bg-white hover:text-primary transition-all duration-300'
+              buttonClass='bg-transparent text-2xl text-white font-semibold px-8 py-4 rounded-full border-2 border-white hover:bg-white hover:text-primary transition-all duration-300'
               textClass='text-white hover:text-primary'
-            />
+              />
           </motion.div>
         </motion.div>
       </motion.section>

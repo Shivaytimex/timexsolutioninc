@@ -72,6 +72,10 @@ const links = [
     title: "Contact",
     href: "/contact",
   },
+  {
+    title: "Portfolio",
+    href: "/portfolio",
+  },
 ];
 
 const footerLinks = [
