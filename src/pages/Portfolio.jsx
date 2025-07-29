@@ -147,7 +147,7 @@ export default function Portfolio() {
   return (
     <>
       <motion.section 
-        className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-primary via-black to-primary px-4 md:px-16 py-12"
+        className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-primary via-black to-primary px-4 md:px-16 py-12 overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -174,13 +174,13 @@ export default function Portfolio() {
           </motion.nav>
           {/* Headings */}
           <motion.h1 
-            className="text-4xl md:text-5xl font-extrabold leading-tight"
+            className="text-4xl md:text-5xl font-extrabold leading-tight text-center md:text-left"
             variants={fadeInUp}
           >
             Custom Website<br/>Design Company
           </motion.h1>
           <motion.p 
-            className="text-lg md:text-xl opacity-90"
+            className="text-xs md:text-lg md:text-xl opacity-90 text-center md:text-left"
             variants={fadeInUp}
           >
             Partner with a top-rated custom website design company to create a fully optimized website, ready to drive engagement and conversions.
