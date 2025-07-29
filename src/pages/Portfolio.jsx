@@ -49,35 +49,35 @@ const staggerItem = {
 // Define the slides data
 const slides = [
   {
-    desktop: "/public/web-development.webp",
-    tablet: "/public/app-development.webp",
-    mobile: "/public/appdev.webp"
+    desktop: "/web-development.webp",
+    tablet: "/app-development.webp",
+    mobile: "/appdev.webp"
   },
   {
-    desktop: "/public/digital-marketing.webp",
-    tablet: "/public/digital-marketing-1.webp",
-    mobile: "/public/webdev.webp"
+    desktop: "/digital-marketing.webp",
+    tablet: "/digital-marketing-1.webp",
+    mobile: "/webdev.webp"
   },
   {
-    desktop: "/public/web-development.webp",
-    tablet: "/public/app-development.webp",
-    mobile: "/public/appdev.webp"
+    desktop: "/web-development.webp",
+    tablet: "/app-development.webp",
+    mobile: "/appdev.webp"
   }
 ];
 
 // Define before/after examples
 const beforeAfterExamples = [
   {
-    before: "/public/digital-marketing.webp",
-    after: "/public/digital-marketing-1.webp",
-    leftSide: "/public/webdev.webp",
-    rightSide: "/public/web-development.webp"
+    before: "/digital-marketing.webp",
+    after: "/digital-marketing-1.webp",
+    leftSide: "/webdev.webp",
+    rightSide: "/web-development.webp"
   },
   {
-    before: "/public/web-development.webp",
-    after: "/public/app-development.webp",
-    leftSide: "/public/appdev.webp",
-    rightSide: "/public/digital-marketing.webp"
+    before: "/web-development.webp",
+    after: "/app-development.webp",
+    leftSide: "/appdev.webp",
+    rightSide: "/digital-marketing.webp"
   }
 ];
 
@@ -554,7 +554,7 @@ export default function Portfolio() {
             <PortfolioShowcase
               image={
                 <motion.img 
-                  src="/public/web-development.webp" 
+                  src="/web-development.webp" 
                   alt="Hi-Tech eCommerce Store" 
                   className="rounded-lg shadow-2xl w-full max-w-md" 
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
@@ -575,7 +575,7 @@ export default function Portfolio() {
             <PortfolioShowcase
               image={
                 <motion.img 
-                  src="/public/app-development.webp" 
+                  src="/app-development.webp" 
                   alt="Reimagined eSports Platform" 
                   className="rounded-lg shadow-2xl w-full max-w-md" 
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
@@ -597,7 +597,7 @@ export default function Portfolio() {
             <PortfolioShowcase
               image={
                 <motion.img 
-                  src="/public/web-development.webp" 
+                  src="/web-development.webp" 
                   alt="Hi-Tech eCommerce Store" 
                   className="rounded-lg shadow-2xl w-full max-w-md" 
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
@@ -618,7 +618,7 @@ export default function Portfolio() {
             <PortfolioShowcase
               image={
                 <motion.img 
-                  src="/public/app-development.webp" 
+                  src="/app-development.webp" 
                   alt="Reimagined eSports Platform" 
                   className="rounded-lg shadow-2xl w-full max-w-md" 
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
