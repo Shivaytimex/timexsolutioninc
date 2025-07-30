@@ -60,7 +60,7 @@ const links = [
       { title: "App Development", href: "/services/app-development" },
       { title: "Web Development", href: "/services/web-development" },
       { title: "Digital Marketing", href: "/services/digital-marketing" },
-      { title: "Staffing Solutions", href: "/services/staffing-solutions" },
+      // { title: "Staffing Solutions", href: "/services/staffing-solutions" },
       { title: "Tech/IT Solutions", href: "/services/tech-it-solutions" },
     ],
   },

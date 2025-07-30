@@ -3,6 +3,7 @@ import PortfolioShowcase from '../components/PortfolioShowcase';
 import { Stars } from '../components/Stars';
 import { AniButton } from '../utils/ButtonAnimation';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 // Animation variants
 const fadeInUp = {
@@ -66,22 +67,35 @@ const slides = [
 ];
 
 // Define before/after examples
-const beforeAfterExamples = [
-  {
-    before: "/digital-marketing.webp",
-    after: "/digital-marketing-1.webp",
-    leftSide: "/webdev.webp",
-    rightSide: "/web-development.webp"
-  },
-  {
-    before: "/web-development.webp",
-    after: "/app-development.webp",
-    leftSide: "/appdev.webp",
-    rightSide: "/digital-marketing.webp"
-  }
-];
+const images = [
+    {
+      before: "/project1.png",
+      after: "/project2.png",
+      leftSide: "/project3.png",
+      rightSide: "/project2.png",
+         title: "A-1 Income Tax Services",
+      description: "Income Tax Services"
+    },
+    {
+      before: "/project2.png",
+      after: "/project3.png",
+      leftSide: "/project1.png",
+      rightSide: "/project3.png",
+      title: "Sms Services",
+      description: "Sms Services"
+    },
+    {
+      before: "/project3.png",
+      after: "/project1.png",
+      leftSide: "/project2.png",
+      rightSide: "/project1.png",
+      title: "Aish",
+      description: "Signs and Graphics"
+    }
+  ];
 
 export default function Portfolio() {
+  const navigate = useNavigate();
   // Device Slider State
   const [deviceSlide, setDeviceSlide] = useState(0);
   const [isDeviceAnimating, setIsDeviceAnimating] = useState(false);
@@ -129,20 +143,20 @@ export default function Portfolio() {
   const nextBeforeAfterSlide = () => {
     if (isBeforeAfterAnimating) return;
     setIsBeforeAfterAnimating(true);
-    setBeforeAfterSlide((prev) => (prev + 1) % beforeAfterExamples.length);
+    setBeforeAfterSlide((prev) => (prev + 1) % images.length);
     setTimeout(() => setIsBeforeAfterAnimating(false), 600);
   };
 
   const prevBeforeAfterSlide = () => {
     if (isBeforeAfterAnimating) return;
     setIsBeforeAfterAnimating(true);
-    setBeforeAfterSlide((prev) => (prev - 1 + beforeAfterExamples.length) % beforeAfterExamples.length);
+    setBeforeAfterSlide((prev) => (prev - 1 + images.length) % images.length);
     setTimeout(() => setIsBeforeAfterAnimating(false), 600);
   };
 
   // Get current slides
   const currentSlide = slides[deviceSlide];
-  const currentExample = beforeAfterExamples[beforeAfterSlide];
+  const currentExample = images[beforeAfterSlide];
 
   return (
     <>
@@ -204,7 +218,7 @@ export default function Portfolio() {
             </motion.li>
           </motion.ul>
           {/* Button */}
-          <motion.div variants={scaleIn}>
+          <motion.div variants={scaleIn} onClick={() => navigate('/contact')}>
             <AniButton  
               text='REQUEST A QUOTE'
               buttonClass='bg-primary text-white font-semibold px-10 py-5 rounded-full border-2 border-white'
@@ -554,7 +568,7 @@ export default function Portfolio() {
             <PortfolioShowcase
               image={
                 <motion.img 
-                  src="/web-development.webp" 
+                  src="/project1.png" 
                   alt="Hi-Tech eCommerce Store" 
                   className="rounded-lg shadow-2xl w-full max-w-md" 
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
@@ -563,15 +577,58 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                 />
               }
-              title="Hi-Tech eCommerce Store"
-              description={`By creating a distinctive design tailored for a high-end electronics eCommerce store, we helped position Bang & Olufsen as a tech market innovator.\n\nWith a unique design and a streamlined sales funnel, our digital solutions targeted both UX and UI to grow brand visibility and customer engagement.`}
+              title="A-1 Income Tax Services"
+              description={`At A-1 Income Tax Services, we empower clients with transparent, innovative financial strategies through expert tax planning, business incorporation, and immigration support services.\n\nOur mission is to maximize savings, ensure compliance, and build wealth for our clients through personalized solutions that drive long-term success—combining expertise with dedicated service.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: '/about' },
+                { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
                 { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
             />
           </motion.div>
           <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  src="/project2.png" 
+                  alt="Reimagined eSports Platform" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                />
+              }
+              title="Sms Services"
+              description={`Led by Manreet S. Ladhar, a former revenue agent and director of tax & accounting, SMS Services delivers comprehensive tax solutions for individuals and businesses.\n\nWith expertise in tax law and financial regulations, we provide meticulous tax preparation, corporate planning, and audit representation, ensuring compliance while maximizing financial efficiency for our clients.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://smsservices.us/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+              reverse
+            />
+          </motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  src="/project3.png" 
+                  alt="Hi-Tech eCommerce Store" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                />
+              }
+              title="Aish Signs"
+              description={`Founded by Aishvindar Brar at just 16 years old in 2021, Aish Signs & Graphics has grown from a garage startup into a leading design and signage company, specializing in high-quality printing solutions.\n\nWith expertise in event décor, vehicle wraps, and professional business signage, we combine innovative design with meticulous attention to detail to bring our clients' visions to life.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://aishsigns.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+            />
+          </motion.div>
+          {/* <motion.div variants={staggerItem}>
             <PortfolioShowcase
               image={
                 <motion.img 
@@ -592,50 +649,7 @@ export default function Portfolio() {
               ]}
               reverse
             />
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/web-development.webp" 
-                  alt="Hi-Tech eCommerce Store" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="Hi-Tech eCommerce Store"
-              description={`By creating a distinctive design tailored for a high-end electronics eCommerce store, we helped position Bang & Olufsen as a tech market innovator.\n\nWith a unique design and a streamlined sales funnel, our digital solutions targeted both UX and UI to grow brand visibility and customer engagement.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: '/about' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-            />
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/app-development.webp" 
-                  alt="Reimagined eSports Platform" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="Reimagined eSports Platform"
-              description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: '/about' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-              reverse
-            />
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </motion.section>
 
@@ -680,7 +694,7 @@ export default function Portfolio() {
                 whileTap={{ scale: 0.7 }}
               >
                 <motion.img 
-                  src={beforeAfterExamples[(beforeAfterSlide - 1 + beforeAfterExamples.length) % beforeAfterExamples.length].before} 
+                  src={images[(beforeAfterSlide - 1 + images.length) % images.length].before} 
                   alt="Previous Project" 
                   className="rounded-lg shadow-xl w-48 lg:w-56 h-32 lg:h-36 object-cover"
                   whileHover={{ scale: 1.05 }}
@@ -700,10 +714,11 @@ export default function Portfolio() {
                 whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
               >
                 <motion.div 
-                  className="relative overflow-hidden rounded-xl shadow-2xl"
+                  className="relative overflow-hidden rounded-xl shadow-2xl cursor-pointer"
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.8 } }}
                   viewport={{ once: true }}
+                 
                 >
                   <motion.img 
                     src={currentExample.before} 
@@ -728,13 +743,13 @@ export default function Portfolio() {
                       className="text-lg md:text-xl font-bold mb-1"
                       variants={staggerItem}
                     >
-                      Project {beforeAfterSlide + 1}
+                      {currentExample.title}
                     </motion.h3>
                     <motion.p 
                       className="text-sm opacity-90"
                       variants={staggerItem}
                     >
-                      Custom Web Design
+                      {currentExample.description}
                     </motion.p>
                   </motion.div>
                 </motion.div>
@@ -753,7 +768,7 @@ export default function Portfolio() {
                 whileTap={{ scale: 0.7 }}
               >
                 <motion.img 
-                  src={beforeAfterExamples[(beforeAfterSlide + 1) % beforeAfterExamples.length].after} 
+                  src={currentExample.after} 
                   alt="Next Project" 
                   className="rounded-lg shadow-xl w-48 lg:w-56 h-32 lg:h-36 object-cover"
                   whileHover={{ scale: 1.05 }}
@@ -805,7 +820,7 @@ export default function Portfolio() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {beforeAfterExamples.map((_, index) => (
+            {images.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => setBeforeAfterSlide(index)}
@@ -835,7 +850,7 @@ export default function Portfolio() {
               className="flex justify-center space-x-2 overflow-x-auto px-4"
               variants={staggerContainer}
             >
-              {beforeAfterExamples.map((example, index) => (
+              {images.map((example, index) => (
                 <motion.button
                   key={index}
                   onClick={() => setBeforeAfterSlide(index)}
@@ -847,11 +862,10 @@ export default function Portfolio() {
                   whileTap={{ scale: 0.9 }}
                 >
                   <motion.img 
-                    src={example.before} 
+                    src={example.leftSide} 
                     alt={`Project ${index + 1}`} 
                     className="w-16 h-16 object-cover rounded-lg"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                   />
                 </motion.button>
               ))}

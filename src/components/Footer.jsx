@@ -12,7 +12,7 @@ const footerLinks = {
     { name: "App Development", href: "#" },
     { name: "Web Development", href: "#" },
     { name: "Digital Marketing", href: "#" },
-    { name: "Staffing Solutions", href: "#" },
+    // { name: "Staffing Solutions", href: "#" },
     { name: "Tech/IT Solutions", href: "#" },
   ],
 }
