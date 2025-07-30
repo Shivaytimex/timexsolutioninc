@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useMemo } from 'react';
 
 const Star = ({ top, left, size, opacity }) => (
   <div
@@ -14,13 +15,15 @@ const Star = ({ top, left, size, opacity }) => (
 )
 
 export const Stars = () => {
-  const stars = Array.from({ length: 100 }, (_, i) => ({
-    id: i,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    size: Math.random() * 2 + 1,
-    opacity: Math.random() * 0.5 + 0.5,
-  }))
+  const stars = useMemo(() => {
+    return Array.from({ length: 100 }, (_, i) => ({
+      id: i,
+      top: `${(i * 7.3 + 13) % 100}%`,
+      left: `${(i * 11.7 + 23) % 100}%`,
+      size: (i % 2) + 1,
+      opacity: 0.5 + (i % 5) * 0.1,
+    }));
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

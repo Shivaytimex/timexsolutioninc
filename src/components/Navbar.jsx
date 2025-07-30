@@ -17,7 +17,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`w-full 2xl:container overflow-hidden ${isScrolled ? "h-16 md:h-20" : "h-24 lg:h-28 xl:h-32"} fixed top-0 z-50 transition-all duration-300s ${isScrolled ? "bg-black/75" : "bg-black"} rounded-b-3xl`}>
+    <div className={`w-full 2xl:container overflow-hidden ${isScrolled ? "h-16 md:h-20" : "h-24 lg:h-28 xl:h-32"} fixed top-0 z-50 transition-all duration-300s  rounded-b-3xl`}>
       <div className="">
         <Link
           to="/"

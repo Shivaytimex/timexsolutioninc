@@ -655,7 +655,7 @@ export default function Portfolio() {
 
       {/* Simple Portfolio Carousel Section */}
       <motion.section 
-        className="w-full bg-gradient-to-br from-primary via-black to-primary py-16 px-4 flex flex-col items-center text-center relative overflow-hidden"
+        className="w-full bg-gradient-to-bl from-primary via-black to-primary py-16 px-4 flex flex-col items-center text-center relative overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
