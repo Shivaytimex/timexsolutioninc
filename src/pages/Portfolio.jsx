@@ -104,6 +104,37 @@ export default function Portfolio() {
   const [beforeAfterSlide, setBeforeAfterSlide] = useState(0);
   const [isBeforeAfterAnimating, setIsBeforeAfterAnimating] = useState(false);
 
+  // Image rotation states for each client
+  const [smsImageIndex, setSmsImageIndex] = useState(0);
+  const [aishImageIndex, setAishImageIndex] = useState(0);
+  const [aoneImageIndex, setAoneImageIndex] = useState(0);
+
+  // Image arrays for each client
+  const smsImages = ['/sms1.png', '/sms2.png'];
+  const aishImages = ['/aish1.png', '/aish2.png'];
+  const aoneImages = ['/aone1.png', '/aone2.png'];
+
+  // Image rotation effects
+  useEffect(() => {
+    const smsInterval = setInterval(() => {
+      setSmsImageIndex(prev => (prev + 1) % smsImages.length);
+    }, 4000);
+
+    const aishInterval = setInterval(() => {
+      setAishImageIndex(prev => (prev + 1) % aishImages.length);
+    }, 4000);
+
+    const aoneInterval = setInterval(() => {
+      setAoneImageIndex(prev => (prev + 1) % aoneImages.length);
+    }, 4000);
+
+    return () => {
+      clearInterval(smsInterval);
+      clearInterval(aishInterval);
+      clearInterval(aoneInterval);
+    };
+  }, []);
+
   // Device Slider Auto-play
   useEffect(() => {
     const interval = setInterval(() => {
@@ -564,93 +595,83 @@ export default function Portfolio() {
         variants={staggerContainer}
       >
         <motion.div className="flex flex-col" variants={staggerContainer}>
-          <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/project1.png" 
-                  alt="Hi-Tech eCommerce Store" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="A-1 Income Tax Services"
-              description={`At A-1 Income Tax Services, we empower clients with transparent, innovative financial strategies through expert tax planning, business incorporation, and immigration support services.\n\nOur mission is to maximize savings, ensure compliance, and build wealth for our clients through personalized solutions that drive long-term success—combining expertise with dedicated service.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-            />
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/project2.png" 
-                  alt="Reimagined eSports Platform" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="Sms Services"
-              description={`Led by Manreet S. Ladhar, a former revenue agent and director of tax & accounting, SMS Services delivers comprehensive tax solutions for individuals and businesses.\n\nWith expertise in tax law and financial regulations, we provide meticulous tax preparation, corporate planning, and audit representation, ensuring compliance while maximizing financial efficiency for our clients.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: 'https://smsservices.us/' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-              reverse
-            />
-          </motion.div>
-          <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/project3.png" 
-                  alt="Hi-Tech eCommerce Store" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="Aish Signs"
-              description={`Founded by Aishvindar Brar at just 16 years old in 2021, Aish Signs & Graphics has grown from a garage startup into a leading design and signage company, specializing in high-quality printing solutions.\n\nWith expertise in event décor, vehicle wraps, and professional business signage, we combine innovative design with meticulous attention to detail to bring our clients' visions to life.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: 'https://aishsigns.com/' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-            />
-          </motion.div>
-          {/* <motion.div variants={staggerItem}>
-            <PortfolioShowcase
-              image={
-                <motion.img 
-                  src="/app-development.webp" 
-                  alt="Reimagined eSports Platform" 
-                  className="rounded-lg shadow-2xl w-full max-w-md" 
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-                  viewport={{ once: true }}
-                />
-              }
-              title="Reimagined eSports Platform"
-              description={`Working with G2 eSports' community-based identity, we developed a custom eCommerce platform to reinforce the organization's legendary position in the eSports industry.\n\nOur design and development team introduced a streamlined shopping experience and strategically planned community design to grow conversions and support brand authority.`}
-              buttons={[
-                { label: 'LAUNCH WEBSITE', href: '/about' },
-                { label: 'REQUEST A QUOTE', href: '/contact' }
-              ]}
-              reverse
-            />
-          </motion.div> */}
-        </motion.div>
+  <motion.div variants={staggerItem}>
+    <PortfolioShowcase
+      image={
+        <motion.img 
+          key={aoneImageIndex}
+          src={aoneImages[aoneImageIndex]} 
+          alt="A-1 Income Tax Services" 
+          className="rounded-lg shadow-2xl w-full max-w-md" 
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+          viewport={{ once: true }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        />
+      }
+      title="A-1 Income Tax Services"
+      description={`We helped A-1 Income Tax Services establish a powerful online presence that reflects their professionalism and expertise in tax and immigration services.\n\nBy designing a user-friendly and responsive website, we enabled them to attract more local and remote clients, resulting in increased visibility, trust, and client growth.`}
+      buttons={[
+        { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
+        { label: 'REQUEST A QUOTE', href: '/contact' }
+      ]}
+    />
+  </motion.div>
+
+  <motion.div variants={staggerItem}>
+    <PortfolioShowcase
+      image={
+        <motion.img 
+          key={smsImageIndex}
+          src={smsImages[smsImageIndex]} 
+          alt="SMS Services" 
+          className="rounded-lg shadow-2xl w-full max-w-md" 
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+          viewport={{ once: true }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        />
+      }
+      title="SMS Services"
+      description={`Our team partnered with SMS Services to revamp their online platform, reflecting the expertise of founder Manreet S. Ladhar and the firm's strong reputation.\n\nThrough strategic design and optimization, we helped them reach a broader audience, streamline service inquiries, and elevate their credibility in the tax and accounting industry.`}
+      buttons={[
+        { label: 'LAUNCH WEBSITE', href: 'https://smsservices.us/' },
+        { label: 'REQUEST A QUOTE', href: '/contact' }
+      ]}
+      reverse
+    />
+  </motion.div>
+
+  <motion.div variants={staggerItem}>
+    <PortfolioShowcase
+      image={
+        <motion.img 
+          key={aishImageIndex}
+          src={aishImages[aishImageIndex]} 
+          alt="Aish Signs" 
+          className="rounded-lg shadow-2xl w-full max-w-md" 
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+          viewport={{ once: true }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        />
+      }
+      title="Aish Signs"
+      description={`We helped Aish Signs transform their brand vision into a professional digital experience.\n\nBy building a modern and engaging website, we boosted their online exposure, making it easier for clients to discover their creative signage solutions—contributing directly to their rapid business growth.`}
+      buttons={[
+        { label: 'LAUNCH WEBSITE', href: 'https://aishsigns.com/' },
+        { label: 'REQUEST A QUOTE', href: '/contact' }
+      ]}
+    />
+  </motion.div>
+</motion.div>
+
       </motion.section>
 
       {/* Simple Portfolio Carousel Section */}
