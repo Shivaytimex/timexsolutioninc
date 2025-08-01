@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import {Stars} from '../components/Stars';
+import Swal from "sweetalert2";
 
 function ProjectBrief() {
   const [formData, setFormData] = useState({
@@ -47,10 +49,168 @@ function ProjectBrief() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+
+  // Validation function
+  const validateForm = () => {
+    const errors = {};
+    
+    // Required fields validation
+    if (!formData.companyName.trim()) errors.companyName = "Company name is required";
+    if (!formData.companyLogo) errors.companyLogo = "Company logo is required";
+    if (!formData.briefDescription.trim()) errors.briefDescription = "Brief description is required";
+    if (!formData.address.trim()) errors.address = "Address is required";
+    if (!formData.phoneNumber.trim()) errors.phoneNumber = "Phone number is required";
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Email is invalid";
+    }
+    if (!formData.servicesOffered.trim()) errors.servicesOffered = "Services/Products are required";
+
+    return errors;
+  };
+
+  // Using environment variables for API configuration
+  const API_URL = import.meta.env.VITE_API_URL;
+  const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+    setIsSubmitting(true);
+
+    // Validate form
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setIsSubmitting(false);
+      Swal.fire({
+        title: "Validation Error",
+        text: "Please fill in all required fields correctly",
+        icon: "error",
+        confirmButtonColor: "#ef4444"
+      });
+      return;
+    }
+
+    // Clear any previous errors
+    setFormErrors({});
+
+    // Prepare the email content in a readable format
+    const emailContent = `
+Project Brief Submission
+
+Company Information:
+- Company Name: ${formData.companyName}
+- Company Tagline: ${formData.companyTagline}
+- Brief Description: ${formData.briefDescription}
+
+Contact Information:
+- Address: ${formData.address}
+- Phone: ${formData.phoneNumber}
+- Email: ${formData.email}
+
+Website Goals:
+- Selected Goals: ${formData.websiteGoals.join(", ")}
+- Other Goal: ${formData.otherGoal}
+- Main Goal: ${formData.mainGoal}
+- Target Audience: ${formData.targetAudience}
+
+Design Preferences:
+- Color Scheme: ${formData.colorScheme}
+- Website Examples: ${formData.websiteExamples}
+- Design Elements: ${formData.designElements}
+
+Content:
+- About Us: ${formData.aboutUsContent}
+- Services/Products: ${formData.servicesOffered}
+- Testimonials: ${formData.testimonials}
+- Staff Bios: ${formData.staffBios}
+
+Technical Requirements:
+- Domain & Hosting: ${formData.domainHosting}
+- Maintenance Required: ${formData.maintenanceRequired}
+- Update Handling: ${formData.updateHandling}
+
+Digital Assets:
+- Existing Assets: ${formData.digitalAssets}
+- Images & Videos: ${formData.imagesVideos}
+- Permissions: ${formData.permissions}
+    `;
+
+    // Prepare submission data
+    const submissionData = {
+      access_key: ACCESS_KEY,
+      subject: `New Project Brief from ${formData.companyName}`,
+      from_name: formData.companyName,
+      email: formData.email,
+      message: emailContent,
+      phone: formData.phoneNumber
+    };
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Show success message
+        Swal.fire({
+          title: "Project Brief Submitted!",
+          text: "Thank you for submitting your project brief. We'll review it and get back to you soon!",
+          icon: "success",
+          confirmButtonColor: "#6366f1"
+        });
+
+        // Reset form
+        setFormData({
+          companyName: '',
+          companyLogo: null,
+          companyTagline: '',
+          briefDescription: '',
+          address: '',
+          phoneNumber: '',
+          email: '',
+          websiteGoals: [],
+          mainGoal: '',
+          otherGoal: '',
+          targetAudience: '',
+          colorScheme: '',
+          websiteExamples: '',
+          designElements: '',
+          aboutUsContent: '',
+          servicesOffered: '',
+          testimonials: '',
+          staffBios: '',
+          domainHosting: '',
+          maintenanceRequired: '',
+          updateHandling: '',
+          digitalAssets: '',
+          imagesVideos: '',
+          permissions: ''
+        });
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "There was a problem submitting your project brief. Please try again or contact us directly.",
+        icon: "error",
+        confirmButtonColor: "#ef4444"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fadeInUp = {
@@ -71,6 +231,7 @@ function ProjectBrief() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary via-black to-primary py-12 px-4">
+      <Stars />
       <motion.div 
         className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8"
         initial="hidden"
@@ -81,7 +242,7 @@ function ProjectBrief() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Project Brief</h1>
           <p className="text-lg text-white/80">Tell us about your project so we can bring your vision to life</p>
         </motion.div>
-
+        <Stars />
         <motion.form onSubmit={handleSubmit} variants={staggerContainer} className="space-y-8">
           
           {/* Company Information Section */}
@@ -444,9 +605,12 @@ function ProjectBrief() {
           <motion.div variants={fadeInUp} className="pt-6">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              disabled={isSubmitting}
+              className={`w-full border border-white bg-primary text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
+                isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cyan-600'
+              }`}
             >
-              Submit Project Brief
+              {isSubmitting ? 'Submitting...' : 'Submit Project Brief'}
             </button>
           </motion.div>
         </motion.form>
