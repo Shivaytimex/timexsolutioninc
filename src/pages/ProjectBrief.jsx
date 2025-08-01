@@ -213,9 +213,25 @@ Digital Assets:
     }
   };
 
+  // Animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const fadeInLeft = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+  };
+
+  const fadeInRight = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
   };
 
   const staggerContainer = {
@@ -227,6 +243,17 @@ Digital Assets:
         delayChildren: 0.2
       }
     }
+  };
+
+  // Custom hook for animation on view
+  const useAnimateOnView = () => {
+    const ref = React.useRef(null);
+    const isInView = motion.useInView(ref, { 
+      once: true,
+      margin: "-100px"
+    });
+
+    return { ref, isInView };
   };
 
   return (
@@ -246,7 +273,13 @@ Digital Assets:
         <motion.form onSubmit={handleSubmit} variants={staggerContainer} className="space-y-8">
           
           {/* Company Information Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Company Information</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -303,7 +336,13 @@ Digital Assets:
           </motion.div>
 
           {/* Contact Information Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Contact Information *</h2>
             
             <div>
@@ -349,7 +388,13 @@ Digital Assets:
           </motion.div>
 
           {/* Website Goals Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Website Goals</h2>
             
             <div>
@@ -409,7 +454,13 @@ Digital Assets:
           </motion.div>
 
           {/* Design Preferences Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Design Preferences</h2>
             
             <div>
@@ -450,7 +501,13 @@ Digital Assets:
           </motion.div>
 
           {/* Content Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Content</h2>
             
             <div>
@@ -506,7 +563,13 @@ Digital Assets:
           </motion.div>
 
           {/* Technical Requirements Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Technical Requirements</h2>
             
             <div>
@@ -561,7 +624,13 @@ Digital Assets:
           </motion.div>
 
           {/* Digital Assets Section */}
-          <motion.div variants={fadeInUp} className="space-y-6">
+          <motion.div 
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-6"
+          >
             <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Digital Assets</h2>
             
             <div>
