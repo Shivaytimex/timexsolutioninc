@@ -62,6 +62,7 @@ const links = [
       { title: "Digital Marketing", href: "/services/digital-marketing" },
       // { title: "Staffing Solutions", href: "/services/staffing-solutions" },
       { title: "Tech/IT Solutions", href: "/services/tech-it-solutions" },
+      { title: "Video Services", href: "/services/video-services" },
     ],
   },
   {
