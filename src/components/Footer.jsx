@@ -9,11 +9,11 @@ import { Link, Navigate, useNavigate } from 'react-router'
 
 const footerLinks = {
   services: [
-    { name: "App Development", href: "#" },
-    { name: "Web Development", href: "#" },
-    { name: "Digital Marketing", href: "#" },
-    // { name: "Staffing Solutions", href: "#" },
-    { name: "Tech/IT Solutions", href: "#" },
+    { name: "App Development", href: "/services/app-development" },
+    { name: "Web Development", href: "/services/web-development" },
+    { name: "Digital Marketing", href: "/services/digital-marketing" },
+    { name: "Tech/IT Solutions", href: "/services/tech-it-solutions" },
+    { name: "Video Services", href: "/services/video-services" },
   ],
 }
 

@@ -36,6 +36,7 @@ export default function Service() {
               progress={scrollYProgress}
               range={range}
               targetScale={targetScale}
+              link={service.link}
             />
           );
         })}

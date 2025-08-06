@@ -20,6 +20,7 @@ const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const ProjectBrief = lazy(() => import("./pages/ProjectBrief"));
 const VideoServices = lazy(() => import("./services/video-services"));
+const Payments = lazy(() => import("./pages/Payments"));
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
@@ -95,6 +96,7 @@ function App() {
                 />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/project-brief" element={<ProjectBrief />} />
+                <Route path="/payments" element={<Payments />} />
               </Routes>
               <Footer />
             </Suspense>

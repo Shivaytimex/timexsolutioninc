@@ -4,7 +4,7 @@ import { useTransform, motion, useScroll, MotionValue } from "framer-motion"
 import { useRef } from "react"
 import { LuCircleArrowRight } from "react-icons/lu"
 
-const Card = ({ i, title, description, img, subServices, color, progress, range, targetScale }) => {
+const Card = ({ i, title, description, img, subServices, color, progress, range, targetScale, link }) => {
   const container = useRef(null)
   const { scrollYProgress } = useScroll({
     target: container,
@@ -54,10 +54,10 @@ const Card = ({ i, title, description, img, subServices, color, progress, range,
 
               <div className="group relative inline-flex items-center">
                 <a
-                  href="#"
+                  href={link}
                   className="flex items-center justify-center px-6 py-2 text-white rounded-full font-normal text-base relative overflow-hidden bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
                 >
-                  <span className="relative z-10">Learn more</span>
+                  <span className="relative z-10">Learn more </span>
                   <span className="relative z-10 ml-2 font-bold text-xl flex items-center justify-center transition-all duration-300 group-hover:translate-x-[12px]">
                     <LuCircleArrowRight className="transition-all duration-300" />
                   </span>

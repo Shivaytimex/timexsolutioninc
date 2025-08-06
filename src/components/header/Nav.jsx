@@ -81,6 +81,10 @@ const links = [
     title: "Project Brief",
     href: "/project-brief",
   },
+  {
+    title: "Payments",
+    href: "/payments",
+  },
 ];
 
 const footerLinks = [
