@@ -289,7 +289,7 @@ export default function Payments() {
                   <div className="border-t border-white/20 pt-3">
                     <div className="flex justify-between text-white font-semibold">
                       <span>Amount:</span>
-                      <span className="text-2xl font-bold text-primary">
+                      <span className="text-2xl font-bold text-white">
                         ${amount}
                       </span>
                     </div>
