@@ -123,7 +123,7 @@ export const services = {
       { name: "Video Marketing", icon: BiMoviePlay },
       { name: "Live Streaming", icon: MdVideocam },
     ],
-    img: "/app-development.webp",
+    img: "/digital-marketing.webp",
     link: "/services/video-services",
   },
 };

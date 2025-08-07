@@ -15,6 +15,7 @@ import {
 import Header from "./CommonHeader";
 import { Link } from "react-router-dom";
 import { Stars } from "./Stars";
+import VideoCollection from "./VideoCollection";
 
 const features = [
   {
@@ -174,6 +175,16 @@ export function ServicePage({
           </div>
         </div>
 
+        {/* Video Collection Section - Only show for Real Estate Photography */}
+        {serviceName === "Real Estate Photography" && (
+          <div className="relative">
+            <Stars />
+            <div className="relative z-10">
+              <VideoCollection />
+            </div>
+          </div>
+        )}
+
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -206,7 +217,7 @@ export function ServicePage({
                 transition={{ duration: 0.5 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-white/90">
-                  Why Choose Our Timexsolutionx {serviceName}?
+                  Why Timexsolutionx Choosed by {serviceName}?
                 </h2>
               </motion.div>
               <motion.p
