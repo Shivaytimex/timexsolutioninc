@@ -52,7 +52,12 @@ export default {
       colors: {
         Purple5: "#a855f7",
         Indigo6: "#4f46e5",
-        primary: "#751f8c",
+        primary: {
+          DEFAULT: "#9234eb",
+          light: "#b665f2",
+          dark: "#7c2d8b",
+          hover: "#8129d1"
+        },
         secondary: "#fcd2d2",
         PurpleLight: "#CC9BF8",
         PurpleDark: "#A64FF3",

@@ -83,7 +83,7 @@ const links = [
   },
   {
     title: "Payments",
-    href: "/payments",
+    href: "/payments-square",
   },
 ];
 

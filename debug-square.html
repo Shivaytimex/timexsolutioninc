@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Square Debug Test</title>
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+</head>
+<body>
+    <h1>Square Web Payments SDK Debug</h1>
+    <div id="card-container" style="width: 400px; min-height: 60px; border: 1px solid #ccc; padding: 10px; margin: 20px 0;"></div>
+    <div id="status" style="font-family: monospace; white-space: pre-line; background: #f0f0f0; padding: 10px;"></div>
+
+    <script>
+        async function debugSquare() {
+            const statusDiv = document.getElementById('status');
+            let log = '';
+            
+            function addLog(message) {
+                log += new Date().toLocaleTimeString() + ': ' + message + '\n';
+                statusDiv.textContent = log;
+                console.log(message);
+            }
+            
+            try {
+                addLog('🚀 Starting Square SDK test...');
+                
+                // Test 1: Check if Square SDK loaded
+                addLog('📦 Checking Square SDK...');
+                if (typeof window.Square === 'undefined') {
+                    throw new Error('Square SDK not loaded');
+                }
+                addLog('✅ Square SDK loaded successfully');
+                
+                // Test 2: Fetch config from backend
+                addLog('🔧 Fetching configuration from backend...');
+                const configResponse = await fetch('http://localhost:3001/config');
+                if (!configResponse.ok) {
+                    throw new Error('Backend config failed: ' + configResponse.status);
+                }
+                const config = await configResponse.json();
+                addLog('✅ Config received: ' + JSON.stringify(config, null, 2));
+                
+                // Test 3: Initialize payments
+                addLog('🔌 Initializing Square payments...');
+                const payments = window.Square.payments(config.appId, config.locationId);
+                addLog('✅ Payments object created successfully');
+                addLog('📊 Payments object type: ' + typeof payments);
+                addLog('📊 Payments object methods: ' + Object.getOwnPropertyNames(payments));
+                
+                // Test 4: Create card element
+                addLog('💳 Creating card element...');
+                
+                const card = await payments.card();
+                addLog('✅ Card element created successfully');
+                addLog('📊 Card type: ' + typeof card);
+                addLog('📊 Card methods: ' + Object.getOwnPropertyNames(card));
+                
+                // Test 5: Check attach method
+                if (typeof card.attach !== 'function') {
+                    throw new Error('Card attach method not available');
+                }
+                addLog('✅ Card.attach method available');
+                
+                // Test 6: Attach card to DOM
+                addLog('🔗 Attaching card to DOM...');
+                await card.attach('#card-container');
+                addLog('🎉 SUCCESS: Card attached successfully!');
+                
+                // Test 7: Test tokenization (optional)
+                addLog('🔐 Card is ready for tokenization');
+                
+            } catch (error) {
+                addLog('❌ ERROR: ' + error.message);
+                addLog('📊 Error stack: ' + error.stack);
+                console.error('Full error:', error);
+            }
+        }
+        
+        // Wait for page to load, then test
+        window.addEventListener('load', () => {
+            setTimeout(debugSquare, 1000);
+        });
+    </script>
+</body>
+</html>

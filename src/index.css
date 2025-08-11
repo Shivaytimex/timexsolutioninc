@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Timex Brand Colors */
+:root {
+  --primary: #9234eb;
+  --primary-dark: #7c2d8b;
+  --primary-light: #b665f2;
+  --primary-hover: #8129d1;
+}
+
+/* Apply primary colors to common classes */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.border-primary {
+  border-color: var(--primary) !important;
+}
+
 .custom-pagination .swiper-pagination-bullet {
   background-color: #751f8c;
   width: 48px;
