@@ -26,11 +26,11 @@ const scaleIn = {
 };
 
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_BACKEND || 'http://localhost:3001';
 
 // Timex branding colors and styles
 const TIMEX_BRAND = {
-  primary: '#9234eb', // Timex purple
+  primary: '#751f8c', // Timex purple
   secondary: '#7c2d8b', // Darker purple
   accent: '#b665f2', // Lighter purple
   dark: '#7c2d8b', // Dark purple
