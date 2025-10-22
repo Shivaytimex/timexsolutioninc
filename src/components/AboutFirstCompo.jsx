@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { TypeWriterText } from "./TypeWriterText";
 import { Stars } from "./Stars";
 import TiltedScroll from "../utils/TiltedScroll";
-import norwayVideo from "./video/video.mp4";
 import { LampContainer } from "./ui/lamp";
 
 // 1) A small hook to detect if screen is >= 1024px (Tailwind’s lg breakpoint).
@@ -176,12 +175,13 @@ export default function AboutSection() {
             >
               <video
                 ref={videoRef}
-                className="w-full h-full object-fit"
+                className="w-full h-full object-cover"
                 autoPlay
                 loop
+                muted
                 playsInline
               >
-                <source src={norwayVideo} type="video/mp4" />
+                <source src="/vedio/vedio1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </motion.div>
