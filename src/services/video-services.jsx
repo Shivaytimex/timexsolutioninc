@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import {
   FaVideo,
   FaYoutube,
@@ -5,14 +6,48 @@ import {
   FaCamera,
   FaEdit,
   FaFilm,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import { MdAnimation } from "react-icons/md";
 import { BiMoviePlay } from "react-icons/bi";
 import { Stars } from "../components/Stars";
 import Header from "../components/CommonHeader";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { PricingPackages } from "../components/PricingPackages";
 import { ParallaxScroll } from "../components/ui/parallax-scroll";
+
+// Carousel images for Real Estate Photography
+const carouselImages = [
+  {
+    url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Add Fire to a Fireplace and an image on TV Screen...",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Luxury Living Room with Modern Design",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Spacious Kitchen with Contemporary Features",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Beautiful Bedroom with Natural Light",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Modern Home Exterior Photography",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Stunning Architectural Details",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    caption: "Premium Property Showcase",
+  },
+];
 
 const videoServicesContent = {
   serviceName: "Real Estate Photography",
@@ -108,6 +143,321 @@ const videoServicesContent = {
   ],
 };
 
+// Video Reels Section Component
+function VideoReelsSection() {
+  const video1Ref = useRef(null);
+  const video2Ref = useRef(null);
+  const [video1Loaded, setVideo1Loaded] = useState(false);
+  const [video2Loaded, setVideo2Loaded] = useState(false);
+
+  useEffect(() => {
+    // Ensure videos play on mount
+    const playVideo = async (videoRef) => {
+      if (videoRef.current) {
+        try {
+          // Wait for video to be loaded enough to play
+          videoRef.current.load();
+          await videoRef.current.play();
+          console.log("Video playing successfully");
+        } catch (error) {
+          console.log("Video autoplay prevented:", error);
+          // If autoplay fails, try again after user interaction
+          const handleInteraction = async () => {
+            try {
+              await videoRef.current?.play();
+            } catch (e) {
+              console.log("Video play failed:", e);
+            }
+          };
+          document.addEventListener('click', handleInteraction, { once: true });
+        }
+      }
+    };
+
+    // Add a small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      playVideo(video1Ref);
+      playVideo(video2Ref);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <motion.div
+      className="order-1 lg:order-2"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="grid grid-cols-2 gap-4 md:gap-6">
+        {/* Video Card 1 */}
+        <motion.div
+          className="relative group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative bg-gradient-to-br from-purple-900/30 to-indigo-900/30 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden aspect-[9/16] hover:border-purple-400/60 transition-all duration-300 shadow-2xl hover:shadow-purple-500/20">
+            {/* Loading Indicator */}
+            {!video1Loaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
+                <div className="text-center">
+                  <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+                  <p className="text-white text-sm">Loading video...</p>
+                </div>
+              </div>
+            )}
+            <video
+              ref={video1Ref}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+              onLoadedData={() => {
+                console.log("Video 1 loaded");
+                setVideo1Loaded(true);
+              }}
+              onError={(e) => {
+                console.error("Video 1 error:", e.target.error);
+                console.error("Video 1 src:", e.target.currentSrc);
+              }}
+              onCanPlay={() => console.log("Video 1 can play")}
+            >
+              <source src="/vedio/vedio1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+        </motion.div>
+
+        {/* Video Card 2 */}
+        <motion.div
+          className="relative group mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="relative bg-gradient-to-br from-purple-900/30 to-indigo-900/30 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden aspect-[9/16] hover:border-purple-400/60 transition-all duration-300 shadow-2xl hover:shadow-purple-500/20">
+            {/* Loading Indicator */}
+            {!video2Loaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10">
+                <div className="text-center">
+                  <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-2"></div>
+                  <p className="text-white text-sm">Loading video...</p>
+                </div>
+              </div>
+            )}
+            <video
+              ref={video2Ref}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+              onLoadedData={() => {
+                console.log("Video 2 loaded");
+                setVideo2Loaded(true);
+              }}
+              onError={(e) => {
+                console.error("Video 2 error:", e.target.error);
+                console.error("Video 2 src:", e.target.currentSrc);
+              }}
+              onCanPlay={() => console.log("Video 2 can play")}
+            >
+              <source src="/vedio/vedio2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Real Estate Carousel Component
+function RealEstateCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  return (
+    <section className="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-black">
+      <Stars />
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Title */}
+        <motion.div
+          className="text-center mb-8 md:mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
+            <span className="text-primary">REAL ESTATE</span>
+          </h2>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-primary opacity-80 italic">
+            PHOTOGRAPHY
+          </h3>
+        </motion.div>
+
+        {/* Carousel Container */}
+        <div className="relative">
+          <div
+            className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={carouselImages[currentIndex].url}
+                  alt={carouselImages[currentIndex].caption}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                
+                {/* Caption */}
+                <div className="absolute bottom-8 left-0 right-0 text-center px-4">
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-white text-sm sm:text-base md:text-lg font-medium max-w-3xl mx-auto"
+                  >
+                    {carouselImages[currentIndex].caption}
+                  </motion.p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 
+                       w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                       bg-gray-800/70 hover:bg-gray-700/90 
+                       rounded-full flex items-center justify-center 
+                       transition-all duration-300 
+                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50
+                       backdrop-blur-sm"
+              aria-label="Previous slide"
+            >
+              <FaChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 
+                       w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
+                       bg-gray-800/70 hover:bg-gray-700/90 
+                       rounded-full flex items-center justify-center 
+                       transition-all duration-300 
+                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50
+                       backdrop-blur-sm"
+              aria-label="Next slide"
+            >
+              <FaChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center items-center gap-2 sm:gap-3 mt-6 md:mt-8">
+            {carouselImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-white/50
+                  ${
+                    index === currentIndex
+                      ? "w-3 h-3 sm:w-4 sm:h-4 bg-primary"
+                      : "w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-400 hover:bg-gray-300"
+                  }`}
+                aria-label={`Go to slide ${index + 1}`}
+                aria-current={index === currentIndex ? "true" : "false"}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Slide Counter */}
+        <div className="text-center mt-4 text-gray-400 text-sm">
+          {currentIndex + 1} / {carouselImages.length}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 export default function VideoServices() {
   return (
@@ -133,7 +483,7 @@ export default function VideoServices() {
               transition={{ duration: 0.8 }}
             >
               <div className="space-y-4">
-                <h1 className="text-5xl sm:text-6xl md:text-7xl  font-bold">
+                <h1 className="text-4xl  md:text-7xl  font-bold">
                   <span className="bg-primary text-transparent bg-clip-text">
                     REAL ESTATE
                   </span>
@@ -161,8 +511,8 @@ export default function VideoServices() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <p className="text-base sm:text-lg leading-relaxed">
-                HouseHub Media is a full-service agency that consistently provides the highest quality photography, 
+              <p className="text-base leading-relaxed">
+                Timexsolutions is a full-service agency that consistently provides the highest quality photography, 
                 cinematography, aerial drone services, 3D tours and other real estate marketing solutions. Our 
                 dedicated team works around the clock to help you leverage your time effectively. The fast turnaround, 
                 stunning content and consistent quality of our services empower our clients to break through the 
@@ -240,89 +590,13 @@ export default function VideoServices() {
             </motion.div>
 
             {/* Right Side - Video Content */}
-            <motion.div
-              className="order-1 lg:order-2"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
-                {/* Video Card 1 */}
-                <motion.div
-                  className="relative group"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden aspect-[9/16] hover:border-purple-400/60 transition-all duration-300">
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                          <FaPlay className="w-6 h-6 text-white ml-1" />
-                        </div>
-                        <p className="text-white text-sm font-semibold">POV: You come</p>
-                        <p className="text-white text-sm">home to this 😍</p>
-                      </div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1556912173-46c336c7fd55?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                      alt="Real Estate Video"
-                      className="w-full h-full object-cover opacity-50"
-                    />
-                  </div>
-                </motion.div>
-
-                {/* Video Card 2 */}
-                <motion.div
-                  className="relative group mt-8"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative bg-gradient-to-br from-purple-900/60 to-indigo-900/60 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden aspect-[9/16] hover:border-purple-400/60 transition-all duration-300">
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                          <FaPlay className="w-6 h-6 text-white ml-1" />
-                        </div>
-                        <p className="text-white text-sm font-semibold">DIFFERENCE</p>
-                        <p className="text-white text-sm">BETWEEN WHAT</p>
-                        <p className="text-white text-sm">I AM AND MFI</p>
-                      </div>
-                    </div>
-                    <img
-                      src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                      alt="Real Estate Reel"
-                      className="w-full h-full object-cover opacity-50"
-                    />
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+            <VideoReelsSection />
           </div>
         </div>
       </section>
 
-      {/* Full Screen Background Image Section */}
-      <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url("https://lh3.googleusercontent.com/sitesv/AICyYdYeRWT59E-xw8YnXFpq2Ur2IPZvObDieBqo_eCIK83KXR_Yo7tQ556wyVYkVhlmD7TdVilOFH5ft4y_15lagEx3RSbf8kR0zsssffbTKCsJfLEjdKxDO8omsrmZux5ooClTJVlIRqA5gR1DwKpTb5_2fuTcJjv99Q6UGBZyP9knfLSG5HUhPZvGGec=w16383")'
-          }}
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 text-center px-4">
-          <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            Real Estate Photography
-          </motion.h2>
-        </div>
-      </section>
+      {/* Real Estate Photography Carousel Section */}
+      <RealEstateCarousel />
 
       {/* Pricing Packages Section */}
       {/* <section className="relative py-12 md:py-20">
