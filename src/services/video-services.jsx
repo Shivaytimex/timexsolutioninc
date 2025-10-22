@@ -17,35 +17,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PricingPackages } from "../components/PricingPackages";
 import { ParallaxScroll } from "../components/ui/parallax-scroll";
 
-// Carousel images for Real Estate Photography
-const carouselImages = [
+// Carousel GIF videos for Real Estate Photography
+const carouselVideos = [
   {
-    url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Add Fire to a Fireplace and an image on TV Screen...",
+    url: "/vedio/gif/gif.mp4",
+    caption: "Professional Real Estate Photography & Videography",
+    title: "Capture Every Detail",
   },
   {
-    url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Luxury Living Room with Modern Design",
+    url: "/vedio/gif/gif.mp4",
+    caption: "Stunning Property Showcases That Sell",
+    title: "Premium Quality",
   },
   {
-    url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Spacious Kitchen with Contemporary Features",
+    url: "/vedio/gif/gif.mp4",
+    caption: "Cinematic Tours & 360° Virtual Experiences",
+    title: "Immersive Experience",
   },
   {
-    url: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Beautiful Bedroom with Natural Light",
+    url: "/vedio/gif/gif.mp4",
+    caption: "Drone Photography & Aerial Perspectives",
+    title: "Elevated Views",
   },
   {
-    url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Modern Home Exterior Photography",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Stunning Architectural Details",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
-    caption: "Premium Property Showcase",
+    url: "/vedio/gif/gif.mp4",
+    caption: "Social Media Ready Content for Agents",
+    title: "Marketing Excellence",
   },
 ];
 
@@ -284,30 +281,39 @@ function VideoReelsSection() {
   );
 }
 
-// Real Estate Carousel Component
+// Real Estate Video Carousel Component
 function RealEstateCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const videoRef = useRef(null);
 
   // Auto-play functionality
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 6000); // Change slide every 6 seconds
 
     return () => clearInterval(interval);
   }, [currentIndex]);
 
+  // Ensure video plays when slide changes
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(err => console.log("Video play error:", err));
+    }
+  }, [currentIndex]);
+
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
+      prevIndex === carouselVideos.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+      prevIndex === 0 ? carouselVideos.length - 1 : prevIndex - 1
     );
   };
 
@@ -361,10 +367,10 @@ function RealEstateCarousel() {
           </h3>
         </motion.div>
 
-        {/* Carousel Container */}
+        {/* Video Carousel Container */}  
         <div className="relative">
           <div
-            className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden"
+            className="relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] rounded-2xl overflow-hidden shadow-2xl border-2 border-primary/20"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -372,87 +378,137 @@ function RealEstateCarousel() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
-                <img
-                  src={carouselImages[currentIndex].url}
-                  alt={carouselImages[currentIndex].caption}
+                {/* Video Background */}
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                >
+                  <source src={carouselVideos[currentIndex].url} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
                 
-                {/* Caption */}
-                <div className="absolute bottom-8 left-0 right-0 text-center px-4">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20" />
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-12">
+                  {/* Title */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-white text-sm sm:text-base md:text-lg font-medium max-w-3xl mx-auto"
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="mb-3 sm:mb-4"
                   >
-                    {carouselImages[currentIndex].caption}
-                  </motion.p>
+                    <span className="inline-block px-4 py-1.5 sm:px-6 sm:py-2 bg-primary/90 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm md:text-base font-bold uppercase tracking-wider shadow-lg">
+                      {carouselVideos[currentIndex].title}
+                    </span>
+                  </motion.div>
+
+                  {/* Caption */}
+                  <motion.h3
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold max-w-4xl leading-tight mb-2 sm:mb-3"
+                  >
+                    {carouselVideos[currentIndex].caption}
+                  </motion.h3>
+
+                  {/* Progress Bar */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 6, ease: "linear" }}
+                    className="h-1 bg-primary rounded-full shadow-lg"
+                  />
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Sleek Design */}
             <button
               onClick={prevSlide}
-              className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 
-                       w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
-                       bg-gray-800/70 hover:bg-gray-700/90 
+              className="absolute left-3 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 
+                       w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14
+                       bg-gradient-to-br from-primary/90 to-purple-600/90
+                       hover:from-primary hover:to-purple-600
                        rounded-full flex items-center justify-center 
                        transition-all duration-300 
-                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50
-                       backdrop-blur-sm"
+                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50
+                       backdrop-blur-md shadow-xl border border-white/10"
               aria-label="Previous slide"
             >
-              <FaChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <FaChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 
-                       w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 
-                       bg-gray-800/70 hover:bg-gray-700/90 
+              className="absolute right-3 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-20 
+                       w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14
+                       bg-gradient-to-br from-primary/90 to-purple-600/90
+                       hover:from-primary hover:to-purple-600
                        rounded-full flex items-center justify-center 
                        transition-all duration-300 
-                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50
-                       backdrop-blur-sm"
+                       hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50
+                       backdrop-blur-md shadow-xl border border-white/10"
               aria-label="Next slide"
             >
-              <FaChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <FaChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
             </button>
+
+            {/* Slide Number Badge */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
+              <div className="px-3 py-1.5 sm:px-4 sm:py-2 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
+                <span className="text-white text-xs sm:text-sm font-semibold">
+                  {currentIndex + 1} / {carouselVideos.length}
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Dot Indicators */}
-          <div className="flex justify-center items-center gap-2 sm:gap-3 mt-6 md:mt-8">
-            {carouselImages.map((_, index) => (
+          {/* Dot Indicators - Modern Design */}
+          <div className="flex justify-center items-center gap-2 sm:gap-3 mt-8 md:mt-10">
+            {carouselVideos.map((video, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-white/50
-                  ${
-                    index === currentIndex
-                      ? "w-3 h-3 sm:w-4 sm:h-4 bg-primary"
-                      : "w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-400 hover:bg-gray-300"
-                  }`}
+                className={`group relative transition-all duration-300 focus:outline-none ${
+                  index === currentIndex ? "scale-110" : "scale-100 hover:scale-105"
+                }`}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={index === currentIndex ? "true" : "false"}
-              />
+              >
+                <div
+                  className={`rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "w-10 h-3 sm:w-12 sm:h-3.5 bg-gradient-to-r from-primary to-purple-600 shadow-lg shadow-primary/50"
+                      : "w-3 h-3 sm:w-3.5 sm:h-3.5 bg-gray-600 group-hover:bg-gray-400"
+                  }`}
+                />
+                {index === currentIndex && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute inset-0 rounded-full border-2 border-white/30"
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Slide Counter */}
-        <div className="text-center mt-4 text-gray-400 text-sm">
-          {currentIndex + 1} / {carouselImages.length}
-        </div>
+     
       </div>
     </section>
   );
