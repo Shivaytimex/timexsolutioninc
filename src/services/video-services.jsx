@@ -21,7 +21,7 @@ import { ParallaxScroll } from "../components/ui/parallax-scroll";
 const carouselVideos = [
   {
     url: "/vedio/gif/gif.mp4",
-    caption: "Professional Real Estate Photography & Videography",
+    caption: "Professional Real Estate Videography",
     title: "Capture Every Detail",
   },
   {
@@ -36,7 +36,7 @@ const carouselVideos = [
   },
   {
     url: "/vedio/gif/gif.mp4",
-    caption: "Drone Photography & Aerial Perspectives",
+    caption: "Drone Aerial Perspectives",
     title: "Elevated Views",
   },
   {
@@ -362,9 +362,7 @@ function RealEstateCarousel() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
             <span className="text-primary">REAL ESTATE</span>
           </h2>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-primary opacity-80 italic">
-            PHOTOGRAPHY
-          </h3>
+          
         </motion.div>
 
         {/* Video Carousel Container */}  
@@ -522,7 +520,7 @@ export default function VideoServices() {
       <div className="relative">
         <Stars />
         <div className="relative z-10">
-          <Header name="Real Estate Photography & Video Services" />
+          <Header name="Real Estate  Video Services" />
         </div>
       </div>
 
@@ -543,7 +541,6 @@ export default function VideoServices() {
                   <span className="bg-primary text-transparent bg-clip-text">
                     REAL ESTATE
                   </span>
-                  <span className="block text-white mt-2">PHOTOGRAPHY,</span>
                   <span className="block text-white">VIDEO & MARKETING</span>
                 </h1>
               </div>
