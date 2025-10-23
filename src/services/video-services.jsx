@@ -36,7 +36,7 @@ const carouselVideos = [
   },
   {
     url: "/vedio/video004.mp4",
-    caption: "Drone Aerial Perspectives",
+    caption: "Engaging Social Media Reels & Stories",
     title: "Elevated Views",
   },
   {
@@ -51,7 +51,7 @@ const carouselVideos = [
   },
   {
     url: "/vedio/video007.mp4",
-    caption: "Engaging Social Media Reels & Stories",
+    caption: "Drone Aerial Perspectives",
     title: "Viral Content",
   },
   {
