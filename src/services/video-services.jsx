@@ -14,35 +14,55 @@ import { BiMoviePlay } from "react-icons/bi";
 import { Stars } from "../components/Stars";
 import Header from "../components/CommonHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { PricingPackages } from "../components/PricingPackages";
-import { ParallaxScroll } from "../components/ui/parallax-scroll";
+import { Link } from "react-router";
+
 
 // Carousel GIF videos for Real Estate Photography
 const carouselVideos = [
   {
-    url: "/vedio/gif/gif.mp4",
+    url: "/vedio/video001.mp4",
     caption: "Professional Real Estate Videography",
     title: "Capture Every Detail",
   },
   {
-    url: "/vedio/gif/gif.mp4",
+    url: "/vedio/video002.mp4",
     caption: "Stunning Property Showcases That Sell",
     title: "Premium Quality",
   },
   {
-    url: "/vedio/gif/gif.mp4",
+    url: "/vedio/video003.mp4",
     caption: "Cinematic Tours & 360° Virtual Experiences",
     title: "Immersive Experience",
   },
   {
-    url: "/vedio/gif/gif.mp4",
+    url: "/vedio/video004.mp4",
     caption: "Drone Aerial Perspectives",
     title: "Elevated Views",
   },
   {
-    url: "/vedio/gif/gif.mp4",
+    url: "/vedio/video005.mp4",
     caption: "Social Media Ready Content for Agents",
     title: "Marketing Excellence",
+  },
+  {
+    url: "/vedio/video006.mp4",
+    caption: "Luxury Property Marketing Videos",
+    title: "Premium Listings",
+  },
+  {
+    url: "/vedio/video007.mp4",
+    caption: "Engaging Social Media Reels & Stories",
+    title: "Viral Content",
+  },
+  {
+    url: "/vedio/video008.mp4",
+    caption: "High-Impact Property Walkthroughs",
+    title: "Interactive Tours",
+  },
+  {
+    url: "/vedio/video009.mp4",
+    caption: "Brand Building Through Visual Storytelling",
+    title: "Your Success Story",
   },
 ];
 
@@ -650,6 +670,147 @@ export default function VideoServices() {
 
       {/* Real Estate Photography Carousel Section */}
       <RealEstateCarousel />
+
+      {/* How We Increase Client Reach Section */}
+      <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <Stars />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-12 md:mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-purple-400 to-pink-400 text-transparent bg-clip-text">
+                How We Boost Your Reach
+              </span>
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
+              Our professional video services are designed to maximize your visibility and engagement across all platforms
+            </p>
+          </motion.div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
+            {[
+              { number: "10X", label: "Engagement Boost", icon: "📈" },
+              { number: "5M+", label: "Views Generated", icon: "👁️" },
+              { number: "95%", label: "Client Satisfaction", icon: "⭐" },
+              { number: "48hr", label: "Fast Turnaround", icon: "⚡" },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="relative group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="relative bg-gradient-to-br from-purple-900/40 to-indigo-900/40 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-6 md:p-8 hover:border-primary/60 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20">
+                  <div className="text-4xl mb-3">{stat.icon}</div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</h3>
+                  <p className="text-gray-300 text-sm md:text-base font-medium">{stat.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Process Steps */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            {[
+              {
+                step: "01",
+                title: "Strategic Content Creation",
+                description: "We craft compelling video narratives that resonate with your target audience, showcasing properties in the most attractive way possible.",
+                icon: "🎬",
+              },
+              {
+                step: "02",
+                title: "Multi-Platform Optimization",
+                description: "Every video is optimized for Instagram, YouTube, TikTok, Facebook, and your website to maximize reach across all channels.",
+                icon: "📱",
+              },
+              {
+                step: "03",
+                title: "SEO & Algorithm Friendly",
+                description: "Our videos are designed to rank higher in searches and perform better with social media algorithms, increasing organic reach.",
+                icon: "🔍",
+              },
+              {
+                step: "04",
+                title: "Professional Editing",
+                description: "Cinematic editing with trending music, smooth transitions, and eye-catching effects that stop the scroll and grab attention.",
+                icon: "✂️",
+              },
+              {
+                step: "05",
+                title: "Engagement-Driven Format",
+                description: "We use proven formats like Reels, Shorts, and Stories that generate 3x more engagement than traditional posts.",
+                icon: "💬",
+              },
+              {
+                step: "06",
+                title: "Brand Building",
+                description: "Consistent, high-quality content that establishes you as a premium agent and builds trust with potential clients.",
+                icon: "🏆",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="relative group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="relative h-full bg-gradient-to-br from-black/60 to-purple-900/20 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 md:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                  {/* Step Number */}
+                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-primary to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    {item.step}
+                  </div>
+                  
+                  {/* Icon */}
+                  <div className="text-5xl mb-4 mt-2">{item.icon}</div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-300 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-block bg-gradient-to-r from-purple-900/40 to-indigo-900/40 backdrop-blur-sm border border-primary/30 rounded-2xl p-8 md:p-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Ready to Amplify Your Reach?
+              </h3>
+              <p className="text-gray-300 text-lg mb-6 max-w-2xl">
+                Join hundreds of successful real estate agents who have transformed their online presence with our video services
+              </p>
+              <Link to="/contact" className="px-8 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white font-bold rounded-full text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50">
+                Get Started Today
+              </Link> 
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Pricing Packages Section */}
       {/* <section className="relative py-12 md:py-20">
