@@ -192,7 +192,7 @@ export default function Portfolio() {
   return (
     <>
       <motion.section 
-        className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-primary via-black to-primary px-4 md:px-16 py-12 overflow-hidden"
+        className="relative min-h-screen flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-primary via-black to-primary px-4 py-24 md:px-14 overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}

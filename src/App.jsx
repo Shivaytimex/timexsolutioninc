@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import { SyncLoader } from "react-spinners";
 import SplashScreen from "./components/splashScreen/SplashScreen";
 import PrivacyPolicy from "./pages/Privacy";
+import NewNavbar from "./components/NewNavbar";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -17,7 +18,7 @@ const DigitalMarketing = lazy(() => import("./services/digital-marketing"));
 const TechIT = lazy(() => import("./services/tech-it-solutions"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
-const Navbar = lazy(() => import("./components/Navbar"));
+// const Navbar = lazy(() => import("./components/Navbar"));
 const ProjectBrief = lazy(() => import("./pages/ProjectBrief"));
 const VideoServices = lazy(() => import("./services/video-services"));
 const PaymentsSquare = lazy(() => import("./pages/PaymentsSquare"));
@@ -63,7 +64,8 @@ function App() {
                 </div>
               }
             >
-              <Navbar />
+              {/* <Navbar /> */}
+              <NewNavbar />
               <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/about" element={<AboutUs />} />
