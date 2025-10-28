@@ -4,8 +4,9 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
-import { MdLocationOn, MdPhone, MdEmail, MdAccessTime } from 'react-icons/md'
+import { MdLocationOn, MdEmail, MdAccessTime } from 'react-icons/md'
 import { Link, Navigate, useNavigate } from 'react-router'
+import { FaWhatsapp } from 'react-icons/fa6'
 
 const footerLinks = {
   services: [
@@ -96,10 +97,10 @@ const Footer = () => {
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <MdLocationOn className="w-5 h-5 mt-1" />
-                    <span className="">715 P St, Sacramento, California 95814</span>
+                    <span className="">3661, West Shield Avenue</span>
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
-                    <MdPhone className="w-5 h-5" />
+                    <FaWhatsapp className="w-5 h-5" />
                     <Link to="tel:+15595053443" target="_blank" className="">+1 559-505-3443</Link>
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
