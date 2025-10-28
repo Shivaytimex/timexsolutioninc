@@ -59,7 +59,7 @@ const Footer = () => {
       <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden ">
         <div className="opacity-70">
           <img
-            src="/FOOTER1.webp"
+            src="/FOOTER1.jpg"
             alt="Timex Horse Logo"
             className="w-full h-full object-cover"
           />
@@ -97,7 +97,7 @@ const Footer = () => {
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <MdLocationOn className="w-5 h-5 mt-1" />
-                    <span className="">3661, West Shield Avenue</span>
+                    <span className="">3661 West Shield Ave Fresno CA 93722</span>
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <FaWhatsapp className="w-5 h-5" />
