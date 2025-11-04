@@ -6,6 +6,7 @@ import ScrollToTop from "../components/swipe-to-top";
 import { WhatMakesUsUnique } from "../components/WhatMakesUsUnique";
 import Service from "../components/services/Index";
 import VideoServicesHome from "../components/VideoServicesHome";
+import HomeGifCarousel from "../components/HomeGifCarousel";
 
 function Home() {
   const pageTitle = "Timexsolutioninc";
@@ -19,6 +20,7 @@ function Home() {
       <HeroSection1 />
       <HeroSection />
       <StatsSection />
+      <HomeGifCarousel />
       <VideoServicesHome />
       <WhatMakesUsUnique />
       <Service />
