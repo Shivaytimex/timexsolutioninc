@@ -65,12 +65,6 @@ const carouselVideos = [
     description: "Stand out in the digital landscape",
   },
   {
-    url: "/vedio/videoForHome/11.mp4",
-    caption: "Drive Measurable Results",
-    title: "Growth Accelerated",
-    description: "Data-driven strategies for success",
-  },
-  {
     url: "/vedio/videoForHome/12.mp4",
     caption: "Unleash Creative Potential",
     title: "Boundless Innovation",
@@ -112,18 +106,8 @@ const carouselVideos = [
     title: "Tomorrow's Technology",
     description: "Stay ahead of the curve",
   },
-  {
-    url: "/vedio/videoForHome/19.mp4",
-    caption: "Dominate Your Market",
-    title: "Competitive Edge",
-    description: "Strategies that win",
-  },
-  {
-    url: "/vedio/videoForHome/20.mp4",
-    caption: "Inspire Customer Loyalty",
-    title: "Trust & Credibility",
-    description: "Building brands people love",
-  },
+
+
   {
     url: "/vedio/videoForHome/21.mp4",
     caption: "Revolutionize Your Workflow",
@@ -136,12 +120,7 @@ const carouselVideos = [
     title: "Worldwide Reach",
     description: "Your message, everywhere",
   },
-  {
-    url: "/vedio/videoForHome/23.mp4",
-    caption: "Transform Ideas Into Impact",
-    title: "Creative Execution",
-    description: "From concept to reality",
-  },
+
   {
     url: "/vedio/videoForHome/24.mp4",
     caption: "Achieve Digital Mastery",
