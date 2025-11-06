@@ -5,13 +5,13 @@ import { Stars } from "./Stars";
 
 const carouselVideos = [
   {
-    url: "/vedio/video001.mp4",
+    url: "/vedio/videoForHome/1.mp4",
     caption: "Transform Your Vision Into Reality",
     title: "Innovation Starts Here",
     description: "Professional solutions that drive results",
   },
   {
-    url: "/vedio/video002.mp4",
+    url: "/vedio/videoForHome/2.mp4",
     caption: "Elevate Your Digital Presence",
     title: "Premium Quality",
     description: "Stunning designs that captivate audiences",
@@ -23,7 +23,7 @@ const carouselVideos = [
     description: "Cutting-edge technology meets artistry",
   },
   {
-    url: "/vedio/video004.mp4",
+    url: "/vedio/videoForHome/4.mp4",
     caption: "Engage & Connect Like Never Before",
     title: "Social Impact",
     description: "Content that resonates and converts",
@@ -57,6 +57,96 @@ const carouselVideos = [
     caption: "Building Brands That Last",
     title: "Your Legacy",
     description: "Strategic storytelling for success",
+  },
+  {
+    url: "/vedio/videoForHome/10.mp4",
+    caption: "Amplify Your Brand Voice",
+    title: "Market Leadership",
+    description: "Stand out in the digital landscape",
+  },
+  {
+    url: "/vedio/videoForHome/11.mp4",
+    caption: "Drive Measurable Results",
+    title: "Growth Accelerated",
+    description: "Data-driven strategies for success",
+  },
+  {
+    url: "/vedio/videoForHome/12.mp4",
+    caption: "Unleash Creative Potential",
+    title: "Boundless Innovation",
+    description: "Where imagination meets execution",
+  },
+  {
+    url: "/vedio/videoForHome/13.mp4",
+    caption: "Connect With Your Audience",
+    title: "Authentic Engagement",
+    description: "Build lasting relationships",
+  },
+  {
+    url: "/vedio/videoForHome/14.mp4",
+    caption: "Scale Your Digital Empire",
+    title: "Exponential Growth",
+    description: "Solutions that grow with you",
+  },
+  {
+    url: "/vedio/videoForHome/15.mp4",
+    caption: "Master Digital Excellence",
+    title: "Industry Leaders",
+    description: "Setting new standards in innovation",
+  },
+  {
+    url: "/vedio/videoForHome/16.mp4",
+    caption: "Craft Memorable Experiences",
+    title: "User-Centric Design",
+    description: "Every interaction counts",
+  },
+  {
+    url: "/vedio/videoForHome/17.mp4",
+    caption: "Optimize Your Performance",
+    title: "Maximum Impact",
+    description: "Efficiency meets effectiveness",
+  },
+  {
+    url: "/vedio/videoForHome/18.mp4",
+    caption: "Future-Proof Your Business",
+    title: "Tomorrow's Technology",
+    description: "Stay ahead of the curve",
+  },
+  {
+    url: "/vedio/videoForHome/19.mp4",
+    caption: "Dominate Your Market",
+    title: "Competitive Edge",
+    description: "Strategies that win",
+  },
+  {
+    url: "/vedio/videoForHome/20.mp4",
+    caption: "Inspire Customer Loyalty",
+    title: "Trust & Credibility",
+    description: "Building brands people love",
+  },
+  {
+    url: "/vedio/videoForHome/21.mp4",
+    caption: "Revolutionize Your Workflow",
+    title: "Smart Automation",
+    description: "Work smarter, not harder",
+  },
+  {
+    url: "/vedio/videoForHome/22.mp4",
+    caption: "Captivate Global Audiences",
+    title: "Worldwide Reach",
+    description: "Your message, everywhere",
+  },
+  {
+    url: "/vedio/videoForHome/23.mp4",
+    caption: "Transform Ideas Into Impact",
+    title: "Creative Execution",
+    description: "From concept to reality",
+  },
+  {
+    url: "/vedio/videoForHome/24.mp4",
+    caption: "Achieve Digital Mastery",
+    title: "Complete Solutions",
+    description: "Everything you need to succeed",
   },
 ];
 
