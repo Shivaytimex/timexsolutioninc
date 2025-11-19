@@ -16,9 +16,9 @@ export default function SplashScreen({ onComplete }) {
         setIsVisible(false);
         setTimeout(() => {
           onComplete();
-        }, 500); // Delay to allow exit animation to complete
+        }, 600); // Delay to allow exit animation to complete
       }
-    }, 1650); // Adjust timing as needed
+    }, 1200); // Adjust timing as needed
 
     return () => clearTimeout(timer);
   }, [currentWordIndex, onComplete, words.length]);
