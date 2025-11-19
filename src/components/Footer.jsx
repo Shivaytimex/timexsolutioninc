@@ -59,7 +59,7 @@ const Footer = () => {
       <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden ">
         <div className="opacity-70">
           <img
-            src="/FOOTER1.jpg"
+            src="/FOOTER1.jpeg"
             alt="Timex Horse Logo"
             className="w-full h-full object-cover"
           />

@@ -825,7 +825,7 @@ export default function VideoServices() {
         <Stars />
         <div className="relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-            Timexsolutionx Creative Collection
+            Timexsolution Creative Collection
           </h2>
           <ParallaxScroll images={videoServicesContent.images} />
         </div>

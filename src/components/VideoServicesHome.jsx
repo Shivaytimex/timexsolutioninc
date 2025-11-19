@@ -273,7 +273,7 @@ const VideoServicesHome = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Link
-                to="/video-services"
+                to="/services/video-services"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white font-bold rounded-full text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 group"
               >
                 Explore Video Services
@@ -293,7 +293,7 @@ const VideoServicesHome = () => {
         >
           {[
             { number: "500+", label: "Videos Created" },
-            { number: "10M+", label: "Total Views" },
+            { number: "1M+", label: "Total Views" },
             { number: "98%", label: "Satisfaction Rate" },
             { number: "24-48hr", label: "Delivery Time" },
           ].map((stat, index) => (

@@ -9,8 +9,8 @@ import { AniButton } from '../utils/ButtonAnimation'
 // optimized code
 function HeroSection1() {
   return (
-    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% min-h-screen overflow-hidden py-8 md:py-10 mt-24 lg:mt-28  xl:mt-28">
-      <section className="bg-gradient-to-b from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
+    <div className="relative bg-gradient-to-b from-black from-10% via-primary via-100% to-black to-90% overflow-hidden py-8 md:py-10 mt-24 lg:mt-28  xl:mt-28">
+      <section className="bg-gradient-to-b  from-transparent via-PurpleDark/10 to-transparent mx-auto px-4 relative">
         <Stars />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 relative'>
           {/* First Column: Heading Text */}

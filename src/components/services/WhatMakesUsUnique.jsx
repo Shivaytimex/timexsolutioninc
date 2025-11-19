@@ -42,7 +42,7 @@ export function WhatMakesUsUnique() {
             What Makes Us Unique
           </h2>
           <p className="max-w-3xl mx-auto text-DarkText  text-lg">
-            At the heart of TIMEXSOLUTIONX is a team of dreamers and doers who
+            At the heart of Timexsolution is a team of dreamers and doers who
             are laser-focused on delivering value to clients. We have a
             collective can-do attitude, the right skills to conquer challenges
             and the integrity to do the right thing always.

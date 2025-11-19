@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+  import { Helmet } from "react-helmet";
 import HeroSection from "../components/slider/Herosection";
 import HeroSection1 from "../components/Herosection1";
 import StatsSection from "../components/StatsSection";
