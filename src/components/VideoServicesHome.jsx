@@ -10,9 +10,36 @@ const VideoServicesHome = () => {
 
   const showcaseVideos = [
     {
-      url: "/vedio/video001.mp4",
-      title: "Real Estate Videography",
-      description: "Professional property showcases that sell",
+      url: "/vedio/videoForHome/12.mp4",
+      title: "Creative Innovation",
+      description:
+        "Unleash your creative potential with cutting-edge solutions",
+    },
+    {
+      url: "/vedio/videoForHome/4.mp4",
+      title: "Audience Engagement",
+      description: "Connect and engage like never before",
+    },
+    {
+      url: "/vedio/videoForHome/21.mp4",
+      title: "Smart Solutions",
+      description: "Revolutionize your workflow with automation",
+    },
+
+    {
+      url: "/vedio/videoForHome/14.mp4",
+      title: "Growth Strategy",
+      description: "Scale your digital empire exponentially",
+    },
+    {
+      url: "/vedio/videoForHome/24.mp4",
+      title: "Digital Mastery",
+      description: "Complete solutions for success",
+    },
+    {
+      url: "/vedio/videoForHome/2.mp4",
+      title: "Premium Quality",
+      description: "Stunning designs that captivate audiences",
     },
     {
       url: "/vedio/video002.mp4",
@@ -23,6 +50,11 @@ const VideoServicesHome = () => {
       url: "/vedio/video003.mp4",
       title: "Social Media Reels",
       description: "Engaging content for maximum reach",
+    },
+    {
+      url: "/vedio/videoForHome/17.mp4",
+      title: "Performance Excellence",
+      description: "Optimize your workflow for maximum impact",
     },
   ];
 
@@ -39,7 +71,9 @@ const VideoServicesHome = () => {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
-      videoRef.current.play().catch(err => console.log("Video play error:", err));
+      videoRef.current
+        .play()
+        .catch((err) => console.log("Video play error:", err));
     }
   }, [activeVideo]);
 
@@ -86,7 +120,9 @@ const VideoServicesHome = () => {
             transition={{ duration: 0.5 }}
           >
             <FaVideo className="text-primary" />
-            <span className="text-primary font-semibold text-sm">Our Services</span>
+            <span className="text-primary font-semibold text-sm">
+              Our Services
+            </span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -96,9 +132,10 @@ const VideoServicesHome = () => {
             <br />
             <span className="text-white">Services That Sell</span>
           </h2>
-          
+
           <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
-            Transform your listings with professional videography that captures attention and drives sales
+            Transform your listings with professional videography that captures
+            attention and drives sales
           </p>
         </motion.div>
 
@@ -123,7 +160,10 @@ const VideoServicesHome = () => {
                   playsInline
                   className="w-full h-full object-cover"
                 >
-                  <source src={showcaseVideos[activeVideo].url} type="video/mp4" />
+                  <source
+                    src={showcaseVideos[activeVideo].url}
+                    type="video/mp4"
+                  />
                   Your browser does not support the video tag.
                 </video>
 
@@ -195,9 +235,10 @@ const VideoServicesHome = () => {
                 Why Choose Our Video Services?
               </h3>
               <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                We create stunning video content that helps real estate agents stand out, 
-                attract more clients, and close deals faster. Our professional videography 
-                services are designed to maximize your property&apos;s appeal.
+                We create stunning video content that helps real estate agents
+                stand out, attract more clients, and close deals faster. Our
+                professional videography services are designed to maximize your
+                property&apos;s appeal.
               </p>
             </div>
 
@@ -279,4 +320,3 @@ const VideoServicesHome = () => {
 };
 
 export default VideoServicesHome;
-
