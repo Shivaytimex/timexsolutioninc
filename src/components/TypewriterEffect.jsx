@@ -8,6 +8,7 @@ const Typewriter = () => {
     'Google Ads',
     'Web Development',
     'Digital Services',
+    'Video Shoots Services',
   ]
   const [currentText, setCurrentText] = useState('')
   const [textIndex, setTextIndex] = useState(0)

@@ -10,6 +10,16 @@ export const images = [
     },
   },
   {
+    id: 4,
+    Src: "/recruitmentt.webp",
+    alt: "Video Production Services",
+    content: {
+      title: "High-Definition Architectural Videography",
+      detail:
+        "Creating stunning real estate videos, commercial video productions, and professional photo shoots that capture your brand's essence and drive engagement through compelling visual storytelling.",
+    },
+  },
+  {
     id: 2,
     Src: "/recruitmentt.webp",
     alt: "Team Recruitment",
@@ -30,4 +40,5 @@ export const images = [
         "Delivering innovative, user-centric Android applications with responsive designs and seamless functionality, tailored to meet your unique business needs.",
     },
   },
+  
 ];
