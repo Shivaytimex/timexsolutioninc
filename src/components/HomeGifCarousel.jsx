@@ -218,7 +218,7 @@ const HomeGifCarousel = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-black from-15% via-primary via-100% to-black to-90% overflow-hidden">
       <Stars />
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
@@ -230,13 +230,13 @@ const HomeGifCarousel = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/20 to-purple-600/20 border border-primary/30 rounded-full mb-4"
+            className="inline-flex items-center border border-white/20 rounded-full gap-2 px-4 py-2 bg-gradient-to-r from-primary/20 to-purple-600/20 border border-primary/30 rounded-full mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <FaPlay className="text-primary text-sm" />
-            <span className="text-primary font-semibold text-sm">Our Work in Action</span>
+            <FaPlay className="text-white  text-sm" />
+            <span className="text-white font-semibold text-sm ">Our Work in Action</span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -377,8 +377,8 @@ const HomeGifCarousel = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="inline-block px-3 py-1 bg-primary/20 border border-primary/30 rounded-full mb-4">
-                    <span className="text-primary text-xs font-semibold uppercase tracking-wider">
+                  <div className="inline-block px-3 py-1 bg-primary/20 border border-white/20 rounded-full mb-4">
+                    <span className="text-white text-xs font-semibold uppercase tracking-wider">
                       {carouselVideos[currentIndex].title}
                     </span>
                   </div>

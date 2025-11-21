@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 
 const Typewriter = () => {
   const texts = [
+    'Video Shoot Services',
     'PPC Campaigns',
     'Google Ads',
     'Web Development',
     'Digital Services',
-    'Video Shoots Services',
   ]
   const [currentText, setCurrentText] = useState('')
   const [textIndex, setTextIndex] = useState(0)

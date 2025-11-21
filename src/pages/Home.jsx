@@ -18,9 +18,9 @@ function Home() {
         <title>{pageTitle}</title>
       </Helmet>
       <HeroSection1 />
+      <HomeGifCarousel />
       <HeroSection />
       <StatsSection />
-      <HomeGifCarousel />
       <VideoServicesHome />
       <WhatMakesUsUnique />
       <Service />

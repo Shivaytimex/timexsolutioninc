@@ -1,15 +1,5 @@
 export const images = [
   {
-    id: 1,
-    Src: "Person-With-Laptop.webp",
-    alt: "Website Development",
-    content: {
-      title: "Website and Design Development",
-      detail:
-        "Building responsive, user-friendly, and visually stunning websites tailored to deliver exceptional performance and elevate your online presence.",
-    },
-  },
-  {
     id: 4,
     Src: "/recruitmentt.webp",
     alt: "Video Production Services",
@@ -19,6 +9,18 @@ export const images = [
         "Creating stunning real estate videos, commercial video productions, and professional photo shoots that capture your brand's essence and drive engagement through compelling visual storytelling.",
     },
   },
+  {
+    id: 1,
+    Src: "Person-With-Laptop.webp",
+    alt: "Website Development",
+    
+    content: {
+      title: "Website and Design Development",
+      detail:
+        "Building responsive, user-friendly, and visually stunning websites tailored to deliver exceptional performance and elevate your online presence.",
+    },
+  },
+  
   {
     id: 2,
     Src: "/recruitmentt.webp",
