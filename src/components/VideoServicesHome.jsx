@@ -86,7 +86,7 @@ const VideoServicesHome = () => {
     {
       icon: "📱",
       title: "Social Media Content",
-      description: "Viral-ready reels and stories for agents",
+      description: "Viral-ready reels and stories for Realors",
     },
     {
       icon: "✈️",

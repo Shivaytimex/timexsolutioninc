@@ -35,7 +35,7 @@ function HeroSection1() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Transforming Business tymes with Next-Gen Web Solutions, Powerful Software, and Results-Driven Marketing.
+              Transforming Business times with Next-Gen Web Solutions, Powerful Software, Video Shoot Services, and Results-Driven Marketing.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
