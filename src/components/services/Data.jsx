@@ -40,6 +40,22 @@ import { MdAnimation, MdVideocam } from "react-icons/md";
 import { BiMoviePlay } from "react-icons/bi";
 
 export const services = {
+   "Video Services": {
+    description:
+      "Transform your ideas into compelling visual stories with our comprehensive video production services. From concept to final delivery, we create high-quality videos that engage your audience and drive results.",
+    subServices: [
+      { name: "Video Production", icon: FaVideo },
+      { name: "YouTube Content", icon: FaYoutube },
+      { name: "Video Editing", icon: FaEdit },
+      { name: "Animation & Motion Graphics", icon: MdAnimation },
+      { name: "Corporate Videos", icon: FaCamera },
+      { name: "Commercial Production", icon: FaFilm },
+      { name: "Video Marketing", icon: BiMoviePlay },
+      { name: "Live Streaming", icon: MdVideocam },
+    ],
+    img: "/digital-marketing.webp",
+    link: "/services/video-services",
+  },
   "Web Development": {
     description:
       "Delivering top-tier web development services tailored for e-commerce and corporate brands, emphasizing rapid delivery and meticulous SEO optimization.",
@@ -110,20 +126,5 @@ export const services = {
     img: "/tech-it-solutions.webp",
     link: "/services/tech-it-solutions",
   },
-  "Video Services": {
-    description:
-      "Transform your ideas into compelling visual stories with our comprehensive video production services. From concept to final delivery, we create high-quality videos that engage your audience and drive results.",
-    subServices: [
-      { name: "Video Production", icon: FaVideo },
-      { name: "YouTube Content", icon: FaYoutube },
-      { name: "Video Editing", icon: FaEdit },
-      { name: "Animation & Motion Graphics", icon: MdAnimation },
-      { name: "Corporate Videos", icon: FaCamera },
-      { name: "Commercial Production", icon: FaFilm },
-      { name: "Video Marketing", icon: BiMoviePlay },
-      { name: "Live Streaming", icon: MdVideocam },
-    ],
-    img: "/digital-marketing.webp",
-    link: "/services/video-services",
-  },
+ 
 };
