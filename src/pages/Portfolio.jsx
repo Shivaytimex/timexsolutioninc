@@ -91,6 +91,15 @@ const images = [
       rightSide: "/project1.png",
       title: "Aish",
       description: "Signs and Graphics"
+    },
+    {
+      before: "/project4.png",
+      after: "/project1.png",
+      leftSide: "/project2.png",
+      rightSide: "/project3.png",
+      title: "JG Limousines",
+      description: "Premium Ride Booking Website",
+      details: "Premium Ride Booking Website"
     }
   ];
 
@@ -108,11 +117,13 @@ export default function Portfolio() {
   const [smsImageIndex, setSmsImageIndex] = useState(0);
   const [aishImageIndex, setAishImageIndex] = useState(0);
   const [aoneImageIndex, setAoneImageIndex] = useState(0);
+  const [jgImageIndex, setJgImageIndex] = useState(0);
 
   // Image arrays for each client
   const smsImages = ['/sms1.png', '/sms2.png'];
   const aishImages = ['/aish1.png', '/aish2.png'];
   const aoneImages = ['/aone1.png', '/aone2.png'];
+  const jgImages = ['/jg-img-1.png', '/jg-img-2.png', '/jg-img-3.png'];
 
   // Image rotation effects
   useEffect(() => {
@@ -128,10 +139,15 @@ export default function Portfolio() {
       setAoneImageIndex(prev => (prev + 1) % aoneImages.length);
     }, 4000);
 
+    const jgInterval = setInterval(() => {
+      setJgImageIndex(prev => (prev + 1) % jgImages.length);
+    }, 4000);
+
     return () => {
       clearInterval(smsInterval);
       clearInterval(aishInterval);
       clearInterval(aoneInterval);
+      clearInterval(jgInterval);
     };
   }, []);
 
@@ -670,6 +686,32 @@ export default function Portfolio() {
       ]}
     />
   </motion.div>
+
+  <motion.div variants={staggerItem}>
+    <PortfolioShowcase
+      image={
+        <motion.img 
+          key={jgImageIndex}
+          src={jgImages[jgImageIndex]} 
+          alt="JG Limousines" 
+          className="rounded-lg shadow-2xl w-full max-w-md" 
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+          viewport={{ once: true }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        />
+      }
+      title="JG Limousines"
+      description={`We partnered with JG Limousines to create a premium ride booking website that reflects their luxury black car service brand. The platform features seamless online booking, instant quote generation, and a comprehensive service showcase.\n\nOur custom-built solution enables customers to easily book airport transfers, hourly chauffeur services, cruise port pickups, and special event transportation. With real-time pricing, vehicle selection, and 24/7 availability, we've transformed their booking experience while maintaining the elegance and professionalism their brand represents.`}
+      buttons={[
+        { label: 'LAUNCH WEBSITE', href: 'https://jglimousines.com/' },
+        { label: 'REQUEST A QUOTE', href: '/contact' }
+      ]}
+      reverse
+    />
+  </motion.div>
 </motion.div>
 
       </motion.section>
@@ -760,6 +802,21 @@ export default function Portfolio() {
                     whileInView={{ y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.5 } }}
                     viewport={{ once: true }}
                   >
+                    {currentExample.logo && (
+                      <motion.div 
+                        className="mb-3"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 0.6 } }}
+                        viewport={{ once: true }}
+                      >
+                        <motion.img 
+                          src={currentExample.logo} 
+                          alt={`${currentExample.title} Logo`}
+                          className="h-12 md:h-16 w-auto object-contain"
+                          whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
+                        />
+                      </motion.div>
+                    )}
                     <motion.h3 
                       className="text-lg md:text-xl font-bold mb-1"
                       variants={staggerItem}
@@ -772,6 +829,16 @@ export default function Portfolio() {
                     >
                       {currentExample.description}
                     </motion.p>
+                    {currentExample.details && (
+                      <motion.div 
+                        className="mt-2 text-xs md:text-sm opacity-80 max-w-md"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.8, transition: { duration: 0.6, delay: 0.7 } }}
+                        viewport={{ once: true }}
+                      >
+                        {currentExample.details}
+                      </motion.div>
+                    )}
                   </motion.div>
                 </motion.div>
               </motion.div>
