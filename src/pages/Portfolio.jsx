@@ -908,26 +908,41 @@ export default function Portfolio() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {images.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setBeforeAfterSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === beforeAfterSlide 
-                    ? 'bg-cyan-400 scale-125' 
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-                variants={staggerItem}
-                whileHover={{ scale: 1.4, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.8 }}
-                animate={index === beforeAfterSlide ? { scale: 1.3, backgroundColor: "#06b6d4" } : { scale: 1 }}
-              />
-            ))}
+            {images.map((_, index) => {
+              const isActive = index === beforeAfterSlide;
+              return (
+                <motion.button
+                  key={index}
+                  onClick={() => {
+                    if (!isBeforeAfterAnimating) {
+                      setBeforeAfterSlide(index);
+                    }
+                  }}
+                  disabled={isBeforeAfterAnimating}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-cyan-400' 
+                      : 'bg-white/50 hover:bg-white/70'
+                  } ${isBeforeAfterAnimating ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                  aria-label={`Go to slide ${index + 1}`}
+                  variants={staggerItem}
+                  whileHover={!isBeforeAfterAnimating ? { scale: 1.3, transition: { duration: 0.2 } } : {}}
+                  whileTap={!isBeforeAfterAnimating ? { scale: 0.9 } : {}}
+                  animate={isActive ? { 
+                    scale: 1.25, 
+                    backgroundColor: "#06b6d4" 
+                  } : { 
+                    scale: 1,
+                    backgroundColor: "rgba(255, 255, 255, 0.5)"
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              );
+            })}
           </motion.div>
 
           {/* Thumbnails for Mobile */}
-          <motion.div 
+          {/* <motion.div 
             className="block md:hidden mt-6"
             variants={fadeInUp}
             initial="hidden"
@@ -958,7 +973,7 @@ export default function Portfolio() {
                 </motion.button>
               ))}
             </motion.div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Request a Quote Button */}
           <motion.div className="mt-12 flex justify-center" variants={scaleIn}>
