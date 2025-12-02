@@ -69,86 +69,91 @@ const NewNavbar = () => {
       >
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-full">
-            {/* Logo */}
-            <Link to="/" className="flex items-center z-50">
-              <motion.img
-                src="/nav-logo.webp"
-                alt="Timexsolutions Logo"
-                className={`transition-all duration-500 ${
-                  isScrolled ? "w-12 md:w-16 h-12 md:h-16" : "w-16 md:w-20 h-16 md:h-20"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              />
-            </Link>
+            {/* Left Side - Logo + Navigation Links */}
+            <div className="flex items-center space-x-6 lg:space-x-20">
+              {/* Logo */}
+              <Link to="/" className="flex items-center z-50">
+                <motion.img
+                  src="/nav-logo.webp"
+                  alt="Timexsolutions Logo"
+                  className={`transition-all duration-500 ${
+                    isScrolled ? "w-12 md:w-16 h-12 md:h-16" : "w-16 md:w-20 h-16 md:h-20"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                />
+              </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {navLinks.map((link, index) => (
-                <div key={index} className="relative group">
-                  {link.submenu ? (
-                    <>
-                      <button
-                        className={`flex items-center gap-1 text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base ${
-                          location.pathname.includes("/services") ? "text-primary" : ""
+              {/* Desktop Navigation Links */}
+              <div className="hidden lg:flex items-center space-x-6">
+                {navLinks.map((link, index) => (
+                  <div key={index} className="relative group">
+                    {link.submenu ? (
+                      <>
+                        <button
+                          className={`flex items-center gap-1 text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base ${
+                            location.pathname.includes("/services") ? "text-primary" : ""
+                          }`}
+                          onMouseEnter={() => setIsServicesOpen(true)}
+                        >
+                          {link.title}
+                          <FiChevronDown
+                            className={`transition-transform duration-300 ${
+                              isServicesOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        <AnimatePresence>
+                          {isServicesOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute top-full left-0 mt-2 w-56 bg-black/95 backdrop-blur-xl border border-primary/20 rounded-xl shadow-xl shadow-primary/10 overflow-hidden"
+                              onMouseLeave={() => setIsServicesOpen(false)}
+                            >
+                              {link.submenu.map((item, idx) => (
+                                <Link
+                                  key={idx}
+                                  to={item.path}
+                                  className={`block px-4 py-3 text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${
+                                    location.pathname === item.path ? "bg-primary/10 text-primary" : ""
+                                  }`}
+                                >
+                                  {item.title}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className={`text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base relative ${
+                          location.pathname === link.path ? "text-primary" : ""
                         }`}
-                        onMouseEnter={() => setIsServicesOpen(true)}
                       >
                         {link.title}
-                        <FiChevronDown
-                          className={`transition-transform duration-300 ${
-                            isServicesOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-
-                      {/* Dropdown Menu */}
-                      <AnimatePresence>
-                        {isServicesOpen && (
+                        {location.pathname === link.path && (
                           <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 w-56 bg-black/95 backdrop-blur-xl border border-primary/20 rounded-xl shadow-xl shadow-primary/10 overflow-hidden"
-                            onMouseLeave={() => setIsServicesOpen(false)}
-                          >
-                            {link.submenu.map((item, idx) => (
-                              <Link
-                                key={idx}
-                                to={item.path}
-                                className={`block px-4 py-3 text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${
-                                  location.pathname === item.path ? "bg-primary/10 text-primary" : ""
-                                }`}
-                              >
-                                {item.title}
-                              </Link>
-                            ))}
-                          </motion.div>
+                            layoutId="activeLink"
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                            transition={{ duration: 0.3 }}
+                          />
                         )}
-                      </AnimatePresence>
-                    </>
-                  ) : (
-                    <Link
-                      to={link.path}
-                      className={`text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base relative ${
-                        location.pathname === link.path ? "text-primary" : ""
-                      }`}
-                    >
-                      {link.title}
-                      {location.pathname === link.path && (
-                        <motion.div
-                          layoutId="activeLink"
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                    </Link>
-                  )}
-                </div>
-              ))}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              {/* CTA Button */}
+            {/* Right Side - CTA Button */}
+            <div className="hidden lg:flex items-center">
               <Link
                 to="/project-brief"
                 className="px-6 py-2.5 bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
@@ -156,6 +161,7 @@ const NewNavbar = () => {
                 Get Started
               </Link>
             </div>
+
 
             {/* Mobile Menu Button */}
             <button

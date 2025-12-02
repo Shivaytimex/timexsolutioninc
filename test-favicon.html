@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Test</title>
+</head>
+<body>
+    <h1>Favicon Test Page</h1>
+    <p>Check if favicon is loading correctly:</p>
+    
+    <div>
+        <h2>Test Favicon URLs:</h2>
+        <ul>
+            <li><a href="/Timex-logo-Purple.png" target="_blank">Direct Image Link</a></li>
+            <li><a href="/favicon.ico" target="_blank">Favicon.ico (if exists)</a></li>
+        </ul>
+    </div>
+    
+    <div>
+        <h2>Current Favicon Links in Head:</h2>
+        <div id="favicon-info"></div>
+    </div>
+    
+    <script>
+        // Check all favicon links
+        const faviconLinks = document.querySelectorAll('link[rel*="icon"]');
+        const infoDiv = document.getElementById('favicon-info');
+        
+        if (faviconLinks.length > 0) {
+            let html = '<ul>';
+            faviconLinks.forEach(link => {
+                html += `<li>${link.rel}: ${link.href} (${link.sizes || 'no size'})</li>`;
+            });
+            html += '</ul>';
+            infoDiv.innerHTML = html;
+        } else {
+            infoDiv.innerHTML = '<p>No favicon links found!</p>';
+        }
+        
+        // Test image loading
+        const img = new Image();
+        img.onload = function() {
+            console.log('✅ Favicon image loaded successfully!');
+            console.log('Image dimensions:', this.width, 'x', this.height);
+        };
+        img.onerror = function() {
+            console.error('❌ Favicon image failed to load!');
+        };
+        img.src = '/Timex-logo-Purple.png';
+    </script>
+</body>
+</html>
+
+
