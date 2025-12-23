@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX, FiChevronDown, FiHome, FiBriefcase, FiInfo, FiFolder, FiMail } from "react-icons/fi";
+import { FiMenu, FiX, FiChevronDown, FiHome, FiBriefcase, FiInfo, FiFolder, FiMail, FiVideo } from "react-icons/fi";
 
 const NewNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,6 +26,7 @@ const NewNavbar = () => {
     },
     { title: "About", path: "/about", icon: FiInfo },
     { title: "Portfolio", path: "/portfolio", icon: FiFolder },
+    { title: "Video Gallery", path: "/video-gallery", icon: FiVideo },
     { title: "Contact", path: "/contact", icon: FiMail },
   ];
 

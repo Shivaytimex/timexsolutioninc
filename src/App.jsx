@@ -21,6 +21,7 @@ const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
 // const Navbar = lazy(() => import("./components/Navbar"));
 const ProjectBrief = lazy(() => import("./pages/ProjectBrief"));
 const VideoServices = lazy(() => import("./services/video-services"));
+const VideoGallery = lazy(() => import("./pages/VideoGallery"));
 const PaymentsSquare = lazy(() => import("./pages/PaymentsSquare"));
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
                   element={<VideoServices />}
                 />
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/video-gallery" element={<VideoGallery />} />
                 <Route path="/project-brief" element={<ProjectBrief />} />
                 <Route path="/payments-square" element={<PaymentsSquare />} />
               </Routes>

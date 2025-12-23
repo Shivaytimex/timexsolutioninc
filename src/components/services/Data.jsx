@@ -31,7 +31,7 @@ import {
   FaMicrochip,
   FaVideo,
   FaYoutube,
-  FaPlay,
+  // FaPlay,
   FaCamera,
   FaEdit,
   FaFilm,
