@@ -8,206 +8,235 @@ import Header from "../components/CommonHeader";
 const allVideos = [
   {
     id: 1,
-    url: "/vedio/video001.mp4",
+    url: "/vedio/video004.mp4",
     title: "Professional Real Estate Videography",
     category: "Real Estate",
-    thumbnail: "/vedio/video001.mp4",
+    thumbnail: "/vedio/thumbnails/video004-thumb.jpg",
+    poster: "/vedio/thumbnails/video004-poster.jpg",
   },
   {
     id: 2,
-    url: "/vedio/video002.mp4",
+    url: "/vedio/video008.mp4",
     title: "Stunning Property Showcases",
     category: "Real Estate",
-    thumbnail: "/vedio/video002.mp4",
+    thumbnail: "/vedio/thumbnails/video008-thumb.jpg",
+    poster: "/vedio/thumbnails/video008-poster.jpg",
   },
   {
     id: 3,
     url: "/vedio/video003.mp4",
     title: "Cinematic Tours & Virtual Experiences",
     category: "Real Estate",
-    thumbnail: "/vedio/video003.mp4",
+    thumbnail: "/vedio/thumbnails/video003-thumb.jpg",
+    poster: "/vedio/thumbnails/video003-poster.jpg",
   },
   {
     id: 4,
     url: "/vedio/video004.mp4",
     title: "Engaging Social Media Reels",
     category: "Social Media",
-    thumbnail: "/vedio/video004.mp4",
+    thumbnail: "/vedio/thumbnails/video004-thumb.jpg",
+    poster: "/vedio/thumbnails/video004-poster.jpg",
   },
   {
     id: 5,
     url: "/vedio/video005.mp4",
     title: "Social Media Ready Content",
     category: "Social Media",
-    thumbnail: "/vedio/video005.mp4",
+    thumbnail: "/vedio/thumbnails/video005-thumb.jpg",
+    poster: "/vedio/thumbnails/video005-poster.jpg",
   },
   {
     id: 6,
     url: "/vedio/video006.mp4",
     title: "Luxury Property Marketing",
     category: "Real Estate",
-    thumbnail: "/vedio/video006.mp4",
+    thumbnail: "/vedio/thumbnails/video006-thumb.jpg",
+    poster: "/vedio/thumbnails/video006-poster.jpg",
   },
   {
     id: 7,
     url: "/vedio/video007.mp4",
     title: "Drone Aerial Perspectives",
     category: "Aerial",
-    thumbnail: "/vedio/video007.mp4",
+    thumbnail: "/vedio/thumbnails/video007-thumb.jpg",
+    poster: "/vedio/thumbnails/video007-poster.jpg",
   },
   {
     id: 8,
     url: "/vedio/video008.mp4",
     title: "High-Impact Property Walkthroughs",
     category: "Real Estate",
-    thumbnail: "/vedio/video008.mp4",
+    thumbnail: "/vedio/thumbnails/video008-thumb.jpg",
+    poster: "/vedio/thumbnails/video008-poster.jpg",
   },
   {
     id: 9,
     url: "/vedio/video009.mp4",
     title: "Brand Building Through Visual Storytelling",
     category: "Marketing",
-    thumbnail: "/vedio/video009.mp4",
+    thumbnail: "/vedio/thumbnails/video009-thumb.jpg",
+    poster: "/vedio/thumbnails/video009-poster.jpg",
   },
   {
     id: 10,
     url: "/vedio/videoForHome/1.mp4",
     title: "Creative Innovation Showcase",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/1.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/1-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/1-poster.jpg",
   },
   {
     id: 11,
     url: "/vedio/videoForHome/2.mp4",
     title: "Premium Quality Production",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/2.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/2-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/2-poster.jpg",
   },
   {
     id: 12,
     url: "/vedio/videoForHome/3.mp4",
     title: "Digital Excellence",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/3.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/3-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/3-poster.jpg",
   },
   {
     id: 13,
     url: "/vedio/videoForHome/4.mp4",
     title: "Audience Engagement",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/4.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/4-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/4-poster.jpg",
   },
   {
     id: 14,
     url: "/vedio/videoForHome/5.mp4",
     title: "Smart Solutions",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/5.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/5-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/5-poster.jpg",
   },
   {
     id: 15,
     url: "/vedio/videoForHome/6.mp4",
     title: "Growth Strategy",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/6.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/6-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/6-poster.jpg",
   },
   {
     id: 16,
     url: "/vedio/videoForHome/7.mp4",
     title: "Digital Mastery",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/7.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/7-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/7-poster.jpg",
   },
   {
     id: 17,
     url: "/vedio/videoForHome/8.mp4",
     title: "Performance Excellence",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/8.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/8-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/8-poster.jpg",
   },
   {
     id: 18,
     url: "/vedio/videoForHome/9.mp4",
     title: "Innovation Hub",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/9.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/9-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/9-poster.jpg",
   },
   {
     id: 19,
     url: "/vedio/videoForHome/10.mp4",
     title: "Creative Solutions",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/10.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/10-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/10-poster.jpg",
   },
   {
     id: 20,
     url: "/vedio/videoForHome/12.mp4",
     title: "Visual Storytelling",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/12.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/12-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/12-poster.jpg",
   },
   {
     id: 21,
     url: "/vedio/videoForHome/13.mp4",
     title: "Brand Excellence",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/13.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/13-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/13-poster.jpg",
   },
   {
     id: 22,
     url: "/vedio/videoForHome/14.mp4",
     title: "Marketing Innovation",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/14.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/14-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/14-poster.jpg",
   },
   {
     id: 23,
     url: "/vedio/videoForHome/15.mp4",
     title: "Creative Vision",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/15.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/15-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/15-poster.jpg",
   },
   {
     id: 24,
     url: "/vedio/videoForHome/16.mp4",
     title: "Digital Transformation",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/16.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/16-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/16-poster.jpg",
   },
   {
     id: 25,
     url: "/vedio/videoForHome/17.mp4",
     title: "Strategic Content",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/17.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/17-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/17-poster.jpg",
   },
   {
     id: 26,
     url: "/vedio/videoForHome/18.mp4",
     title: "Creative Impact",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/18.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/18-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/18-poster.jpg",
   },
   {
     id: 27,
     url: "/vedio/videoForHome/21.mp4",
     title: "Visual Excellence",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/21.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/21-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/21-poster.jpg",
   },
   {
     id: 28,
     url: "/vedio/videoForHome/22.mp4",
     title: "Content Mastery",
     category: "Marketing",
-    thumbnail: "/vedio/videoForHome/22.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/22-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/22-poster.jpg",
   },
   {
     id: 29,
     url: "/vedio/videoForHome/24.mp4",
     title: "Premium Production",
     category: "Creative",
-    thumbnail: "/vedio/videoForHome/24.mp4",
+    thumbnail: "/vedio/thumbnails/videoForHome/24-thumb.jpg",
+    poster: "/vedio/thumbnails/videoForHome/24-poster.jpg",
   },
 ];
 
@@ -319,17 +348,11 @@ export default function VideoGallery() {
               >
                 {/* Video Thumbnail Container */}
                 <div className="relative aspect-video overflow-hidden bg-black/50">
-                  <video
+                  <img
                     src={video.thumbnail}
+                    alt={video.title}
                     className="w-full h-full object-cover"
-                    muted
-                    loop
-                    playsInline
-                    onMouseEnter={(e) => e.target.play()}
-                    onMouseLeave={(e) => {
-                      e.target.pause();
-                      e.target.currentTime = 0;
-                    }}
+                    loading="lazy"
                   />
                   
                   {/* Play Overlay */}
@@ -440,6 +463,7 @@ export default function VideoGallery() {
                 <div className="relative aspect-video bg-black">
                   <video
                     src={selectedVideo.url}
+                    poster={selectedVideo.poster}
                     controls
                     autoPlay
                     className="w-full h-full"
