@@ -103,15 +103,15 @@ cat ~/.ssh/timex_deploy
 ssh your_user@your_vps_ip
 
 # Project directory banao
-sudo mkdir -p /var/www/timex
-sudo chown -R $USER:$USER /var/www/timex
+sudo mkdir -p /var/www/timexsolutioninc
+sudo chown -R $USER:$USER /var/www/timexsolutioninc
 
 # Git repository clone karo (pehli baar)
 cd /var/www
 git clone https://github.com/your-username/your-repo.git timex
 
 # Project directory me jao
-cd /var/www/timex
+cd /var/www/timexsolutioninc
 
 # Dependencies install karo
 npm install
@@ -138,7 +138,7 @@ server {
     listen 80;
     server_name your-domain.com www.your-domain.com;  # Apna domain dalo
 
-    root /var/www/timex/dist;
+    root /var/www/timexsolutioninc/dist;
     index index.html;
 
     location / {
@@ -177,8 +177,8 @@ sudo systemctl reload nginx
 sudo npm install -g pm2
 
 # Start karo
-cd /var/www/timex
-pm2 start npm --name "timex" -- run preview
+cd /var/www/timexsolutioninc
+pm2 start npm --name "timexsolutioninc" -- run preview
 
 # Auto-start on server reboot
 pm2 startup
@@ -202,7 +202,7 @@ File already created hai: `.github/workflows/deploy.yml`
 - **Agar PM2 use kar rahe ho:**
   ```yaml
   # Uncomment this line in deploy.yml
-  pm2 restart timex || pm2 start npm --name "timex" -- run preview
+  pm2 restart timexsolutioninc || pm2 start npm --name "timexsolutioninc" -- run preview
   ```
 
 ---
@@ -273,7 +273,7 @@ git push origin main
 4. **Port already in use (PM2):**
    ```bash
    pm2 delete timex
-   pm2 start npm --name "timex" -- run preview
+   pm2 start npm --name "timexsolutioninc" -- run preview
    ```
 
 5. **Nginx error:**
@@ -301,7 +301,7 @@ Ab aap VS Code me normal development kar sakte ho aur jab bhi `git push` karoge,
 
 ```bash
 # PM2 logs (agar PM2 use kar rahe ho)
-pm2 logs timex
+pm2 logs timexsolutioninc
 
 # Nginx logs (agar Nginx use kar rahe ho)
 sudo tail -f /var/log/nginx/error.log

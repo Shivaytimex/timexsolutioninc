@@ -42,7 +42,7 @@ jobs:
             echo "🔄 Starting deployment process..."
             
             # Navigate to project directory
-            cd /var/www/timex
+            cd /var/www/timexsolutioninc
             
             # Pull latest changes
             echo "📥 Pulling latest code..."
@@ -56,13 +56,18 @@ jobs:
             echo "🏗️ Building project..."
             npm run build
             
-            # Option 1: Restart PM2 (uncomment if using PM2)
-            # echo "♻️ Restarting PM2..."
-            # pm2 restart timex || pm2 start npm --name "timex" -- run preview
+            # Restart/Reload server
+            echo "♻️ Reloading server..."
             
-            # Option 2: Reload Nginx (uncomment if using Nginx)
-            # echo "♻️ Reloading Nginx..."
-            # sudo systemctl reload nginx
+            # For Nginx (static files)
+            if command -v nginx &> /dev/null; then
+                sudo systemctl reload nginx && echo "Nginx reloaded" || echo "⚠️ Could not reload nginx (check sudo permissions)"
+            fi
+            
+            # For PM2 (if using preview server)
+            if command -v pm2 &> /dev/null; then
+                pm2 restart timexsolutioninc 2>/dev/null || echo "PM2 not managing this app"
+            fi
             
             echo "✅ Deployment completed successfully!"
             echo "🎉 Site is now live with latest changes!"

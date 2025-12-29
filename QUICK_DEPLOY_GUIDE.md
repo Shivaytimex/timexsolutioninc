@@ -28,8 +28,8 @@ nano ~/.ssh/authorized_keys  # Public key paste karo
 chmod 600 ~/.ssh/authorized_keys
 
 # 2. Project setup
-sudo mkdir -p /var/www/timex
-sudo chown -R $USER:$USER /var/www/timex
+sudo mkdir -p /var/www/timexsolutioninc
+sudo chown -R $USER:$USER /var/www/timexsolutioninc
 cd /var/www
 git clone YOUR_REPO_URL timex
 cd timex
@@ -46,7 +46,7 @@ sudo systemctl reload nginx
 
 # 3b. Or PM2 setup (Preview server)
 sudo npm install -g pm2
-pm2 start npm --name "timex" -- run preview
+pm2 start npm --name "timexsolutioninc" -- run preview
 pm2 startup
 pm2 save
 ```
@@ -56,7 +56,7 @@ pm2 save
 # File already created: .github/workflows/deploy.yml
 # Uncomment appropriate lines:
 # - For Nginx: sudo systemctl reload nginx
-# - For PM2: pm2 restart timex
+# - For PM2: pm2 restart timexsolutioninc
 ```
 
 ---
@@ -88,7 +88,7 @@ sudo tail -f /var/log/nginx/access.log
 sudo tail -f /var/log/nginx/error.log
 
 # PM2 logs (if using PM2)
-pm2 logs timex
+pm2 logs timexsolutioninc
 pm2 status
 ```
 
@@ -121,7 +121,7 @@ npm run build
 ### PM2 not working:
 ```bash
 pm2 delete timex
-pm2 start npm --name "timex" -- run preview
+pm2 start npm --name "timexsolutioninc" -- run preview
 pm2 save
 ```
 
@@ -156,7 +156,7 @@ ls -la ~/.ssh/timex_deploy*
 ssh -i ~/.ssh/timex_deploy your_user@your_vps_ip
 
 # 4. Project on VPS?
-ssh your_user@your_vps_ip "ls -la /var/www/timex"
+ssh your_user@your_vps_ip "ls -la /var/www/timexsolutioninc"
 
 # 5. Workflow file exists?
 ls -la .github/workflows/deploy.yml
