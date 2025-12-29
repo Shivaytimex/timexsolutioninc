@@ -1,0 +1,81 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Manual trigger option
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build project
+        run: npm run build
+        env:
+          CI: true
+
+      - name: 🚀 Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          command_timeout: 10m
+          script: |
+            set -e  # Exit on error
+            
+            echo "🔄 Starting deployment process..."
+            
+            # Navigate to project directory
+            cd /var/www/timex
+            
+            # Pull latest changes
+            echo "📥 Pulling latest code..."
+            git pull origin main
+            
+            # Install dependencies
+            echo "📦 Installing dependencies..."
+            npm ci --production
+            
+            # Build project
+            echo "🏗️ Building project..."
+            npm run build
+            
+            # Option 1: Restart PM2 (uncomment if using PM2)
+            # echo "♻️ Restarting PM2..."
+            # pm2 restart timex || pm2 start npm --name "timex" -- run preview
+            
+            # Option 2: Reload Nginx (uncomment if using Nginx)
+            # echo "♻️ Reloading Nginx..."
+            # sudo systemctl reload nginx
+            
+            echo "✅ Deployment completed successfully!"
+            echo "🎉 Site is now live with latest changes!"
+
+      - name: ✅ Deployment Success
+        if: success()
+        run: |
+          echo "🎉 Deployment to VPS successful!"
+          echo "🌐 Site URL: Check your domain"
+          
+      - name: ❌ Deployment Failed
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Please check the logs above for details."
+
