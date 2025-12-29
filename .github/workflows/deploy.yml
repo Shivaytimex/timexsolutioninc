@@ -48,9 +48,9 @@ jobs:
             echo "📥 Pulling latest code..."
             git pull origin main
             
-            # Install dependencies
+            # Install dependencies (including devDependencies for build)
             echo "📦 Installing dependencies..."
-            npm ci --production
+            npm ci
             
             # Build project
             echo "🏗️ Building project..."
