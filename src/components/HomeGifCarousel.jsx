@@ -218,7 +218,7 @@ const HomeGifCarousel = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-black from-15% via-primary via-100% to-black to-90% overflow-hidden">
+    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8  overflow-hidden">
       <Stars />
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}

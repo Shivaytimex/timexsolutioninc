@@ -30,7 +30,7 @@ export default function SplashScreen({ onComplete }) {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="absolute top-0 left-0 h-full w-full bg-[#751f8c] flex flex-col items-center justify-center z-50 overflow-hidden"
+          className="absolute top-0 left-0 h-full w-full bg-primary flex flex-col items-center justify-center z-50 overflow-hidden"
           initial="hidden"
           animate="visible"
           exit="exit"

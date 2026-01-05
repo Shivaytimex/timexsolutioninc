@@ -18,12 +18,12 @@ function Home() {
         <title>{pageTitle}</title>
       </Helmet>
       <HeroSection1 />
-      <HomeGifCarousel />
       <HeroSection />
       <StatsSection />
       <VideoServicesHome />
-      <WhatMakesUsUnique />
+      <HomeGifCarousel />
       <Service />
+      <WhatMakesUsUnique />
       <ScrollToTop />
     </div>
   );
