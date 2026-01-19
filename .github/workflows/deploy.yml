@@ -42,7 +42,7 @@ jobs:
             echo "🔄 Starting deployment process..."
             
             # Navigate to project directory
-            cd /var/www/timexsolutioninc
+            cd /var/www/timexsolution/timexsolutionincc
             
             # Pull latest changes
             echo "📥 Pulling latest code..."
