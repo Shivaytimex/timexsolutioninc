@@ -29,8 +29,7 @@ const staggerChildren = {
 const socialLinks = [
   { Icon: FaFacebookF, href: "https://www.facebook.com/share/15tRLbGLS9/" },
   { Icon: FaInstagram, href: "https://www.instagram.com/timexsolutioninc?igsh=MWZodjU5cnZ4OGw0YQ==" },
-  { Icon: FaTwitter, href: "https://twitter.com" }, // Replace with actual Twitter link
-  { Icon: FaYoutube, href: "https://youtube.com" } // Replace with actual YouTube link
+  { Icon: FaYoutube, href: "https://youtube.com/@timexsolutioninc" } // Replace with actual YouTube link
 ];
 
 
@@ -190,8 +189,7 @@ export default function ContactPage() {
                 className="text-white/80 mb-10 text-lg"
                 variants={fadeInUp}
               >
-                Sociosqu viverra lectus placerat sem efficitur molestie vehicula
-                cubilia leo etiam nam.
+                Where creativity meets strategy to transform your brand's vision into reality. As a leading creative agency, we specialize in crafting innovative solutions that elevate your brand and captivate your audience
               </motion.p>
 
               {/* Contact Details */}
@@ -201,8 +199,7 @@ export default function ContactPage() {
                     icon: FaMapMarkerAlt,
                     title: "Office",
                     details: [
-                      "715 P St, Sacramento, California 95814",
-                      "2nd office - 3661 Westshield Ave Fresno CA 93722",
+                      "3661 West Shields Ave, Fresno, CA 93733",
                     ],
                   },
                   {
@@ -213,7 +210,7 @@ export default function ContactPage() {
                   {
                     icon: FaPhone,
                     title: "Call Us",
-                    details: [" +1 559-505-3443 , +1 888-730-8990"],
+                    details: [" +1 559-505-3443"],
                   },
                 ].map((item, index) => (
                   <motion.div

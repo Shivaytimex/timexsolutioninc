@@ -6,6 +6,7 @@ import { SyncLoader } from "react-spinners";
 import SplashScreen from "./components/splashScreen/SplashScreen";
 import PrivacyPolicy from "./pages/Privacy";
 import NewNavbar from "./components/NewNavbar";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -49,7 +50,7 @@ function App() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <div className="2xl:container mx-auto bg-black">
+        <div className="bg-black min-h-[100dvh] w-screen overflow-x-hidden">
           <Router>
             <Suspense
               fallback={
@@ -103,6 +104,7 @@ function App() {
                 <Route path="/payments-square" element={<PaymentsSquare />} />
               </Routes>
               <Footer />
+              <WhatsAppFloat />
             </Suspense>
           </Router>
         </div>

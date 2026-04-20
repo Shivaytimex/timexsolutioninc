@@ -6,7 +6,7 @@ import { SplitText } from "./SplitText";
 export default function SplashScreen({ onComplete }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const words = ["Welcome", "To", "Timex Solution Inc."];
+  const words = ["Welcome", "To", "Timex Solution Inc Digital Agency"];
 
   useEffect(() => {
     const timer = setTimeout(() => {

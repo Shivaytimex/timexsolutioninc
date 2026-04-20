@@ -80,7 +80,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-xl font-bold mb-4 text-gray-500">Timexsolutioninc - Digital Agency Website</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-500">Timex Solution Inc Digital Agency</h3>
                 <p className="text-gray-600">
                   Where creativity meets strategy to transform your brand's vision into reality. As a leading creative agency, we specialize in crafting innovative solutions that elevate your brand and captivate your audience
                 </p>
@@ -97,7 +97,7 @@ const Footer = () => {
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <MdLocationOn className="w-5 h-5 mt-1" />
-                    <span className="">3661 West Shield Ave Fresno CA 93722</span>
+                    <span className="">3661 West Shields Ave, Fresno, CA 93733</span>
                   </li>
                   <li className="flex items-center gap-2 text-gray-600 hover:text-gray-300 transition-colors duration-200">
                     <FaWhatsapp className="w-5 h-5" />
@@ -146,8 +146,7 @@ const Footer = () => {
                 <h3 className="text-xl font-bold mb-4 text-gray-500">Location</h3>
                 <div className="w-full h-48 rounded-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.0710371830147!2d-121.49909068439823!3d38.57743997962042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad0da7e7b3d8f%3A0x5b6d8b2f4f6f1c3a!2s715%20P%20St%2C%20Sacramento%2C%20CA%2095814%2C%20USA!5e0!3m2!1sen!2s!4v1652345678901!5m2!1sen!2s"
-                    // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.2181820981364!2d-121.4994815!3d38.5748232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad1582a57fff5%3A0x56e8852876990b86!2sTIMEX%20SOLUTION%20INC!5e0!3m2!1sen!2s!4v1738173142111!5m2!1sen!2s"
+                    src="https://www.google.com/maps?q=3661%20West%20Shields%20Ave%2C%20Fresno%2C%20CA%2093733&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -164,7 +163,7 @@ const Footer = () => {
           <div className="border-t border-purple-200/30">
             <div className="py-6">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p className="text-gray-600 text-sm md:text-base text-center md:text-left">© Digital Agency Website 2024. All rights reserved.</p>
+                <p className="text-gray-600 text-sm md:text-base text-center md:text-left">© Timex Solution Inc Digital Agency 2026. All rights reserved.</p>
 
                 <div className="flex items-center flex-col md:flex-row gap-4 md:gap-8">
                   <div className="flex items-center gap-6">

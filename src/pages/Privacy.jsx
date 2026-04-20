@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
                 <h3 className="text-4xl font-bold text-white mb-5">Privacy Policy</h3>
                 <div className="">
                     <div className="space-y-6 text-base text-gray-300">
-                        <p className="font-semibold text-xl">Timex Solution Inc</p>
+                        <p className="font-semibold text-xl">Timex Solution Inc Digital Agency</p>
                         <p>
                             Timex Solution Inc is committed to respecting and
                             protecting the privacy of individuals who interact with us. This Privacy Notice explains how we collect,
