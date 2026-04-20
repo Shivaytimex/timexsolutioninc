@@ -82,7 +82,7 @@ const NewNavbar = () => {
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-full">
             {/* Left Side - Logo + Navigation Links */}
-            <div className="flex items-center space-x-6 lg:space-x-20">
+            <div className="flex items-center space-x-6 ">
               {/* Logo */}
               <Link to="/" className="flex items-center z-50 mt-4">
                 <motion.img
@@ -90,8 +90,8 @@ const NewNavbar = () => {
                   alt="Timexsolutions Logo"
                   className={`transition-all duration-500 ${
                     isScrolled
-                      ? "w-20 md:w-24 h-20 md:h-24"
-                      : "w-28 md:w-32 h-28 md:h-32"
+                      ? "w-20 md:w-24 h-20 "
+                      : "w-28 md:w-32 h-28 "
                   } brightness-0 invert`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

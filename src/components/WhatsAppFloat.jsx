@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { IoChatbubbleEllipsesOutline, IoClose } from "react-icons/io5";
 
@@ -16,6 +16,35 @@ export default function WhatsAppFloat({
   pulseAnimation = true,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  /** Hide FAB when the viewport is at (or past) the document bottom so it does not sit on the footer. */
+  const [hideAtPageBottom, setHideAtPageBottom] = useState(false);
+
+  useEffect(() => {
+    const thresholdPx = 72;
+
+    const update = () => {
+      const scrollEl = document.scrollingElement ?? document.documentElement;
+      const scrollTop = scrollEl.scrollTop;
+      const viewportH = window.innerHeight;
+      const scrollHeight = scrollEl.scrollHeight;
+      const isScrollable = scrollHeight > viewportH + 8;
+      const atBottom =
+        isScrollable && scrollTop + viewportH >= scrollHeight - thresholdPx;
+      setHideAtPageBottom(atBottom);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (hideAtPageBottom) setIsOpen(false);
+  }, [hideAtPageBottom]);
 
   const positionClasses = useMemo(
     () => ({
@@ -45,7 +74,17 @@ export default function WhatsAppFloat({
   };
 
   return (
-    <div className={`fixed z-[100] ${positionClasses[position] ?? ""}`}>
+    <motion.div
+      className={`fixed z-[100] ${positionClasses[position] ?? ""}`}
+      initial={false}
+      animate={{
+        opacity: hideAtPageBottom ? 0 : 1,
+        y: hideAtPageBottom ? 24 : 0,
+      }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      style={{ pointerEvents: hideAtPageBottom ? "none" : "auto" }}
+      aria-hidden={hideAtPageBottom}
+    >
       <div className="relative h-14 w-14 shrink-0">
         <AnimatePresence>
           {isOpen && (
@@ -55,13 +94,13 @@ export default function WhatsAppFloat({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.94 }}
               transition={{ type: "spring", stiffness: 380, damping: 28 }}
-              className={`absolute bottom-full mb-3 w-[min(18rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-white/10 bg-white shadow-xl ${
+              className={`absolute bottom-full mb-3 w-[min(18rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-primary/35 bg-black/95 shadow-xl shadow-primary/20 backdrop-blur-xl ${
                 panelAlignClasses[position] ?? "right-0"
               }`}
             >
-              <div className="flex items-center justify-between bg-[#020840] px-4 py-3">
+              <div className="flex items-center justify-between border-b border-primary/25 bg-gradient-to-r from-black via-purple-950/90 to-black px-4 py-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/25 text-white ring-1 ring-primary/40">
                     <IoChatbubbleEllipsesOutline
                       className="h-5 w-5"
                       aria-hidden
@@ -74,21 +113,21 @@ export default function WhatsAppFloat({
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="rounded-full p-1.5 text-white transition-colors hover:bg-white/10"
+                  className="rounded-full p-1.5 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label="Close"
                 >
                   <IoClose className="h-5 w-5" aria-hidden />
                 </button>
               </div>
 
-              <div className="bg-[#f0f4f8] p-4">
-                <p className="mb-4 text-sm leading-relaxed text-[#020840]/80">
+              <div className="bg-gradient-to-b from-zinc-950 to-black p-4">
+                <p className="mb-4 text-sm leading-relaxed text-gray-400">
                   Hi there! Chat with us on WhatsApp for quick assistance.
                 </p>
                 <button
                   type="button"
                   onClick={handleWhatsAppClick}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1ebe5a]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-opacity hover:opacity-95 active:opacity-90"
                 >
                   <FaWhatsapp className="h-5 w-5" aria-hidden />
                   Start chat
@@ -101,7 +140,7 @@ export default function WhatsAppFloat({
         <motion.button
           type="button"
           onClick={() => setIsOpen((o) => !o)}
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white/20 transition-shadow hover:bg-[#1ebe5a] hover:ring-white/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary via-primary to-purple-700 text-white shadow-lg shadow-primary/40 ring-2 ring-white/15 transition-shadow hover:shadow-primary/55 hover:ring-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.94 }}
           aria-expanded={isOpen}
@@ -109,14 +148,14 @@ export default function WhatsAppFloat({
         >
           {pulseAnimation && !isOpen && (
             <span
-              className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 motion-safe:animate-ping"
+              className="absolute inset-0 rounded-full bg-primary opacity-50 motion-safe:animate-ping"
               aria-hidden
             />
           )}
           <FaWhatsapp className="relative z-[1] h-7 w-7" aria-hidden />
         </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

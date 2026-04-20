@@ -118,12 +118,14 @@ export default function Portfolio() {
   const [aishImageIndex, setAishImageIndex] = useState(0);
   const [aoneImageIndex, setAoneImageIndex] = useState(0);
   const [jgImageIndex, setJgImageIndex] = useState(0);
+  const [calCoastImageIndex, setCalCoastImageIndex] = useState(0);
 
   // Image arrays for each client
   const smsImages = ['/sms1.png', '/sms2.png'];
   const aishImages = ['/aish1.png', '/aish2.png'];
   const aoneImages = ['/aone1.png', '/aone2.png'];
   const jgImages = ['/jg-img-1.png', '/jg-img-2.png', '/jg-img-3.png'];
+  const calCoastImages = ['/services/cal2.png', '/services/image.png'];
 
   // Image rotation effects
   useEffect(() => {
@@ -143,11 +145,16 @@ export default function Portfolio() {
       setJgImageIndex(prev => (prev + 1) % jgImages.length);
     }, 4000);
 
+    const calCoastInterval = setInterval(() => {
+      setCalCoastImageIndex(prev => (prev + 1) % calCoastImages.length);
+    }, 4000);
+
     return () => {
       clearInterval(smsInterval);
       clearInterval(aishInterval);
       clearInterval(aoneInterval);
       clearInterval(jgInterval);
+      clearInterval(calCoastInterval);
     };
   }, []);
 
@@ -710,6 +717,31 @@ export default function Portfolio() {
         { label: 'REQUEST A QUOTE', href: '/contact' }
       ]}
       reverse
+    />
+  </motion.div>
+
+  <motion.div variants={staggerItem}>
+    <PortfolioShowcase
+      image={
+        <motion.img
+          key={calCoastImageIndex}
+          src={calCoastImages[calCoastImageIndex]}
+          alt="Cal Coast Logistics"
+          className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+          viewport={{ once: true }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        />
+      }
+      title="Cal Coast Logistics"
+      description={`Based in Fresno, California since 2015, Cal Coast Logistics is a fresh produce specialist serving customers across California and beyond. Their site positions them as a dependable cargo and freight partner: full truckload and fresh produce transportation with the on-time performance shippers trust.\n\nWe highlighted their strengths—on-time delivery, a fleet of 35+ assets, and interstate authority—alongside clear paths to get in touch. Headquarters at 2205 E Annadale Ave, Fresno, CA 93706; reach the team at (559) 481-6441 or ops@calcoastlogistics.com, with messaging that they are available 24/7 to support logistics needs.`}
+      buttons={[
+        { label: 'LAUNCH WEBSITE', href: 'https://calcoastlogistics.com/' },
+        { label: 'REQUEST A QUOTE', href: '/contact' },
+      ]}
     />
   </motion.div>
 </motion.div>

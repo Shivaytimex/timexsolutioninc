@@ -3,10 +3,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa'
 import { MdLocationOn, MdEmail, MdAccessTime } from 'react-icons/md'
 import { Link, Navigate, useNavigate } from 'react-router'
-import { FaWhatsapp } from 'react-icons/fa6'
+import { FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
 
 const footerLinks = {
   services: [
@@ -182,7 +182,15 @@ const Footer = () => {
                     <Link to="https://www.instagram.com/timexsolutioninc?igsh=MWZodjU5cnZ4OGw0YQ==" target="_blank" className="text-gray-600 hover:text-gray-300 transition-colors duration-200">
                       <FaInstagram className="w-4 h-5 md:w-5 md:h-5" />
                     </Link>
-                    {/* Twitter */}
+                    <Link
+                      to="https://x.com/timexsolution?s=21"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-gray-300 transition-colors duration-200"
+                      aria-label="Timex Solution on X"
+                    >
+                      <FaXTwitter className="w-4 h-5 md:w-5 md:h-5" />
+                    </Link>
                   </div>
                 </div>
               </div>
