@@ -423,12 +423,13 @@ export default function ContactPage() {
         <AnimatedSection className="mt-12 rounded-3xl overflow-hidden bg-white/5 backdrop-blur-lg p-2">
           <motion.div variants={fadeInUp}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.2181820981364!2d-121.4994815!3d38.5748232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad1582a57fff5%3A0x56e8852876990b86!2sTIMEX%20SOLUTION%20INC!5e0!3m2!1sen!2s!4v1738173142111!5m2!1sen!2s"
+              src="https://www.google.com/maps?q=3661%20West%20Shields%20Ave%2C%20Fresno%2C%20CA%2093733&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-[400px] rounded-2xl"
               title="Google Maps"
             ></iframe>

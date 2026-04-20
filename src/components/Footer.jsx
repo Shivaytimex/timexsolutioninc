@@ -80,7 +80,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <h3 className="text-xl font-bold mb-4 text-gray-500">Timex Solution Inc Digital Agency</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-500">Timex Solution Inc</h3>
                 <p className="text-gray-600">
                   Where creativity meets strategy to transform your brand's vision into reality. As a leading creative agency, we specialize in crafting innovative solutions that elevate your brand and captivate your audience
                 </p>
@@ -163,7 +163,7 @@ const Footer = () => {
           <div className="border-t border-purple-200/30">
             <div className="py-6">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p className="text-gray-600 text-sm md:text-base text-center md:text-left">© Timex Solution Inc Digital Agency 2026. All rights reserved.</p>
+                <p className="text-gray-600 text-sm md:text-base text-center md:text-left">© Timex Solution Inc 2026. All rights reserved.</p>
 
                 <div className="flex items-center flex-col md:flex-row gap-4 md:gap-8">
                   <div className="flex items-center gap-6">

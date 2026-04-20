@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaPlay, FaVideo, FaChevronRight } from "react-icons/fa";
+import { FaVideo, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router";
 import { Stars } from "./Stars";
 
 const VideoServicesHome = () => {
+  /* —— Video showcase (carousel + player) —— disabled; uncomment to restore
+  import { useState, useEffect, useRef } from "react";
+  import { FaPlay } from "react-icons/fa";
+
   const [activeVideo, setActiveVideo] = useState(0);
   const videoRef = useRef(null);
 
@@ -76,6 +79,7 @@ const VideoServicesHome = () => {
         .catch((err) => console.log("Video play error:", err));
     }
   }, [activeVideo]);
+  —— end video showcase logic —— */
 
   const services = [
     {
@@ -139,92 +143,19 @@ const VideoServicesHome = () => {
           </p>
         </motion.div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
-          {/* Left Side - Video Showcase */}
-          <motion.div
-            className="order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative">
-              {/* Main Video Display */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-primary/20 h-[400px] md:h-[500px]">
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source
-                    src={showcaseVideos[activeVideo].url}
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                {/* Video Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <motion.h3
-                    key={activeVideo}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-white text-2xl md:text-3xl font-bold mb-2"
-                  >
-                    {showcaseVideos[activeVideo].title}
-                  </motion.h3>
-                  <motion.p
-                    key={`desc-${activeVideo}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-gray-300 text-base md:text-lg"
-                  >
-                    {showcaseVideos[activeVideo].description}
-                  </motion.p>
-                </div>
-
-                {/* Play Icon Overlay */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <motion.div
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary/30 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center"
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <FaPlay className="text-white text-2xl md:text-3xl ml-1" />
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Video Selector Dots */}
-              <div className="flex justify-center gap-3 mt-6">
-                {showcaseVideos.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveVideo(index)}
-                    className={`transition-all duration-300 ${
-                      index === activeVideo
-                        ? "w-12 h-3 bg-gradient-to-r from-primary to-purple-600 rounded-full"
-                        : "w-3 h-3 bg-gray-600 rounded-full hover:bg-gray-400"
-                    }`}
-                    aria-label={`Switch to video ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+        {/* Main Content — video showcase column commented out; services full width */}
+        <div className="max-w-4xl mx-auto mb-16">
+          {/*
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
+          Left Side - Video Showcase (restored with logic block above)
+          <motion.div className="order-2 lg:order-1" ...>
+            ... video player + dots ...
           </motion.div>
+          */}
 
-          {/* Right Side - Services Grid */}
+          {/* Services Grid (was right column) */}
           <motion.div
-            className="order-1 lg:order-2 space-y-6"
+            className="space-y-6"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
