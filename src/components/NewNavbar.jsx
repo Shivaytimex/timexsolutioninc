@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX, FiChevronDown, FiHome, FiBriefcase, FiInfo, FiFolder, FiMail, FiVideo } from "react-icons/fi";
+import {
+  FiMenu,
+  FiX,
+  FiChevronDown,
+  FiHome,
+  FiBriefcase,
+  FiInfo,
+  FiFolder,
+  FiMail,
+  FiVideo,
+} from "react-icons/fi";
 
 const NewNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,8 +22,8 @@ const NewNavbar = () => {
   // Navigation links with icons
   const navLinks = [
     { title: "Home", path: "/", icon: FiHome },
-    { 
-      title: "Services", 
+    {
+      title: "Services",
       path: "/services",
       icon: FiBriefcase,
       submenu: [
@@ -22,7 +32,7 @@ const NewNavbar = () => {
         { title: "Digital Marketing", path: "/services/digital-marketing" },
         { title: "Tech/IT Solutions", path: "/services/tech-it-solutions" },
         { title: "Video Services", path: "/services/video-services" },
-      ]
+      ],
     },
     { title: "About", path: "/about", icon: FiInfo },
     { title: "Portfolio", path: "/portfolio", icon: FiFolder },
@@ -74,18 +84,19 @@ const NewNavbar = () => {
             {/* Left Side - Logo + Navigation Links */}
             <div className="flex items-center space-x-6 lg:space-x-20">
               {/* Logo */}
-              <Link to="/" className="flex items-center z-50">
+              <Link to="/" className="flex items-center z-50 mt-4">
                 <motion.img
                   src="/nav-logo.webp"
                   alt="Timexsolutions Logo"
                   className={`transition-all duration-500 ${
-                    isScrolled ? "w-12 md:w-16 h-12 md:h-16" : "w-16 md:w-20 h-16 md:h-20"
-                  }`}
+                    isScrolled
+                      ? "w-20 md:w-24 h-20 md:h-24"
+                      : "w-28 md:w-32 h-28 md:h-32"
+                  } brightness-0 invert`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 />
               </Link>
-
               {/* Desktop Navigation Links */}
               <div className="hidden lg:flex items-center space-x-6">
                 {navLinks.map((link, index) => (
@@ -94,7 +105,9 @@ const NewNavbar = () => {
                       <>
                         <button
                           className={`flex items-center gap-1 text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base ${
-                            location.pathname.includes("/services") ? "text-primary" : ""
+                            location.pathname.includes("/services")
+                              ? "text-primary"
+                              : ""
                           }`}
                           onMouseEnter={() => setIsServicesOpen(true)}
                         >
@@ -122,7 +135,9 @@ const NewNavbar = () => {
                                   key={idx}
                                   to={item.path}
                                   className={`block px-4 py-3 text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${
-                                    location.pathname === item.path ? "bg-primary/10 text-primary" : ""
+                                    location.pathname === item.path
+                                      ? "bg-primary/10 text-primary"
+                                      : ""
                                   }`}
                                 >
                                   {item.title}
@@ -164,7 +179,6 @@ const NewNavbar = () => {
               </Link>
             </div>
 
-
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -181,7 +195,7 @@ const NewNavbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu - New Unique Design */}
+      {/* Mobile Menu  */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -267,7 +281,7 @@ const NewNavbar = () => {
                 <div className="flex-1 px-4 py-8 space-y-3">
                   {navLinks.map((link, index) => {
                     const Icon = link.icon;
-                    const isActive = link.submenu 
+                    const isActive = link.submenu
                       ? location.pathname.includes(link.path)
                       : location.pathname === link.path;
 
@@ -302,7 +316,9 @@ const NewNavbar = () => {
                                 >
                                   <Icon className="text-xl" />
                                 </motion.div>
-                                <span className="font-semibold text-lg">{link.title}</span>
+                                <span className="font-semibold text-lg">
+                                  {link.title}
+                                </span>
                               </div>
                               <motion.div
                                 animate={{ rotate: isServicesOpen ? 180 : 0 }}
@@ -370,7 +386,9 @@ const NewNavbar = () => {
                               >
                                 <Icon className="text-xl" />
                               </motion.div>
-                              <span className="font-semibold text-lg">{link.title}</span>
+                              <span className="font-semibold text-lg">
+                                {link.title}
+                              </span>
                               {isActive && (
                                 <motion.div
                                   layoutId="activeMobileLink"
@@ -395,7 +413,10 @@ const NewNavbar = () => {
                   transition={{ delay: 0.6, duration: 0.4 }}
                   className="p-6 space-y-3 bg-black/40 backdrop-blur-xl border-t border-primary/20"
                 >
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Link
                       to="/project-brief"
                       className="block w-full px-6 py-4 bg-gradient-to-r from-primary via-purple-600 to-primary text-white font-bold text-center rounded-2xl transition-all duration-300 shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 relative overflow-hidden group"
@@ -408,7 +429,10 @@ const NewNavbar = () => {
                     </Link>
                   </motion.div>
 
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Link
                       to="/payments-square"
                       className="block w-full px-6 py-4 border-2 border-primary/50 hover:border-primary text-white font-semibold text-center rounded-2xl transition-all duration-300 hover:bg-primary/10"
@@ -427,4 +451,3 @@ const NewNavbar = () => {
 };
 
 export default NewNavbar;
-
