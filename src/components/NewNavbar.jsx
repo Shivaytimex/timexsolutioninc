@@ -90,8 +90,8 @@ const NewNavbar = () => {
                   alt="Timexsolutions Logo"
                   className={`transition-all duration-500 ${
                     isScrolled
-                      ? "w-20 md:w-24 h-20 "
-                      : "w-28 md:w-32 h-28 "
+                      ? "w-28 md:w-32 h-auto"
+                      : "w-28 md:w-32 h-auto"
                   } brightness-0 invert`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
