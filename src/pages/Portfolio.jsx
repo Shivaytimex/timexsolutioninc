@@ -100,6 +100,14 @@ const images = [
       title: "JG Limousines",
       description: "Premium Ride Booking Website",
       details: "Premium Ride Booking Website"
+    },
+    {
+      before: "/services/cal-logo.png",
+      after: "/project1.png",
+      leftSide: "/project4.png",
+      rightSide: "/project1.png",
+      title: "Cal Coast Logistics",
+      description: "Reefer & Freight Logistics",
     }
   ];
 
@@ -737,7 +745,7 @@ export default function Portfolio() {
         />
       }
       title="Cal Coast Logistics"
-      description={`Based in Fresno, California since 2015, Cal Coast Logistics is a fresh produce specialist serving customers across California and beyond. Their site positions them as a dependable cargo and freight partner: full truckload and fresh produce transportation with the on-time performance shippers trust.\n\nWe highlighted their strengths—on-time delivery, a fleet of 35+ assets, and interstate authority—alongside clear paths to get in touch. Headquarters at 2205 E Annadale Ave, Fresno, CA 93706; reach the team at (559) 481-6441 or ops@calcoastlogistics.com, with messaging that they are available 24/7 to support logistics needs.`}
+      description={`Based in Fresno, California since 2015, Cal Coast Logistics is a fresh produce specialist serving customers across California and beyond. Their site positions them as a dependable cargo and freight partner, offering full truckload transportation and temperature-controlled reefer service with the on-time performance shippers trust.\n\nWe highlighted their strengths—on-time delivery, a fleet of 35+ assets, and interstate authority—alongside clear paths to get in touch. Headquarters at 2205 E Annadale Ave, Fresno, CA 93706; reach the team at (559) 481-6441 or ops@calcoastlogistics.com, with messaging that they are available 24/7 to support logistics needs.`}
       buttons={[
         { label: 'LAUNCH WEBSITE', href: 'https://calcoastlogistics.com/' },
         { label: 'REQUEST A QUOTE', href: '/contact' },
