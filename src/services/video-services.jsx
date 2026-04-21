@@ -234,7 +234,7 @@ function VideoReelsSection() {
               muted
               playsInline
               preload="auto"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover "
               onLoadedData={() => {
                 console.log("Video 1 loaded");
                 setVideo1Loaded(true);
