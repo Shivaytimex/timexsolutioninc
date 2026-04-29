@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "FuturaEF-Heavy";
+  src: url("/fonts/futuraef-heavy.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FuturaEF-Medium";
+  src: url("/fonts/futuraef-medium.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body,
 #root {
@@ -20,6 +36,7 @@ body {
   --primary-dark: #7c2d8b;
   --primary-light: #b665f2;
   --primary-hover: #8129d1;
+  --font-futura-heavy: "FuturaEF-Heavy";
 }
 
 /* Apply primary colors to common classes */
@@ -48,6 +65,7 @@ body {
 
 body {
   background-color: black;
+  font-family: var(--font-futura-heavy), Arial, Helvetica, sans-serif;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
