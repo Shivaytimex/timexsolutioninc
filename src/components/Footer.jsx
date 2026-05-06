@@ -56,15 +56,15 @@ const Footer = () => {
       className={`relative bg-gradient-to-b from-gray-900 to-black flex flex-col justify-between min-h-[500px] overflow-hidden ${isPrivacyPolicyOpen || isTermsConditionsOpen ? "z-[100]" : "z-10"
         }`}>
 
-      <div className="relative flex-grow flex flex-col items-center justify-center overflow-hidden ">
-        <div className="opacity-70">
-          <img
-            src="/FOOTER1.jpeg"
-            alt="Timex Horse Logo"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
+     <div className="relative w-full flex-grow flex flex-col items-center justify-center overflow-hidden">
+  <div className="w-full opacity-70">
+    <img
+      src="/FOOTER1.jpeg"
+      alt="Timex Horse Logo"
+      className="w-full h-auto"
+    />
+  </div>
+</div>
 
       <footer className="relative bg-black bg-opacity-50 backdrop-blur-sm">
         {/* Newsletter Section */}
