@@ -43,7 +43,7 @@ export default function SplashScreen({ onComplete }) {
   const [companyText, setCompanyText] = useState("");
 
   const welcomeMsg = "Welcome to";
-  const companyMsg = "Timex Solution Inc";
+  const companyMsg = "Unique web layer";
 
   // Step 1: Type "Welcome to"
   useEffect(() => {
