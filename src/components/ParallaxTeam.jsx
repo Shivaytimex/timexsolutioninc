@@ -5,7 +5,6 @@ import {
   FaUsers,
   FaRocket,
   FaGlobeAmericas,
-  FaAward,
   FaEye,
 } from "react-icons/fa";
 import { Stars } from "./Stars";
@@ -133,12 +132,11 @@ export default function WhereWeAre() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid grid-cols-1 md:grid-cols-3 gap-6"
             >
-              <StatCard icon={FaUsers} title="Team Members" value="50+" />
-              <StatCard icon={FaGlobeAmericas} title="Countries" value="12+" />
-              <StatCard icon={FaRocket} title="Projects" value="100+" />
-              <StatCard icon={FaAward} title="Awards" value="25+" />
+              <StatCard icon={FaUsers} title="Team Members" value="16+" />
+              <StatCard icon={FaGlobeAmericas} title="Countries" value="4+" />
+              <StatCard icon={FaRocket} title="Projects" value="72+" />
             </motion.div>
           </section>
 
