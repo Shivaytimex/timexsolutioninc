@@ -8,12 +8,6 @@ import {
   FaAward,
   FaEye,
 } from "react-icons/fa";
-import p1 from "./Team/p1.jpeg";
-import p2 from "./Team/p2.jpeg";
-import p3 from "./Team/p3.jpeg";
-import p4 from "./Team/p4.jpg";
-import p5 from "./Team/p5.jpg";
-import p6 from "./Team/p6.jpeg";
 import { Stars } from "./Stars";
 
 const StatCard = ({ icon: Icon, title, value }) => (
@@ -43,13 +37,15 @@ const TeamMember = ({ image, name, role, delay }) => (
     transition={{ duration: 0.5, delay }}
     className="relative group"
   >
-    <div className="overflow-hidden rounded-2xl aspect-[3/4]">
-      <motion.img
-        src={image}
-        alt={name}
-        className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-        whileHover={{ scale: 1.1 }}
-      />
+    <div className="overflow-hidden rounded-2xl aspect-[3/4] bg-gradient-to-br from-purple-900/50 to-purple-800/20">
+      {image && (
+        <motion.img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+          whileHover={{ scale: 1.1 }}
+        />
+      )}
     </div>
     <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
       <h3 className="text-white font-semibold text-lg">{name}</h3>
@@ -70,12 +66,12 @@ export default function WhereWeAre() {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, 0]);
 
   const teamMembers = [
-    { image: p1, name: "Alex Johnson", role: "CEO", y: y1 },
-    { image: p2, name: "Sarah Lee", role: "CTO", y: y2 },
-    { image: p3, name: "Michael Chen", role: "Lead Designer", y: y3 },
-    { image: p4, name: "Emily Davis", role: "Marketing Director", y: y1 },
-    { image: p5, name: "David Kim", role: "Product Manager", y: y2 },
-    { image: p6, name: "Rachel Nguyen", role: "Senior Developer", y: y3 },
+    { image: null, name: "Alex Johnson", role: "CEO", y: y1 },
+    { image: null, name: "Sarah Lee", role: "CTO", y: y2 },
+    { image: null, name: "Michael Chen", role: "Lead Designer", y: y3 },
+    { image: null, name: "Emily Davis", role: "Marketing Director", y: y1 },
+    { image: null, name: "David Kim", role: "Product Manager", y: y2 },
+    { image: null, name: "Rachel Nguyen", role: "Senior Developer", y: y3 },
   ];
 
   const controls = useAnimation();
@@ -204,7 +200,7 @@ export default function WhereWeAre() {
               </div>
             </motion.div>
 
-            {/* Image Grid with Parallax-like effect */}
+            {/* Image Grid with Placeholder Space */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {teamMembers.map((member, index) => (
                 <motion.div

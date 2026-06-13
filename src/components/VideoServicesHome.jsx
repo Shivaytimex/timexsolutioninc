@@ -1,136 +1,56 @@
-import { motion } from "framer-motion";
-import { FaVideo, FaChevronRight } from "react-icons/fa";
-import { Link } from "react-router";
-import { Stars } from "./Stars";
+import React, { useState, useEffect } from "react";
 
 const VideoServicesHome = () => {
-  /* —— Video showcase (carousel + player) —— disabled; uncomment to restore
-  import { useState, useEffect, useRef } from "react";
-  import { FaPlay } from "react-icons/fa";
+  const [isVisible, setIsVisible] = useState(false);
 
-  const [activeVideo, setActiveVideo] = useState(0);
-  const videoRef = useRef(null);
-
-  const showcaseVideos = [
-    {
-      url: "/vedio/videoForHome/12.mp4",
-      title: "Creative Innovation",
-      description:
-        "Unleash your creative potential with cutting-edge solutions",
-    },
-    {
-      url: "/vedio/videoForHome/4.mp4",
-      title: "Audience Engagement",
-      description: "Connect and engage like never before",
-    },
-    {
-      url: "/vedio/videoForHome/21.mp4",
-      title: "Smart Solutions",
-      description: "Revolutionize your workflow with automation",
-    },
-
-    {
-      url: "/vedio/videoForHome/14.mp4",
-      title: "Growth Strategy",
-      description: "Scale your digital empire exponentially",
-    },
-    {
-      url: "/vedio/videoForHome/24.mp4",
-      title: "Digital Mastery",
-      description: "Complete solutions for success",
-    },
-    {
-      url: "/vedio/videoForHome/2.mp4",
-      title: "Premium Quality",
-      description: "Stunning designs that captivate audiences",
-    },
-    {
-      url: "/vedio/video002.mp4",
-      title: "Cinematic Tours",
-      description: "Immersive 360° virtual experiences",
-    },
-    {
-      url: "/vedio/video003.mp4",
-      title: "Social Media Reels",
-      description: "Engaging content for maximum reach",
-    },
-    {
-      url: "/vedio/videoForHome/17.mp4",
-      title: "Performance Excellence",
-      description: "Optimize your workflow for maximum impact",
-    },
-  ];
-
-  // Auto-switch videos every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveVideo((prev) => (prev + 1) % showcaseVideos.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [showcaseVideos.length]);
-
-  // Ensure video plays when switching
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.load();
-      videoRef.current
-        .play()
-        .catch((err) => console.log("Video play error:", err));
-    }
-  }, [activeVideo]);
-  —— end video showcase logic —— */
+    setIsVisible(true);
+  }, []);
 
   const services = [
     {
-      icon: "🎥",
       title: "Property Videos",
       description: "Cinematic property tours that captivate buyers",
+      emoji: "🎬",
     },
     {
-      icon: "📱",
       title: "Social Media Content",
-      description: "Viral-ready reels and stories for Realors",
+      description: "Viral-ready reels and stories for Realtors",
+      emoji: "📱",
     },
     {
-      icon: "✈️",
       title: "Drone Footage",
       description: "Stunning aerial perspectives",
+      emoji: "🎥",
     },
     {
-      icon: "✂️",
       title: "Professional Editing",
       description: "High-quality post-production services",
+      emoji: "✂️",
     },
   ];
 
+  const stats = [
+    { number: "500+", label: "Videos Created", emoji: "🎬" },
+    { number: "1M+", label: "Total Views", emoji: "👁️" },
+    { number: "98%", label: "Satisfaction Rate", emoji: "⭐" },
+    { number: "24-48hr", label: "Delivery Time", emoji: "⚡" },
+  ];
+
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
-      <Stars />
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <FaVideo className="text-primary" />
-            <span className="text-primary font-semibold text-sm">
+    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-black">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full mb-4">
+            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <span className="text-purple-400 font-semibold text-sm">
               Our Services
             </span>
-          </motion.div>
+          </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary via-purple-400 to-pink-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 text-transparent bg-clip-text">
               Real Estate Video
             </span>
             <br />
@@ -141,110 +61,85 @@ const VideoServicesHome = () => {
             Transform your listings with professional videography that captures
             attention and drives sales
           </p>
-        </motion.div>
-
-        {/* Main Content — video showcase column commented out; services full width */}
-        <div className="max-w-4xl mx-auto mb-16">
-          {/*
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
-          Left Side - Video Showcase (restored with logic block above)
-          <motion.div className="order-2 lg:order-1" ...>
-            ... video player + dots ...
-          </motion.div>
-          */}
-
-          {/* Services Grid (was right column) */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="space-y-4 mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                Why Choose Our Video Services?
-              </h3>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                We create stunning video content that helps real estate agents
-                stand out, attract more clients, and close deals faster. Our
-                professional videography services are designed to maximize your
-                property&apos;s appeal.
-              </p>
-            </div>
-
-            {/* Services Grid */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative bg-gradient-to-br from-purple-900/20 to-indigo-900/20 backdrop-blur-sm border border-primary/20 rounded-xl p-5 hover:border-primary/50 transition-all duration-300 hover:scale-105"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <div className="text-4xl mb-3">{service.icon}</div>
-                  <h4 className="text-white text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              className="pt-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Link
-                to="/services/video-services"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white font-bold rounded-full text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/50 group"
-              >
-                Explore Video Services
-                <FaChevronRight className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </motion.div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          {[
-            { number: "500+", label: "Videos Created" },
-            { number: "1M+", label: "Total Views" },
-            { number: "98%", label: "Satisfaction Rate" },
-            { number: "24-48hr", label: "Delivery Time" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              className="text-center p-6 bg-gradient-to-br from-purple-900/30 to-indigo-900/30 backdrop-blur-sm border border-primary/20 rounded-xl hover:border-primary/40 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+        {/* Content */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="space-y-4 mb-8 text-center md:text-left">
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Why Choose Our Video Services?
+            </h3>
+            <p className="text-gray-400 text-base md:text-lg leading-relaxed">
+              We create stunning video content that helps real estate agents
+              stand out, attract more clients, and close deals faster. Our
+              professional videography services are designed to maximize your
+              property&apos;s appeal.
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid sm:grid-cols-2 gap-5">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 cursor-pointer"
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(30px)",
+                }}
+              >
+                {/* Icon Circle */}
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110">
+                  <span className="text-white text-2xl">{service.emoji}</span>
+                </div>
+
+                <h4 className="text-white text-lg font-bold mb-2 group-hover:text-purple-400 transition-colors">
+                  {service.title}
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="pt-10 text-center">
+            <a
+              href="/services/video-services"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold rounded-full text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/30 group"
             >
-              <h4 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+              Explore Video Services
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 mt-16">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="text-center p-6 bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-purple-500/20 rounded-xl hover:border-purple-500/40 transition-all duration-300 hover:scale-105"
+              style={{
+                transitionDelay: `${index * 100}ms`,
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "scale(1)" : "scale(0.8)",
+              }}
+            >
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
+                <span className="text-white text-xl">{stat.emoji}</span>
+              </div>
+              <h4 className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">
                 {stat.number}
               </h4>
               <p className="text-gray-400 text-sm md:text-base font-medium">
                 {stat.label}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

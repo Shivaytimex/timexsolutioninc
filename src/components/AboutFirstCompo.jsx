@@ -5,7 +5,7 @@ import { Stars } from "./Stars";
 import TiltedScroll from "../utils/TiltedScroll";
 import { LampContainer } from "./ui/lamp";
 
-// 1) A small hook to detect if screen is >= 1024px (Tailwind’s lg breakpoint).
+// 1) A small hook to detect if screen is >= 1024px (Tailwind's lg breakpoint).
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
 
@@ -29,13 +29,12 @@ export default function AboutSection() {
   const aboutRef = useRef(null);
   const aboutPicRef = useRef(null);
   const ref = useRef(null);
-  const videoRef = useRef(null);
 
   // 2) Intersection Observers, as before
   const isInViewAbout = useInView(aboutRef, { once: true });
   const isInViewAboutPic = useInView(aboutPicRef, { once: true });
 
-  // 3) Also track the intersection for the video/TypeWriter section
+  // 3) Also track the intersection for the TypeWriter section
   const InView = useInView(ref, { once: true });
 
   // 4) Check if screen is "large" (>=1024px)
@@ -69,15 +68,13 @@ export default function AboutSection() {
 
       <section className="container mx-auto w-[90%] lg:w-[100%] py-8 lg:px-40 mt-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* 5) About Text Motion Div */}
+          {/* About Text Motion Div */}
           <motion.div
             ref={aboutRef}
-            // If it's a large screen, start off-screen (-500), else just show at (0)
             initial={{
               x: isLargeScreen ? -500 : 0,
               opacity: isLargeScreen ? 0 : 1,
             }}
-            // Animate to visible only if large AND in view
             animate={{
               x: isLargeScreen
                 ? isInViewAbout
@@ -129,15 +126,13 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
-          {/* 6) About Image Motion Div */}
+          {/* About Image Motion Div */}
           <motion.div
             ref={aboutPicRef}
-            // If it's a large screen, start off-screen (500), else at 0
             initial={{
               x: isLargeScreen ? 500 : 0,
               opacity: isLargeScreen ? 0 : 1,
             }}
-            // Animate to visible only if large AND in view
             animate={{
               x: isLargeScreen
                 ? isInViewAboutPic
@@ -156,7 +151,7 @@ export default function AboutSection() {
             <img
               src="/about-first-img.webp"
               alt="About Partner"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover rounded-lg"
             />
           </motion.div>
         </div>
@@ -164,38 +159,20 @@ export default function AboutSection() {
 
       <TiltedScroll />
 
+      {/* TypeWriter Section - Video Removed */}
       <div className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-12 space-y-8 lg:space-y-0">
-          <div className="w-full lg:w-1/2">
-            <motion.div
-              className="w-full h-48 md:h-60 lg:w-full lg:h-[400px] mx-auto relative rounded-lg overflow-hidden"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: InView ? 1 : 0, scale: InView ? 1 : 0 }}
-              transition={{ duration: 1 }}
-            >
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                <source src="/vedio/vedio1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </motion.div>
-          </div>
-
-          <div className="w-full lg:w-1/2" ref={ref}>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-5 text-PurpleHeading">
+        <div className="flex flex-col items-center justify-center space-y-8">
+          <div className="w-full" ref={ref}>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium mb-5 text-center text-purple-400">
               The Original Performance Marketing Firm
             </h1>
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              InView && <TypeWriterText text={paragraphText} speed={1} />
-            )}
+            <div className="text-center">
+              {isLoading ? (
+                <p className="text-gray-400">Loading...</p>
+              ) : (
+                InView && <TypeWriterText text={paragraphText} speed={1} />
+              )}
+            </div>
           </div>
         </div>
       </div>

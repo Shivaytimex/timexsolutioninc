@@ -11,6 +11,7 @@ import {
   FiFolder,
   FiMail,
   FiVideo,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 const NewNavbar = () => {
@@ -40,6 +41,75 @@ const NewNavbar = () => {
     { title: "Contact", path: "/contact", icon: FiMail },
   ];
 
+  // Add global styles to prevent tap highlight and blur
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Remove default tap highlight on all elements */
+      * {
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-touch-callout: none !important;
+      }
+      
+      /* Prevent any blur or flash on touch */
+      .no-blur, button, a, [role="button"] {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      /* Smooth ripple effect without blur */
+      .ripple-effect {
+        position: relative;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+      }
+      
+      .ripple-effect::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(139, 92, 246, 0.4);
+        transform: translate(-50%, -50%);
+        transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), height 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        pointer-events: none;
+      }
+      
+      .ripple-effect:active::after {
+        width: 200px;
+        height: 200px;
+      }
+      
+      /* Improve touch targets */
+      @media (max-width: 1024px) {
+        button, a, [role="button"] {
+          cursor: pointer;
+          min-height: 48px;
+          min-width: 48px;
+        }
+        
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+          overflow: hidden;
+          position: fixed;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -53,13 +123,24 @@ const NewNavbar = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
+    document.body.classList.remove('menu-open');
   }, [location]);
+
+  // Handle body scroll lock
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMobileMenuOpen]);
 
   // Close mobile menu on window resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false);
+        document.body.classList.remove('menu-open');
       }
     };
 
@@ -73,18 +154,18 @@ const NewNavbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out no-blur ${
           isScrolled
-            ? "h-16 md:h-20 bg-black/95 backdrop-blur-xl shadow-lg shadow-primary/10"
+            ? "h-16 md:h-20 bg-black/95 backdrop-blur-xl shadow-lg shadow-purple-500/10"
             : "h-20 md:h-24 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md"
         }`}
       >
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-full">
             {/* Left Side - Logo + Navigation Links */}
-            <div className="flex items-center space-x-6 ">
+            <div className="flex items-center space-x-6">
               {/* Logo */}
-              <Link to="/" className="flex items-center z-50 mt-4">
+              <Link to="/" className="flex items-center z-50 mt-4 ripple-effect rounded-lg">
                 <motion.img
                   src="/nav-logo.webp"
                   alt="Timexsolutions Logo"
@@ -97,6 +178,7 @@ const NewNavbar = () => {
                   whileTap={{ scale: 0.95 }}
                 />
               </Link>
+              
               {/* Desktop Navigation Links */}
               <div className="hidden lg:flex items-center space-x-6">
                 {navLinks.map((link, index) => (
@@ -104,16 +186,16 @@ const NewNavbar = () => {
                     {link.submenu ? (
                       <>
                         <button
-                          className={`flex items-center gap-1 text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base ${
+                          className={`flex items-center gap-1 text-white/80 hover:text-purple-400 transition-all duration-300 font-medium text-base ripple-effect px-2 py-1 rounded-lg ${
                             location.pathname.includes("/services")
-                              ? "text-primary"
+                              ? "text-purple-400"
                               : ""
                           }`}
                           onMouseEnter={() => setIsServicesOpen(true)}
                         >
                           {link.title}
                           <FiChevronDown
-                            className={`transition-transform duration-300 ${
+                            className={`transition-transform duration-300 text-sm ${
                               isServicesOpen ? "rotate-180" : ""
                             }`}
                           />
@@ -127,16 +209,16 @@ const NewNavbar = () => {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 10 }}
                               transition={{ duration: 0.2 }}
-                              className="absolute top-full left-0 mt-2 w-56 bg-black/95 backdrop-blur-xl border border-primary/20 rounded-xl shadow-xl shadow-primary/10 overflow-hidden"
+                              className="absolute top-full left-0 mt-2 w-56 bg-black/95 backdrop-blur-xl border border-purple-500/20 rounded-xl shadow-xl shadow-purple-500/10 overflow-hidden"
                               onMouseLeave={() => setIsServicesOpen(false)}
                             >
                               {link.submenu.map((item, idx) => (
                                 <Link
                                   key={idx}
                                   to={item.path}
-                                  className={`block px-4 py-3 text-white/90 hover:text-primary hover:bg-primary/10 transition-all duration-300 text-sm ${
+                                  className={`block px-4 py-3 text-white/80 hover:text-purple-400 hover:bg-purple-500/10 transition-all duration-300 text-sm ${
                                     location.pathname === item.path
-                                      ? "bg-primary/10 text-primary"
+                                      ? "bg-purple-500/10 text-purple-400 border-l-2 border-purple-400"
                                       : ""
                                   }`}
                                 >
@@ -150,15 +232,15 @@ const NewNavbar = () => {
                     ) : (
                       <Link
                         to={link.path}
-                        className={`text-white/90 hover:text-primary transition-colors duration-300 font-medium text-base relative ${
-                          location.pathname === link.path ? "text-primary" : ""
+                        className={`text-white/80 hover:text-purple-400 transition-all duration-300 font-medium text-base relative px-2 py-1 rounded-lg ${
+                          location.pathname === link.path ? "text-purple-400" : ""
                         }`}
                       >
                         {link.title}
                         {location.pathname === link.path && (
                           <motion.div
                             layoutId="activeLink"
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
                             transition={{ duration: 0.3 }}
                           />
                         )}
@@ -173,7 +255,7 @@ const NewNavbar = () => {
             <div className="hidden lg:flex items-center">
               <Link
                 to="/project-brief"
-                className="px-6 py-2.5 bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50"
+                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 ripple-effect"
               >
                 Get Started
               </Link>
@@ -182,7 +264,7 @@ const NewNavbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden z-50 w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-300"
+              className="lg:hidden z-50 w-12 h-12 flex items-center justify-center rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition-all duration-300 ripple-effect"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -195,17 +277,17 @@ const NewNavbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu  */}
+      {/* Mobile Menu - No Blur Version */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Animated Backdrop with Gradient */}
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="fixed inset-0 bg-gradient-to-br from-black via-primary/20 to-black backdrop-blur-md z-40 lg:hidden"
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/90 z-40 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {/* Animated Background Elements */}
@@ -213,10 +295,10 @@ const NewNavbar = () => {
                 className="absolute inset-0 overflow-hidden"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 <motion.div
-                  className="absolute top-20 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"
+                  className="absolute top-20 right-10 w-64 h-64 bg-purple-500/10 rounded-full"
                   animate={{
                     scale: [1, 1.2, 1],
                     x: [0, 30, 0],
@@ -229,7 +311,7 @@ const NewNavbar = () => {
                   }}
                 />
                 <motion.div
-                  className="absolute bottom-20 left-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl"
+                  className="absolute bottom-20 left-10 w-48 h-48 bg-purple-600/10 rounded-full"
                   animate={{
                     scale: [1, 1.3, 1],
                     x: [0, -20, 0],
@@ -246,11 +328,11 @@ const NewNavbar = () => {
 
             {/* Full Screen Menu Panel */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="fixed inset-0 z-50 lg:hidden flex flex-col"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed inset-y-0 right-0 w-full max-w-md z-50 lg:hidden flex flex-col bg-black/95 shadow-2xl"
             >
               <div className="flex flex-col h-full overflow-y-auto">
                 {/* Header with Logo and Close Button */}
@@ -258,20 +340,19 @@ const NewNavbar = () => {
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.3 }}
-                  className="flex items-center justify-between p-6 border-b border-primary/20 bg-black/40 backdrop-blur-xl"
+                  className="flex items-center justify-between p-6 border-b border-purple-500/20 bg-black/50"
                 >
                   <motion.img
                     src="/nav-logo.webp"
                     alt="Logo"
-                    className="w-16 h-16"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-16 h-16 brightness-0 invert"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
                   <motion.button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-primary/20 hover:bg-primary/40 border border-primary/30 transition-all duration-300"
-                    whileHover={{ scale: 1.1, rotate: 90 }}
-                    whileTap={{ scale: 0.9 }}
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition-all duration-300 ripple-effect"
+                    whileTap={{ scale: 0.95 }}
                   >
                     <FiX className="text-white text-2xl" />
                   </motion.button>
@@ -288,43 +369,42 @@ const NewNavbar = () => {
                     return (
                       <motion.div
                         key={index}
-                        initial={{ x: -50, opacity: 0 }}
+                        initial={{ x: -30, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
+                        transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
                       >
                         {link.submenu ? (
                           <>
                             <motion.button
                               onClick={() => setIsServicesOpen(!isServicesOpen)}
-                              className={`w-full group relative overflow-hidden flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 ${
+                              className={`w-full group relative overflow-hidden flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-300 ripple-effect ${
                                 isActive
-                                  ? "bg-gradient-to-r from-primary/30 to-purple-600/30 border-2 border-primary/50 text-primary"
-                                  : "bg-white/5 hover:bg-white/10 border-2 border-transparent hover:border-primary/30 text-white/90"
+                                  ? "bg-purple-500/20 border border-purple-500/30 text-purple-400"
+                                  : "bg-white/5 hover:bg-white/10 border border-transparent hover:border-purple-500/20 text-white/80 hover:text-white"
                               }`}
-                              whileHover={{ scale: 1.02, x: 5 }}
                               whileTap={{ scale: 0.98 }}
                             >
                               <div className="flex items-center gap-4">
                                 <motion.div
-                                  className={`p-3 rounded-xl ${
+                                  className={`p-2.5 rounded-xl transition-all duration-300 ${
                                     isActive
-                                      ? "bg-primary/20 text-primary"
-                                      : "bg-white/5 text-white/70 group-hover:bg-primary/20 group-hover:text-primary"
-                                  } transition-all duration-300`}
-                                  whileHover={{ rotate: 360 }}
-                                  transition={{ duration: 0.6 }}
+                                      ? "bg-purple-500/20 text-purple-400"
+                                      : "bg-white/5 text-white/60 group-hover:bg-purple-500/20 group-hover:text-purple-400"
+                                  }`}
+                                  whileTap={{ scale: 0.9 }}
                                 >
                                   <Icon className="text-xl" />
                                 </motion.div>
-                                <span className="font-semibold text-lg">
+                                <span className="font-semibold text-base">
                                   {link.title}
                                 </span>
                               </div>
                               <motion.div
                                 animate={{ rotate: isServicesOpen ? 180 : 0 }}
                                 transition={{ duration: 0.3 }}
+                                className={`${isActive ? "text-purple-400" : "text-white/60"}`}
                               >
-                                <FiChevronDown className="text-xl" />
+                                <FiChevronDown className="text-lg" />
                               </motion.div>
                             </motion.button>
 
@@ -337,23 +417,26 @@ const NewNavbar = () => {
                                   transition={{ duration: 0.3 }}
                                   className="overflow-hidden mt-2"
                                 >
-                                  <div className="ml-4 space-y-2 pl-6 border-l-2 border-primary/30">
+                                  <div className="ml-4 space-y-2 pl-4 border-l-2 border-purple-500/30">
                                     {link.submenu.map((item, idx) => (
                                       <motion.div
                                         key={idx}
                                         initial={{ x: -20, opacity: 0 }}
                                         animate={{ x: 0, opacity: 1 }}
-                                        transition={{ delay: idx * 0.05 }}
+                                        transition={{ delay: idx * 0.03 }}
                                       >
                                         <Link
                                           to={item.path}
-                                          className={`block px-4 py-3 rounded-xl transition-all duration-300 ${
+                                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 ripple-effect ${
                                             location.pathname === item.path
-                                              ? "bg-primary/20 text-primary border-l-4 border-primary"
-                                              : "text-white/70 hover:text-primary hover:bg-white/5"
+                                              ? "bg-purple-500/20 text-purple-400 border-l-2 border-purple-400 pl-3"
+                                              : "text-white/60 hover:text-white hover:bg-white/5"
                                           }`}
                                         >
-                                          {item.title}
+                                          <span>{item.title}</span>
+                                          {location.pathname === item.path && (
+                                            <FiCheckCircle className="text-purple-400 text-sm" />
+                                          )}
                                         </Link>
                                       </motion.div>
                                     ))}
@@ -363,43 +446,37 @@ const NewNavbar = () => {
                             </AnimatePresence>
                           </>
                         ) : (
-                          <motion.div
-                            whileHover={{ scale: 1.02, x: 5 }}
-                            whileTap={{ scale: 0.98 }}
+                          <Link
+                            to={link.path}
+                            className={`w-full group relative overflow-hidden flex items-center gap-4 px-5 py-4 rounded-xl transition-all duration-300 ripple-effect ${
+                              isActive
+                                ? "bg-purple-500/20 border border-purple-500/30 text-purple-400"
+                                : "bg-white/5 hover:bg-white/10 border border-transparent hover:border-purple-500/20 text-white/80 hover:text-white"
+                            }`}
                           >
-                            <Link
-                              to={link.path}
-                              className={`w-full group relative overflow-hidden flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300 ${
+                            <motion.div
+                              className={`p-2.5 rounded-xl transition-all duration-300 ${
                                 isActive
-                                  ? "bg-gradient-to-r from-primary/30 to-purple-600/30 border-2 border-primary/50 text-primary"
-                                  : "bg-white/5 hover:bg-white/10 border-2 border-transparent hover:border-primary/30 text-white/90"
+                                  ? "bg-purple-500/20 text-purple-400"
+                                  : "bg-white/5 text-white/60 group-hover:bg-purple-500/20 group-hover:text-purple-400"
                               }`}
+                              whileTap={{ scale: 0.9 }}
                             >
+                              <Icon className="text-xl" />
+                            </motion.div>
+                            <span className="font-semibold text-base flex-1">
+                              {link.title}
+                            </span>
+                            {isActive && (
                               <motion.div
-                                className={`p-3 rounded-xl ${
-                                  isActive
-                                    ? "bg-primary/20 text-primary"
-                                    : "bg-white/5 text-white/70 group-hover:bg-primary/20 group-hover:text-primary"
-                                } transition-all duration-300`}
-                                whileHover={{ rotate: 360 }}
-                                transition={{ duration: 0.6 }}
-                              >
-                                <Icon className="text-xl" />
-                              </motion.div>
-                              <span className="font-semibold text-lg">
-                                {link.title}
-                              </span>
-                              {isActive && (
-                                <motion.div
-                                  layoutId="activeMobileLink"
-                                  className="absolute right-4 w-2 h-2 bg-primary rounded-full"
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  transition={{ duration: 0.3 }}
-                                />
-                              )}
-                            </Link>
-                          </motion.div>
+                                layoutId="activeMobileLink"
+                                className="w-1.5 h-1.5 bg-purple-400 rounded-full"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                              />
+                            )}
+                          </Link>
                         )}
                       </motion.div>
                     );
@@ -410,36 +487,26 @@ const NewNavbar = () => {
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.4 }}
-                  className="p-6 space-y-3 bg-black/40 backdrop-blur-xl border-t border-primary/20"
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="p-6 space-y-3 bg-black/50 backdrop-blur-sm border-t border-purple-500/20"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <Link
+                    to="/project-brief"
+                    className="block w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold text-center rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/20 ripple-effect relative overflow-hidden group"
                   >
-                    <Link
-                      to="/project-brief"
-                      className="block w-full px-6 py-4 bg-gradient-to-r from-primary via-purple-600 to-primary text-white font-bold text-center rounded-2xl transition-all duration-300 shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/70 relative overflow-hidden group"
-                    >
-                      <span className="relative z-10">Get Started</span>
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-purple-600 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        initial={false}
-                      />
-                    </Link>
-                  </motion.div>
+                    <span className="relative z-10">Get Started</span>
+                    <motion.div
+                      className="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      initial={false}
+                    />
+                  </Link>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <Link
+                    to="/payments-square"
+                    className="block w-full px-6 py-4 border border-purple-500/30 hover:border-purple-500/60 text-white/80 hover:text-white font-semibold text-center rounded-xl transition-all duration-300 hover:bg-purple-500/10 ripple-effect"
                   >
-                    <Link
-                      to="/payments-square"
-                      className="block w-full px-6 py-4 border-2 border-primary/50 hover:border-primary text-white font-semibold text-center rounded-2xl transition-all duration-300 hover:bg-primary/10"
-                    >
-                      Payments
-                    </Link>
-                  </motion.div>
+                    Payments
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>
