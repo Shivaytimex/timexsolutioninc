@@ -12,13 +12,13 @@ export default function TeamSection() {
   const ref = useRef(null);
   const isInView = useInView(ref,{once:"true"});
 
-  // const team = [
-  //   { name: "John Doe", role: "CEO & Co-Founder", image: "/UserImagee.jpg" },
-  //   { name: "Jane Smith", role: "CTO & Co-Founder", image: "/azlanImage.jpg" },
-  //   { name: "Michael Brown", role: "Chief Marketing Officer", image: "/menAzhar.jpg" },
-  //   { name: "Emily Davis", role: "Head of Design", image: "/teamsMen.webp" },
-  //   { name: "Daniel Lee", role: "Tech Lead", image: "/teamWomen.webp" },
-  // ];
+  const team = [
+    { name: "John Doe", role: "CEO & Co-Founder", image: "/UserImagee.jpg" },
+    { name: "Jane Smith", role: "CTO & Co-Founder", image: "/azlanImage.jpg" },
+    { name: "Michael Brown", role: "Chief Marketing Officer", image: "/menAzhar.jpg" },
+    { name: "Emily Davis", role: "Head of Design", image: "/teamsMen.webp" },
+    { name: "Daniel Lee", role: "Tech Lead", image: "/teamWomen.webp" },
+  ];
 
   return (
     <section className="container mx-auto px-4 py-24">

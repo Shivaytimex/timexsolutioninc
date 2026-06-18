@@ -7,6 +7,7 @@ import SplashScreen from "./components/splashScreen/SplashScreen";
 import PrivacyPolicy from "./pages/Privacy";
 import NewNavbar from "./components/NewNavbar";
 import WhatsAppFloat from "./components/WhatsAppFloat";
+import Presentation from "./pages/Presentation"; // ✅ Import added
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -102,6 +103,9 @@ function App() {
                 <Route path="/video-gallery" element={<VideoGallery />} />
                 <Route path="/project-brief" element={<ProjectBrief />} />
                 <Route path="/payments-square" element={<PaymentsSquare />} />
+                
+                {/* ✅ Presentation Route Added */}
+                <Route path="/presentation" element={<Presentation />} />
               </Routes>
               <Footer />
               <WhatsAppFloat />

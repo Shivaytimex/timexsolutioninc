@@ -12,6 +12,7 @@ import {
   FiMail,
   FiVideo,
   FiCheckCircle,
+  FiFile, // ✅ Added
 } from "react-icons/fi";
 
 const NewNavbar = () => {
@@ -38,6 +39,7 @@ const NewNavbar = () => {
     { title: "About", path: "/about", icon: FiInfo },
     { title: "Portfolio", path: "/portfolio", icon: FiFolder },
     { title: "Video Gallery", path: "/video-gallery", icon: FiVideo },
+    { title: "Presentations", path: "/presentation", icon: FiFile }, // ✅ Added
     { title: "Contact", path: "/contact", icon: FiMail },
   ];
 
