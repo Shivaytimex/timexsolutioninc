@@ -6,6 +6,9 @@ import { Stars } from '../components/Stars';
 import HeroSection from '../components/presentation/HeroSection'; 
 import ArchitectureSection from '../components/presentation/ArchitectureSection';
 import PropertyMediaSection from '../components/presentation/PropertyMediaSection';
+import WebPerformanceSection from '../components/presentation/WebPerformanceSection';
+import CommercialProductionSection from '../components/presentation/CommercialProductionSection';
+import SocialGrowthSection from '../components/presentation/SocialGrowthSection';
 
 const Presentation = () => {
   return (
@@ -29,6 +32,9 @@ const Presentation = () => {
       <HeroSection />
       < ArchitectureSection/>
       <PropertyMediaSection/>
+      <WebPerformanceSection/>
+      <CommercialProductionSection/>
+      <SocialGrowthSection/>
     </div>
   );
 };
