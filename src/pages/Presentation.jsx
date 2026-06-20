@@ -9,7 +9,10 @@ import PropertyMediaSection from '../components/presentation/PropertyMediaSectio
 import WebPerformanceSection from '../components/presentation/WebPerformanceSection';
 import CommercialProductionSection from '../components/presentation/CommercialProductionSection';
 import SocialGrowthSection from '../components/presentation/SocialGrowthSection';
-
+import WorkflowSection from '../components/presentation/WorkflowSection';
+import PricingTierSection from '../components/presentation/PricingTierSection';
+import CallToActionSection from '../components/presentation/CallToActionSection';
+import ImageSourcesSection from '../components/presentation/ImageSourcesSection';
 const Presentation = () => {
   return (
     <div className="min-h-screen bg-black">
@@ -35,6 +38,10 @@ const Presentation = () => {
       <WebPerformanceSection/>
       <CommercialProductionSection/>
       <SocialGrowthSection/>
+      <WorkflowSection/>
+      <PricingTierSection/>
+      <CallToActionSection/>
+      <ImageSourcesSection/>
     </div>
   );
 };
