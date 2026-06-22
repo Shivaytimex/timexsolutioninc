@@ -13,6 +13,7 @@ import WorkflowSection from '../components/presentation/WorkflowSection';
 import PricingTierSection from '../components/presentation/PricingTierSection';
 import CallToActionSection from '../components/presentation/CallToActionSection';
 import ImageSourcesSection from '../components/presentation/ImageSourcesSection';
+import FloatingTimexButton from '../components/presentation/FloatingTimexButton';
 const Presentation = () => {
   return (
     <div className="min-h-screen bg-black">
@@ -42,6 +43,7 @@ const Presentation = () => {
       <PricingTierSection/>
       <CallToActionSection/>
       <ImageSourcesSection/>
+      <FloatingTimexButton/>
     </div>
   );
 };
