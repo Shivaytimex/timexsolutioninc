@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const WebPerformanceSection = () => {
   return (
-    <section className="relative overflow-hidden py-32 px-6">
+    <section className="relative flex h-screen items-center overflow-hidden px-6">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[180px]" />
@@ -15,8 +15,8 @@ const WebPerformanceSection = () => {
         <div className="absolute bottom-20 right-20 h-72 w-72 rounded-full bg-indigo-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
 
           {/* Left Content */}
           <motion.div
@@ -31,7 +31,7 @@ const WebPerformanceSection = () => {
               High-Performance Web
             </h2>
 
-            <h3 className="mt-20 text-2xl font-semibold text-white md:text-4xl">
+            <h3 className="mt-10 text-2xl font-semibold text-white md:text-4xl">
               Conversion-Driven Architecture
             </h3>
 
@@ -41,7 +41,7 @@ const WebPerformanceSection = () => {
               and minimize system friction.
             </p>
 
-            <ul className="mt-8 space-y-6 text-slate-400">
+            <ul className="mt-8 space-y-4 text-slate-400">
               <li className="flex gap-3">
                 <span className="text-cyan-400">→</span>
                 <span>

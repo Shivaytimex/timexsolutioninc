@@ -32,16 +32,16 @@ const PricingTierSection = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden py-32 px-6">
+    <section className="relative flex h-screen items-center overflow-hidden px-6">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[150px]" />
         <div className="absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* Heading */}
-        <div className="mb-20">
+        <div className="mb-10">
           <div className="mb-4 h-1 w-14 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500" />
 
           <h2 className="text-4xl font-bold text-white md:text-6xl">
@@ -61,16 +61,16 @@ const PricingTierSection = () => {
             <table className="w-full min-w-[900px]">
               <thead>
                 <tr className="border-b border-white/10 bg-black/20">
-                  <th className="px-6 py-5 text-left text-xl font-semibold text-cyan-400">
+                  <th className="px-5 py-4 text-left text-lg font-semibold text-cyan-400">
                     Operational Solution
                   </th>
-                  <th className="px-6 py-5 text-left text-xl font-semibold text-cyan-400">
+                  <th className="px-5 py-4 text-left text-lg font-semibold text-cyan-400">
                     Core Growth Pack
                   </th>
-                  <th className="px-6 py-5 text-left text-xl font-semibold text-cyan-400">
+                  <th className="px-5 py-4 text-left text-lg font-semibold text-cyan-400">
                     High-Performance Bundle
                   </th>
-                  <th className="px-6 py-5 text-left text-xl font-semibold text-cyan-400">
+                  <th className="px-5 py-4 text-left text-lg font-semibold text-cyan-400">
                     Custom Enterprise Ecosystem
                   </th>
                 </tr>
@@ -82,19 +82,19 @@ const PricingTierSection = () => {
                     key={index}
                     className="border-b border-white/5 hover:bg-white/[0.02]"
                   >
-                    <td className="px-6 py-6 font-semibold text-white">
+                    <td className="px-5 py-4 font-semibold text-white">
                       {row.category}
                     </td>
 
-                    <td className="px-6 py-6 text-slate-400">
+                    <td className="px-5 py-4 text-slate-400">
                       {row.core}
                     </td>
 
-                    <td className="px-6 py-6 text-slate-400">
+                    <td className="px-5 py-4 text-slate-400">
                       {row.performance}
                     </td>
 
-                    <td className="px-6 py-6 text-slate-400">
+                    <td className="px-5 py-4 text-slate-400">
                       {row.enterprise}
                     </td>
                   </tr>

@@ -27,17 +27,16 @@ const cards = [
 
 const SocialGrowthSection = () => {
   return (
-    <section className="relative overflow-hidden py-32 px-6">
+    <section className="relative flex h-screen items-center overflow-hidden px-6">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-24 right-1/4 h-[450px] w-[450px] rounded-full bg-indigo-600/10 blur-[140px]" />
-
         <div className="absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* Heading */}
-        <div className="mb-20">
+        <div className="mb-12">
           <div className="mb-4 h-1 w-14 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500" />
 
           <h2 className="text-4xl font-bold text-white md:text-6xl">
@@ -46,7 +45,7 @@ const SocialGrowthSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {cards.map((card, index) => {
             const Icon = card.icon;
 
@@ -60,7 +59,7 @@ const SocialGrowthSection = () => {
                   duration: 0.6,
                   delay: index * 0.15,
                 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm transition-all duration-500 hover:border-blue-500/30 hover:bg-white/[0.04]"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-all duration-500 hover:border-blue-500/30 hover:bg-white/[0.04]"
               >
                 {/* Glow Effect */}
                 <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
@@ -68,12 +67,12 @@ const SocialGrowthSection = () => {
                 </div>
 
                 {/* Icon */}
-                <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 border border-blue-500/20">
-                  <Icon className="h-8 w-8 text-cyan-400" />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10">
+                  <Icon className="h-7 w-7 text-cyan-400" />
                 </div>
 
                 {/* Title */}
-                <h3 className="mb-5 text-2xl font-semibold text-white">
+                <h3 className="mb-4 text-xl font-semibold text-white">
                   {card.title}
                 </h3>
 

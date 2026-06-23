@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const CommercialProductionSection = () => {
   return (
-    <section className="relative overflow-hidden py-32 px-6">
+    <section className="relative overflow-hidden flex h-screen items-center justify-center px-6">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-1/3 right-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[140px]" />

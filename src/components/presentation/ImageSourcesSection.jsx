@@ -14,21 +14,21 @@ const ImageSourcesSection = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden py-32 px-6">
+    <section className="relative flex h-screen items-center overflow-hidden px-6">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/10 blur-[150px]" />
         <div className="absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-24"
+          className="mb-16"
         >
           <div className="mb-4 h-1 w-14 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500" />
 
@@ -46,7 +46,7 @@ const ImageSourcesSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="flex flex-col gap-5 md:flex-row md:items-center"
+              className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm md:flex-row md:items-center"
             >
               {/* Thumbnail */}
               <div className="h-20 w-20 overflow-hidden rounded-xl border border-white/10">

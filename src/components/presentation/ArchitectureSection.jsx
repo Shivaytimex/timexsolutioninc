@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const ArchitectureSection = () => {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
+    <section className="relative flex h-screen items-center justify-center overflow-hidden px-6">
       
       {/* Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_60%)]" />
