@@ -30,7 +30,7 @@
     "react-spinners": "^0.15.0",
     "stripe": "^18.4.0",
     "sweetalert2": "^11.15.10",
-    "swiper": "^11.1.15",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
