@@ -127,6 +127,9 @@ export default function Portfolio() {
   const [aoneImageIndex, setAoneImageIndex] = useState(0);
   const [jgImageIndex, setJgImageIndex] = useState(0);
   const [calCoastImageIndex, setCalCoastImageIndex] = useState(0);
+  // New image states for DTL and SMS Construction
+  const [dtlImageIndex, setDtlImageIndex] = useState(0);
+  const [smsConstImageIndex, setSmsConstImageIndex] = useState(0);
 
   // Image arrays for each client
   const smsImages = ['/sms1.png', '/sms2.png'];
@@ -134,6 +137,9 @@ export default function Portfolio() {
   const aoneImages = ['/aone1.png', '/aone2.png'];
   const jgImages = ['/jg-img-1.png', '/jg-img-2.png', '/jg-img-3.png'];
   const calCoastImages = ['/services/cal2.png', '/services/image.png'];
+  // New image arrays for DTL and SMS Construction
+  const dtlImages = ['/dtl-img-1.png', '/dtl-img-2.png'];
+  const smsConstImages = ['/sms-img-1.png', '/sms-img-2.png'];
 
   // Image rotation effects
   useEffect(() => {
@@ -157,12 +163,23 @@ export default function Portfolio() {
       setCalCoastImageIndex(prev => (prev + 1) % calCoastImages.length);
     }, 4000);
 
+    // New intervals for DTL and SMS Construction
+    const dtlInterval = setInterval(() => {
+      setDtlImageIndex(prev => (prev + 1) % dtlImages.length);
+    }, 4000);
+
+    const smsConstInterval = setInterval(() => {
+      setSmsConstImageIndex(prev => (prev + 1) % smsConstImages.length);
+    }, 4000);
+
     return () => {
       clearInterval(smsInterval);
       clearInterval(aishInterval);
       clearInterval(aoneInterval);
       clearInterval(jgInterval);
       clearInterval(calCoastInterval);
+      clearInterval(dtlInterval);
+      clearInterval(smsConstInterval);
     };
   }, []);
 
@@ -626,134 +643,186 @@ export default function Portfolio() {
         variants={staggerContainer}
       >
         <motion.div className="flex flex-col" variants={staggerContainer}>
-  <motion.div variants={staggerItem}>
-    <PortfolioShowcase
-      image={
-        <motion.img 
-          key={aoneImageIndex}
-          src={aoneImages[aoneImageIndex]} 
-          alt="A-1 Income Tax Services" 
-          className="rounded-lg shadow-2xl w-full max-w-md" 
-          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-        />
-      }
-      title="A-1 Income Tax Services"
-      description={`We helped A-1 Income Tax Services establish a powerful online presence that reflects their professionalism and expertise in tax and immigration services.\n\nBy designing a user-friendly and responsive website, we enabled them to attract more local and remote clients, resulting in increased visibility, trust, and client growth.`}
-      buttons={[
-        { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
-        { label: 'REQUEST A QUOTE', href: '/contact' }
-      ]}
-    />
-  </motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  key={aoneImageIndex}
+                  src={aoneImages[aoneImageIndex]} 
+                  alt="A-1 Income Tax Services" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="A-1 Income Tax Services"
+              description={`We helped A-1 Income Tax Services establish a powerful online presence that reflects their professionalism and expertise in tax and immigration services.\n\nBy designing a user-friendly and responsive website, we enabled them to attract more local and remote clients, resulting in increased visibility, trust, and client growth.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+            />
+          </motion.div>
 
-  <motion.div variants={staggerItem}>
-    <PortfolioShowcase
-      image={
-        <motion.img 
-          key={smsImageIndex}
-          src={smsImages[smsImageIndex]} 
-          alt="SMS Services" 
-          className="rounded-lg shadow-2xl w-full max-w-md" 
-          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-        />
-      }
-      title="SMS Services"
-      description={`Our team partnered with SMS Services to revamp their online platform, reflecting the expertise of founder Manreet S. Ladhar and the firm's strong reputation.\n\nThrough strategic design and optimization, we helped them reach a broader audience, streamline service inquiries, and elevate their credibility in the tax and accounting industry.`}
-      buttons={[
-        { label: 'LAUNCH WEBSITE', href: 'https://smsservices.us/' },
-        { label: 'REQUEST A QUOTE', href: '/contact' }
-      ]}
-      reverse
-    />
-  </motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  key={smsImageIndex}
+                  src={smsImages[smsImageIndex]} 
+                  alt="SMS Services" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="SMS Services"
+              description={`Our team partnered with SMS Services to revamp their online platform, reflecting the expertise of founder Manreet S. Ladhar and the firm's strong reputation.\n\nThrough strategic design and optimization, we helped them reach a broader audience, streamline service inquiries, and elevate their credibility in the tax and accounting industry.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://smsservices.us/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+              reverse
+            />
+          </motion.div>
 
-  <motion.div variants={staggerItem}>
-    <PortfolioShowcase
-      image={
-        <motion.img 
-          key={aishImageIndex}
-          src={aishImages[aishImageIndex]} 
-          alt="Aish Signs" 
-          className="rounded-lg shadow-2xl w-full max-w-md" 
-          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-        />
-      }
-      title="Aish Signs"
-      description={`We helped Aish Signs transform their brand vision into a professional digital experience.\n\nBy building a modern and engaging website, we boosted their online exposure, making it easier for clients to discover their creative signage solutions—contributing directly to their rapid business growth.`}
-      buttons={[
-        { label: 'LAUNCH WEBSITE', href: 'https://aishsigns.com/' },
-        { label: 'REQUEST A QUOTE', href: '/contact' }
-      ]}
-    />
-  </motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  key={aishImageIndex}
+                  src={aishImages[aishImageIndex]} 
+                  alt="Aish Signs" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="Aish Signs"
+              description={`We helped Aish Signs transform their brand vision into a professional digital experience.\n\nBy building a modern and engaging website, we boosted their online exposure, making it easier for clients to discover their creative signage solutions—contributing directly to their rapid business growth.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://aishsigns.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+            />
+          </motion.div>
 
-  <motion.div variants={staggerItem}>
-    <PortfolioShowcase
-      image={
-        <motion.img 
-          key={jgImageIndex}
-          src={jgImages[jgImageIndex]} 
-          alt="JG Limousines" 
-          className="rounded-lg shadow-2xl w-full max-w-md" 
-          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-        />
-      }
-      title="JG Limousines"
-      description={`We partnered with JG Limousines to create a premium ride booking website that reflects their luxury black car service brand. The platform features seamless online booking, instant quote generation, and a comprehensive service showcase.\n\nOur custom-built solution enables customers to easily book airport transfers, hourly chauffeur services, cruise port pickups, and special event transportation. With real-time pricing, vehicle selection, and 24/7 availability, we've transformed their booking experience while maintaining the elegance and professionalism their brand represents.`}
-      buttons={[
-        { label: 'LAUNCH WEBSITE', href: 'https://jglimousines.com/' },
-        { label: 'REQUEST A QUOTE', href: '/contact' }
-      ]}
-      reverse
-    />
-  </motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img 
+                  key={jgImageIndex}
+                  src={jgImages[jgImageIndex]} 
+                  alt="JG Limousines" 
+                  className="rounded-lg shadow-2xl w-full max-w-md" 
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="JG Limousines"
+              description={`We partnered with JG Limousines to create a premium ride booking website that reflects their luxury black car service brand. The platform features seamless online booking, instant quote generation, and a comprehensive service showcase.\n\nOur custom-built solution enables customers to easily book airport transfers, hourly chauffeur services, cruise port pickups, and special event transportation. With real-time pricing, vehicle selection, and 24/7 availability, we've transformed their booking experience while maintaining the elegance and professionalism their brand represents.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://jglimousines.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+              reverse
+            />
+          </motion.div>
 
-  <motion.div variants={staggerItem}>
-    <PortfolioShowcase
-      image={
-        <motion.img
-          key={calCoastImageIndex}
-          src={calCoastImages[calCoastImageIndex]}
-          alt="Cal Coast Logistics"
-          className="rounded-lg shadow-2xl w-full max-w-md object-cover"
-          whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.5 }}
-        />
-      }
-      title="Cal Coast Logistics"
-      description={`Based in Fresno, California since 2015, Cal Coast Logistics is a fresh produce specialist serving customers across California and beyond. Their site positions them as a dependable cargo and freight partner, offering full truckload transportation and temperature-controlled reefer service with the on-time performance shippers trust.\n\nWe highlighted their strengths—on-time delivery, a fleet of 35+ assets, and interstate authority—alongside clear paths to get in touch. Headquarters at 2205 E Annadale Ave, Fresno, CA 93706; reach the team at (559) 481-6441 or ops@calcoastlogistics.com, with messaging that they are available 24/7 to support logistics needs.`}
-      buttons={[
-        { label: 'LAUNCH WEBSITE', href: 'https://calcoastlogistics.com/' },
-        { label: 'REQUEST A QUOTE', href: '/contact' },
-      ]}
-    />
-  </motion.div>
-</motion.div>
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img
+                  key={calCoastImageIndex}
+                  src={calCoastImages[calCoastImageIndex]}
+                  alt="Cal Coast Logistics"
+                  className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="Cal Coast Logistics"
+              description={`Based in Fresno, California since 2015, Cal Coast Logistics is a fresh produce specialist serving customers across California and beyond. Their site positions them as a dependable cargo and freight partner, offering full truckload transportation and temperature-controlled reefer service with the on-time performance shippers trust.\n\nWe highlighted their strengths—on-time delivery, a fleet of 35+ assets, and interstate authority—alongside clear paths to get in touch. Headquarters at 2205 E Annadale Ave, Fresno, CA 93706; reach the team at (559) 481-6441 or ops@calcoastlogistics.com, with messaging that they are available 24/7 to support logistics needs.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://calcoastlogistics.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' },
+              ]}
+            />
+          </motion.div>
 
+          {/* NEW: DTL Parking Project */}
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img
+                  key={dtlImageIndex}
+                  src={dtlImages[dtlImageIndex]}
+                  alt="DTL Parking"
+                  className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="DTL Parking"
+              description={`DTL Parking is a premier parking management company that provides convenient and secure parking solutions. Their website showcases their parking facilities, services, and commitment to customer satisfaction.\n\nWe developed a modern, user-friendly website that allows customers to easily find parking locations, view rates, and book parking spots online. The responsive design ensures a seamless experience across all devices, helping DTL Parking expand their digital presence and attract more customers.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://dtlparking.vercel.app/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+              reverse
+            />
+          </motion.div>
+
+          {/* NEW: SMS Construction Project */}
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img
+                  key={smsConstImageIndex}
+                  src={smsConstImages[smsConstImageIndex]}
+                  alt="SMS Construction"
+                  className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="SMS Construction"
+              description={`SMS Construction is a trusted construction company specializing in residential and commercial projects. Their website showcases their portfolio of completed projects, services offered, and commitment to quality craftsmanship.\n\nWe designed and developed a professional website that highlights their expertise in construction, renovation, and remodeling services. The website features project galleries, client testimonials, and an easy-to-use contact form, making it simple for potential clients to reach out and request quotes for their construction needs.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://sms-construction.vercel.app/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+            />
+          </motion.div>
+        </motion.div>
       </motion.section>
 
       {/* Simple Portfolio Carousel Section */}
