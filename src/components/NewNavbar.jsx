@@ -12,13 +12,14 @@ import {
   FiMail,
   FiVideo,
   FiCheckCircle,
-  FiFile, // ✅ Added
+  FiFile,
 } from "react-icons/fi";
 
 const NewNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // ✅ Separate state for mobile
   const location = useLocation();
 
   // Navigation links with icons
@@ -39,7 +40,7 @@ const NewNavbar = () => {
     { title: "About", path: "/about", icon: FiInfo },
     { title: "Portfolio", path: "/portfolio", icon: FiFolder },
     { title: "Video Gallery", path: "/video-gallery", icon: FiVideo },
-    { title: "Presentations", path: "/presentation", icon: FiFile }, // ✅ Added
+    { title: "Presentations", path: "/presentation", icon: FiFile },
     { title: "Contact", path: "/contact", icon: FiMail },
   ];
 
@@ -47,13 +48,11 @@ const NewNavbar = () => {
   useEffect(() => {
     const style = document.createElement('style');
     style.textContent = `
-      /* Remove default tap highlight on all elements */
       * {
         -webkit-tap-highlight-color: transparent !important;
         -webkit-touch-callout: none !important;
       }
       
-      /* Prevent any blur or flash on touch */
       .no-blur, button, a, [role="button"] {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
@@ -62,7 +61,6 @@ const NewNavbar = () => {
         -webkit-font-smoothing: antialiased;
       }
       
-      /* Smooth ripple effect without blur */
       .ripple-effect {
         position: relative;
         overflow: hidden;
@@ -88,7 +86,6 @@ const NewNavbar = () => {
         height: 200px;
       }
       
-      /* Improve touch targets */
       @media (max-width: 1024px) {
         button, a, [role="button"] {
           cursor: pointer;
@@ -96,7 +93,6 @@ const NewNavbar = () => {
           min-width: 48px;
         }
         
-        /* Prevent body scroll when menu is open */
         body.menu-open {
           overflow: hidden;
           position: fixed;
@@ -125,6 +121,7 @@ const NewNavbar = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
+    setIsMobileServicesOpen(false); // ✅ Reset mobile services state
     document.body.classList.remove('menu-open');
   }, [location]);
 
@@ -142,6 +139,7 @@ const NewNavbar = () => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false);
+        setIsMobileServicesOpen(false);
         document.body.classList.remove('menu-open');
       }
     };
@@ -194,6 +192,8 @@ const NewNavbar = () => {
                               : ""
                           }`}
                           onMouseEnter={() => setIsServicesOpen(true)}
+                          onMouseLeave={() => setIsServicesOpen(false)}
+                          onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
                           {link.title}
                           <FiChevronDown
@@ -212,6 +212,7 @@ const NewNavbar = () => {
                               exit={{ opacity: 0, y: 10 }}
                               transition={{ duration: 0.2 }}
                               className="absolute top-full left-0 mt-2 w-56 bg-black/95 backdrop-blur-xl border border-purple-500/20 rounded-xl shadow-xl shadow-purple-500/10 overflow-hidden"
+                              onMouseEnter={() => setIsServicesOpen(true)}
                               onMouseLeave={() => setIsServicesOpen(false)}
                             >
                               {link.submenu.map((item, idx) => (
@@ -279,7 +280,7 @@ const NewNavbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu - No Blur Version */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -290,9 +291,11 @@ const NewNavbar = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-black/90 z-40 lg:hidden"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsMobileServicesOpen(false);
+              }}
             >
-              {/* Animated Background Elements */}
               <motion.div
                 className="absolute inset-0 overflow-hidden"
                 initial={{ scale: 0 }}
@@ -337,7 +340,7 @@ const NewNavbar = () => {
               className="fixed inset-y-0 right-0 w-full max-w-md z-50 lg:hidden flex flex-col bg-black/95 shadow-2xl"
             >
               <div className="flex flex-col h-full overflow-y-auto">
-                {/* Header with Logo and Close Button */}
+                {/* Header */}
                 <motion.div
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -352,7 +355,10 @@ const NewNavbar = () => {
                     transition={{ duration: 0.3 }}
                   />
                   <motion.button
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsMobileServicesOpen(false);
+                    }}
                     className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-500/20 hover:bg-purple-500/30 transition-all duration-300 ripple-effect"
                     whileTap={{ scale: 0.95 }}
                   >
@@ -360,7 +366,7 @@ const NewNavbar = () => {
                   </motion.button>
                 </motion.div>
 
-                {/* Menu Links Container */}
+                {/* Menu Links */}
                 <div className="flex-1 px-4 py-8 space-y-3">
                   {navLinks.map((link, index) => {
                     const Icon = link.icon;
@@ -378,7 +384,10 @@ const NewNavbar = () => {
                         {link.submenu ? (
                           <>
                             <motion.button
-                              onClick={() => setIsServicesOpen(!isServicesOpen)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setIsMobileServicesOpen(!isMobileServicesOpen);
+                              }}
                               className={`w-full group relative overflow-hidden flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-300 ripple-effect ${
                                 isActive
                                   ? "bg-purple-500/20 border border-purple-500/30 text-purple-400"
@@ -402,7 +411,7 @@ const NewNavbar = () => {
                                 </span>
                               </div>
                               <motion.div
-                                animate={{ rotate: isServicesOpen ? 180 : 0 }}
+                                animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
                                 transition={{ duration: 0.3 }}
                                 className={`${isActive ? "text-purple-400" : "text-white/60"}`}
                               >
@@ -411,7 +420,7 @@ const NewNavbar = () => {
                             </motion.button>
 
                             <AnimatePresence>
-                              {isServicesOpen && (
+                              {isMobileServicesOpen && (
                                 <motion.div
                                   initial={{ height: 0, opacity: 0 }}
                                   animate={{ height: "auto", opacity: 1 }}
@@ -434,6 +443,10 @@ const NewNavbar = () => {
                                               ? "bg-purple-500/20 text-purple-400 border-l-2 border-purple-400 pl-3"
                                               : "text-white/60 hover:text-white hover:bg-white/5"
                                           }`}
+                                          onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            setIsMobileServicesOpen(false);
+                                          }}
                                         >
                                           <span>{item.title}</span>
                                           {location.pathname === item.path && (
@@ -455,6 +468,10 @@ const NewNavbar = () => {
                                 ? "bg-purple-500/20 border border-purple-500/30 text-purple-400"
                                 : "bg-white/5 hover:bg-white/10 border border-transparent hover:border-purple-500/20 text-white/80 hover:text-white"
                             }`}
+                            onClick={() => {
+                              setIsMobileMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
                           >
                             <motion.div
                               className={`p-2.5 rounded-xl transition-all duration-300 ${
@@ -485,7 +502,7 @@ const NewNavbar = () => {
                   })}
                 </div>
 
-                {/* Footer CTA Buttons */}
+                {/* Footer CTA */}
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -495,6 +512,10 @@ const NewNavbar = () => {
                   <Link
                     to="/project-brief"
                     className="block w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 text-white font-bold text-center rounded-xl transition-all duration-300 shadow-lg shadow-purple-500/20 ripple-effect relative overflow-hidden group"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsMobileServicesOpen(false);
+                    }}
                   >
                     <span className="relative z-10">Get Started</span>
                     <motion.div
@@ -506,6 +527,10 @@ const NewNavbar = () => {
                   <Link
                     to="/payments-square"
                     className="block w-full px-6 py-4 border border-purple-500/30 hover:border-purple-500/60 text-white/80 hover:text-white font-semibold text-center rounded-xl transition-all duration-300 hover:bg-purple-500/10 ripple-effect"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsMobileServicesOpen(false);
+                    }}
                   >
                     Payments
                   </Link>
