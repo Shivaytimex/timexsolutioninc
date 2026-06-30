@@ -130,6 +130,9 @@ export default function Portfolio() {
   // New image states for DTL and SMS Construction
   const [dtlImageIndex, setDtlImageIndex] = useState(0);
   const [smsConstImageIndex, setSmsConstImageIndex] = useState(0);
+  // New image states for Timex Media and Lovepreet
+  const [timexImageIndex, setTimexImageIndex] = useState(0);
+  const [lovepreetImageIndex, setLovepreetImageIndex] = useState(0);
 
   // Image arrays for each client
   const smsImages = ['/sms1.png', '/sms2.png'];
@@ -140,6 +143,9 @@ export default function Portfolio() {
   // New image arrays for DTL and SMS Construction
   const dtlImages = ['/dtl-img-1.png', '/dtl-img-2.png'];
   const smsConstImages = ['/sms-img-1.png', '/sms-img-2.png'];
+  // New image arrays for Timex Media and Lovepreet
+  const timexImages = ['/timexmedia-1.png', '/timexmedia-2.png'];
+  const lovepreetImages = ['/lovepreet-1.png', '/lovepreet-2.png'];
 
   // Image rotation effects
   useEffect(() => {
@@ -172,6 +178,15 @@ export default function Portfolio() {
       setSmsConstImageIndex(prev => (prev + 1) % smsConstImages.length);
     }, 4000);
 
+    // New intervals for Timex Media and Lovepreet
+    const timexInterval = setInterval(() => {
+      setTimexImageIndex(prev => (prev + 1) % timexImages.length);
+    }, 4000);
+
+    const lovepreetInterval = setInterval(() => {
+      setLovepreetImageIndex(prev => (prev + 1) % lovepreetImages.length);
+    }, 4000);
+
     return () => {
       clearInterval(smsInterval);
       clearInterval(aishInterval);
@@ -180,6 +195,8 @@ export default function Portfolio() {
       clearInterval(calCoastInterval);
       clearInterval(dtlInterval);
       clearInterval(smsConstInterval);
+      clearInterval(timexInterval);
+      clearInterval(lovepreetInterval);
     };
   }, []);
 
@@ -662,7 +679,7 @@ export default function Portfolio() {
               title="A-1 Income Tax Services"
               description={`We helped A-1 Income Tax Services establish a powerful online presence that reflects their professionalism and expertise in tax and immigration services.\n\nBy designing a user-friendly and responsive website, we enabled them to attract more local and remote clients, resulting in increased visibility, trust, and client growth.`}
               buttons={[
-                { label: 'LAUNCH WEBSITE', href: 'https://a1incometaxservice.com/' },
+                { label: 'LAUNCH WEBSITE', href: 'https://a1onetax-hnph.vercel.app/' },
                 { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
             />
@@ -818,6 +835,59 @@ export default function Portfolio() {
               description={`SMS Construction is a trusted construction company specializing in residential and commercial projects. Their website showcases their portfolio of completed projects, services offered, and commitment to quality craftsmanship.\n\nWe designed and developed a professional website that highlights their expertise in construction, renovation, and remodeling services. The website features project galleries, client testimonials, and an easy-to-use contact form, making it simple for potential clients to reach out and request quotes for their construction needs.`}
               buttons={[
                 { label: 'LAUNCH WEBSITE', href: 'https://sms-construction.vercel.app/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+            />
+          </motion.div>
+
+          {/* NEW: Timex Media Project */}
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img
+                  key={timexImageIndex}
+                  src={timexImages[timexImageIndex]}
+                  alt="Timex Media"
+                  className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="Timex Media"
+              description={`Timex Media is a premier digital marketing and media solutions provider that helps businesses establish a strong online presence. Their website showcases their comprehensive range of services including social media management, content creation, digital advertising, and brand strategy.\n\nWe designed a modern, visually stunning website that reflects their creative expertise and professionalism. The website features a dynamic portfolio, client success stories, and an intuitive interface that makes it easy for potential clients to explore their services and connect with their team.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://timexmedia.com/' },
+                { label: 'REQUEST A QUOTE', href: '/contact' }
+              ]}
+              reverse
+            />
+          </motion.div>
+
+          {/* NEW: Lovepreet Project */}
+          <motion.div variants={staggerItem}>
+            <PortfolioShowcase
+              image={
+                <motion.img
+                  key={lovepreetImageIndex}
+                  src={lovepreetImages[lovepreetImageIndex]}
+                  alt="Lovepreet"
+                  className="rounded-lg shadow-2xl w-full max-w-md object-cover"
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.6 } }}
+                  viewport={{ once: true }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 0.5 }}
+                />
+              }
+              title="chandihomes"
+              description={`chandihomes is a creative professional portfolio showcasing artistic talent, design skills, and creative projects. The website serves as a digital portfolio that highlights their work in photography, design, and visual arts.\n\nWe built a clean, minimalist, and visually captivating website that puts the spotlight on their creative work. The responsive design ensures that their portfolio looks stunning on all devices, helping them attract potential clients and collaborators in the creative industry.`}
+              buttons={[
+                { label: 'LAUNCH WEBSITE', href: 'https://lovepreet-v8xb.vercel.app/' },
                 { label: 'REQUEST A QUOTE', href: '/contact' }
               ]}
             />
