@@ -1,202 +1,52 @@
-import { motion } from "framer-motion";
-import { FaPlay } from "react-icons/fa";
-import { Stars } from "./Stars";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  BriefcaseBusiness,
+  Building2,
+  Gauge,
+  Layers3,
+  MapPinned,
+  Network,
+  Search,
+  Truck,
+} from "lucide-react";
+import { MaskReveal, SectionIntro, premiumEase } from "./HomeSectionUI";
 
-/* —— Video carousel: data —— disabled; uncomment with logic block below to restore
-const carouselVideos = [
-  {
-    url: "/vedio/videoForHome/1.mp4",
-    caption: "Transform Your Vision Into Reality",
-    title: "Innovation Starts Here",
-    description: "Professional solutions that drive results",
-  },
-  {
-    url: "/vedio/videoForHome/2.mp4",
-    caption: "Elevate Your Digital Presence",
-    title: "Premium Quality",
-    description: "Stunning designs that captivate audiences",
-  },
-  {
-    url: "/vedio/video003.mp4",
-    caption: "Experience Next-Level Creativity",
-    title: "Immersive Solutions",
-    description: "Cutting-edge technology meets artistry",
-  },
-  {
-    url: "/vedio/videoForHome/4.mp4",
-    caption: "Engage & Connect Like Never Before",
-    title: "Social Impact",
-    description: "Content that resonates and converts",
-  },
-  {
-    url: "/vedio/video005.mp4",
-    caption: "Your Success is Our Mission",
-    title: "Excellence Delivered",
-    description: "Proven strategies for growth",
-  },
-  {
-    url: "/vedio/video006.mp4",
-    caption: "Luxury Meets Innovation",
-    title: "Premium Experience",
-    description: "Exceptional quality in every detail",
-  },
-  {
-    url: "/vedio/video007.mp4",
-    caption: "Create Viral Moments",
-    title: "Trending Content",
-    description: "Stories that engage and inspire",
-  },
-  {
-    url: "/vedio/video008.mp4",
-    caption: "Interactive & Immersive",
-    title: "Dynamic Solutions",
-    description: "Experience the future of engagement",
-  },
-  {
-    url: "/vedio/video009.mp4",
-    caption: "Building Brands That Last",
-    title: "Your Legacy",
-    description: "Strategic storytelling for success",
-  },
-  {
-    url: "/vedio/videoForHome/10.mp4",
-    caption: "Amplify Your Brand Voice",
-    title: "Market Leadership",
-    description: "Stand out in the digital landscape",
-  },
-  {
-    url: "/vedio/videoForHome/12.mp4",
-    caption: "Unleash Creative Potential",
-    title: "Boundless Innovation",
-    description: "Where imagination meets execution",
-  },
-  {
-    url: "/vedio/videoForHome/13.mp4",
-    caption: "Connect With Your Audience",
-    title: "Authentic Engagement",
-    description: "Build lasting relationships",
-  },
-  {
-    url: "/vedio/videoForHome/14.mp4",
-    caption: "Scale Your Digital Empire",
-    title: "Exponential Growth",
-    description: "Solutions that grow with you",
-  },
-  {
-    url: "/vedio/videoForHome/15.mp4",
-    caption: "Master Digital Excellence",
-    title: "Industry Leaders",
-    description: "Setting new standards in innovation",
-  },
-  {
-    url: "/vedio/videoForHome/16.mp4",
-    caption: "Craft Memorable Experiences",
-    title: "User-Centric Design",
-    description: "Every interaction counts",
-  },
-  {
-    url: "/vedio/videoForHome/17.mp4",
-    caption: "Optimize Your Performance",
-    title: "Maximum Impact",
-    description: "Efficiency meets effectiveness",
-  },
-  {
-    url: "/vedio/videoForHome/18.mp4",
-    caption: "Future-Proof Your Business",
-    title: "Tomorrow's Technology",
-    description: "Stay ahead of the curve",
-  },
-
-  {
-    url: "/vedio/videoForHome/21.mp4",
-    caption: "Revolutionize Your Workflow",
-    title: "Smart Automation",
-    description: "Work smarter, not harder",
-  },
-  {
-    url: "/vedio/videoForHome/22.mp4",
-    caption: "Captivate Global Audiences",
-    title: "Worldwide Reach",
-    description: "Your message, everywhere",
-  },
-
-  {
-    url: "/vedio/videoForHome/24.mp4",
-    caption: "Achieve Digital Mastery",
-    title: "Complete Solutions",
-    description: "Everything you need to succeed",
-  },
+const industries = [
+  { title: "Real Estate", text: "Listing media, agent growth and lead follow-up.", icon: Building2 },
+  { title: "Trucking & Logistics", text: "Recruitment campaigns and candidate coordination.", icon: Truck },
+  { title: "Local Businesses", text: "Search, advertising and conversion experiences.", icon: MapPinned },
+  { title: "Professional Services", text: "Credibility, automation and operating support.", icon: BriefcaseBusiness },
 ];
-—— end carouselVideos —— */
 
-const HomeGifCarousel = () => {
-  /* —— Video carousel: state, effects, handlers —— disabled; restore with imports:
-  import { useState, useEffect, useRef } from "react";
-  import { AnimatePresence } from "framer-motion";
-  import { FaPause, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+const process = [
+  { step: "01", title: "Audit", text: "Find the friction.", icon: Search },
+  { step: "02", title: "Map", text: "Define ownership.", icon: Network },
+  { step: "03", title: "Build", text: "Connect the system.", icon: Layers3 },
+  { step: "04", title: "Optimize", text: "Improve what works.", icon: Gauge },
+];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const [progress, setProgress] = useState(0);
-  const videoRef = useRef(null);
-  const progressInterval = useRef(null);
-
-  useEffect(() => { ... auto-play progress ... }, [currentIndex, isPlaying]);
-  useEffect(() => { ... videoRef load/play ... }, [currentIndex]);
-
-  const nextSlide = () => { ... };
-  const prevSlide = () => { ... };
-  const goToSlide = (index) => { ... };
-  const togglePlayPause = () => { ... };
-  const onTouchStart / onTouchMove / onTouchEnd = ...
-  —— end carousel logic —— */
-
+function IndustriesAndProcessSection() {
+  const reduceMotion = useReducedMotion();
   return (
-    <section className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8  overflow-hidden">
-      <Stars />
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-10 md:mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-flex items-center border border-white/20 rounded-full gap-2 px-4 py-2 bg-gradient-to-r from-primary/20 to-purple-600/20 border border-primary/30 rounded-full mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <FaPlay className="text-white  text-sm" />
-            <span className="text-white font-semibold text-sm ">Our Work in Action</span>
-          </motion.div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="text-white">See What We </span>
-            <span className="bg-gradient-to-r from-primary via-purple-400 to-pink-400 text-transparent bg-clip-text">
-              Create
-            </span>
-          </h2>
-          <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
-            Experience our portfolio of stunning visual content
-          </p>
-        </motion.div>
-
-        {/*
-        Video carousel UI (main player + sidebar + thumbnails + dots + styled-jsx scrollbar)
-        was here — restore from git history or uncomment carouselVideos + logic block above.
-        */}
+    <section className="relative isolate overflow-hidden bg-[#070209] py-24 sm:py-28 lg:py-32">
+      <div className="home-v2-star-field opacity-30" aria-hidden="true" />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <SectionIntro eyebrow="Built for operating reality" title="Different industries." gradientText="The same standard of execution." description="The tools may overlap, but the customer journey, workflow pressure and proof required are never identical." align="center" />
+        <div className="home-v2-industry-band mt-14">
+          {industries.map(({ title, text, icon: Icon }, index) => <motion.article key={title} className="home-v2-industry-item" initial={reduceMotion ? false : { y: index % 2 === 0 ? 16 : -16 }} whileInView={{ y: 0 }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.7, delay: index * 0.06, ease: premiumEase }}><div className="home-v2-industry-icon"><Icon className="h-6 w-6" /></div><h3 className="mt-5 text-xl text-white">{title}</h3><p className="mt-3 text-sm leading-6 text-gray-500">{text}</p></motion.article>)}
+        </div>
+        <MaskReveal className="mt-16">
+          <div className="home-v2-process-panel">
+            <div className="max-w-md"><p className="text-xs uppercase tracking-[0.22em] text-purple-200/65 sm:tracking-[0.26em]">Clear delivery, no mystery</p><h3 className="mt-4 text-3xl leading-tight text-white sm:text-4xl">A process your team can follow.</h3><p className="mt-4 text-sm leading-7 text-gray-400">The outcome, ownership and next decision are defined before execution begins.</p></div>
+            <div className="home-v2-process-track">
+              <motion.div className="home-v2-process-energy" initial={reduceMotion ? false : { left: "0%", opacity: 0 }} whileInView={reduceMotion ? undefined : { left: "calc(100% - 12px)", opacity: [0, 1, 1, 0] }} viewport={{ once: true, amount: 0.7 }} transition={{ duration: 3.2, ease: "easeInOut" }} aria-hidden="true" />
+              {process.map(({ step, title, text, icon: Icon }) => <div key={title} className="home-v2-process-step"><div className="flex items-center justify-between gap-4"><Icon className="h-5 w-5 text-PurpleLight" /><span>{step}</span></div><strong>{title}</strong><small>{text}</small></div>)}
+            </div>
+          </div>
+        </MaskReveal>
       </div>
-
-      {/*
-      <style jsx>{` ... custom-scrollbar ... `}</style>
-      */}
     </section>
   );
-};
+}
 
-export default HomeGifCarousel;
+export default IndustriesAndProcessSection;

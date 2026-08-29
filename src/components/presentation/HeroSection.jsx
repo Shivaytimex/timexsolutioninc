@@ -1,6 +1,5 @@
 // src/components/presentation/HeroSection.jsx
 
-import React from "react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {

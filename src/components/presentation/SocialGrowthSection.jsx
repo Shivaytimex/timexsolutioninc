@@ -1,6 +1,5 @@
 // src/components/presentation/SocialGrowthSection.jsx
 
-import React from "react";
 import { motion } from "framer-motion";
 import { Compass, Clapperboard, Gauge } from "lucide-react";
 

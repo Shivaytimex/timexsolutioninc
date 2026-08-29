@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-
 import { useEffect, useRef, useState } from "react"
+import PropTypes from "prop-types"
 
 export const InfiniteMovingCards = ({
     items,
@@ -10,47 +9,33 @@ export const InfiniteMovingCards = ({
 }) => {
     const containerRef = useRef(null)
     const scrollerRef = useRef(null)
+    const [start, setStart] = useState(false)
 
     useEffect(() => {
-        addAnimation()
-    }, [])
-    const [start, setStart] = useState(false)
-    function addAnimation() {
-        if (containerRef.current && scrollerRef.current) {
-            const scrollerContent = Array.from(scrollerRef.current.children)
+        const container = containerRef.current
+        const scroller = scrollerRef.current
+        if (!container || !scroller) return undefined
 
-            scrollerContent.forEach((item) => {
-                const duplicatedItem = item.cloneNode(true)
-                if (scrollerRef.current) {
-                    scrollerRef.current.appendChild(duplicatedItem)
-                }
-            })
+        const originalItems = Array.from(scroller.children)
+        const duplicatedItems = originalItems.map((item) => {
+            const duplicate = item.cloneNode(true)
+            duplicate.setAttribute("aria-hidden", "true")
+            scroller.appendChild(duplicate)
+            return duplicate
+        })
 
-            getDirection()
-            getSpeed()
-            setStart(true)
+        container.style.setProperty(
+            "--animation-direction",
+            direction === "left" ? "forwards" : "reverse"
+        )
+        const duration = speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s"
+        container.style.setProperty("--animation-duration", duration)
+        setStart(true)
+
+        return () => {
+            duplicatedItems.forEach((item) => item.remove())
         }
-    }
-    const getDirection = () => {
-        if (containerRef.current) {
-            if (direction === "left") {
-                containerRef.current.style.setProperty("--animation-direction", "forwards")
-            } else {
-                containerRef.current.style.setProperty("--animation-direction", "reverse")
-            }
-        }
-    }
-    const getSpeed = () => {
-        if (containerRef.current) {
-            if (speed === "fast") {
-                containerRef.current.style.setProperty("--animation-duration", "20s")
-            } else if (speed === "normal") {
-                containerRef.current.style.setProperty("--animation-duration", "40s")
-            } else {
-                containerRef.current.style.setProperty("--animation-duration", "80s")
-            }
-        }
-    }
+    }, [direction, speed])
     return (
         <div
             ref={containerRef}
@@ -76,3 +61,14 @@ export const InfiniteMovingCards = ({
     )
 }
 
+InfiniteMovingCards.propTypes = {
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            src: PropTypes.string.isRequired,
+            alt: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    direction: PropTypes.oneOf(["left", "right"]),
+    speed: PropTypes.oneOf(["fast", "normal", "slow"]),
+    pauseOnHover: PropTypes.bool,
+}

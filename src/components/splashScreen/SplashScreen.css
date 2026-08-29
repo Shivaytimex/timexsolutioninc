@@ -1,0 +1,219 @@
+.timex-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #000;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 510ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timex-preloader--leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.timex-preloader .motion-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.timex-preloader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 30%, rgba(0, 0, 2, 0.17) 68%, rgba(0, 0, 2, 0.72) 100%),
+    linear-gradient(180deg, rgba(0, 0, 2, 0.2), transparent 18%, transparent 78%, rgba(0, 0, 2, 0.35));
+  box-shadow: inset 0 0 190px rgba(0, 0, 0, 0.86);
+}
+
+.timex-preloader .brand-lockup {
+  position: absolute;
+  z-index: 3;
+  top: 49%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: min(94vw, 760px);
+  transform: translate(-50%, -50%);
+  perspective: 1100px;
+  pointer-events: none;
+}
+
+.timex-preloader .brand-text-3d {
+  position: relative;
+  width: clamp(520px, 58vw, 820px);
+  height: clamp(82px, 9.5vw, 136px);
+  opacity: 0;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+}
+
+.timex-preloader .brand-text-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(12px, 1.45vw, 24px);
+  white-space: nowrap;
+  transform-style: preserve-3d;
+}
+
+.timex-preloader .brand-name {
+  font-family: "FuturaEF-Heavy", Futura, "Century Gothic", "Avenir Next", "Helvetica Neue", "Arial Black", Arial, sans-serif;
+  font-size: clamp(52px, 7vw, 100px);
+  font-weight: 900;
+  font-style: normal;
+  line-height: 0.9;
+  letter-spacing: -0.062em;
+  text-transform: uppercase;
+  background: linear-gradient(112deg, #6b21a8 0%, #a64ff3 27%, #cc9bf8 37%, #fff 44%, #b665f2 54%, #751f8c 70%, #9333ea 100%);
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.timex-preloader .brand-company {
+  padding-bottom: 0.72em;
+  font-family: "FuturaEF-Heavy", Futura, "Century Gothic", "Avenir Next", "Helvetica Neue", "Arial Black", Arial, sans-serif;
+  font-size: clamp(14px, 1.5vw, 22px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(100deg, #751f8c 0%, #b665f2 34%, #fff 44%, #cc9bf8 52%, #9333ea 100%);
+  background-size: 240% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.timex-preloader .brand-text-back {
+  z-index: 0;
+  transform: translate3d(5px, 7px, -18px);
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.88));
+  opacity: 0.82;
+  animation: timex-brand-depth-back 4.2s ease-in-out infinite;
+}
+
+.timex-preloader .brand-text-mid {
+  z-index: 1;
+  transform: translate3d(2.5px, 3.5px, -8px);
+  opacity: 0.9;
+  animation: timex-brand-depth-mid 4.2s ease-in-out infinite;
+}
+
+.timex-preloader .brand-text-back .brand-name,
+.timex-preloader .brand-text-back .brand-company {
+  background: none;
+  color: #160a24;
+  -webkit-text-fill-color: #160a24;
+}
+
+.timex-preloader .brand-text-mid .brand-name,
+.timex-preloader .brand-text-mid .brand-company {
+  background: none;
+  color: #3e1262;
+  -webkit-text-fill-color: #3e1262;
+}
+
+.timex-preloader .brand-text-main {
+  z-index: 2;
+  animation: timex-brand-face-float 4.2s ease-in-out infinite;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.24))
+    drop-shadow(0 0 18px rgba(166, 79, 243, 0.38))
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.48));
+}
+
+.timex-preloader .brand-text-main .brand-name {
+  animation: timex-brand-metal-sweep 3.6s cubic-bezier(0.55, 0, 0.25, 1) infinite;
+}
+
+.timex-preloader .brand-text-main .brand-company {
+  animation: timex-brand-metal-sweep 3.6s cubic-bezier(0.55, 0, 0.25, 1) 0.18s infinite;
+}
+
+.timex-preloader .brand-sweep {
+  position: absolute;
+  z-index: 6;
+  top: 18%;
+  left: 50%;
+  width: 2px;
+  height: 64%;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 0 8px #fff, 0 0 22px #cc9bf8, 0 0 58px #9333ea;
+  filter: blur(0.15px);
+  will-change: transform, opacity;
+}
+
+@keyframes timex-brand-metal-sweep {
+  0%, 18% { background-position: 100% 50%; }
+  62%, 100% { background-position: 0% 50%; }
+}
+
+@keyframes timex-brand-face-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translate3d(0, -2px, 7px) rotateX(-1.15deg) rotateY(1.25deg); }
+}
+
+@keyframes timex-brand-depth-mid {
+  0%, 100% { transform: translate3d(2.5px, 3.5px, -8px); }
+  50% { transform: translate3d(2px, 4.5px, -11px); }
+}
+
+@keyframes timex-brand-depth-back {
+  0%, 100% { transform: translate3d(5px, 7px, -18px); }
+  50% { transform: translate3d(6px, 9px, -24px); }
+}
+
+@media (max-width: 700px) {
+  .timex-preloader .brand-lockup { width: 96vw; }
+  .timex-preloader .brand-text-3d { width: 92vw; height: 112px; }
+  .timex-preloader .brand-text-layer { flex-direction: column; align-items: center; gap: 10px; }
+  .timex-preloader .brand-name { font-size: clamp(48px, 16vw, 72px); letter-spacing: -0.055em; }
+  .timex-preloader .brand-company { padding: 0; font-size: clamp(12px, 3.5vw, 16px); letter-spacing: 0.18em; }
+}
+
+@media (max-width: 430px) {
+  .timex-preloader .brand-text-3d { width: 94vw; }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .timex-preloader .brand-lockup { width: 90vw; }
+  .timex-preloader .brand-text-3d { width: clamp(560px, 76vw, 720px); }
+}
+
+@media (min-width: 1800px) {
+  .timex-preloader .brand-lockup { width: min(74vw, 1000px); }
+  .timex-preloader .brand-text-3d { width: 900px; height: 150px; }
+}
+
+@media (max-height: 620px) and (min-width: 700px) {
+  .timex-preloader .brand-text-3d { width: min(82vw, 650px); height: min(18vh, 110px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timex-preloader { transition-duration: 450ms; }
+  .timex-preloader .brand-lockup { transform: translate(-50%, -50%); }
+  .timex-preloader .brand-text-layer,
+  .timex-preloader .brand-name,
+  .timex-preloader .brand-company { animation: none !important; }
+}

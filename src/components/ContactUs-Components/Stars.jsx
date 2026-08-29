@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from "prop-types";
 
 const Star = ({ top, left, size, opacity }) => (
   <div
@@ -12,6 +12,13 @@ const Star = ({ top, left, size, opacity }) => (
     }}
   />
 )
+
+Star.propTypes = {
+  top: PropTypes.string.isRequired,
+  left: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  opacity: PropTypes.number.isRequired,
+};
 
 export const Stars = () => {
   const stars = Array.from({ length: 100 }, (_, i) => ({
@@ -30,4 +37,3 @@ export const Stars = () => {
     </div>
   )
 }
-

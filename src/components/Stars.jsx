@@ -1,9 +1,9 @@
   /* eslint-disable react/prop-types */
   import { useMemo } from 'react';
 
-  const Star = ({ top, left, size, opacity }) => (
+  const Star = ({ top, left, size, opacity, twinkle }) => (
     <div
-      className="absolute rounded-full bg-white"
+      className={`absolute rounded-full bg-white ${twinkle ? 'motion-safe:animate-pulse' : ''}`}
       style={{
         top,
         left,
@@ -22,6 +22,7 @@
         left: `${(i * 11.7 + 23) % 100}%`,
         size: (i % 2) + 1,
         opacity: 0.5 + (i % 5) * 0.1,
+        twinkle: i % 13 === 0,
       }));
     }, []);
 
@@ -33,4 +34,3 @@
       </div>
     )
   }
-

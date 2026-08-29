@@ -60,9 +60,10 @@ const links = [
       { title: "App Development", href: "/services/app-development" },
       { title: "Web Development", href: "/services/web-development" },
       { title: "Digital Marketing", href: "/services/digital-marketing" },
-      // { title: "Staffing Solutions", href: "/services/staffing-solutions" },
-      { title: "Tech/IT Solutions", href: "/services/tech-it-solutions" },
-      { title: "Video Services", href: "/services/video-services" },
+      { title: "AI Automation", href: "/services/ai-automation" },
+      { title: "Back-Office Support", href: "/services/back-office-support" },
+      { title: "Staffing Solutions", href: "/services/staffing-solutions" },
+      { title: "Real Estate Media", href: "/services/real-estate-media" },
     ],
   },
   {

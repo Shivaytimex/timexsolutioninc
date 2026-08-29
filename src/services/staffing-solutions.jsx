@@ -1,78 +1,68 @@
-import { ServicePage } from '../components/service-page'
-import { FaUsers, FaUserTie, FaUserClock, FaUserPlus, FaFileContract, FaMoneyCheckAlt } from 'react-icons/fa';
+import {
+  FaFileContract,
+  FaMoneyCheckAlt,
+  FaUserClock,
+  FaUserPlus,
+  FaUsers,
+  FaUserTie,
+} from "react-icons/fa";
+import { ServicePage } from "../components/service-page";
 
 const staffingSolutionsContent = {
-    serviceName: "Staffing Solutions",
-    description: "Providing tailored staffing solutions to meet your organization's unique needs, from temporary staffing to permanent placements across various industries. Our solutions ensure you have the right talent to achieve your business goals effectively and efficiently.",
-    subServices: [
-        { name: "IT Staffing", icon: FaUsers },
-        { name: "Executive Search", icon: FaUserTie },
-        { name: "Temporary Staffing", icon: FaUserClock },
-        { name: "Permanent Placement", icon: FaUserPlus },
-        { name: "Contract-to-Hire", icon: FaFileContract },
-        { name: "Payroll Services", icon: FaMoneyCheckAlt }
-    ],
-    packages: [
-        {
-            name: "Essential",
-            price: "250",
-            description: "Ideal for small businesses requiring occasional staffing solutions. Get access to qualified professionals on-demand.",
-            services: [
-                "Access to Candidate Database",
-                "Basic Screening Process",
-                "Temporary Staffing Solutions",
-                "Payroll Setup and Management",
-                "1-Month Support for Placements"
-            ]
-        },
-        {
-            name: "Advantage",
-            price: "350",
-            description: "Designed for growing organizations needing consistent staffing support. Includes advanced screening and contract-to-hire services.",
-            services: [
-                "All Features in Basic Package",
-                "Advanced Candidate Screening",
-                "Executive Search Services",
-                "Contract-to-Hire Solutions",
-                "Dedicated Account Manager",
-                "3-Month Support for Placements"
-            ]
-        },
-        {
-            name: "Premium",
-            price: "450",
-            description: "Comprehensive staffing solutions for enterprises. Includes full-scale recruitment, onboarding, and payroll management.",
-            services: [
-                "All Features in Standard Package",
-                "Permanent Placement Services",
-                "Custom Onboarding Process",
-                "Industry-Specific Recruitment",
-                "Employee Retention Programs",
-                "6-Month Support for Placements",
-                "Dedicated Team of Recruiters"
-            ]
-        }
-    ],
-    images: [
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1682686581854-5e71f58e7e3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1510784722466-f2aa9c52fff6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1439853949127-fa647821eba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50",
-        "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=50"
-    ]
+  serviceName: "Staffing Solutions",
+  description:
+    "Timex Solution Inc supports organizations that need defined roles, structured candidate coordination and flexible workforce capacity. Each engagement begins with the real responsibilities, working model, evaluation criteria and ownership required for a dependable staffing process.",
+  subServices: [
+    { name: "Business Staffing", icon: FaUsers },
+    { name: "Executive Search", icon: FaUserTie },
+    { name: "Temporary Staffing", icon: FaUserClock },
+    { name: "Permanent Placement", icon: FaUserPlus },
+    { name: "Contract-to-Hire", icon: FaFileContract },
+    { name: "Payroll Services", icon: FaMoneyCheckAlt },
+  ],
+  packages: [
+    {
+      name: "Targeted Search",
+      description:
+        "A focused engagement for one defined role with agreed requirements, evaluation stages and placement expectations.",
+      services: [
+        "Role and requirement intake",
+        "Search and sourcing coordination",
+        "Initial profile screening",
+        "Candidate communication",
+        "Interview scheduling support",
+        "Placement follow-through",
+      ],
+    },
+    {
+      name: "Managed Staffing",
+      description:
+        "Ongoing support for organizations with recurring hiring needs, multiple roles or a more active candidate pipeline.",
+      services: [
+        "Multi-role intake and prioritization",
+        "Recurring sourcing activity",
+        "Structured candidate tracking",
+        "Interview and feedback coordination",
+        "Defined reporting cadence",
+        "Onboarding communication support",
+      ],
+    },
+    {
+      name: "Dedicated Workforce",
+      description:
+        "A longer-term delivery model for teams that need consistent recruiting capacity and closer process coordination.",
+      services: [
+        "Dedicated staffing coordination",
+        "Documented screening workflow",
+        "Candidate pipeline management",
+        "Stakeholder communication rhythm",
+        "Placement and onboarding tracking",
+        "Ongoing process improvement",
+      ],
+    },
+  ],
 };
 
 export default function StaffingSolutionsPage() {
-    return <ServicePage {...staffingSolutionsContent} />
+  return <ServicePage {...staffingSolutionsContent} />;
 }
-

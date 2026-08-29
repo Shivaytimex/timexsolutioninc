@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FaCreditCard, FaLock, FaCheckCircle, FaTimesCircle, FaShieldAlt, FaDollarSign } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { isConfiguredBackend } from '../utils/formDelivery';
+import './premium-pages.css';
 
 // Animation variants
 const fadeInUp = {
@@ -20,13 +23,9 @@ const staggerContainer = {
   }
 };
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
-};
-
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BACKEND || 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_BACKEND?.trim() || '';
+const paymentsConfigured = isConfiguredBackend(API_BASE_URL);
 
 // Timex branding colors and styles
 const TIMEX_BRAND = {
@@ -42,9 +41,9 @@ export default function PaymentsSquare() {
   const [amount, setAmount] = useState('');
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
+  const [invoiceReference, setInvoiceReference] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(null);
-  const [squareConfig, setSquareConfig] = useState(null);
   const [payments, setPayments] = useState(null);
   const [card, setCard] = useState(null);
   const cardRef = useRef(null);
@@ -54,6 +53,7 @@ export default function PaymentsSquare() {
     let isInitialized = false;
     
     const initializeSquare = async () => {
+      if (!paymentsConfigured) return;
       if (isInitialized) return;
       isInitialized = true;
       
@@ -66,9 +66,6 @@ export default function PaymentsSquare() {
         }
         
         const config = await response.json();
-        console.log('Square config received:', config);
-        setSquareConfig(config);
-
         // Check if Square script is already loaded
         if (window.Square) {
           try {
@@ -157,8 +154,6 @@ export default function PaymentsSquare() {
       
       const initializeCard = async () => {
         try {
-          console.log('🔄 Initializing card element...');
-          
           // Clear any existing card elements
           if (cardRef.current) {
             cardRef.current.innerHTML = '';
@@ -169,13 +164,9 @@ export default function PaymentsSquare() {
           
           const cardElement = await payments.card();
           
-          console.log('✅ Card element created:', cardElement);
-          
           if (cardElement && typeof cardElement.attach === 'function') {
-            console.log('🔗 Attaching card to DOM...');
             await cardElement.attach(cardRef.current);
             setCard(cardElement);
-            console.log('🎉 Card element attached successfully!');
           } else {
             console.error('❌ Card element or attach method not available');
             Swal.fire({
@@ -205,10 +196,27 @@ export default function PaymentsSquare() {
         cardInitialized = false;
       };
     }
-  }, [payments]);
+  }, [payments, card]);
+
+  if (!paymentsConfigured) {
+    return (
+      <main className="premium-page min-h-screen px-5 pb-28 pt-40 text-center">
+        <section className="premium-shell premium-panel mx-auto max-w-4xl p-8 sm:p-12 lg:p-16" aria-labelledby="payment-unavailable-title">
+          <FaLock className="mx-auto h-9 w-9 text-PurpleLight" />
+          <p className="premium-kicker mt-6">Approved payments only</p>
+          <h1 id="payment-unavailable-title" className="premium-heading mx-auto mt-5">The secure payment portal is <span className="premium-heading-gradient">not currently available.</span></h1>
+          <p className="premium-copy mx-auto mt-6">Do not enter card information on an unconfigured page. Contact the Timex team with your invoice reference to receive the correct approved payment method.</p>
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="mailto:team@timexsolutioninc.com?subject=Approved%20invoice%20payment" className="premium-button">Contact Billing</a>
+            <Link to="/contact" className="premium-button premium-button--secondary">Contact Page</Link>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   const handleSquarePayment = async () => {
-    if (!amount || !customerName || !customerEmail) {
+    if (!amount || !customerName || !customerEmail || !invoiceReference.trim()) {
       Swal.fire({
         title: 'Missing Information',
         text: 'Please fill in all required fields.',
@@ -255,7 +263,8 @@ export default function PaymentsSquare() {
             sourceId: result.token,
             amount: amount,
             customerName: customerName,
-            customerEmail: customerEmail
+            customerEmail: customerEmail,
+            invoiceReference: invoiceReference.trim()
           }),
         });
 
@@ -292,7 +301,7 @@ export default function PaymentsSquare() {
   };
 
   const renderPaymentButton = () => {
-    if (!amount || !customerName || !customerEmail || !card) return null;
+    if (!amount || !customerName || !customerEmail || !invoiceReference.trim() || !card) return null;
 
     return (
       <motion.button
@@ -358,10 +367,11 @@ export default function PaymentsSquare() {
               <h3 className="text-lg font-semibold text-white mb-4">Customer Information</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
+                  <label htmlFor="payment-name" className="block text-white/80 text-sm font-medium mb-2">
                     Full Name *
                   </label>
                   <input
+                    id="payment-name"
                     type="text"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
@@ -371,10 +381,11 @@ export default function PaymentsSquare() {
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
+                  <label htmlFor="payment-email" className="block text-white/80 text-sm font-medium mb-2">
                     Email Address *
                   </label>
                   <input
+                    id="payment-email"
                     type="email"
                     value={customerEmail}
                     onChange={(e) => setCustomerEmail(e.target.value)}
@@ -384,12 +395,28 @@ export default function PaymentsSquare() {
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm font-medium mb-2">
+                  <label htmlFor="payment-invoice" className="block text-white/80 text-sm font-medium mb-2">
+                    Invoice Reference *
+                  </label>
+                  <input
+                    id="payment-invoice"
+                    type="text"
+                    value={invoiceReference}
+                    onChange={(e) => setInvoiceReference(e.target.value)}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Enter the reference shown on your invoice"
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="payment-amount" className="block text-white/80 text-sm font-medium mb-2">
                     Amount (USD) *
                   </label>
                   <div className="relative">
                     <FaDollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50" />
                     <input
+                      id="payment-amount"
                       type="number"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
@@ -468,7 +495,7 @@ export default function PaymentsSquare() {
             </motion.div>
 
             {/* Payment Summary */}
-            {amount && customerName && customerEmail && (
+            {amount && customerName && customerEmail && invoiceReference && (
               <motion.div
                 variants={fadeInUp}
                 className="bg-white/10 backdrop-blur-sm rounded-xl p-6"
@@ -485,6 +512,10 @@ export default function PaymentsSquare() {
                     <span>Email:</span>
                     <span className="text-sm">{customerEmail}</span>
                   </div>
+                  <div className="flex justify-between gap-4 text-white">
+                    <span>Invoice:</span>
+                    <span className="break-all text-right text-sm">{invoiceReference}</span>
+                  </div>
                   <div className="border-t border-white/20 pt-3">
                     <div className="flex justify-between text-white font-semibold">
                       <span>Amount:</span>
@@ -498,7 +529,7 @@ export default function PaymentsSquare() {
             )}
 
             {/* Payment Button */}
-            {amount && customerName && customerEmail && card && (
+            {amount && customerName && customerEmail && invoiceReference && card && (
               <motion.div
                 variants={fadeInUp}
                 className="space-y-4"
@@ -544,4 +575,4 @@ export default function PaymentsSquare() {
       </div>
     </div>
   );
-} 
+}

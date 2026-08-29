@@ -1,6 +1,5 @@
 // src/components/presentation/WorkflowSection.jsx
 
-import React from "react";
 import { motion } from "framer-motion";
 
 const WorkflowSection = () => {

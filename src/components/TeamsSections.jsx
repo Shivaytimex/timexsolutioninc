@@ -1,12 +1,21 @@
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import PropTypes from "prop-types";
 
 const Card = ({ children }) => (
   <div className="overflow-hidden rounded-lg shadow-md">{children}</div>
 );
 
 const CardContent = ({ children }) => <div className="p-0">{children}</div>;
+
+Card.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+CardContent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default function TeamSection() {
   const ref = useRef(null);

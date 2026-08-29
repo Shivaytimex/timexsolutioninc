@@ -1,6 +1,6 @@
 // src/pages/Presentation.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LampContainer } from "../components/ui/lamp";
 import { Stars } from "../components/Stars";
@@ -17,9 +17,8 @@ import CallToActionSection from "../components/presentation/CallToActionSection"
 import ImageSourcesSection from "../components/presentation/ImageSourcesSection";
 import FloatingTimexButton from "../components/presentation/FloatingTimexButton";
 
-const Presentation = () => {
-  const slides = [
-    <section className="h-screen flex items-center justify-center">
+const slides = [
+    <section key="intro" className="h-screen flex items-center justify-center">
       <LampContainer>
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
@@ -36,17 +35,19 @@ const Presentation = () => {
       </LampContainer>
     </section>,
 
-    <HeroSection />,
-    <ArchitectureSection />,
-    <PropertyMediaSection />,
-    <WebPerformanceSection />,
-    <CommercialProductionSection />,
-    <SocialGrowthSection />,
-    <WorkflowSection />,
-    <PricingTierSection />,
-    <CallToActionSection />,
-    <ImageSourcesSection />,
+    <HeroSection key="hero" />,
+    <ArchitectureSection key="architecture" />,
+    <PropertyMediaSection key="property-media" />,
+    <WebPerformanceSection key="web-performance" />,
+    <CommercialProductionSection key="commercial-production" />,
+    <SocialGrowthSection key="social-growth" />,
+    <WorkflowSection key="workflow" />,
+    <PricingTierSection key="pricing" />,
+    <CallToActionSection key="cta" />,
+    <ImageSourcesSection key="sources" />,
   ];
+
+const Presentation = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 

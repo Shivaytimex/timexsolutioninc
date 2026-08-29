@@ -1,22 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 
 const FloatingTimexButton = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  let lastScrollY = 0;
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 200) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
-      lastScrollY = currentScrollY;
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);

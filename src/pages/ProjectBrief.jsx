@@ -1,690 +1,914 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import {Stars} from '../components/Stars';
+/* eslint-disable react/prop-types */
+import { useMemo, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  AppWindow,
+  ArrowRight,
+  Bot,
+  Building2,
+  Camera,
+  Check,
+  CircleDollarSign,
+  Clock3,
+  HelpCircle,
+  LoaderCircle,
+  Mail,
+  MapPin,
+  Megaphone,
+  Phone,
+  Send,
+  Sparkles,
+  Target,
+  Users2,
+  Workflow,
+} from "lucide-react";
 import Swal from "sweetalert2";
+import { Stars } from "../components/Stars";
+import { getFormDeliveryConfig } from "../utils/formDelivery";
+
+const premiumEase = [0.22, 1, 0.36, 1];
+
+const serviceOptions = [
+  {
+    id: "digital-growth",
+    title: "Digital Growth",
+    description: "SEO, paid media, content, social campaigns and qualified lead generation.",
+    icon: Megaphone,
+  },
+  {
+    id: "ai-automation",
+    title: "AI Automation",
+    description: "Lead handling, follow-ups, intelligent assistants and connected workflows.",
+    icon: Bot,
+  },
+  {
+    id: "website-app",
+    title: "Website or App",
+    description: "Websites, landing pages, ecommerce, mobile apps and digital platforms.",
+    icon: AppWindow,
+  },
+  {
+    id: "back-office",
+    title: "Back-Office Support",
+    description: "Billing administration, data, documentation and daily operations support.",
+    icon: Workflow,
+  },
+  {
+    id: "staffing",
+    title: "Staffing Solutions",
+    description: "Recruitment support, remote specialists and dedicated team capacity.",
+    icon: Users2,
+  },
+  {
+    id: "real-estate-media",
+    title: "Real Estate Media",
+    description: "Property photography, video, drone media and listing marketing.",
+    icon: Camera,
+  },
+  {
+    id: "guidance",
+    title: "Help Me Choose",
+    description: "Share the challenge and we will recommend the right service mix.",
+    icon: HelpCircle,
+  },
+];
+
+const initialForm = {
+  contactName: "",
+  companyName: "",
+  workEmail: "",
+  phone: "",
+  location: "",
+  websiteUrl: "",
+  serviceInterests: [],
+  businessSummary: "",
+  mainChallenge: "",
+  targetAudience: "",
+  desiredOutcome: "",
+  serviceDetails: "",
+  timeline: "",
+  engagementModel: "",
+  budgetRange: "",
+  consent: false,
+  website: "",
+};
+
+const fieldClass =
+  "min-h-12 w-full rounded-xl border border-purple-300/20 bg-black/45 px-4 py-3.5 text-[15px] text-white outline-none transition duration-300 placeholder:text-gray-500 hover:border-purple-300/35 focus:border-PurpleLight focus:bg-purple-950/25 focus:ring-2 focus:ring-PurpleLight/20";
+
+const selectClass = `${fieldClass} appearance-none text-gray-200 [color-scheme:dark]`;
+
+function FieldError({ id, children }) {
+  if (!children) return null;
+  return (
+    <p id={id} className="mt-2 text-sm text-rose-300" role="alert">
+      {children}
+    </p>
+  );
+}
+
+function SectionHeading({ number, title, description }) {
+  return (
+    <div className="mb-7 flex items-start gap-4">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-PurpleLight/35 bg-PurpleDark/25 text-sm text-purple-200 shadow-[0_0_24px_rgba(168,85,247,0.15)]">
+        {number}
+      </span>
+      <div>
+        <h2 className="text-2xl leading-tight text-white sm:text-3xl">{title}</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-400 sm:text-[15px]">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function InputField({
+  id,
+  label,
+  required = false,
+  error,
+  className = "",
+  ...inputProps
+}) {
+  return (
+    <div className={className}>
+      <label htmlFor={id} className="mb-2 block text-sm text-gray-200">
+        {label} {required ? <span className="text-PurpleLight">*</span> : null}
+      </label>
+      <input
+        id={id}
+        name={id}
+        className={fieldClass}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${id}-error` : undefined}
+        {...inputProps}
+      />
+      <FieldError id={`${id}-error`}>{error}</FieldError>
+    </div>
+  );
+}
 
 function ProjectBrief() {
-  const [formData, setFormData] = useState({
-    companyName: '',
-    companyLogo: null,
-    companyTagline: '',
-    briefDescription: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-    websiteGoals: [],
-    mainGoal: '',
-    otherGoal: '',
-    targetAudience: '',
-    colorScheme: '',
-    websiteExamples: '',
-    designElements: '',
-    aboutUsContent: '',
-    servicesOffered: '',
-    testimonials: '',
-    staffBios: '',
-    domainHosting: '',
-    maintenanceRequired: '',
-    updateHandling: '',
-    digitalAssets: '',
-    imagesVideos: '',
-    permissions: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'file' ? files[0] : value
-    }));
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { name, value, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: checked 
-        ? [...prev[name], value]
-        : prev[name].filter(item => item !== value)
-    }));
-  };
-
+  const reduceMotion = useReducedMotion();
+  const formRef = useRef(null);
+  const [formData, setFormData] = useState(initialForm);
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formErrors, setFormErrors] = useState({});
+  const [submitState, setSubmitState] = useState("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  // Validation function
-  const validateForm = () => {
-    const errors = {};
-    
-    // Required fields validation
-    if (!formData.companyName.trim()) errors.companyName = "Company name is required";
-    if (!formData.companyLogo) errors.companyLogo = "Company logo is required";
-    if (!formData.briefDescription.trim()) errors.briefDescription = "Brief description is required";
-    if (!formData.address.trim()) errors.address = "Address is required";
-    if (!formData.phoneNumber.trim()) errors.phoneNumber = "Phone number is required";
-    if (!formData.email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Email is invalid";
+  const selectedServices = useMemo(
+    () => serviceOptions.filter((service) => formData.serviceInterests.includes(service.id)),
+    [formData.serviceInterests],
+  );
+
+  const selectedServiceNames = selectedServices.map((service) => service.title).join(", ");
+
+  const serviceDetailCopy = useMemo(() => {
+    if (formData.serviceInterests.includes("guidance")) {
+      return {
+        label: "What would you like help figuring out?",
+        placeholder:
+          "Describe what feels stuck, what you have already tried and where you would value expert guidance.",
+      };
     }
-    if (!formData.servicesOffered.trim()) errors.servicesOffered = "Services/Products are required";
 
-    return errors;
+    if (selectedServices.length === 1) {
+      const prompts = {
+        "digital-growth":
+          "Share your current channels, campaign activity, lead flow or marketing budget if known.",
+        "ai-automation":
+          "Describe the manual process, current tools or CRM, monthly volume and where delays happen.",
+        "website-app":
+          "Tell us what you want to build or improve, the key features and any current website or app.",
+        "back-office":
+          "List the tasks, approximate workload, tools, turnaround needs and any access or security requirements.",
+        staffing:
+          "Share the roles, number of people, required skills, work arrangement and preferred start date.",
+        "real-estate-media":
+          "Share the media types, property volume, service location, turnaround needs and current listing workflow.",
+      };
+
+      return {
+        label: `Helpful details for ${selectedServices[0].title}`,
+        placeholder: prompts[selectedServices[0].id],
+      };
+    }
+
+    if (selectedServices.length > 1) {
+      return {
+        label: "How should these services work together?",
+        placeholder:
+          "Describe the current process, tools, volume and the parts Timex should connect or manage together.",
+      };
+    }
+
+    return {
+      label: "Helpful project details",
+      placeholder: "Select a service above and we will guide you on the most useful details to share.",
+    };
+  }, [formData.serviceInterests, selectedServices]);
+
+  const mailtoHref = useMemo(() => {
+    const subject = encodeURIComponent(
+      `Growth Assessment — ${formData.companyName || "New inquiry"}`,
+    );
+    const body = encodeURIComponent(
+      [
+        "TIMEX GROWTH ASSESSMENT",
+        "",
+        `Contact: ${formData.contactName}`,
+        `Company: ${formData.companyName}`,
+        `Email: ${formData.workEmail}`,
+        `Phone: ${formData.phone || "Not provided"}`,
+        `Location: ${formData.location || "Not provided"}`,
+        `Website / social: ${formData.websiteUrl || "Not provided"}`,
+        "",
+        `Service interests: ${selectedServiceNames || "Not selected"}`,
+        `Business summary: ${formData.businessSummary}`,
+        `Main challenge: ${formData.mainChallenge}`,
+        `Target audience: ${formData.targetAudience || "Not provided"}`,
+        `Desired outcome: ${formData.desiredOutcome}`,
+        `Service details: ${formData.serviceDetails || "Not provided"}`,
+        "",
+        `Timeline: ${formData.timeline}`,
+        `Engagement: ${formData.engagementModel || "Not sure"}`,
+        `Budget: ${formData.budgetRange || "Not provided"}`,
+      ].join("\n"),
+    );
+
+    return `mailto:team@timexsolutioninc.com?subject=${subject}&body=${body}`;
+  }, [formData, selectedServiceNames]);
+
+  const updateField = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormData((current) => ({
+      ...current,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+    setErrors((current) => ({ ...current, [name]: "" }));
+    setSubmitState("idle");
   };
 
-  // Using environment variables for API configuration
-  const API_URL = import.meta.env.VITE_API_URL;
-  const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY;
+  const toggleService = (serviceId) => {
+    setFormData((current) => {
+      if (serviceId === "guidance") {
+        return {
+          ...current,
+          serviceInterests: current.serviceInterests.includes("guidance") ? [] : ["guidance"],
+        };
+      }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+      const withoutGuidance = current.serviceInterests.filter((id) => id !== "guidance");
+      const isSelected = withoutGuidance.includes(serviceId);
 
-    // Validate form
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      setIsSubmitting(false);
-      Swal.fire({
-        title: "Validation Error",
-        text: "Please fill in all required fields correctly",
-        icon: "error",
-        confirmButtonColor: "#ef4444"
-      });
+      return {
+        ...current,
+        serviceInterests: isSelected
+          ? withoutGuidance.filter((id) => id !== serviceId)
+          : [...withoutGuidance, serviceId],
+      };
+    });
+    setErrors((current) => ({ ...current, serviceInterests: "" }));
+    setSubmitState("idle");
+  };
+
+  const validateForm = () => {
+    const nextErrors = {};
+
+    if (!formData.contactName.trim()) nextErrors.contactName = "Please enter your name.";
+    if (!formData.companyName.trim()) nextErrors.companyName = "Please enter your company name.";
+    if (!formData.workEmail.trim()) {
+      nextErrors.workEmail = "Please enter your work email.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.workEmail)) {
+      nextErrors.workEmail = "Please enter a valid email address.";
+    }
+    if (!formData.serviceInterests.length) {
+      nextErrors.serviceInterests = "Choose at least one service or select Help Me Choose.";
+    }
+    if (!formData.businessSummary.trim()) {
+      nextErrors.businessSummary = "Tell us briefly what your business does.";
+    }
+    if (!formData.mainChallenge.trim()) {
+      nextErrors.mainChallenge = "Tell us the main challenge you want to solve.";
+    }
+    if (!formData.desiredOutcome.trim()) {
+      nextErrors.desiredOutcome = "Tell us what a successful outcome would look like.";
+    }
+    if (!formData.timeline) nextErrors.timeline = "Choose a preferred timeline.";
+    if (!formData.consent) nextErrors.consent = "Please confirm that Timex may contact you.";
+
+    return nextErrors;
+  };
+
+  const focusFirstError = () => {
+    window.requestAnimationFrame(() => {
+      formRef.current?.querySelector('[aria-invalid="true"]')?.focus();
+    });
+  };
+
+  const resetForm = () => {
+    setFormData(initialForm);
+    setErrors({});
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (formData.website) return;
+
+    const nextErrors = validateForm();
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      setSubmitState("error");
+      setSubmitMessage("Please review the highlighted fields before sending your assessment.");
+      focusFirstError();
       return;
     }
 
-    // Clear any previous errors
-    setFormErrors({});
+    const { endpoint: apiUrl, accessKey, configured } = getFormDeliveryConfig({
+      endpoint: import.meta.env.VITE_API_URL,
+      accessKey: import.meta.env.VITE_ACCESS_KEY,
+    });
 
-    // Prepare the email content in a readable format
-    const emailContent = `
-Project Brief Submission
+    if (!configured) {
+      setSubmitState("fallback");
+      setSubmitMessage(
+        "The secure form service is temporarily unavailable. Your details are ready to send by email.",
+      );
+      return;
+    }
 
-Company Information:
-- Company Name: ${formData.companyName}
-- Company Tagline: ${formData.companyTagline}
-- Brief Description: ${formData.briefDescription}
+    setIsSubmitting(true);
+    setSubmitState("idle");
+    setSubmitMessage("");
 
-Contact Information:
-- Address: ${formData.address}
-- Phone: ${formData.phoneNumber}
-- Email: ${formData.email}
-
-Website Goals:
-- Selected Goals: ${formData.websiteGoals.join(", ")}
-- Other Goal: ${formData.otherGoal}
-- Main Goal: ${formData.mainGoal}
-- Target Audience: ${formData.targetAudience}
-
-Design Preferences:
-- Color Scheme: ${formData.colorScheme}
-- Website Examples: ${formData.websiteExamples}
-- Design Elements: ${formData.designElements}
-
-Content:
-- About Us: ${formData.aboutUsContent}
-- Services/Products: ${formData.servicesOffered}
-- Testimonials: ${formData.testimonials}
-- Staff Bios: ${formData.staffBios}
-
-Technical Requirements:
-- Domain & Hosting: ${formData.domainHosting}
-- Maintenance Required: ${formData.maintenanceRequired}
-- Update Handling: ${formData.updateHandling}
-
-Digital Assets:
-- Existing Assets: ${formData.digitalAssets}
-- Images & Videos: ${formData.imagesVideos}
-- Permissions: ${formData.permissions}
-    `;
-
-    // Prepare submission data
-    const submissionData = {
-      access_key: ACCESS_KEY,
-      subject: `New Project Brief from ${formData.companyName}`,
-      from_name: formData.companyName,
-      email: formData.email,
-      message: emailContent,
-      phone: formData.phoneNumber
-    };
+    const emailContent = [
+      "TIMEX MULTI-SERVICE GROWTH ASSESSMENT",
+      "=====================================",
+      "",
+      "CONTACT",
+      `Name: ${formData.contactName}`,
+      `Company: ${formData.companyName}`,
+      `Email: ${formData.workEmail}`,
+      `Phone: ${formData.phone || "Not provided"}`,
+      `Location: ${formData.location || "Not provided"}`,
+      `Website / social: ${formData.websiteUrl || "Not provided"}`,
+      "",
+      "SERVICE FIT",
+      `Interests: ${selectedServiceNames}`,
+      "",
+      "BUSINESS CONTEXT",
+      `Business: ${formData.businessSummary}`,
+      `Main challenge: ${formData.mainChallenge}`,
+      `Audience: ${formData.targetAudience || "Not provided"}`,
+      `Desired outcome: ${formData.desiredOutcome}`,
+      `Service details: ${formData.serviceDetails || "Not provided"}`,
+      "",
+      "PROJECT FIT",
+      `Timeline: ${formData.timeline}`,
+      `Engagement: ${formData.engagementModel || "Not sure"}`,
+      `Budget: ${formData.budgetRange || "Not provided"}`,
+    ].join("\n");
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(apiUrl, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify(submissionData)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Growth Assessment: ${selectedServiceNames} — ${formData.companyName}`,
+          from_name: formData.companyName,
+          email: formData.workEmail,
+          phone: formData.phone,
+          message: emailContent,
+        }),
       });
 
       const result = await response.json();
-
-      if (result.success) {
-        // Show success message
-        Swal.fire({
-          title: "Project Brief Submitted!",
-          text: "Thank you for submitting your project brief. We'll review it and get back to you soon!",
-          icon: "success",
-          confirmButtonColor: "#6366f1"
-        });
-
-        // Reset form
-        setFormData({
-          companyName: '',
-          companyLogo: null,
-          companyTagline: '',
-          briefDescription: '',
-          address: '',
-          phoneNumber: '',
-          email: '',
-          websiteGoals: [],
-          mainGoal: '',
-          otherGoal: '',
-          targetAudience: '',
-          colorScheme: '',
-          websiteExamples: '',
-          designElements: '',
-          aboutUsContent: '',
-          servicesOffered: '',
-          testimonials: '',
-          staffBios: '',
-          domainHosting: '',
-          maintenanceRequired: '',
-          updateHandling: '',
-          digitalAssets: '',
-          imagesVideos: '',
-          permissions: ''
-        });
-      } else {
+      if (!response.ok || result.success === false) {
         throw new Error(result.message || "Submission failed");
       }
-    } catch (error) {
-      console.error("Submission error:", error);
-      Swal.fire({
-        title: "Error!",
-        text: "There was a problem submitting your project brief. Please try again or contact us directly.",
-        icon: "error",
-        confirmButtonColor: "#ef4444"
+
+      resetForm();
+      setSubmitState("success");
+      setSubmitMessage("Your assessment has been sent. The Timex team will review it and contact you.");
+      await Swal.fire({
+        title: "Assessment received",
+        text: "Thank you. We will review your goals and recommend the right next step.",
+        icon: "success",
+        confirmButtonColor: "#9333ea",
       });
+    } catch {
+      setSubmitState("fallback");
+      setSubmitMessage(
+        "We could not send the secure form right now. Your details are ready to send by email instead.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
-
-  const fadeInLeft = {
-    hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
-  };
-
-  const fadeInRight = {
-    hidden: { opacity: 0, x: 30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
-  };
-
-  const scaleIn = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  // Custom hook for animation on view
-  const useAnimateOnView = () => {
-    const ref = React.useRef(null);
-    const isInView = motion.useInView(ref, { 
-      once: true,
-      margin: "-100px"
-    });
-
-    return { ref, isInView };
-  };
+  const reveal = reduceMotion
+    ? {}
+    : {
+        initial: { y: 18 },
+        whileInView: { y: 0 },
+        viewport: { once: true, amount: 0.12 },
+        transition: { duration: 0.65, ease: premiumEase },
+      };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-black to-primary  px-4 py-24 md:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-black px-5 pb-24 pt-36 text-white sm:px-8 sm:pt-40 lg:px-10">
       <Stars />
-      <motion.div 
-        className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8"
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-14rem] top-52 h-[34rem] w-[34rem] rounded-full bg-PurpleDark/15 blur-[150px]" />
+        <div className="absolute right-[-12rem] top-24 h-[30rem] w-[30rem] rounded-full bg-PurpleLight/10 blur-[160px]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-PurpleLight/60 to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="grid items-start gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:gap-16">
+          <motion.aside {...reveal} className="lg:sticky lg:top-28">
+            <div className="inline-flex items-center gap-2 rounded-full border border-PurpleLight/25 bg-purple-950/25 px-4 py-2 text-xs uppercase tracking-[0.22em] text-purple-200">
+              <Sparkles className="h-4 w-4 text-PurpleLight" />
+              Multi-Service Growth Assessment
+            </div>
+
+            <h1 className="mt-7 text-5xl leading-[0.98] text-white sm:text-6xl lg:text-7xl">
+              Tell us where growth needs to
+              <span className="block bg-gradient-to-r from-PurpleLight via-purple-300 to-PurpleDark bg-clip-text text-transparent">
+                move next.
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-xl text-base leading-8 text-gray-300 sm:text-lg">
+              Choose one service or combine several. We will review the complete business challenge and
+              recommend a practical next step—not force every inquiry into a website brief.
+            </p>
+
+            <div className="mt-9 space-y-3">
+              {[
+                ["01", "Choose the support you need"],
+                ["02", "Share the business context"],
+                ["03", "Receive a recommended direction"],
+              ].map(([number, text]) => (
+                <div
+                  key={number}
+                  className="flex items-center gap-4 rounded-2xl border border-purple-400/15 bg-purple-950/15 px-4 py-4"
+                >
+                  <span className="text-xs tracking-[0.18em] text-PurpleLight">{number}</span>
+                  <span className="text-sm text-gray-200 sm:text-[15px]">{text}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-purple-300/15 bg-black/35 p-5">
+              <div className="flex items-start gap-3">
+                <Target className="mt-0.5 h-5 w-5 shrink-0 text-PurpleLight" />
+                <div>
+                  <p className="text-sm text-white">One assessment. The right service mix.</p>
+                  <p className="mt-2 text-sm leading-6 text-gray-400">
+                    Digital growth, AI automation, websites, operations, staffing and media stay clearly
+                    defined while working toward one business outcome.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400">
+              <a
+                href="mailto:team@timexsolutioninc.com"
+                className="inline-flex items-center gap-2 transition hover:text-white"
+              >
+                <Mail className="h-4 w-4 text-PurpleLight" />
+                team@timexsolutioninc.com
+              </a>
+              <span className="inline-flex items-center gap-2">
+                <Building2 className="h-4 w-4 text-PurpleLight" />
+                Fresno, California
+              </span>
+            </div>
+          </motion.aside>
+
+          <motion.form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            noValidate
+            {...reveal}
+            className="relative overflow-hidden rounded-[2rem] border border-purple-300/20 bg-gradient-to-b from-purple-950/35 via-[#100718]/95 to-black/95 p-5 shadow-[0_30px_100px_rgba(82,22,126,0.22)] sm:p-8 lg:p-10"
+            aria-label="Multi-service growth assessment"
+          >
+            <div className="pointer-events-none absolute right-[-8rem] top-[-8rem] h-72 w-72 rounded-full bg-PurpleLight/10 blur-[100px]" />
+
+            <div className="relative space-y-11">
+              <section>
+                <SectionHeading
+                  number="01"
+                  title="About your business"
+                  description="Start with the essential contact and company details. A logo and street address are not required."
+                />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <InputField
+                    id="contactName"
+                    label="Your name"
+                    required
+                    error={errors.contactName}
+                    value={formData.contactName}
+                    onChange={updateField}
+                    autoComplete="name"
+                    placeholder="Full name"
+                  />
+                  <InputField
+                    id="companyName"
+                    label="Company name"
+                    required
+                    error={errors.companyName}
+                    value={formData.companyName}
+                    onChange={updateField}
+                    autoComplete="organization"
+                    placeholder="Business or organization"
+                  />
+                  <InputField
+                    id="workEmail"
+                    type="email"
+                    label="Work email"
+                    required
+                    error={errors.workEmail}
+                    value={formData.workEmail}
+                    onChange={updateField}
+                    autoComplete="email"
+                    placeholder="you@company.com"
+                  />
+                  <InputField
+                    id="phone"
+                    type="tel"
+                    label="Phone"
+                    value={formData.phone}
+                    onChange={updateField}
+                    autoComplete="tel"
+                    placeholder="Optional"
+                  />
+                  <InputField
+                    id="location"
+                    label="City / region"
+                    value={formData.location}
+                    onChange={updateField}
+                    autoComplete="address-level2"
+                    placeholder="Where do you operate?"
+                  />
+                  <InputField
+                    id="websiteUrl"
+                    label="Website or social profile"
+                    value={formData.websiteUrl}
+                    onChange={updateField}
+                    placeholder="Optional link"
+                  />
+                </div>
+              </section>
+
+              <div className="h-px bg-gradient-to-r from-transparent via-purple-300/20 to-transparent" />
+
+              <section>
+                <SectionHeading
+                  number="02"
+                  title="What support do you need?"
+                  description="Select one or combine multiple services. Each category remains distinct, so your request reaches the right team."
+                />
+                <div
+                  className="grid gap-4 sm:grid-cols-2"
+                  role="group"
+                  tabIndex={-1}
+                  aria-label="Service interests"
+                  aria-invalid={Boolean(errors.serviceInterests)}
+                  aria-describedby={errors.serviceInterests ? "serviceInterests-error" : undefined}
+                >
+                  {serviceOptions.map((service) => {
+                    const Icon = service.icon;
+                    const selected = formData.serviceInterests.includes(service.id);
+
+                    return (
+                      <motion.label
+                        key={service.id}
+                        whileHover={reduceMotion ? undefined : { y: -4 }}
+                        whileTap={reduceMotion ? undefined : { y: 2, scale: 0.99 }}
+                        transition={{ duration: 0.22, ease: premiumEase }}
+                        className={`group relative cursor-pointer overflow-hidden rounded-2xl border p-5 outline-none transition duration-300 focus-within:ring-2 focus-within:ring-PurpleLight ${selected ? "border-PurpleLight/75 bg-PurpleDark/25 shadow-[0_0_34px_rgba(147,51,234,0.18)]" : "border-purple-300/15 bg-black/35 hover:border-purple-300/35 hover:bg-purple-950/20"} ${service.id === "guidance" ? "sm:col-span-2" : ""}`}
+                      >
+                        <input
+                          type="checkbox"
+                          name="serviceInterests"
+                          value={service.id}
+                          checked={selected}
+                          onChange={() => toggleService(service.id)}
+                          className="sr-only"
+                        />
+                        <div className="flex items-start gap-4">
+                          <span
+                            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border transition duration-300 ${selected ? "border-purple-200/40 bg-gradient-to-br from-PurpleLight to-PurpleDark text-white" : "border-purple-300/20 bg-purple-950/35 text-purple-300 group-hover:text-white"}`}
+                          >
+                            <Icon className="h-6 w-6" />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="flex items-center gap-2 text-base text-white">
+                              {service.title}
+                              {selected ? (
+                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-PurpleDark">
+                                  <Check className="h-3.5 w-3.5" />
+                                </span>
+                              ) : null}
+                            </span>
+                            <span className="mt-2 block text-sm leading-6 text-gray-400">
+                              {service.description}
+                            </span>
+                          </span>
+                        </div>
+                      </motion.label>
+                    );
+                  })}
+                </div>
+                <FieldError id="serviceInterests-error">{errors.serviceInterests}</FieldError>
+
+                {selectedServices.length ? (
+                  <div className="mt-5 flex flex-wrap items-center gap-2" aria-live="polite">
+                    <span className="mr-1 text-xs uppercase tracking-[0.18em] text-gray-500">
+                      Selected
+                    </span>
+                    {selectedServices.map((service) => (
+                      <span
+                        key={service.id}
+                        className="rounded-full border border-PurpleLight/25 bg-PurpleDark/20 px-3 py-1.5 text-xs text-purple-100"
+                      >
+                        {service.title}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </section>
+
+              <div className="h-px bg-gradient-to-r from-transparent via-purple-300/20 to-transparent" />
+
+              <section>
+                <SectionHeading
+                  number="03"
+                  title="Where should we focus?"
+                  description="Business context helps us recommend the right sequence, scope and service owner."
+                />
+                <div className="space-y-5">
+                  <div>
+                    <label htmlFor="businessSummary" className="mb-2 block text-sm text-gray-200">
+                      What does your business do? <span className="text-PurpleLight">*</span>
+                    </label>
+                    <textarea
+                      id="businessSummary"
+                      name="businessSummary"
+                      rows="3"
+                      value={formData.businessSummary}
+                      onChange={updateField}
+                      className={`${fieldClass} resize-y`}
+                      placeholder="A short description of your company, offer and market."
+                      aria-invalid={Boolean(errors.businessSummary)}
+                      aria-describedby={errors.businessSummary ? "businessSummary-error" : undefined}
+                    />
+                    <FieldError id="businessSummary-error">{errors.businessSummary}</FieldError>
+                  </div>
+
+                  <div>
+                    <label htmlFor="mainChallenge" className="mb-2 block text-sm text-gray-200">
+                      What is the main challenge? <span className="text-PurpleLight">*</span>
+                    </label>
+                    <textarea
+                      id="mainChallenge"
+                      name="mainChallenge"
+                      rows="3"
+                      value={formData.mainChallenge}
+                      onChange={updateField}
+                      className={`${fieldClass} resize-y`}
+                      placeholder="What is slowing growth, creating manual work or limiting performance?"
+                      aria-invalid={Boolean(errors.mainChallenge)}
+                      aria-describedby={errors.mainChallenge ? "mainChallenge-error" : undefined}
+                    />
+                    <FieldError id="mainChallenge-error">{errors.mainChallenge}</FieldError>
+                  </div>
+
+                  <InputField
+                    id="targetAudience"
+                    label="Who are you trying to reach or support?"
+                    value={formData.targetAudience}
+                    onChange={updateField}
+                    placeholder="Customers, teams, locations or industries"
+                  />
+
+                  <div>
+                    <label htmlFor="desiredOutcome" className="mb-2 block text-sm text-gray-200">
+                      What would success look like? <span className="text-PurpleLight">*</span>
+                    </label>
+                    <textarea
+                      id="desiredOutcome"
+                      name="desiredOutcome"
+                      rows="3"
+                      value={formData.desiredOutcome}
+                      onChange={updateField}
+                      className={`${fieldClass} resize-y`}
+                      placeholder="Describe the result you want to achieve."
+                      aria-invalid={Boolean(errors.desiredOutcome)}
+                      aria-describedby={errors.desiredOutcome ? "desiredOutcome-error" : undefined}
+                    />
+                    <FieldError id="desiredOutcome-error">{errors.desiredOutcome}</FieldError>
+                  </div>
+
+                  <div>
+                    <label htmlFor="serviceDetails" className="mb-2 block text-sm text-gray-200">
+                      {serviceDetailCopy.label}
+                    </label>
+                    <textarea
+                      id="serviceDetails"
+                      name="serviceDetails"
+                      rows="4"
+                      value={formData.serviceDetails}
+                      onChange={updateField}
+                      className={`${fieldClass} resize-y`}
+                      placeholder={serviceDetailCopy.placeholder}
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <div className="h-px bg-gradient-to-r from-transparent via-purple-300/20 to-transparent" />
+
+              <section>
+                <SectionHeading
+                  number="04"
+                  title="Project fit"
+                  description="A few planning signals help us prepare a relevant recommendation. You do not need a finalized scope."
+                />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="timeline" className="mb-2 block text-sm text-gray-200">
+                      Preferred timeline <span className="text-PurpleLight">*</span>
+                    </label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={updateField}
+                      className={selectClass}
+                      aria-invalid={Boolean(errors.timeline)}
+                      aria-describedby={errors.timeline ? "timeline-error" : undefined}
+                    >
+                      <option value="">Choose a timeline</option>
+                      <option value="As soon as possible">As soon as possible</option>
+                      <option value="Within 30 days">Within 30 days</option>
+                      <option value="1–3 months">1–3 months</option>
+                      <option value="3+ months">3+ months</option>
+                      <option value="Exploring options">Exploring options</option>
+                    </select>
+                    <FieldError id="timeline-error">{errors.timeline}</FieldError>
+                  </div>
+
+                  <div>
+                    <label htmlFor="engagementModel" className="mb-2 block text-sm text-gray-200">
+                      Engagement preference
+                    </label>
+                    <select
+                      id="engagementModel"
+                      name="engagementModel"
+                      value={formData.engagementModel}
+                      onChange={updateField}
+                      className={selectClass}
+                    >
+                      <option value="">Not sure yet</option>
+                      <option value="Project-based">Project-based</option>
+                      <option value="Monthly managed service">Monthly managed service</option>
+                      <option value="Dedicated support or team">Dedicated support or team</option>
+                      <option value="Strategy or assessment">Strategy or assessment</option>
+                    </select>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <label htmlFor="budgetRange" className="mb-2 block text-sm text-gray-200">
+                      Working budget range
+                    </label>
+                    <select
+                      id="budgetRange"
+                      name="budgetRange"
+                      value={formData.budgetRange}
+                      onChange={updateField}
+                      className={selectClass}
+                    >
+                      <option value="">Prefer to discuss</option>
+                      <option value="Under $2,500">Under $2,500</option>
+                      <option value="$2,500–$5,000">$2,500–$5,000</option>
+                      <option value="$5,000–$10,000">$5,000–$10,000</option>
+                      <option value="$10,000–$25,000">$10,000–$25,000</option>
+                      <option value="$25,000+">$25,000+</option>
+                      <option value="Monthly support budget">Monthly support budget</option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={updateField}
+                tabIndex="-1"
+                autoComplete="off"
+                className="absolute -left-[9999px] h-px w-px opacity-0"
+                aria-hidden="true"
+              />
+
+              <div className="rounded-2xl border border-purple-300/15 bg-black/35 p-5">
+                <label className="flex cursor-pointer items-start gap-3">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    checked={formData.consent}
+                    onChange={updateField}
+                    className="mt-1 h-5 w-5 shrink-0 accent-purple-600"
+                    aria-invalid={Boolean(errors.consent)}
+                    aria-describedby={errors.consent ? "consent-error" : undefined}
+                  />
+                  <span className="text-sm leading-6 text-gray-300">
+                    I agree that Timex Solution Inc may contact me about this assessment and related
+                    services. <span className="text-PurpleLight">*</span>
+                  </span>
+                </label>
+                <FieldError id="consent-error">{errors.consent}</FieldError>
+              </div>
+
+              {submitMessage ? (
+                <div
+                  className={`rounded-2xl border px-5 py-4 text-sm leading-6 ${submitState === "success" ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100" : submitState === "fallback" ? "border-amber-300/30 bg-amber-500/10 text-amber-100" : "border-rose-300/30 bg-rose-500/10 text-rose-100"}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  <p>{submitMessage}</p>
+                  {submitState === "fallback" ? (
+                    <a
+                      href={mailtoHref}
+                      className="mt-3 inline-flex items-center gap-2 font-medium text-white underline decoration-PurpleLight underline-offset-4"
+                    >
+                      Send this assessment by email
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  ) : null}
+                </div>
+              ) : null}
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                whileHover={reduceMotion || isSubmitting ? undefined : { y: -3 }}
+                whileTap={reduceMotion || isSubmitting ? undefined : { y: 3, scale: 0.99 }}
+                className="group relative flex min-h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-xl border border-purple-200/35 bg-gradient-to-r from-PurpleDark via-purple-600 to-PurpleLight px-6 py-4 text-base text-white shadow-[0_16px_42px_rgba(126,34,206,0.34)] transition disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]" />
+                <span className="relative inline-flex items-center gap-3">
+                  {isSubmitting ? (
+                    <>
+                      <LoaderCircle className="h-5 w-5 animate-spin" />
+                      Sending assessment…
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      Send Growth Assessment
+                    </>
+                  )}
+                </span>
+              </motion.button>
+
+              <div className="grid gap-3 text-sm text-gray-400 sm:grid-cols-3">
+                <span className="inline-flex items-center gap-2">
+                  <Check className="h-4 w-4 text-PurpleLight" />
+                  No logo required
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Clock3 className="h-4 w-4 text-PurpleLight" />
+                  Clear project timing
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CircleDollarSign className="h-4 w-4 text-PurpleLight" />
+                  Budget can be discussed
+                </span>
+              </div>
+            </div>
+          </motion.form>
+        </div>
+      </div>
+
+      <div className="pointer-events-none fixed bottom-5 left-5 z-30 hidden rounded-full border border-purple-300/15 bg-black/65 px-3 py-2 text-xs text-gray-400 backdrop-blur-xl lg:inline-flex lg:items-center lg:gap-2">
+        <MapPin className="h-3.5 w-3.5 text-PurpleLight" />
+        Built around your business outcome
+      </div>
+      <a
+        href="tel:+15594784020"
+        className="sr-only focus:not-sr-only focus:fixed focus:bottom-5 focus:left-5 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-black"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Project Brief</h1>
-          <p className="text-lg text-white/80">Tell us about your project so we can bring your vision to life</p>
-        </motion.div>
-        <Stars />
-        <motion.form onSubmit={handleSubmit} variants={staggerContainer} className="space-y-8">
-          
-          {/* Company Information Section */}
-          <motion.div 
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Company Information</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-medium mb-2">Company Name *</label>
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="Enter your company name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">Company Logo *</label>
-                <input
-                  type="file"
-                  name="companyLogo"
-                  onChange={handleInputChange}
-                  required
-                  accept="image/*"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-cyan-500 file:text-white hover:file:bg-cyan-600 transition-colors"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Company Tagline</label>
-              <input
-                type="text"
-                name="companyTagline"
-                value={formData.companyTagline}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                placeholder="Your company's tagline"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Brief Description of the Company *</label>
-              <textarea
-                name="briefDescription"
-                value={formData.briefDescription}
-                onChange={handleInputChange}
-                required
-                rows="4"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Describe your company and what you do"
-              />
-            </div>
-          </motion.div>
-
-          {/* Contact Information Section */}
-          <motion.div 
-            variants={fadeInRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Contact Information *</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-2">Address *</label>
-              <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                required
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Your business address"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-medium mb-2">Phone Number *</label>
-                <input
-                  type="tel"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="Your phone number"
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="your@email.com"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Website Goals Section */}
-          <motion.div 
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Website Goals</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-4">What do you want to achieve with your new website?</label>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {['Improve Customer Service', 'Increase Sales', 'Build Brand Awareness'].map((goal) => (
-                  <label key={goal} className="flex items-center space-x-3 text-white cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="websiteGoals"
-                      value={goal}
-                      checked={formData.websiteGoals.includes(goal)}
-                      onChange={handleCheckboxChange}
-                      className="w-5 h-5 text-cyan-500 bg-white/10 border-white/20 rounded focus:ring-cyan-400"
-                    />
-                    <span>{goal}</span>
-                  </label>
-                ))}
-              </div>
-              
-              <div className="mt-4">
-                <label className="block text-white font-medium mb-2">Other:</label>
-                <input
-                  type="text"
-                  name="otherGoal"
-                  value={formData.otherGoal}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="Specify other goals"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Main Goal of the Website</label>
-              <input
-                type="text"
-                name="mainGoal"
-                value={formData.mainGoal}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors"
-                placeholder="What's the primary goal?"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Target Audience</label>
-              <textarea
-                name="targetAudience"
-                value={formData.targetAudience}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Describe your target audience"
-              />
-            </div>
-          </motion.div>
-
-          {/* Design Preferences Section */}
-          <motion.div 
-            variants={fadeInRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Design Preferences</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-2">What style and colors do you prefer?</label>
-              <textarea
-                name="colorScheme"
-                value={formData.colorScheme}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Describe your preferred style and color scheme"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Examples of Websites you Like</label>
-              <textarea
-                name="websiteExamples"
-                value={formData.websiteExamples}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Share reference website URLs"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Specific Design Elements</label>
-              <textarea
-                name="designElements"
-                value={formData.designElements}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Any specific design elements you want included"
-              />
-            </div>
-          </motion.div>
-
-          {/* Content Section */}
-          <motion.div 
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Content</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-2">About Us Page Content</label>
-              <textarea
-                name="aboutUsContent"
-                value={formData.aboutUsContent}
-                onChange={handleInputChange}
-                rows="4"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Content for your About Us page"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Services/Products Offered *</label>
-              <textarea
-                name="servicesOffered"
-                value={formData.servicesOffered}
-                onChange={handleInputChange}
-                required
-                rows="4"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="List your services or products"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-medium mb-2">Testimonials or Case Studies</label>
-                <textarea
-                  name="testimonials"
-                  value={formData.testimonials}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                  placeholder="Any testimonials or case studies to include"
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">Staff Bios and Photos</label>
-                <textarea
-                  name="staffBios"
-                  value={formData.staffBios}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                  placeholder="Information about staff members to include"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Technical Requirements Section */}
-          <motion.div 
-            variants={fadeInRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Technical Requirements</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-4">Do You Have a Domain & Hosting</label>
-              <div className="flex flex-wrap gap-4">
-                {['Yes', 'No', 'Need Suggestions'].map((option) => (
-                  <label key={option} className="flex items-center space-x-2 text-white cursor-pointer">
-                    <input
-                      type="radio"
-                      name="domainHosting"
-                      value={option}
-                      checked={formData.domainHosting === option}
-                      onChange={handleInputChange}
-                      className="w-4 h-4 text-cyan-500 bg-white/10 border-white/20 focus:ring-cyan-400"
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-4">Ongoing Maintenance Required?</label>
-              <div className="flex flex-wrap gap-4">
-                {['Yes', 'No'].map((option) => (
-                  <label key={option} className="flex items-center space-x-2 text-white cursor-pointer">
-                    <input
-                      type="radio"
-                      name="maintenanceRequired"
-                      value={option}
-                      checked={formData.maintenanceRequired === option}
-                      onChange={handleInputChange}
-                      className="w-4 h-4 text-cyan-500 bg-white/10 border-white/20 focus:ring-cyan-400"
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Preferred Update & Change Handling</label>
-              <textarea
-                name="updateHandling"
-                value={formData.updateHandling}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="How would you like updates and changes to be handled?"
-              />
-            </div>
-          </motion.div>
-
-          {/* Digital Assets Section */}
-          <motion.div 
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-6"
-          >
-            <h2 className="text-2xl font-semibold text-white border-b border-white/20 pb-2">Digital Assets</h2>
-            
-            <div>
-              <label className="block text-white font-medium mb-2">Existing Digital Assets</label>
-              <textarea
-                name="digitalAssets"
-                value={formData.digitalAssets}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="List any existing digital assets (logos, images, videos, etc.)"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Images & Videos to Include</label>
-              <textarea
-                name="imagesVideos"
-                value={formData.imagesVideos}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Describe images and videos you want to include"
-              />
-            </div>
-
-            <div>
-              <label className="block text-white font-medium mb-2">Permissions & Copyrights Info</label>
-              <textarea
-                name="permissions"
-                value={formData.permissions}
-                onChange={handleInputChange}
-                rows="3"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                placeholder="Any permissions or copyright information we should know about"
-              />
-            </div>
-          </motion.div>
-
-          {/* Submit Button */}
-          <motion.div variants={fadeInUp} className="pt-6">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full border border-white bg-primary text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cyan-600'
-              }`}
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit Project Brief'}
-            </button>
-          </motion.div>
-        </motion.form>
-      </motion.div>
-    </div>
+        <Phone className="mr-2 inline h-4 w-4" />
+        Call Timex
+      </a>
+    </main>
   );
 }
 

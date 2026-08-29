@@ -1,6 +1,5 @@
 // src/components/presentation/CallToActionSection.jsx
 
-import React from "react";
 import { motion } from "framer-motion";
 import { Globe, Mail } from "lucide-react";
 
@@ -24,7 +23,7 @@ const CallToActionSection = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold tracking-tight text-white md:text-7xl"
         >
-          Let's Scale Your Brand
+          Let&apos;s Scale Your Brand
         </motion.h2>
 
         <motion.p

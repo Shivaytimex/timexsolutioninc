@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from "prop-types";
 import { Stars } from '../components/Stars';
 
 export default function PortfolioShowcase({ image, title, description, buttons = [], reverse = false }) {
@@ -7,10 +7,10 @@ export default function PortfolioShowcase({ image, title, description, buttons =
   // const sectionBgColor = reverse ? 'bg-gradient-to-bl from-primary via-black to-primary' : 'bg-gradient-to-br from-primary via-black to-primary';
   
   return (
-      <div className={`w-full ${sectionBgColor} flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-center justify-center gap-8 py-10 md:py-16 relative relative px-4`}>  
+      <div className={`w-full ${sectionBgColor} flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-center gap-8 py-10 md:py-16 relative px-4`}>
       <Stars className="absolute inset-0 z-0" />
       {/* Image Section */}
-      <div className="flex-1 flex items-center justify-center min-w-[280px] max-w-lg relative z-10 relative z-10">
+      <div className="flex-1 flex items-center justify-center min-w-[280px] max-w-lg relative z-10">
         {typeof image === 'string' ? (
           <img src={image} alt={title} className="rounded-lg shadow-2xl w-full object-cover" />
         ) : (
@@ -37,4 +37,17 @@ export default function PortfolioShowcase({ image, title, description, buttons =
       </div>
     </div>
   );
-} 
+}
+
+PortfolioShowcase.propTypes = {
+  image: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
+  buttons: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string,
+      label: PropTypes.string.isRequired,
+    })
+  ),
+  reverse: PropTypes.bool,
+};

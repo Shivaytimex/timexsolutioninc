@@ -7,7 +7,6 @@ import {
   FaPhone,
   FaFacebookF,
   FaInstagram,
-  FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -189,7 +188,7 @@ export default function ContactPage() {
                 className="text-white/80 mb-10 text-lg"
                 variants={fadeInUp}
               >
-                Where creativity meets strategy to transform your brand's vision into reality. As a leading creative agency, we specialize in crafting innovative solutions that elevate your brand and captivate your audience
+                Where creativity meets strategy to transform your brand&apos;s vision into reality. As a leading creative agency, we specialize in crafting innovative solutions that elevate your brand and captivate your audience
               </motion.p>
 
               {/* Contact Details */}

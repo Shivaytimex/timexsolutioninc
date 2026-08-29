@@ -1,138 +1,28 @@
-/* eslint-disable react/no-unescaped-entities */
+import { Link } from "react-router-dom";
+import { ArrowRight, Database, FileText, LockKeyhole, Mail, ShieldCheck, UserRoundCheck } from "lucide-react";
+import { ServiceMotionBackdrop } from "../components/ServiceMotion";
+import "./premium-pages.css";
+
+const sections = [
+  { icon: Database, title: "Information we collect", body: "We collect information you choose to provide through contact, growth-assessment and career forms. This can include your name, company, email, phone number, service interests, project details, career preferences and a resume, LinkedIn or portfolio link. Our hosting and security providers may also process basic device, browser, IP-address and request information needed to deliver and protect the website." },
+  { icon: UserRoundCheck, title: "How we use information", body: "We use submitted information to respond to enquiries, route requests to the relevant Timex capability, prepare proposals, review career applications, deliver requested services, maintain business records and protect the website from spam, fraud or misuse. We do not use a career application to make decisions unrelated to recruitment." },
+  { icon: FileText, title: "Forms, booking and payments", body: "Website forms may be delivered through an approved form-processing provider. Booking links may open a scheduling provider. Approved payments are processed through Square or another disclosed payment provider. Timex does not intentionally store full payment-card details on this website. Those providers process information under their own privacy terms." },
+  { icon: ShieldCheck, title: "Sharing and service providers", body: "We may share information with team members and service providers who need it to respond, deliver, host, secure, schedule or support the requested work. We may also disclose information when required by law or when reasonably necessary to protect users, Timex or others. We do not sell personal information for money." },
+  { icon: LockKeyhole, title: "Retention and safeguards", body: "We retain information only as long as reasonably needed for the purpose described, business records, dispute resolution and applicable legal obligations. We use reasonable administrative and technical safeguards, but no website or electronic transmission can be guaranteed completely secure." },
+  { icon: Mail, title: "Your choices and requests", body: "You may ask to access, correct or delete information you submitted, subject to applicable law and legitimate record-keeping needs. You may also ask us to stop non-essential communications. Send privacy requests to team@timexsolutioninc.com and include enough detail for us to understand and verify the request." },
+];
 
 export default function PrivacyPolicy() {
-    return (
-        <div className="py-20 mt-24 lg:mt-28 xl:mt-28">
-            <div className="w-full max-w-4xl mx-auto border rounded-3xl p-4 md:p-8">
-                <h3 className="text-4xl font-bold text-white mb-5">Privacy Policy</h3>
-                <div className="">
-                    <div className="space-y-6 text-base text-gray-300">
-                        <p className="font-semibold text-xl">Timex Solution Inc Digital Agency</p>
-                        <p>
-                            Timex Solution Inc is committed to respecting and
-                            protecting the privacy of individuals who interact with us. This Privacy Notice explains how we collect,
-                            use, disclose, and protect your personal data when you engage with us through our website or services.
-                        </p>
-                        <p>
-                            <strong className="text-white">Registered Address:</strong> 715 P St, Sacramento, CA 95814, United States
-                        </p>
-                        <p>
-                            <strong className="text-white">Email:</strong> team@timexsolutioninc.com
-                        </p>
-                        <p>
-                            <strong className="text-white">Contact:</strong> +1 559-505-3443
-                        </p>
+  return (
+    <main className="premium-page min-h-screen pt-28 sm:pt-32">
+      <ServiceMotionBackdrop />
+      <section className="premium-section pt-16 sm:pt-20" aria-labelledby="privacy-title"><div className="premium-shell relative z-10"><p className="premium-kicker">Privacy notice</p><h1 id="privacy-title" className="premium-display max-w-5xl">Clear information about <span className="premium-display-gradient">your information.</span></h1><p className="premium-copy mt-7">This notice explains how Timex Solution Inc handles information submitted through this website and related business conversations. Timex Solution Inc is based in Fresno, California.</p><div className="mt-8 flex flex-wrap gap-3"><span className="premium-tag">Effective August 28, 2026</span><a href="mailto:team@timexsolutioninc.com" className="premium-tag hover:border-purple-300/30 hover:text-white">team@timexsolutioninc.com</a></div></div></section>
 
-                        <h3 className="text-xl font-semibold text-white">1. INFORMATION WE MAY COLLECT</h3>
-                        <p>
-                            <strong className="text-white">a) Information Related to Website Use</strong>
-                        </p>
-                        <p>
-                            We and our third-party service providers use cookies and tracking technologies to collect information
-                            about how you interact with our website, including:
-                        </p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>Pages visited</li>
-                            <li>Services searched for</li>
-                            <li>Links and content accessed</li>
-                        </ul>
-                        <p>This helps us improve your user experience and tailor our marketing strategies.</p>
+      <section className="premium-section pt-8" aria-label="Privacy policy details"><div className="premium-shell relative z-10 grid gap-5 md:grid-cols-2">{sections.map(({ icon: Icon, title, body }, index) => <article key={title} className="premium-panel p-7 sm:p-8"><div className="flex items-center justify-between"><span className="premium-icon-shell"><Icon className="h-7 w-7" /></span><span className="text-4xl text-white/[0.08]">0{index + 1}</span></div><h2 className="mt-7 text-2xl text-white">{title}</h2><p className="mt-4 text-sm leading-7 text-gray-400 sm:text-base">{body}</p></article>)}</div></section>
 
-                        <p>
-                            <strong className="text-white">b) Technical Data</strong>
-                        </p>
-                        <p>We automatically collect technical information when you visit our website, including:</p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>IP address</li>
-                            <li>Browser type and version</li>
-                            <li>Operating system</li>
-                            <li>Device type</li>
-                        </ul>
+      <section className="premium-section pt-6"><div className="premium-shell relative z-10 grid gap-5 lg:grid-cols-2"><article className="premium-panel p-7 sm:p-9"><p className="premium-kicker">External links</p><h2 className="mt-5 text-3xl text-white">Other websites have their own terms.</h2><p className="mt-4 text-sm leading-7 text-gray-400 sm:text-base">This website may link to client sites, social platforms, scheduling providers and other third parties. Their privacy practices are controlled by them, not by this notice.</p></article><article className="premium-panel p-7 sm:p-9"><p className="premium-kicker">Policy updates</p><h2 className="mt-5 text-3xl text-white">The revision date will stay visible.</h2><p className="mt-4 text-sm leading-7 text-gray-400 sm:text-base">When this notice materially changes, the effective date above will be updated. It does not automatically change each time someone opens the page.</p></article></div></section>
 
-                        <p>
-                            <strong className="text-white">c) Contact Information</strong>
-                        </p>
-                        <p>If you sign up for newsletters, request information, or attend events, we may collect:</p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>Name</li>
-                            <li>Email address</li>
-                            <li>Job title and employer (if applicable)</li>
-                            <li>General location</li>
-                        </ul>
-
-                        <p>
-                            <strong className="text-white">d) Marketing and Communication Preferences</strong>
-                        </p>
-                        <p>We collect details on your preferences for receiving communications from us.</p>
-
-                        <h3 className="text-xl font-semibold text-white">2. HOW WE USE THIS INFORMATION</h3>
-                        <p>We use your data to:</p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>Provide services and information you request</li>
-                            <li>Send newsletters, updates, and marketing messages (with your consent)</li>
-                            <li>Respond to inquiries</li>
-                            <li>Improve website performance</li>
-                            <li>Prevent fraud or security threats</li>
-                        </ul>
-                        <p>You can opt out of marketing communications at any time by clicking "unsubscribe" in our emails.</p>
-
-                        <h3 className="text-xl font-semibold text-white">3. INFORMATION SHARING</h3>
-                        <p>
-                            <strong className="text-white">a) Within Timex Solution Inc</strong>
-                        </p>
-                        <p>We may share data within our company for business operations.</p>
-                        <p>
-                            <strong className="text-white">b) With Third-Party Service Providers</strong>
-                        </p>
-                        <p>We use trusted partners for tasks like email marketing and analytics.</p>
-                        <p>
-                            <strong className="text-white">c) Legal Compliance</strong>
-                        </p>
-                        <p>
-                            We may disclose your data if required by law, court orders, or to prevent fraud and malicious activity.
-                        </p>
-
-                        <h3 className="text-xl font-semibold text-white">4. INTERNATIONAL DATA TRANSFERS</h3>
-                        <p>
-                            If we transfer data outside the U.S., we ensure adequate security measures in compliance with applicable
-                            laws.
-                        </p>
-
-                        <h3 className="text-xl font-semibold text-white">5. YOUR RIGHTS</h3>
-                        <p>You may have the following rights under applicable laws:</p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>Access your personal data</li>
-                            <li>Correct inaccurate information</li>
-                            <li>Request deletion of your data</li>
-                            <li>Object to data processing</li>
-                        </ul>
-                        <p>To exercise these rights, email us at team@timexsolutioninc.com.</p>
-
-                        <h3 className="text-xl font-semibold text-white">6. COOKIE POLICY</h3>
-                        <p>
-                            We use cookies to enhance your experience. You can manage or disable cookies in your browser settings.
-                        </p>
-
-                        <h3 className="text-xl font-semibold text-white">7. CALIFORNIA PRIVACY RIGHTS (CCPA)</h3>
-                        <p>
-                            If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA),
-                            including:
-                        </p>
-                        <ul className="list-disc pl-6 text-gray-300">
-                            <li>The right to know what personal information we collect</li>
-                            <li>The right to request deletion of your data</li>
-                            <li>The right to opt out of data sales (we do not sell your data)</li>
-                        </ul>
-                        <p>To make a CCPA request, email us at team@timexsolutioninc.com or call +1 559-505-3443.</p>
-
-                        <h3 className="text-xl font-semibold text-white">8. UPDATES TO THIS POLICY</h3>
-                        <p>We may update this policy from time to time. Please check back periodically for any changes.</p>
-                        <p>
-                            <strong className="text-white">Last Updated:</strong> {new Date().toLocaleDateString()}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+      <section className="premium-section pt-8"><div className="premium-shell relative z-10"><div className="premium-panel p-8 text-center sm:p-12"><ShieldCheck className="mx-auto h-8 w-8 text-PurpleLight" /><h2 className="premium-heading mx-auto mt-5">Have a privacy question or <span className="premium-heading-gradient">data request?</span></h2><p className="premium-copy mx-auto mt-6">Contact the Timex team and describe the information or website interaction your request concerns.</p><div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"><a href="mailto:team@timexsolutioninc.com" className="premium-button">Email the Privacy Contact <ArrowRight className="h-4 w-4" /></a><Link to="/contact" className="premium-button premium-button--secondary">Contact Page</Link></div></div></div></section>
+    </main>
+  );
 }

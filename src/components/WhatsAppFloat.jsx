@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { IoChatbubbleEllipsesOutline, IoClose } from "react-icons/io5";
+import PropTypes from "prop-types";
 
 /**
  * Floating WhatsApp button + quick chat panel.
@@ -159,3 +160,9 @@ export default function WhatsAppFloat({
   );
 }
 
+WhatsAppFloat.propTypes = {
+  phoneNumber: PropTypes.string,
+  message: PropTypes.string,
+  position: PropTypes.oneOf(["bottom-right", "bottom-left"]),
+  pulseAnimation: PropTypes.bool,
+};

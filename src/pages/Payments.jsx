@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { loadStripe } from '@stripe/stripe-js';
-import { FaCreditCard, FaStripe, FaLock, FaCheckCircle, FaTimesCircle, FaShieldAlt, FaDollarSign } from 'react-icons/fa';
+import { FaStripe, FaLock, FaCheckCircle, FaTimesCircle, FaShieldAlt, FaDollarSign } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 // Animation variants
@@ -19,24 +18,6 @@ const staggerContainer = {
       delayChildren: 0.2
     }
   }
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
-};
-
-// Stripe configuration
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_51RtAmSRwnYoRP4jYZ3NZohh4RkwFRdBSt6Sytx9t725orKVfPBVbaAlQutIIJEcDVAeD7vaFuLNDCwZIt0GAlwMk00WQi6FTPi';
-
-// Payment method data (Stripe only)
-const paymentMethod = {
-  id: 'stripe',
-  name: 'Stripe',
-  icon: FaStripe,
-  description: 'Secure payment with credit/debit card',
-  color: 'bg-purple-500',
-  textColor: 'text-purple-500'
 };
 
 // Timex branding colors and styles
@@ -345,4 +326,4 @@ export default function Payments() {
       </div>
     </div>
   );
-} 
+}
