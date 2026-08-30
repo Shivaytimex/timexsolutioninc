@@ -41,12 +41,15 @@ jobs:
             
             echo "🔄 Starting deployment process..."
             
-            # Navigate to project directory
-            cd /var/www/timexsolution/timexsolutionincc
+            # Navigate to the live project directory
+            cd /home/ubuntu/timexsolutioninc
             
-            # Pull latest changes
+            # Pull the exact latest main branch from the transferred repository
             echo "📥 Pulling latest code..."
-            git pull origin main
+            git remote set-url origin https://github.com/Shivaytimex/timexsolutioninc.git
+            git fetch origin main
+            git checkout main
+            git pull --ff-only origin main
             
             # Install dependencies (including devDependencies for build)
             echo "📦 Installing dependencies..."
