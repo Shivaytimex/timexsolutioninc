@@ -3,9 +3,13 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-mot
 import {
   BadgeCheck,
   Check,
+  ChevronLeft,
+  ChevronRight,
   ExternalLink,
   Globe2,
   MonitorCheck,
+  Pause,
+  Play,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -16,74 +20,37 @@ import {
   ServiceMotionBackdrop,
   premiumEase,
 } from "./HomeSectionUI";
-
-const verifiedWork = [
-  {
-    id: "jg-limousine",
-    client: "JG Limousine",
-    initials: "JG",
-    industry: "Luxury Transportation",
-    url: "https://jglimousines.com/",
-    host: "jglimousines.com",
-    logo: "https://jglimousines.com/images/logo.png",
-    brief: "Put vehicle selection, trip details, quoting and customer action into one public booking experience.",
-    delivered: ["Multi-step quote flow", "Vehicle and service selection", "Quote and payment-ready journey"],
-    visibleOutcome: "A live quote and booking experience customers can use today.",
-  },
-  {
-    id: "cal-coast-logistics",
-    client: "Cal Coast Logistics",
-    initials: "CC",
-    industry: "Trucking & Logistics",
-    url: "https://calcoastlogistics.com/",
-    host: "calcoastlogistics.com",
-    logo: "/services/cal-logo.png",
-    brief: "Present freight capabilities clearly and connect broker enquiries, quote requests and driver action.",
-    delivered: ["Freight service architecture", "Broker quote experience", "Driver application connection"],
-    visibleOutcome: "Live freight quote and driver application paths are publicly accessible.",
-  },
-  {
-    id: "sms-services",
-    client: "SMS Services",
-    initials: "SMS",
-    industry: "Tax & Business Services",
-    url: "https://smsservices.us/",
-    host: "smsservices.us",
-    logo: "https://smsservices.us/favicon.ico",
-    brief: "Organize a broad tax and business-services offer into a credible, discoverable client experience.",
-    delivered: ["Tax and compliance service pages", "Local-service positioning", "Clear enquiry pathways"],
-    visibleOutcome: "A live multi-service tax and business consulting platform is public.",
-  },
-  {
-    id: "aish-signs",
-    client: "Aish Signs",
-    initials: "AS",
-    industry: "Signs & Graphics",
-    url: "https://aishsigns.com/",
-    host: "aishsigns.com",
-    logo: "https://aishsigns.com/favicon.ico",
-    brief: "Make signage services easier to explore through dedicated categories and detailed service pages.",
-    delivered: ["Service category discovery", "Dedicated service detail pages", "Direct enquiry pathways"],
-    visibleOutcome: "A live signage service catalogue with public detail pages is available.",
-  },
-];
+import { portfolioProjects } from "../data/portfolioProjects";
 
 function VerifiedWorkSection() {
   const reduceMotion = useReducedMotion();
   const [activeProof, setActiveProof] = useState(0);
+  const [activeFrame, setActiveFrame] = useState(0);
+  const [autoRotate, setAutoRotate] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const sectionRef = useRef(null);
   const tablistRef = useRef(null);
   const isInView = useInView(sectionRef, { amount: 0.18, margin: "100px 0px" });
+  const active = portfolioProjects[activeProof];
+  const activeFrameIndex = activeFrame % active.visuals.length;
 
   useEffect(() => {
-    if (reduceMotion || !isInView || isPaused || window.matchMedia("(max-width: 767px)").matches) return undefined;
+    if (reduceMotion || !autoRotate || !isInView || isPaused || window.matchMedia("(max-width: 767px)").matches) return undefined;
+    const timer = window.setInterval(() => {
+      setActiveProof((current) => (current + 1) % portfolioProjects.length);
+      setActiveFrame(0);
+    }, 6800);
+    return () => window.clearInterval(timer);
+  }, [autoRotate, isInView, isPaused, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || !autoRotate || !isInView || isPaused || active.visuals.length < 2) return undefined;
     const timer = window.setInterval(
-      () => setActiveProof((current) => (current + 1) % verifiedWork.length),
-      5200,
+      () => setActiveFrame((current) => (current + 1) % active.visuals.length),
+      3200,
     );
     return () => window.clearInterval(timer);
-  }, [isInView, isPaused, reduceMotion]);
+  }, [active.visuals.length, autoRotate, isInView, isPaused, reduceMotion]);
 
   useEffect(() => {
     const tablist = tablistRef.current;
@@ -96,7 +63,12 @@ function VerifiedWorkSection() {
     tablist.scrollTo({ left: centeredLeft, behavior: reduceMotion ? "auto" : "smooth" });
   }, [activeProof, isInView, reduceMotion]);
 
-  const active = verifiedWork[activeProof];
+  const selectAdjacentProject = (direction) => {
+    setActiveFrame(0);
+    setActiveProof((current) => (
+      current + direction + portfolioProjects.length
+    ) % portfolioProjects.length);
+  };
 
   return (
     <section
@@ -112,7 +84,7 @@ function VerifiedWorkSection() {
             eyebrow="Verified public work"
             title="Don't take the claim."
             gradientText="Inspect the evidence."
-            description="These are live client experiences where Timex Solution Inc is publicly credited. Open each website and review the work directly."
+            description="Explore current and original Timex portfolio websites in one place. Select a project, preview the work and open the website directly."
             headingId="verified-work-heading"
           />
           <div className="home-v2-proof-policy">
@@ -125,8 +97,8 @@ function VerifiedWorkSection() {
         </div>
 
         <div className="home-v2-proof-stats mt-12" aria-label="Verified work standards">
-          <div className="home-v2-proof-stat"><strong>04</strong><span>Live client websites</span></div>
-          <div className="home-v2-proof-stat"><BadgeCheck className="h-7 w-7" /><span>Public Timex credit on each</span></div>
+          <div className="home-v2-proof-stat"><strong>{String(portfolioProjects.length).padStart(2, "0")}</strong><span>Portfolio websites in sequence</span></div>
+          <div className="home-v2-proof-stat"><BadgeCheck className="h-7 w-7" /><span>Direct visit link on every project</span></div>
           <div className="home-v2-proof-stat"><ShieldCheck className="h-7 w-7" /><span>No unverified performance claims</span></div>
         </div>
 
@@ -140,7 +112,7 @@ function VerifiedWorkSection() {
           }}
         >
           <div ref={tablistRef} className="home-v2-proof-tabs" role="tablist" aria-label="Verified client work">
-            {verifiedWork.map((item, index) => {
+            {portfolioProjects.map((item, index) => {
               const selected = activeProof === index;
               return (
                 <button
@@ -152,25 +124,29 @@ function VerifiedWorkSection() {
                   aria-controls="home-proof-panel"
                   tabIndex={selected ? 0 : -1}
                   data-proof-index={index}
-                  onClick={() => setActiveProof(index)}
+                  onClick={() => {
+                    setActiveProof(index);
+                    setActiveFrame(0);
+                  }}
                   onKeyDown={(event) => {
                     const keys = ["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"];
                     if (!keys.includes(event.key)) return;
                     event.preventDefault();
-                    const lastIndex = verifiedWork.length - 1;
+                    const lastIndex = portfolioProjects.length - 1;
                     let nextIndex = index;
                     if (event.key === "ArrowDown" || event.key === "ArrowRight") nextIndex = index === lastIndex ? 0 : index + 1;
                     if (event.key === "ArrowUp" || event.key === "ArrowLeft") nextIndex = index === 0 ? lastIndex : index - 1;
                     if (event.key === "Home") nextIndex = 0;
                     if (event.key === "End") nextIndex = lastIndex;
                     setActiveProof(nextIndex);
+                    setActiveFrame(0);
                     window.requestAnimationFrame(() => {
                       tablistRef.current?.querySelector(`[data-proof-index="${nextIndex}"]`)?.focus();
                     });
                   }}
                   className={`home-v2-proof-tab ${selected ? "home-v2-proof-tab--active" : ""}`}
                 >
-                  <span className="home-v2-proof-tab-index">0{index + 1}</span>
+                  <span className="home-v2-proof-tab-index">{String(index + 1).padStart(2, "0")}</span>
                   <span className="min-w-0 text-left">
                     <strong>{item.client}</strong>
                     <small>{item.industry}</small>
@@ -185,7 +161,6 @@ function VerifiedWorkSection() {
             id="home-proof-panel"
             className="home-v2-proof-panel"
             role="tabpanel"
-            aria-live="polite"
             aria-labelledby={`home-proof-tab-${active.id}`}
           >
             <div className="home-v2-proof-grid" aria-hidden="true" />
@@ -203,18 +178,18 @@ function VerifiedWorkSection() {
                   <div className="home-v2-proof-identity">
                     <div className="home-v2-proof-brand">
                       <span className="home-v2-proof-brand-mark">{active.initials}</span>
-                      <img
-                        src={active.logo}
-                        alt={`${active.client} logo`}
-                        className="home-v2-proof-brand-logo"
-                        loading="lazy"
-                        decoding="async"
-                        referrerPolicy="no-referrer"
-                        onError={(event) => { event.currentTarget.style.display = "none"; }}
-                      />
+                      {active.logo ? (
+                        <img
+                          src={active.logo}
+                          alt={`${active.client} logo`}
+                          className="home-v2-proof-brand-logo"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : null}
                     </div>
                     <div>
-                      <p className="home-v2-proof-kicker"><span className="home-v2-live-dot" /> Live public project</p>
+                      <p className="home-v2-proof-kicker"><span className="home-v2-live-dot" /> Linked website project</p>
                       <h3>{active.client}</h3>
                       <p className="home-v2-proof-industry">{active.industry}</p>
                     </div>
@@ -246,21 +221,78 @@ function VerifiedWorkSection() {
                 </div>
 
                 <aside className="home-v2-proof-evidence">
+                  <div className="home-v2-proof-preview">
+                    <div className="home-v2-proof-preview-toolbar">
+                      <div className="home-v2-proof-browser-label">
+                        <span aria-hidden="true"><i /><i /><i /></span>
+                        <p><small>Website preview</small><strong>{String(activeProof + 1).padStart(2, "0")} / {String(portfolioProjects.length).padStart(2, "0")}</strong></p>
+                      </div>
+                      <div className="home-v2-proof-preview-actions">
+                        <button type="button" onClick={() => selectAdjacentProject(-1)} aria-label="Show previous portfolio project"><ChevronLeft className="h-4 w-4" /></button>
+                        <button
+                          type="button"
+                          onClick={() => setAutoRotate((current) => !current)}
+                          aria-label={autoRotate ? "Pause portfolio rotation" : "Resume portfolio rotation"}
+                          aria-pressed={!autoRotate}
+                        >
+                          {autoRotate ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
+                        </button>
+                        <button type="button" onClick={() => selectAdjacentProject(1)} aria-label="Show next portfolio project"><ChevronRight className="h-4 w-4" /></button>
+                      </div>
+                    </div>
+                    <a
+                      href={active.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="home-v2-proof-preview-viewport"
+                      aria-label={`Visit ${active.client} website (opens in a new tab)`}
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        <motion.img
+                          key={`${active.id}-${activeFrameIndex}`}
+                          src={active.visuals[activeFrameIndex]}
+                          alt={`${active.client} website preview ${activeFrameIndex + 1}`}
+                          initial={reduceMotion ? false : { opacity: 0, scale: 1.06, filter: "blur(5px)" }}
+                          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                          exit={reduceMotion ? undefined : { opacity: 0, scale: 0.985, filter: "blur(3px)" }}
+                          transition={{ duration: 0.65, ease: premiumEase }}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </AnimatePresence>
+                      <span className="home-v2-proof-preview-beam" aria-hidden="true" />
+                      <span className="home-v2-proof-preview-badge"><span className="home-v2-live-dot" /> Open live site</span>
+                    </a>
+                    {active.visuals.length > 1 ? (
+                      <div className="home-v2-proof-preview-frames" role="group" aria-label={`${active.client} preview images`}>
+                        {active.visuals.map((visual, index) => (
+                          <button
+                            key={visual}
+                            type="button"
+                            onClick={() => setActiveFrame(index)}
+                            aria-label={`Show ${active.client} preview ${index + 1}`}
+                            aria-pressed={activeFrameIndex === index}
+                            className={activeFrameIndex === index ? "home-v2-proof-preview-frame--active" : ""}
+                          ><span /></button>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                   <div className="home-v2-proof-outcome">
                     <MonitorCheck className="h-7 w-7" />
                     <span>Visible outcome</span>
-                    <strong>{active.visibleOutcome}</strong>
+                    <strong>{active.outcome}</strong>
                   </div>
                   <div className="home-v2-proof-verification">
                     <BadgeCheck className="h-6 w-6" />
                     <div>
-                      <span>Public verification</span>
-                      <strong>Live website footer credits Timex Solution Inc.</strong>
+                      <span>Portfolio source</span>
+                      <strong>{active.verification}</strong>
                     </div>
                   </div>
-                  <a href={active.url} target="_blank" rel="noopener noreferrer" className="home-v2-proof-live-link group">
+                  <a href={active.url} target="_blank" rel="noopener noreferrer" className="home-v2-proof-live-link group" aria-label={`Visit ${active.client} website (opens in a new tab)`}>
                     <Globe2 className="h-5 w-5" />
-                    <span><small>Inspect live website</small><strong>{active.host}</strong></span>
+                    <span><small>Visit project website</small><strong>{active.host}</strong></span>
                     <ExternalLink className="ml-auto h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
                 </aside>
