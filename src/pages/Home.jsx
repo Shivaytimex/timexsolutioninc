@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import HeroSection1 from "../components/Herosection1";
 import StatsSection from "../components/StatsSection";
+import OurPartners from "../components/OurPartners";
 import Service from "../components/services/Index";
 import VideoServicesHome from "../components/VideoServicesHome";
 import HomeGifCarousel from "../components/HomeGifCarousel";
@@ -22,6 +23,7 @@ function Home() {
       <main className="overflow-hidden bg-black">
         <HeroSection1 />
         <StatsSection />
+        <OurPartners />
         <Service />
         <VideoServicesHome />
         <HomeGifCarousel />

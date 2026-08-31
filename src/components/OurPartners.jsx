@@ -1,163 +1,124 @@
-/* eslint-disable react/prop-types */
+import { motion, useReducedMotion } from "framer-motion";
 
-import { motion } from "framer-motion";
-
-const features = [
+const clients = [
   {
-    url: {
-      src: "/logos/logo-1.webp",
-      alt: "Arrive-Logistics",
-    },
-    title: "Arrive Logistics",
-    description: "Adapts perfectly to any screen size",
+    name: "Ziprent",
+    logo: "/logos/clients/ziprent.webp",
+    work: "Property media operations, photography, 3D tours and mapping",
   },
   {
-    url: {
-      src: "/logos/logo-2.webp",
-      alt: "Black-Bear-Diner",
-    },
-    title: "Black Bear Diner",
-    description: "Find anything instantly",
+    name: "Nova West Energy",
+    logo: "/logos/clients/nova-west-energy.webp",
+    work: "Marketing, content production and social media management",
   },
   {
-    url: {
-      src: "/logos/logo-3.webp",
-      alt: "C.R.England",
-    },
-    title: "C.R.England",
-    description: "Smooth transitions and effects",
+    name: "Spiffy",
+    logo: "/logos/clients/spiffy.webp",
+    work: "Billing management and back-office support",
   },
   {
-    url: {
-      src: "/logos/logo-4.webp",
-      alt: "Cheema-Freightlines",
-    },
-    title: "Cheema Freightlines",
-    description: "Tailor to your needs",
+    name: "Cal Coast Logistics",
+    logo: "/logos/clients/cal-coast-logistics.webp",
+    work: "Social media management",
   },
   {
-    url: {
-      src: "/logos/logo-5.webp",
-      alt: "Jack",
-    },
-    title: "Jack",
-    description: "Optimized for search engines",
+    name: "Snappr",
+    logo: "/logos/clients/snappr.webp",
+    work: "Photography services",
   },
   {
-    url: {
-      src: "/logos/logo-6.webp",
-      alt: "Kay-Jewelers",
-    },
-    title: "Kay Jewelers",
-    description: "Adaptable interface elements",
+    name: "HomeJab",
+    logo: "/logos/clients/homejab.webp",
+    work: "Real estate photography services",
   },
   {
-    url: {
-      src: "/logos/logo-7.webp",
-      alt: "Varied layouts",
-    },
-    title: "Varied layouts",
-    description: "Multiple layout options",
+    name: "Bridgeline Studios",
+    logo: "/logos/clients/bridgeline-studios.webp",
+    work: "Video production services",
   },
   {
-    url: {
-      src: "/logos/logo-8.webp",
-      alt: "Parallax",
-    },
-    title: "Parallax",
-    description: "Engaging scroll effects",
+    name: "Clovis Family Dentistry",
+    logo: "/logos/clients/clovis-family-dentistry.webp",
+    work: "Video, social media and website development",
+  },
+  {
+    name: "SMS Services",
+    logo: "/logos/clients/sms-services.webp",
+    work: "Website development and social media management",
   },
 ];
 
-const FeatureCard = ({ url, title, description }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    viewport={{ once: true }}
-    className="bg-purple-900/30 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/20 group hover:bg-purple-800/40 transition-all duration-300"
-  >
-    <div className="flex flex-col items-center text-center">
-      <div className="rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
-        <img
-          src={url.src}
-          alt={url.alt}
-          className="w-36  md:w-36  h-auto rounded-full object-cover"
-        />
-      </div>
-      <h3 className="text-white font-semibold text-base md:text-lg mb-2">{title}</h3>
-      <p className="text-purple-200 text-xs md:text-sm">{description}</p>
-    </div>
-  </motion.div>
-);
+const reveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0 },
+};
 
-export default function OurParners() {
+export default function OurPartners() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative w-full py-10">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-800/30 to-transparent pointer-events-none"></div>
-      <div className="px-3 md:px-8 relative z-10">
-        {/* Features Section */}
-        <div className="mb-4">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl p-2 md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight">
-              Trusted by Leading Brands Across Multiple Industries
-            </h2>
-            <p className="text-purple-200 text-lg max-w-2xl mx-auto ">
-              We build lasting relationships with our clients, delivering
-              exceptional results every time.
-            </p>
-          </motion.div>
+    <section className="client-wall relative isolate overflow-hidden bg-black py-16 sm:py-20 lg:py-24" aria-labelledby="client-wall-title">
+      <div className="client-wall-glow" aria-hidden="true" />
+      <div className="client-wall-stars" aria-hidden="true" />
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
-            ))}
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <motion.header
+          className="mx-auto max-w-4xl text-center"
+          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-12 bg-gradient-to-r from-transparent to-PurpleLight/70" />
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/75">Selected client relationships</p>
+            <span className="h-px w-12 bg-gradient-to-l from-transparent to-PurpleLight/70" />
           </div>
-        </div>
+          <h2 id="client-wall-title" className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Trusted by businesses
+            <span className="block bg-gradient-to-r from-PurpleLight via-purple-200 to-PurpleDark bg-clip-text text-transparent">across California and beyond.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg">
+            Real client relationships across growth, technology, operations and professional media.
+          </p>
+        </motion.header>
 
-        {/* Technologies Section */}
-        {/* <div>
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h3 className="text-sm uppercase tracking-wider text-purple-300 mb-4">Technologies</h3>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-PurpleDark to-PurpleLight">
-              Integrating cutting-edge web technologies
-            </h2>
-            <p className="text-purple-200 text-lg max-w-2xl mx-auto">
-              Our projects are built and designed using the latest tools and technologies of web industry
-            </p>
-          </motion.div>
+        <motion.div
+          className="client-wall-grid mt-12"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+        >
+          {clients.map((client) => (
+            <motion.article
+              key={client.name}
+              variants={reveal}
+              transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+              className="client-wall-card group"
+            >
+              <div className="client-wall-logo-frame">
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  width="480"
+                  height="180"
+                  loading="lazy"
+                  decoding="async"
+                  className="client-wall-logo"
+                />
+              </div>
+              <div className="client-wall-copy">
+                <h3>{client.name}</h3>
+                <p>{client.work}</p>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
 
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, staggerChildren: 0.1 }}
-          >
-            {technologies.map((tech, index) => (
-              <TechnologyIcon key={index} {...tech} />
-            ))}
-          </motion.div>
-        </div> */}
-      </div>
-
-      {/* Background Blobs */}
-      <div
-        className="absolute top-0 left-0 w-full h-full overflow-
- z-0"
-      >
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <p className="mt-8 text-center text-xs uppercase tracking-[0.2em] text-purple-200/45">
+          Logos shown represent actual Timex client and service relationships.
+        </p>
       </div>
     </section>
   );
