@@ -20,47 +20,6 @@ const staffingSolutionsContent = {
     { name: "Contract-to-Hire", icon: FaFileContract },
     { name: "Payroll Services", icon: FaMoneyCheckAlt },
   ],
-  packages: [
-    {
-      name: "Targeted Search",
-      description:
-        "A focused engagement for one defined role with agreed requirements, evaluation stages and placement expectations.",
-      services: [
-        "Role and requirement intake",
-        "Search and sourcing coordination",
-        "Initial profile screening",
-        "Candidate communication",
-        "Interview scheduling support",
-        "Placement follow-through",
-      ],
-    },
-    {
-      name: "Managed Staffing",
-      description:
-        "Ongoing support for organizations with recurring hiring needs, multiple roles or a more active candidate pipeline.",
-      services: [
-        "Multi-role intake and prioritization",
-        "Recurring sourcing activity",
-        "Structured candidate tracking",
-        "Interview and feedback coordination",
-        "Defined reporting cadence",
-        "Onboarding communication support",
-      ],
-    },
-    {
-      name: "Dedicated Workforce",
-      description:
-        "A longer-term delivery model for teams that need consistent recruiting capacity and closer process coordination.",
-      services: [
-        "Dedicated staffing coordination",
-        "Documented screening workflow",
-        "Candidate pipeline management",
-        "Stakeholder communication rhythm",
-        "Placement and onboarding tracking",
-        "Ongoing process improvement",
-      ],
-    },
-  ],
 };
 
 export default function StaffingSolutionsPage() {

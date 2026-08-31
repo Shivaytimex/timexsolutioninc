@@ -137,29 +137,6 @@ const videoServicesContent = {
       icon: FaClock,
     },
   ],
-  engagementTitle: "Choose media support around the property and campaign",
-  engagementDescription:
-    "Book a focused listing package, create a dedicated agent content day or build a recurring media plan for consistent production.",
-  engagementChecks: [
-    "Defined deliverables and production window",
-    "Platform-ready export requirements",
-    "Clear property-access responsibilities",
-    "Organized delivery and revision expectations",
-  ],
-  engagements: [
-    {
-      title: "Listing Media Package",
-      description: "Photography, video and selected add-ons organized around one property launch.",
-    },
-    {
-      title: "Agent Content Day",
-      description: "A planned session for agent introductions, educational content, reels and brand-building assets.",
-    },
-    {
-      title: "Monthly Media Support",
-      description: "Recurring production capacity for active agents, teams and property-marketing calendars.",
-    },
-  ],
   faqs: [
     {
       question: "Which areas do you serve?",

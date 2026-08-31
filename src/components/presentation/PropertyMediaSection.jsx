@@ -38,7 +38,7 @@ export default function RealtorPropertyMediaSection() {
           </p>
 
           <p className="mt-6 text-slate-400 leading-relaxed">
-            Our specialized packages include cinematic 4K video tours,
+            Our specialized services include cinematic 4K video tours,
             high-altitude HDR drone capture, and meticulously
             color-graded photos designed to stand out on MLS platforms.
           </p>

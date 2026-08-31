@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { FaArrowRight, FaCheck } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import Header from "./CommonHeader";
 import { ServiceQuickNav } from "./ServiceQuickNav";
 import {
@@ -219,7 +219,6 @@ export function SpecializedServicePage({ content }) {
     { href: "#capabilities", label: "Capabilities" },
     ...(content.showcase ? [{ href: "#showcase", label: "Selected Work" }] : []),
     { href: "#process", label: "Process" },
-    { href: "#engagements", label: "Engagements" },
     { href: "#faq", label: "FAQ" },
   ];
 
@@ -435,60 +434,6 @@ export function SpecializedServicePage({ content }) {
             );
           })}
         </motion.div>
-      </motion.section>
-
-      <motion.section
-        id="engagements"
-        className="relative mx-4 overflow-hidden rounded-3xl bg-gradient-to-b from-transparent via-PurpleDark/30 to-transparent px-4 py-20 sm:px-8 lg:mx-8 lg:px-12"
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        <Stars />
-        <div className="relative z-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <motion.div variants={reveal} className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-PurpleLight to-PurpleDark p-8 sm:p-10">
-            <CinematicSweep duration={7.6} delay={0.5} />
-            <p className="mb-3 text-sm uppercase tracking-[0.28em] text-white/75">Engagement Options</p>
-            <h2 className="text-3xl font-bold text-white md:text-4xl">{content.engagementTitle}</h2>
-            <p className="mt-5 leading-relaxed text-gray-100">{content.engagementDescription}</p>
-            <ul className="mt-7 space-y-4">
-              {content.engagementChecks.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-white">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/20">
-                    <FaCheck className="h-3 w-3" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-          <motion.div className="grid gap-5" variants={container}>
-            {content.engagements.map((item) => (
-              <motion.article
-                key={item.title}
-                variants={reveal}
-                onPointerMove={handleSpotlightMove}
-                whileHover={reduceMotion ? undefined : { x: 6 }}
-                className="group relative overflow-hidden rounded-3xl border border-purple-500/30 bg-gradient-to-br from-purple-900/60 to-indigo-900/60 p-7 backdrop-blur-sm"
-              >
-                <CardSpotlight size={360} opacity={0.14} />
-                <div className="relative z-10 flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-300">{item.description}</p>
-                  </div>
-                  <motion.span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-PurpleDark to-PurpleLight"
-                    whileHover={reduceMotion ? undefined : { x: 5 }}
-                  >
-                    <FaArrowRight className="h-4 w-4 text-white" />
-                  </motion.span>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
       </motion.section>
 
       <motion.section

@@ -117,32 +117,6 @@ const aiAutomationContent = {
       icon: FaChartLine,
     },
   ],
-  engagementTitle: "Choose the level of automation support you need",
-  engagementDescription:
-    "Start with one high-impact workflow or build a connected automation roadmap. Scope is matched to the systems you already use and the process you want to improve.",
-  engagementChecks: [
-    "Documented workflow and decision logic",
-    "Clear ownership and human handoff points",
-    "Testing, launch guidance and operating notes",
-    "Optional monitoring and ongoing optimization",
-  ],
-  engagements: [
-    {
-      title: "Automation Opportunity Audit",
-      description:
-        "Identify the strongest use cases, system dependencies, risks and recommended implementation order.",
-    },
-    {
-      title: "Workflow Build",
-      description:
-        "Design and implement a defined automation—from qualification and routing to follow-up and reporting.",
-    },
-    {
-      title: "Managed Optimization",
-      description:
-        "Monitor an active workflow, refine rules and expand the system as your operating needs change.",
-    },
-  ],
   faqs: [
     {
       question: "Which business process should we automate first?",

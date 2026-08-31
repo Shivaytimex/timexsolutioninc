@@ -12,7 +12,6 @@ import WebPerformanceSection from "../components/presentation/WebPerformanceSect
 import CommercialProductionSection from "../components/presentation/CommercialProductionSection";
 import SocialGrowthSection from "../components/presentation/SocialGrowthSection";
 import WorkflowSection from "../components/presentation/WorkflowSection";
-import PricingTierSection from "../components/presentation/PricingTierSection";
 import CallToActionSection from "../components/presentation/CallToActionSection";
 import ImageSourcesSection from "../components/presentation/ImageSourcesSection";
 import FloatingTimexButton from "../components/presentation/FloatingTimexButton";
@@ -42,7 +41,6 @@ const slides = [
     <CommercialProductionSection key="commercial-production" />,
     <SocialGrowthSection key="social-growth" />,
     <WorkflowSection key="workflow" />,
-    <PricingTierSection key="pricing" />,
     <CallToActionSection key="cta" />,
     <ImageSourcesSection key="sources" />,
   ];

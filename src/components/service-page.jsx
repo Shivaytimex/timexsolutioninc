@@ -21,7 +21,6 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Header from "./CommonHeader";
-import { PricingPackages } from "./PricingPackages";
 import { ServiceQuickNav } from "./ServiceQuickNav";
 import {
   CardSpotlight,
@@ -342,7 +341,7 @@ function CapabilityCard({ item, description, index, reduceMotion }) {
   );
 }
 
-export function ServicePage({ serviceName, description, subServices, packages }) {
+export function ServicePage({ serviceName, description, subServices }) {
   const reduceMotion = useReducedMotion();
   const profile = serviceProfiles[serviceName];
 
@@ -365,7 +364,6 @@ export function ServicePage({ serviceName, description, subServices, packages })
         { href: "#overview", label: "Overview" },
         { href: "#capabilities", label: "Capabilities" },
         { href: "#process", label: "Process" },
-        { href: "#engagements", label: "Engagements" },
         { href: "#faq", label: "FAQ" },
       ]} />
 
@@ -491,8 +489,6 @@ export function ServicePage({ serviceName, description, subServices, packages })
           })}
         </motion.div>
       </motion.section>
-
-      <PricingPackages packages={packages} serviceName={serviceName} />
 
       <section className="relative mx-4 my-12 overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-r from-purple-950/70 via-black to-indigo-950/70 px-6 py-16 lg:mx-8 lg:px-12">
         <Stars />

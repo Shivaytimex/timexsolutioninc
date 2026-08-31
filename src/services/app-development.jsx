@@ -15,47 +15,6 @@ const appDevelopmentContent = {
     { name: "Progressive Web Apps", icon: SiPwa },
     { name: "Custom App Development", icon: FaMobileAlt },
   ],
-  packages: [
-    {
-      name: "Product Foundation",
-      description:
-        "A focused discovery and validation engagement for teams that need to clarify the product before committing to a full build.",
-      services: [
-        "Product goals and user definition",
-        "Feature and workflow prioritization",
-        "Core journey mapping",
-        "Technical approach and dependencies",
-        "Launch-phase roadmap",
-        "Documented scope recommendation",
-      ],
-    },
-    {
-      name: "Product Build",
-      description:
-        "Design and engineering for a defined application release with visible milestones, testing and launch preparation.",
-      services: [
-        "Experience and interface design",
-        "Approved platform development",
-        "Authentication and core workflows",
-        "Supported API integrations",
-        "Quality assurance and release review",
-        "Deployment and handoff preparation",
-      ],
-    },
-    {
-      name: "Product Partnership",
-      description:
-        "Ongoing product delivery for organizations that need continuous improvements, releases and technical support.",
-      services: [
-        "Prioritized product backlog",
-        "Release planning and delivery cadence",
-        "New feature development",
-        "Performance and reliability improvements",
-        "Integration expansion",
-        "Maintenance and operating documentation",
-      ],
-    },
-  ],
 };
 
 export default function AppDevelopmentPage() {

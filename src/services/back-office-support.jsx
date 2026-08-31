@@ -117,32 +117,6 @@ const backOfficeContent = {
       icon: FaPeopleGroup,
     },
   ],
-  engagementTitle: "Flexible support without losing operational visibility",
-  engagementDescription:
-    "We can support a defined cleanup, an ongoing monthly process or a dedicated remote function. The engagement model follows the actual workload and control requirements.",
-  engagementChecks: [
-    "Written scope, ownership and turnaround expectations",
-    "Role-based access and documented handling process",
-    "Quality-control checklist and exception escalation",
-    "Weekly or monthly reporting based on the engagement",
-  ],
-  engagements: [
-    {
-      title: "Project-Based Support",
-      description:
-        "A defined data, document, invoice or records cleanup with clear start, review and completion criteria.",
-    },
-    {
-      title: "Monthly Managed Support",
-      description:
-        "Recurring operational coverage delivered against an agreed schedule, checklist and reporting cadence.",
-    },
-    {
-      title: "Dedicated Remote Support",
-      description:
-        "Part-time or full-time capacity for an established process that requires continuity and closer coordination.",
-    },
-  ],
   faqs: [
     {
       question: "What does back-office and billing support cover?",
