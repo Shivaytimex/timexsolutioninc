@@ -23,7 +23,7 @@ const videoServicesContent = {
     "Timex Solution Inc creates coordinated real estate photography, cinematic video, aerial perspectives and social content for listings and agent marketing. The objective is a consistent visual system that helps properties stand out while making the next campaign easier to execute.",
   primaryCta: "Plan a Media Project",
   heroIcon: FaPhotoVideo,
-  heroImage: "/images/real-estate-media-enterprise.webp",
+  heroImage: "/images/timex-real-estate-media-1600.webp",
   imageAlt: "Premium real estate media production at a luxury California home",
   imageEyebrow: "Property Storytelling",
   imageTitle: "One polished visual system from the listing launch to social media.",

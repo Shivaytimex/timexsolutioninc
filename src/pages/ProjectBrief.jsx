@@ -25,6 +25,7 @@ import {
 import Swal from "sweetalert2";
 import { Stars } from "../components/Stars";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const premiumEase = [0.22, 1, 0.36, 1];
 
@@ -444,6 +445,20 @@ function ProjectBrief() {
               Choose one service or combine several. We will review the complete business challenge and
               recommend a practical next step—not force every inquiry into a website brief.
             </p>
+
+            <div className="mt-8 aspect-[16/10] overflow-hidden rounded-2xl border border-purple-300/15 bg-purple-950/20 shadow-[0_20px_60px_rgba(88,28,135,0.18)]">
+              <img
+                src="/images/timex-growth-assessment-founder-1600.webp"
+                srcSet={getResponsiveSrcSet("/images/timex-growth-assessment-founder-1600.webp")}
+                sizes="(min-width: 1024px) 36vw, 100vw"
+                alt="Timex Solution founder reviewing a client growth plan with the team"
+                width="1600"
+                height="1000"
+                className="h-full w-full object-cover object-center"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
 
             <div className="mt-9 space-y-3">
               {[

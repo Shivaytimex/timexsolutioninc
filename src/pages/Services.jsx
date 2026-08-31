@@ -20,12 +20,13 @@ import {
 } from "../components/ServiceMotion";
 import { handleSpotlightMove } from "../components/serviceMotionUtils";
 import { Stars } from "../components/Stars";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const services = [
   {
     name: "App Development",
     path: "/services/app-development",
-    image: "/App-Developement-Banner.webp",
+    image: "/images/timex-app-development-team-1600.webp",
     icon: FaMobileScreenButton,
     description:
       "Mobile and cross-platform experiences designed around usability, performance and business goals.",
@@ -34,7 +35,7 @@ const services = [
   {
     name: "Web Development",
     path: "/services/web-development",
-    image: "/Web-Banner-1.webp",
+    image: "/images/timex-web-development-team-1600.webp",
     icon: FaLaptopCode,
     description:
       "Business websites, ecommerce experiences and custom web platforms built for clarity and conversion.",
@@ -43,7 +44,7 @@ const services = [
   {
     name: "Digital Marketing",
     path: "/services/digital-marketing",
-    image: "/digital-marketing.webp",
+    image: "/images/timex-digital-marketing-founder-1600.webp",
     icon: FaBullhorn,
     description:
       "Connected search, paid media, social and content programs focused on qualified attention and measurable growth.",
@@ -52,7 +53,7 @@ const services = [
   {
     name: "AI Automation",
     path: "/services/ai-automation",
-    image: "/images/ai-automation-enterprise.webp",
+    image: "/images/timex-ai-automation-founder-1600.webp",
     icon: FaBrain,
     description:
       "Practical workflow systems for qualification, follow-ups, routing, bookings, support and reporting.",
@@ -61,7 +62,7 @@ const services = [
   {
     name: "Real Estate Media",
     path: "/services/real-estate-media",
-    image: "/images/real-estate-media-enterprise.webp",
+    image: "/images/timex-real-estate-media-1600.webp",
     icon: FaCamera,
     description:
       "Property photography, cinematic video, aerial media and agent content organized around the listing campaign.",
@@ -70,7 +71,7 @@ const services = [
   {
     name: "Back-Office & Billing Support",
     path: "/services/back-office-support",
-    image: "/images/back-office-enterprise.webp",
+    image: "/images/timex-back-office-billing-team-1600.webp",
     icon: FaFileInvoiceDollar,
     description:
       "Business invoicing, payment-status tracking, records and reporting delivered through a documented operating process.",
@@ -79,7 +80,7 @@ const services = [
   {
     name: "Staffing Solutions",
     path: "/services/staffing-solutions",
-    image: "/recruitmentt.webp",
+    image: "/images/timex-staffing-solutions-team-1600.webp",
     icon: FaPeopleGroup,
     description:
       "Flexible staffing support for organizations that need defined roles, dependable coordination and scalable capacity.",
@@ -144,7 +145,11 @@ export default function ServicesPage() {
                 <div className="relative h-56 overflow-hidden">
                   <motion.img
                     src={service.image}
+                    srcSet={getResponsiveSrcSet(service.image)}
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                     alt={`${service.name} by Timex Solution Inc`}
+                    width="1600"
+                    height="1000"
                     loading="lazy"
                     decoding="async"
                     className="h-full w-full object-cover opacity-80"

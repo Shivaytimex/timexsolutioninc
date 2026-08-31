@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { CardSpotlight, CinematicSweep } from "../ServiceMotion";
 import { handleSpotlightMove } from "../serviceMotionUtils";
+import { getResponsiveSrcSet } from "../../utils/responsiveImage";
 
 const cardReveal = {
   hidden: { y: 28, scale: 0.985 },
@@ -28,7 +29,11 @@ const Card = ({ index, title, description, img, subServices, link, featured, flo
       <div className={`relative overflow-hidden ${featured ? "h-52 sm:h-56" : "h-44 sm:h-48"}`}>
         <motion.img
           src={img || "/placeholder.svg"}
+          srcSet={getResponsiveSrcSet(img)}
+          sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 86vw"
           alt=""
+          width="1600"
+          height="1000"
           aria-hidden="true"
           loading="lazy"
           decoding="async"

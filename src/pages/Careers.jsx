@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { ServiceMotionBackdrop } from "../components/ServiceMotion";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 import "./careers.css";
 
 const premiumEase = [0.22, 1, 0.36, 1];
@@ -435,7 +436,7 @@ ${formData.coverNote}
             transition={{ duration: 1, delay: 0.15, ease: premiumEase }}
           >
             <div className="career-hero-visual">
-              <img src="/Person-With-Laptop.webp" alt="Professional exploring career opportunities with Timex Solution Inc" width="1000" height="1000" className="relative z-[2] h-full w-full object-contain object-bottom" loading="eager" decoding="async" />
+              <img src="/images/timex-careers-team-1600.webp" srcSet={getResponsiveSrcSet("/images/timex-careers-team-1600.webp")} sizes="(min-width: 1024px) 48vw, 100vw" alt="Timex Solution team collaborating in a modern office" width="1600" height="1000" className="absolute inset-0 z-[2] h-full w-full object-cover object-center" loading="eager" decoding="async" />
               <div className="absolute inset-x-6 top-6 z-[3] flex items-center justify-between gap-3 sm:inset-x-8 sm:top-8">
                 <span className="rounded-full border border-white/15 bg-black/55 px-4 py-2 text-xs uppercase tracking-[0.2em] text-purple-100 backdrop-blur-xl">Talent network</span>
                 <span className="flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-950/70 px-3 py-2 text-xs uppercase tracking-[0.17em] text-white backdrop-blur-xl">

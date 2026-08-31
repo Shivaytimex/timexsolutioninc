@@ -21,7 +21,7 @@ const aiAutomationContent = {
   intro:
     "Timex Solution Inc designs practical automation systems that help businesses respond faster, keep follow-ups consistent, connect customer journeys and give teams clearer operational visibility. Every solution begins with your real process—not with a generic tool.",
   heroIcon: FaBrain,
-  heroImage: "/images/ai-automation-enterprise.webp",
+  heroImage: "/images/timex-ai-automation-founder-1600.webp",
   imageAlt: "Premium enterprise AI automation command environment",
   imageEyebrow: "Connected Intelligence",
   imageTitle: "One orchestration layer across every customer workflow.",

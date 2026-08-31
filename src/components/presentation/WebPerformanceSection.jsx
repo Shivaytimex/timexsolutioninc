@@ -1,10 +1,11 @@
 // src/components/presentation/WebPerformanceSection.jsx
 
 import { motion } from "framer-motion";
+import { getResponsiveSrcSet } from "../../utils/responsiveImage";
 
 const WebPerformanceSection = () => {
   return (
-    <section className="relative flex h-screen items-center overflow-hidden px-6">
+    <section className="relative flex h-full min-h-screen items-center overflow-y-auto px-6 py-16 lg:py-20">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[180px]" />
@@ -78,11 +79,17 @@ const WebPerformanceSection = () => {
             {/* Glow Behind Image */}
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
               <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
-                alt="Web Performance"
-                className="w-full object-cover transition duration-700 hover:scale-105"
+                src="/images/timex-web-performance-1600.webp"
+                srcSet={getResponsiveSrcSet("/images/timex-web-performance-1600.webp")}
+                sizes="(min-width: 1024px) 48vw, 100vw"
+                alt="Timex web performance team reviewing website metrics"
+                width="1600"
+                height="1000"
+                className="h-full w-full object-cover transition duration-700 hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </motion.div>

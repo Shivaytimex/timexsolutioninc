@@ -12,6 +12,7 @@ import {
   Target,
 } from "lucide-react";
 import { MagneticButton, ServiceMotionBackdrop, premiumEase } from "./HomeSectionUI";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const systemStages = [
   { label: "Grow" },
@@ -63,11 +64,16 @@ function HeroVisual() {
       <motion.div className="home-v2-hero-panel" style={{ rotateX, rotateY, transformPerspective: 1200 }}>
         <div className="home-v2-hero-media">
           <motion.img
-            src="/images/ai-automation-enterprise.webp"
-            alt="Connected digital growth and AI automation system"
+            src="/images/timex-home-founder-1600.webp"
+            srcSet={getResponsiveSrcSet("/images/timex-home-founder-1600.webp")}
+            sizes="(min-width: 1024px) 46vw, (min-width: 640px) 82vw, 100vw"
+            alt="Timex Solution founder collaborating with a digital growth team"
+            width="1600"
+            height="900"
             className="home-v2-hero-image"
             loading="eager"
             decoding="async"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-purple-950/15 to-black/5" />
         </div>

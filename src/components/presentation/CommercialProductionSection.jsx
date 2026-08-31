@@ -1,10 +1,11 @@
 // src/components/presentation/CommercialProductionSection.jsx
 
 import { motion } from "framer-motion";
+import { getResponsiveSrcSet } from "../../utils/responsiveImage";
 
 const CommercialProductionSection = () => {
   return (
-    <section className="relative overflow-hidden flex h-screen items-center justify-center px-6">
+    <section className="relative flex h-full min-h-screen items-center justify-center overflow-y-auto px-6 py-16 lg:py-20">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-1/3 right-1/4 h-[450px] w-[450px] rounded-full bg-blue-600/10 blur-[140px]" />
@@ -35,13 +36,19 @@ const CommercialProductionSection = () => {
           >
             <div className="relative">
               {/* Glow */}
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-purple-500/25 via-fuchsia-500/15 to-indigo-500/20 blur-3xl" />
 
-              <div className="relative h-[350px] w-[350px] overflow-hidden rounded-full border border-white/10">
+              <div className="relative aspect-[16/10] w-full max-w-xl overflow-hidden rounded-3xl border border-white/10">
                 <img
-                  src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80"
-                  alt="Commercial Production"
+                  src="/images/timex-commercial-production-1600.webp"
+                  srcSet={getResponsiveSrcSet("/images/timex-commercial-production-1600.webp")}
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  alt="Timex commercial production crew filming on location"
+                  width="1600"
+                  height="1000"
                   className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

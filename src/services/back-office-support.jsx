@@ -21,7 +21,7 @@ const backOfficeContent = {
   intro:
     "Timex Solution Inc supports recurring billing administration, records, coordination and reporting so your internal team can stay focused on customers and growth. Scope, access, turnaround expectations and quality checks are agreed before work begins.",
   heroIcon: FaFileInvoiceDollar,
-  heroImage: "/images/back-office-enterprise.webp",
+  heroImage: "/images/timex-back-office-billing-team-1600.webp",
   imageAlt: "Professional business operations team reviewing back-office workflows",
   imageEyebrow: "Operational Excellence",
   imageTitle: "A dependable support layer behind your daily business.",

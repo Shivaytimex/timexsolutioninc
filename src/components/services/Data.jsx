@@ -38,7 +38,7 @@ const services = [
     title: "AI Automation",
     description:
       "Qualify leads, trigger follow-ups, route enquiries and connect reporting so teams respond faster with less manual work.",
-    src: "/images/ai-automation-enterprise.webp",
+    src: "/images/timex-ai-automation-founder-1600.webp",
     link: "/services/ai-automation",
     flow: ["Capture", "Qualify", "Follow Up", "Report"],
     subServices: [
@@ -52,7 +52,7 @@ const services = [
     title: "Digital Marketing",
     description:
       "Connect search, paid media, social and content around qualified attention, stronger conversion and measurable growth.",
-    src: "/digital-marketing.webp",
+    src: "/images/timex-digital-marketing-founder-1600.webp",
     link: "/services/digital-marketing",
     subServices: [
       { title: "SEO", icon: FaSearch },
@@ -66,7 +66,7 @@ const services = [
     title: "Web Development",
     description:
       "Build fast business websites, ecommerce experiences and custom web platforms designed for clarity and conversion.",
-    src: "/Web-Banner-1.webp",
+    src: "/images/timex-web-development-team-1600.webp",
     link: "/services/web-development",
     subServices: [
       { title: "WordPress", icon: FaWordpress },
@@ -81,7 +81,7 @@ const services = [
     title: "App Development",
     description:
       "Create mobile and cross-platform products around real users, reliable performance and long-term product growth.",
-    src: "/App-Developement-Banner.webp",
+    src: "/images/timex-app-development-team-1600.webp",
     link: "/services/app-development",
     subServices: [
       { title: "iOS", icon: FaApple },
@@ -96,7 +96,7 @@ const services = [
     title: "Back-Office & Billing",
     description:
       "Support business invoicing, payment-status tracking, records and reporting through a documented operating process.",
-    src: "/images/back-office-enterprise.webp",
+    src: "/images/timex-back-office-billing-team-1600.webp",
     link: "/services/back-office-support",
     subServices: [
       { title: "Business Invoicing", icon: FaMoneyCheckAlt },
@@ -109,7 +109,7 @@ const services = [
     title: "Staffing Solutions",
     description:
       "Add flexible workforce capacity through defined roles, structured candidate coordination and dependable follow-through.",
-    src: "/recruitmentt.webp",
+    src: "/images/timex-staffing-solutions-team-1600.webp",
     link: "/services/staffing-solutions",
     subServices: [
       { title: "Business Staffing", icon: FaUsers },
@@ -124,7 +124,7 @@ const services = [
     title: "Real Estate Media",
     description:
       "Launch listings with property photography, cinematic video, aerial media and agent-focused social content.",
-    src: "/images/real-estate-media-enterprise.webp",
+    src: "/images/timex-real-estate-media-1600.webp",
     link: "/services/real-estate-media",
     subServices: [
       { title: "Property Photography", icon: FaCamera },

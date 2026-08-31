@@ -22,6 +22,7 @@ import {
 } from "./ServiceMotion";
 import { handleSpotlightMove } from "./serviceMotionUtils";
 import { Stars } from "./Stars";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const reveal = {
   hidden: { y: 24 },
@@ -125,7 +126,11 @@ function PhotoStage({ content, reduceMotion }) {
     >
       <motion.img
         src={content.heroImage}
+        srcSet={getResponsiveSrcSet(content.heroImage)}
+        sizes="(min-width: 1024px) 48vw, 100vw"
         alt={content.imageAlt}
+        width="1600"
+        height="1000"
         loading="lazy"
         decoding="async"
         style={reduceMotion ? undefined : { y: imageY, scale: 1.09 }}

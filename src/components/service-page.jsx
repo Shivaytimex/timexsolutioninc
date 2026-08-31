@@ -33,6 +33,7 @@ import {
 } from "./ServiceMotion";
 import { handleSpotlightMove } from "./serviceMotionUtils";
 import { Stars } from "./Stars";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const reveal = {
   hidden: { y: 24 },
@@ -51,7 +52,7 @@ const serviceProfiles = {
   "App Development": {
     eyebrow: "Product Engineering",
     headline: "Build mobile products people enjoy using—and teams can confidently scale.",
-    heroImage: "/App-Developement-Banner.webp",
+    heroImage: "/images/timex-app-development-team-1600.webp",
     imageTitle: "From product idea to a reliable, launch-ready experience.",
     visualLabels: ["User experience", "Connected systems", "Launch readiness"],
     capabilityTitle: "A focused product team across strategy, design and engineering",
@@ -95,7 +96,7 @@ const serviceProfiles = {
   "Web Development": {
     eyebrow: "Digital Experience Engineering",
     headline: "Turn your website into a faster, clearer platform for trust and conversion.",
-    heroImage: "/Web-Banner-1.webp",
+    heroImage: "/images/timex-web-development-team-1600.webp",
     imageTitle: "A digital experience designed around attention, action and growth.",
     visualLabels: ["Clear journeys", "Fast experience", "Conversion ready"],
     capabilityTitle: "The right web foundation for how your business actually operates",
@@ -139,7 +140,7 @@ const serviceProfiles = {
   "Digital Marketing": {
     eyebrow: "Demand Generation & Visibility",
     headline: "Connect strategy, creative and media around measurable business growth.",
-    heroImage: "/digital-marketing.webp",
+    heroImage: "/images/timex-digital-marketing-founder-1600.webp",
     imageTitle: "One coordinated growth system across search, media and content.",
     visualLabels: ["Qualified reach", "Conversion signals", "Clear reporting"],
     capabilityTitle: "Marketing capabilities organized around the complete customer journey",
@@ -183,7 +184,7 @@ const serviceProfiles = {
   "Staffing Solutions": {
     eyebrow: "Workforce Delivery",
     headline: "Add dependable capacity through a clearly managed staffing process.",
-    heroImage: "/recruitmentt.webp",
+    heroImage: "/images/timex-staffing-solutions-team-1600.webp",
     imageTitle: "Role clarity, candidate coordination and accountable delivery.",
     visualLabels: ["Defined roles", "Structured screening", "Placement support"],
     capabilityTitle: "Flexible staffing support for different workforce needs",
@@ -266,7 +267,11 @@ function PremiumVisual({ profile, serviceName, reduceMotion }) {
     >
       <motion.img
         src={profile.heroImage}
+        srcSet={getResponsiveSrcSet(profile.heroImage)}
+        sizes="(min-width: 1024px) 48vw, 100vw"
         alt={`${serviceName} service experience by Timex Solution Inc`}
+        width="1600"
+        height="1000"
         loading="eager"
         decoding="async"
         style={reduceMotion ? undefined : { y: imageY, scale: 1.08 }}

@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Bot, BriefcaseBusiness, Check, ClipboardCheck, Code2, Eye, Megaphone, Network, ShieldCheck, Sparkles, Target, Users2 } from "lucide-react";
 import { ServiceMotionBackdrop } from "../components/ServiceMotion";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 import "./premium-pages.css";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -49,7 +50,8 @@ export default function AboutUs() {
             <div className="absolute inset-x-8 top-7 flex items-center justify-between text-xs uppercase tracking-[0.18em] text-purple-100/60"><span>Execution system</span><span>Fresno, California</span></div>
             <div className="absolute inset-x-5 bottom-5 top-16 overflow-hidden rounded-[1.6rem] border border-purple-300/15 bg-[radial-gradient(circle_at_50%_36%,rgba(146,52,235,0.27),transparent_46%),linear-gradient(155deg,rgba(29,8,40,0.95),rgba(3,1,5,0.98))]">
               <div className="absolute inset-0 bg-[linear-gradient(rgba(204,155,248,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(204,155,248,0.055)_1px,transparent_1px)] bg-[size:58px_58px]" aria-hidden="true" />
-              <img src="/Person-With-Laptop.webp" alt="Business professional working with Timex Solution Inc" width="1000" height="1000" className="absolute inset-x-0 bottom-0 z-[2] mx-auto h-[88%] w-auto object-contain object-bottom" loading="eager" decoding="async" />
+              <img src="/images/timex-about-founder-team-1600.webp" srcSet={getResponsiveSrcSet("/images/timex-about-founder-team-1600.webp")} sizes="(min-width: 1024px) 46vw, 100vw" alt="Timex Solution founder collaborating with the team" width="1600" height="1000" className="absolute inset-0 z-[2] h-full w-full object-cover object-center" loading="eager" decoding="async" />
+              <div className="absolute inset-0 z-[2] bg-gradient-to-t from-black/80 via-transparent to-purple-950/10" />
               <div className="absolute bottom-5 left-5 right-5 z-[3] grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {["Grow", "Build", "Automate", "Operate"].map((item, index) => <div key={item} className="rounded-xl border border-purple-200/15 bg-black/75 px-3 py-3 text-center backdrop-blur-xl"><span className="block text-xs text-PurpleLight">0{index + 1}</span><strong className="mt-1 block text-sm text-white">{item}</strong></div>)}
               </div>

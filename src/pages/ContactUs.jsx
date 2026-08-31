@@ -34,6 +34,7 @@ import {
 import { Stars } from "../components/Stars";
 import { ServiceMotionBackdrop } from "../components/ServiceMotion";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
+import { getResponsiveSrcSet } from "../utils/responsiveImage";
 
 const premiumEase = [0.22, 1, 0.36, 1];
 
@@ -283,6 +284,19 @@ function ServiceRoutingVisual() {
       >
         <div className="pointer-events-none absolute right-[-5rem] top-[-5rem] h-52 w-52 rounded-full bg-PurpleLight/15 blur-[90px]" />
         <div className="relative">
+          <div className="mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-purple-300/15 bg-black/40">
+            <img
+              src="/images/timex-growth-assessment-founder-1600.webp"
+              srcSet={getResponsiveSrcSet("/images/timex-growth-assessment-founder-1600.webp")}
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              alt="Timex Solution founder discussing a growth assessment with the team"
+              width="1600"
+              height="1000"
+              className="h-full w-full object-cover object-center"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           <div className="flex items-center justify-between gap-4 border-b border-purple-300/15 pb-5">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-purple-200/60">
