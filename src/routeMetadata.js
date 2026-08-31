@@ -64,6 +64,30 @@ export const routeMetadata = {
     description:
       "Property photography, cinematic video, aerial media and agent content organized around listing launches and real estate marketing campaigns.",
   },
+  "/industries/trucking-logistics": {
+    title: "Trucking & Logistics Growth Solutions | Timex Solution Inc",
+    description: "Driver recruitment campaigns, fleet content, websites and workflow automation built around trucking and logistics operations.",
+  },
+  "/industries/dental-healthcare": {
+    title: "Dental & Healthcare Growth Solutions | Timex Solution Inc",
+    description: "Patient-focused websites, local marketing, video content and enquiry workflows for dental and healthcare practices.",
+  },
+  "/industries/real-estate": {
+    title: "Real Estate Media & Growth Solutions | Timex Solution Inc",
+    description: "Property photography, 3D tours, mapping, video and agent content organized around the complete listing cycle.",
+  },
+  "/industries/local-businesses": {
+    title: "Local Business Growth Solutions | Timex Solution Inc",
+    description: "Local search, campaigns, websites, content and lead automation designed to turn nearby attention into business.",
+  },
+  "/industries/professional-services": {
+    title: "Professional Services Growth & Automation | Timex Solution Inc",
+    description: "Positioning, websites, authority content, lead automation and back-office support for expertise-led firms.",
+  },
+  "/industries/agencies-white-label": {
+    title: "Agency & White-Label Delivery Partner | Timex Solution Inc",
+    description: "White-label development, creative production, automation and flexible delivery support for agencies and partners.",
+  },
   "/portfolio": {
     title: "Our Work & Client Projects | Timex Solution Inc",
     description:

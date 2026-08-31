@@ -31,6 +31,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Careers = lazy(() => import("./pages/Careers"));
 const PrivacyPolicy = lazy(() => import("./pages/Privacy"));
 const Presentation = lazy(() => import("./pages/Presentation"));
+const IndustryPage = lazy(() => import("./pages/IndustryPage"));
 
 const routeEase = [0.22, 1, 0.36, 1];
 
@@ -63,6 +64,7 @@ function AnimatedRoutes() {
           <Route path="/services/staffing-solutions" element={<StaffingSolutions />} />
           <Route path="/services/real-estate-media" element={<VideoServices />} />
           <Route path="/services/video-services" element={<Navigate to="/services/real-estate-media" replace />} />
+          <Route path="/industries/:industrySlug" element={<IndustryPage />} />
           <Route path="/ai-automation" element={<Navigate to="/services/ai-automation" replace />} />
           <Route path="/digital-marketing" element={<Navigate to="/services/digital-marketing" replace />} />
           <Route path="/web-development" element={<Navigate to="/services/web-development" replace />} />

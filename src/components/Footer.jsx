@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Clock3, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
+import { industries } from "../data/industries";
 
 const solutionLinks = [
   { label: "AI Automation", to: "/services/ai-automation" },
@@ -19,6 +20,8 @@ const companyLinks = [
   { label: "Video Gallery", to: "/video-gallery" },
   { label: "Contact", to: "/contact" },
 ];
+
+const industryLinks = industries.map(({ name, slug }) => ({ label: name, to: `/industries/${slug}` }));
 
 const socialLinks = [
   {
@@ -48,7 +51,7 @@ export default function Footer() {
       <div aria-hidden="true" className="pointer-events-none absolute -right-56 -top-56 h-[34rem] w-[34rem] rounded-full bg-purple-700/10 blur-[100px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.8fr_0.7fr_1fr] lg:gap-10">
+        <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.9fr_0.7fr_1fr] xl:gap-9">
           <div>
             <Link to="/" className="inline-flex rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-PurpleLight" aria-label="Timex Solution Inc home">
               <img src="/nav-logo.webp" alt="Timex Solution Inc" width="512" height="297" className="h-auto w-32 brightness-0 invert" loading="lazy" decoding="async" />
@@ -76,6 +79,20 @@ export default function Footer() {
             <h2 className="text-sm uppercase tracking-[0.2em] text-purple-100/75">Solutions</h2>
             <ul className="mt-6 space-y-3">
               {solutionLinks.map(({ label, to }) => (
+                <li key={label}>
+                  <Link to={to} className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-white">
+                    {label}
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-sm uppercase tracking-[0.2em] text-purple-100/75">Industries</h2>
+            <ul className="mt-6 space-y-3">
+              {industryLinks.map(({ label, to }) => (
                 <li key={label}>
                   <Link to={to} className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-white">
                     {label}

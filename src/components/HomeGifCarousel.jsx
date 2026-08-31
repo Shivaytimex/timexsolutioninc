@@ -1,22 +1,14 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
-  BriefcaseBusiness,
-  Building2,
   Gauge,
   Layers3,
-  MapPinned,
   Network,
   Search,
-  Truck,
 } from "lucide-react";
 import { MaskReveal, SectionIntro, premiumEase } from "./HomeSectionUI";
-
-const industries = [
-  { title: "Real Estate", text: "Listing media, agent growth and lead follow-up.", icon: Building2 },
-  { title: "Trucking & Logistics", text: "Recruitment campaigns and candidate coordination.", icon: Truck },
-  { title: "Local Businesses", text: "Search, advertising and conversion experiences.", icon: MapPinned },
-  { title: "Professional Services", text: "Credibility, automation and operating support.", icon: BriefcaseBusiness },
-];
+import { industries } from "../data/industries";
 
 const process = [
   { step: "01", title: "Audit", text: "Find the friction.", icon: Search },
@@ -33,7 +25,7 @@ function IndustriesAndProcessSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionIntro eyebrow="Built for operating reality" title="Different industries." gradientText="The same standard of execution." description="The tools may overlap, but the customer journey, workflow pressure and proof required are never identical." align="center" />
         <div className="home-v2-industry-band mt-14">
-          {industries.map(({ title, text, icon: Icon }, index) => <motion.article key={title} className="home-v2-industry-item" initial={reduceMotion ? false : { y: index % 2 === 0 ? 16 : -16 }} whileInView={{ y: 0 }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.7, delay: index * 0.06, ease: premiumEase }}><div className="home-v2-industry-icon"><Icon className="h-6 w-6" /></div><h3 className="mt-5 text-xl text-white">{title}</h3><p className="mt-3 text-sm leading-6 text-gray-500">{text}</p></motion.article>)}
+          {industries.map(({ name, eyebrow, slug, icon: Icon }, index) => <motion.article key={name} className="home-v2-industry-item group" initial={reduceMotion ? false : { y: index % 2 === 0 ? 16 : -16 }} whileInView={{ y: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.7, delay: index * 0.06, ease: premiumEase }}><div className="home-v2-industry-icon"><Icon className="h-6 w-6" /></div><h3 className="mt-5 text-xl text-white">{name}</h3><p className="mt-3 text-sm leading-6 text-gray-500">{eyebrow}</p><Link to={`/industries/${slug}`} className="mt-6 inline-flex items-center gap-2 text-sm text-purple-200 transition-colors group-hover:text-white">Explore industry <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link></motion.article>)}
         </div>
         <MaskReveal className="mt-16">
           <div className="home-v2-process-panel">

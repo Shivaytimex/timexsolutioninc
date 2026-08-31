@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Bot,
   BriefcaseBusiness,
+  Building2,
   Camera,
   ChevronDown,
   ClipboardCheck,
@@ -22,6 +23,7 @@ import {
   Video,
   X,
 } from "lucide-react";
+import { industries } from "../data/industries";
 
 const services = [
   { title: "AI Automation", path: "/services/ai-automation", icon: Bot, description: "Intelligent lead and workflow systems" },
@@ -38,9 +40,17 @@ const workItems = [
   { title: "Video Gallery", path: "/video-gallery", icon: Video, description: "Production and media showcase" },
 ];
 
+const industryItems = industries.map(({ name, slug, icon, eyebrow }) => ({
+  title: name,
+  path: `/industries/${slug}`,
+  icon,
+  description: eyebrow,
+}));
+
 const topLinks = [
   { title: "Home", path: "/", icon: Home },
   { title: "Services", path: "/services", icon: Layers3, items: services },
+  { title: "Industries", path: "/industries/trucking-logistics", icon: Building2, items: industryItems },
   { title: "Our Work", path: "/portfolio", icon: BriefcaseBusiness, items: workItems },
   { title: "About", path: "/about", icon: Info },
   { title: "Careers", path: "/careers", icon: UserRoundSearch },
@@ -89,6 +99,7 @@ export default function NewNavbar() {
 
   const isGroupActive = (link) => {
     if (link.title === "Services") return location.pathname.startsWith("/services");
+    if (link.title === "Industries") return location.pathname.startsWith("/industries");
     if (link.title === "Our Work") {
       return ["/portfolio", "/video-gallery"].some((path) => location.pathname.startsWith(path));
     }
@@ -190,10 +201,10 @@ export default function NewNavbar() {
                         exit={{ opacity: 0, y: 8, scale: 0.985 }}
                         transition={{ duration: 0.24, ease: premiumEase }}
                         className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 overflow-hidden rounded-[1.6rem] border border-purple-400/20 bg-[#09030d]/95 p-3 shadow-[0_28px_90px_rgba(56,10,76,0.4)] backdrop-blur-2xl ${
-                          link.title === "Services" ? "w-[640px]" : "w-[360px]"
+                          ["Services", "Industries"].includes(link.title) ? "w-[640px]" : "w-[360px]"
                         }`}
                       >
-                        <div className={`grid gap-1 ${link.title === "Services" ? "grid-cols-2" : "grid-cols-1"}`}>
+                        <div className={`grid gap-1 ${["Services", "Industries"].includes(link.title) ? "grid-cols-2" : "grid-cols-1"}`}>
                           {link.items.map(({ title, path, icon: Icon, description }) => (
                             <Link
                               key={title}
