@@ -245,8 +245,8 @@ export default function SplashScreen() {
     if (!isVisible) return undefined;
     rememberIntro();
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const totalDuration = reduceMotion ? 2400 : 7950;
-    const exitDuration = reduceMotion ? 450 : 510;
+    const totalDuration = reduceMotion ? 1800 : 4800;
+    const exitDuration = reduceMotion ? 320 : 520;
     const leaveTimer = window.setTimeout(() => setIsLeaving(true), totalDuration - exitDuration);
     const completeTimer = window.setTimeout(() => setIsVisible(false), totalDuration);
     return () => {
@@ -320,9 +320,10 @@ export default function SplashScreen() {
     const draw = (now) => {
       if (!startRef.current) startRef.current = now;
       const elapsed = now - startRef.current;
-      const cycle = reduceMotion ? 0.62 : elapsed % 8000 / 8000;
+      const sequenceDuration = 6200;
+      const cycle = reduceMotion ? 0.62 : elapsed % sequenceDuration / sequenceDuration;
       const seconds = elapsed / 1000;
-      const sequenceSeconds = cycle * 8;
+      const sequenceSeconds = cycle * (sequenceDuration / 1000);
       const centerX = width * 0.5;
       const centerY = width < 480 ? height * 0.465 : width < 900 ? height * 0.475 : height * 0.49;
       const unit = Math.min(width, height);
