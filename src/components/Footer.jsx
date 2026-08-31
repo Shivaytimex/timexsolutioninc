@@ -18,6 +18,7 @@ const companyLinks = [
   { label: "Careers", to: "/careers" },
   { label: "Our Work", to: "/portfolio" },
   { label: "Video Gallery", to: "/video-gallery" },
+  { label: "Insights & Resources", to: "/insights" },
   { label: "Contact", to: "/contact" },
 ];
 

@@ -6,6 +6,7 @@ import Service from "../components/services/Index";
 import VideoServicesHome from "../components/VideoServicesHome";
 import HomeGifCarousel from "../components/HomeGifCarousel";
 import { WhatMakesUsUnique } from "../components/WhatMakesUsUnique";
+import InsightsSection from "../components/InsightsSection";
 import ScrollToTop from "../components/swipe-to-top";
 import "./home.css";
 
@@ -27,6 +28,7 @@ function Home() {
         <Service />
         <VideoServicesHome />
         <HomeGifCarousel />
+        <InsightsSection />
         <WhatMakesUsUnique />
       </main>
       <ScrollToTop />

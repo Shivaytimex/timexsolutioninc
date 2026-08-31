@@ -14,6 +14,7 @@ import {
   Home,
   Images,
   Info,
+  BookOpen,
   Layers3,
   Mail,
   Megaphone,
@@ -38,6 +39,7 @@ const services = [
 const workItems = [
   { title: "Portfolio", path: "/portfolio", icon: Images, description: "Selected digital work" },
   { title: "Video Gallery", path: "/video-gallery", icon: Video, description: "Production and media showcase" },
+  { title: "Insights & Resources", path: "/insights", icon: BookOpen, description: "Practical business guides" },
 ];
 
 const industryItems = industries.map(({ name, slug, icon, eyebrow }) => ({
@@ -101,7 +103,7 @@ export default function NewNavbar() {
     if (link.title === "Services") return location.pathname.startsWith("/services");
     if (link.title === "Industries") return location.pathname.startsWith("/industries");
     if (link.title === "Our Work") {
-      return ["/portfolio", "/video-gallery"].some((path) => location.pathname.startsWith(path));
+      return ["/portfolio", "/video-gallery", "/insights"].some((path) => location.pathname.startsWith(path));
     }
     return location.pathname === link.path;
   };

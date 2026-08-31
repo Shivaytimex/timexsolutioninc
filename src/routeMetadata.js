@@ -88,6 +88,30 @@ export const routeMetadata = {
     title: "Agency & White-Label Delivery Partner | Timex Solution Inc",
     description: "White-label development, creative production, automation and flexible delivery support for agencies and partners.",
   },
+  "/insights": {
+    title: "Business Insights & Practical Guides | Timex Solution Inc",
+    description: "Practical guides for AI automation, websites, real estate media, trucking recruitment and digital marketing measurement.",
+  },
+  "/insights/ai-automation-reduces-manual-work": {
+    title: "How AI Automation Reduces Manual Work | Timex Insights",
+    description: "A practical framework for automating repetitive work while preserving human oversight, accountability and measurable operating outcomes.",
+  },
+  "/insights/choose-a-website-partner": {
+    title: "How to Choose a Website Partner | Timex Insights",
+    description: "Evaluate a website partner across business strategy, delivery, accessibility, performance, ownership and post-launch support.",
+  },
+  "/insights/real-estate-media-launch-checklist": {
+    title: "Real Estate Media Launch Checklist | Timex Insights",
+    description: "Coordinate property readiness, photography, aerials, 3D tours, quality control and listing launch with one practical checklist.",
+  },
+  "/insights/trucking-recruitment-campaign-strategy": {
+    title: "Trucking Recruitment Campaign Strategy | Timex Insights",
+    description: "Build a driver recruitment campaign around a clear offer, mobile response path, fast follow-up and qualified hiring outcomes.",
+  },
+  "/insights/digital-marketing-measurement-guide": {
+    title: "Digital Marketing Measurement Guide | Timex Insights",
+    description: "Connect campaign activity to conversions, qualified leads, CRM outcomes and better marketing decisions with a clear measurement system.",
+  },
   "/portfolio": {
     title: "Our Work & Client Projects | Timex Solution Inc",
     description:
