@@ -105,9 +105,7 @@
 }
 
 @media (min-width: 1024px) {
-  .client-wall-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.1rem; }
-  .client-wall-card:nth-child(n + 6) { transform: translateX(50%); }
-  .client-wall-card:nth-child(n + 6):hover { transform: translate(50%, -5px); }
+  .client-wall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

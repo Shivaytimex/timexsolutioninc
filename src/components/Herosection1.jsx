@@ -68,7 +68,7 @@ function HeroVisual() {
             className="home-v2-hero-image"
             loading="eager"
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-purple-950/15 to-black/5" />
         </div>

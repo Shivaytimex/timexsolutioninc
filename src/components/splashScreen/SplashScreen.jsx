@@ -245,7 +245,7 @@ export default function SplashScreen() {
     if (!isVisible) return undefined;
     rememberIntro();
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const totalDuration = reduceMotion ? 1800 : 4800;
+    const totalDuration = reduceMotion ? 1200 : 2800;
     const exitDuration = reduceMotion ? 320 : 520;
     const leaveTimer = window.setTimeout(() => setIsLeaving(true), totalDuration - exitDuration);
     const completeTimer = window.setTimeout(() => setIsVisible(false), totalDuration);

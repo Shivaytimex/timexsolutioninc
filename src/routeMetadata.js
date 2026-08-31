@@ -118,9 +118,9 @@ export const routeMetadata = {
       "Explore selected Timex Solution Inc work across websites, digital experiences, business growth, logistics, professional services and creative media.",
   },
   "/video-gallery": {
-    title: "Video Production Gallery | Timex Solution Inc",
+    title: "Video Production Portfolio — Coming Soon | Timex Solution Inc",
     description:
-      "Watch selected Timex video production work created for real estate, business marketing, social content and brand storytelling.",
+      "The Timex video production portfolio is being prepared. Request relevant private samples or explore real estate and campaign media services.",
   },
   "/project-brief": {
     title: "Growth Assessment | Timex Solution Inc",

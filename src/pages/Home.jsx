@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet";
 import HeroSection1 from "../components/Herosection1";
 import StatsSection from "../components/StatsSection";
 import OurPartners from "../components/OurPartners";
@@ -13,14 +12,6 @@ import "./home.css";
 function Home() {
   return (
     <div className="home-page bg-black">
-      <Helmet>
-        <title>Timex Solution Inc | Digital Growth, Technology, AI & Operations</title>
-        <meta
-          name="description"
-          content="Timex Solution Inc connects digital growth, technology, AI automation and business operations through one accountable team."
-        />
-        <link rel="canonical" href="https://timexsolutioninc.com/" />
-      </Helmet>
       <main className="overflow-hidden bg-black">
         <HeroSection1 />
         <StatsSection />
