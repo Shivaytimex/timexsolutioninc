@@ -68,6 +68,31 @@ body {
   font-family: var(--font-futura-heavy), Arial, Helvetica, sans-serif;
 }
 
+.timex-route-stage {
+  min-height: 50vh;
+  transform-origin: 50% 0;
+  will-change: opacity, transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .timex-route-stage {
+    will-change: auto;
+  }
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
   /* Scrollbar width */
@@ -89,4 +114,3 @@ body {
   transition: background 0.3s ease-in-out;
 }
 
-  

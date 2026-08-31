@@ -24,8 +24,8 @@ export function SectionIntro({ eyebrow, title, gradientText, description, align 
   return (
     <motion.div
       className={centered ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}
-      initial={reduceMotion ? false : { y: 18 }}
-      whileInView={{ y: 0 }}
+      initial={reduceMotion ? false : { y: 18, opacity: 0.72 }}
+      whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.45 }}
       transition={{ duration: 0.75, ease: premiumEase }}
     >
@@ -34,12 +34,19 @@ export function SectionIntro({ eyebrow, title, gradientText, description, align 
         <p className="text-xs uppercase tracking-[0.24em] text-purple-200/70 sm:tracking-[0.34em]">{eyebrow}</p>
         <span className="h-px w-14 bg-gradient-to-r from-PurpleLight/65 to-transparent" />
       </div>
-      <h2 id={headingId} className="text-4xl font-bold leading-[1.02] text-white sm:text-5xl lg:text-[4.25rem]">
+      <motion.h2
+        id={headingId}
+        className="text-4xl font-bold leading-[1.02] text-white sm:text-5xl lg:text-[4.25rem]"
+        initial={reduceMotion ? false : { clipPath: "inset(0 0 100% 0)", y: 18 }}
+        whileInView={{ clipPath: "inset(0 0 0% 0)", y: 0 }}
+        viewport={{ once: true, amount: 0.55 }}
+        transition={{ duration: 0.9, ease: premiumEase }}
+      >
         {title}
         {gradientText ? (
           <span className="mt-1 block bg-gradient-to-r from-PurpleLight via-purple-300 to-PurpleDark bg-clip-text text-transparent">{gradientText}</span>
         ) : null}
-      </h2>
+      </motion.h2>
       {description ? (
         <p className={`mt-6 max-w-2xl text-base leading-8 text-gray-300 sm:text-lg ${centered ? "mx-auto" : ""}`}>{description}</p>
       ) : null}
@@ -82,8 +89,8 @@ export function MaskReveal({ children, className = "", delay = 0 }) {
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { y: 24, scale: 0.995 }}
-      whileInView={{ y: 0, scale: 1 }}
+      initial={reduceMotion ? false : { y: 24, scale: 0.995, clipPath: "inset(0 0 10% 0)" }}
+      whileInView={{ y: 0, scale: 1, clipPath: "inset(0 0 0% 0)" }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.85, delay, ease: premiumEase }}
     >

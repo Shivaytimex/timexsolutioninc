@@ -29,17 +29,17 @@ export function RouteMotionSignal() {
         <motion.div
           key={pathname}
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-[45] overflow-hidden mix-blend-screen"
+          className="pointer-events-none fixed inset-x-0 top-0 z-[45] h-36 overflow-hidden mix-blend-screen [mask-image:linear-gradient(to_bottom,black,transparent)]"
           initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.72, 0] }}
+          animate={{ opacity: [0, 0.42, 0] }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.05, times: [0, 0.42, 1], ease: premiumEase }}
+          transition={{ duration: 0.72, times: [0, 0.38, 1], ease: premiumEase }}
         >
           <motion.div
             className="absolute -inset-y-[18%] -left-[42vw] w-[34vw] min-w-48 -skew-x-12"
             initial={{ x: "-8vw" }}
             animate={{ x: "184vw" }}
-            transition={{ duration: 1.05, ease: premiumEase }}
+            transition={{ duration: 0.72, ease: premiumEase }}
           >
             <span className="absolute inset-y-0 left-[9%] w-px bg-purple-200/55 shadow-[0_0_24px_rgba(204,155,248,0.75)]" />
             <span className="absolute inset-y-0 left-[16%] w-[12%] bg-gradient-to-r from-transparent via-purple-400/[0.13] to-transparent blur-md" />
@@ -129,14 +129,14 @@ export function OrbitIcon({ children, active = false, className = "" }) {
       <motion.div
         aria-hidden="true"
         className="absolute inset-0 rounded-2xl border border-purple-300/20 [border-style:dashed]"
-        animate={active && !reduceMotion ? { rotate: 135, scale: 1.04 } : { rotate: 0, scale: 1 }}
-        transition={{ duration: 0.75, ease: premiumEase }}
+        animate={active && !reduceMotion ? { rotate: 92, scale: 1.035 } : { rotate: 0, scale: 1 }}
+        transition={{ duration: 0.62, ease: premiumEase }}
       />
       <motion.span
         aria-hidden="true"
         className="absolute -right-0.5 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_16px_rgba(204,155,248,1)]"
-        animate={active && !reduceMotion ? { scale: [0.8, 1.32, 0.92], opacity: [0.45, 1, 0.68] } : { scale: 1, opacity: 0.55 }}
-        transition={{ duration: 0.9, ease: "easeInOut" }}
+        animate={active && !reduceMotion ? { y: -5, scale: 1.12, opacity: 1 } : { y: 0, scale: 1, opacity: 0.55 }}
+        transition={{ duration: 0.48, ease: premiumEase }}
       />
       <motion.div
         className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r from-PurpleDark to-PurpleLight shadow-lg shadow-purple-950/50"

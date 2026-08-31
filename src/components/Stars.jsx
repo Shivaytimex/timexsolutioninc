@@ -16,13 +16,13 @@
 
   export const Stars = () => {
     const stars = useMemo(() => {
-      return Array.from({ length: 100 }, (_, i) => ({
+      return Array.from({ length: 34 }, (_, i) => ({
         id: i,
         top: `${(i * 7.3 + 13) % 100}%`,
         left: `${(i * 11.7 + 23) % 100}%`,
         size: (i % 2) + 1,
-        opacity: 0.5 + (i % 5) * 0.1,
-        twinkle: i % 13 === 0,
+        opacity: 0.28 + (i % 5) * 0.09,
+        twinkle: i % 17 === 0,
       }));
     }, []);
 

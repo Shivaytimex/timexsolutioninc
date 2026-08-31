@@ -214,8 +214,26 @@ function drawPremiumToken(ctx, kind, color, x, y, size, alpha) {
   ctx.restore();
 }
 
+function hasSeenIntro() {
+  try {
+    return window.sessionStorage.getItem("timex-intro-seen") === "1";
+  } catch {
+    return false;
+  }
+}
+
+function rememberIntro() {
+  try {
+    window.sessionStorage.setItem("timex-intro-seen", "1");
+  } catch {
+    // Storage can be unavailable in hardened privacy modes; the intro still works.
+  }
+}
+
 export default function SplashScreen() {
-  const shouldShow = typeof window !== "undefined" && window.location.pathname === "/";
+  const shouldShow = typeof window !== "undefined"
+    && window.location.pathname === "/"
+    && !hasSeenIntro();
   const [isVisible, setIsVisible] = useState(shouldShow);
   const [isLeaving, setIsLeaving] = useState(false);
   const canvasRef = useRef(null);
@@ -225,6 +243,7 @@ export default function SplashScreen() {
 
   useEffect(() => {
     if (!isVisible) return undefined;
+    rememberIntro();
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const totalDuration = reduceMotion ? 2400 : 7950;
     const exitDuration = reduceMotion ? 450 : 510;
