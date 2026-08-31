@@ -35,6 +35,8 @@ import { Stars } from "../components/Stars";
 import { ServiceMotionBackdrop } from "../components/ServiceMotion";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
 import { getResponsiveSrcSet } from "../utils/responsiveImage";
+import { trackLead } from "../utils/analytics";
+import { createFormGuard, isLikelySpam } from "../utils/spamProtection";
 
 const premiumEase = [0.22, 1, 0.36, 1];
 
@@ -368,6 +370,7 @@ function ServiceRoutingVisual() {
 
 function ContactForm() {
   const formRef = useRef(null);
+  const formGuard = useRef(createFormGuard());
   const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -439,8 +442,6 @@ function ContactForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.website) return;
-
     const nextErrors = validateForm();
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
@@ -449,6 +450,7 @@ function ContactForm() {
       focusFirstError();
       return;
     }
+    if (isLikelySpam({ honeypot: formData.website, startedAt: formGuard.current.startedAt, formName: "contact" })) return;
 
     const { endpoint: apiUrl, accessKey, configured } = getFormDeliveryConfig({
       endpoint: import.meta.env.VITE_API_URL,
@@ -486,6 +488,7 @@ function ContactForm() {
           service_interest: serviceLabel,
           preferred_contact: formData.contactPreference,
           message: formData.message,
+          botcheck: "",
         }),
       });
 
@@ -500,6 +503,8 @@ function ContactForm() {
       setSubmitMessage(
         "Your message has been sent. The Timex team will review it and follow up with the right next step.",
       );
+      trackLead("contact");
+      formGuard.current = createFormGuard();
     } catch {
       setSubmitState("fallback");
       setSubmitMessage(

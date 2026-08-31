@@ -26,6 +26,8 @@ import Swal from "sweetalert2";
 import { Stars } from "../components/Stars";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
 import { getResponsiveSrcSet } from "../utils/responsiveImage";
+import { trackLead } from "../utils/analytics";
+import { createFormGuard, isLikelySpam } from "../utils/spamProtection";
 
 const premiumEase = [0.22, 1, 0.36, 1];
 
@@ -151,6 +153,7 @@ function InputField({
 function ProjectBrief() {
   const reduceMotion = useReducedMotion();
   const formRef = useRef(null);
+  const formGuard = useRef(createFormGuard());
   const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -314,8 +317,6 @@ function ProjectBrief() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.website) return;
-
     const nextErrors = validateForm();
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
@@ -324,6 +325,7 @@ function ProjectBrief() {
       focusFirstError();
       return;
     }
+    if (isLikelySpam({ honeypot: formData.website, startedAt: formGuard.current.startedAt, formName: "project_brief" })) return;
 
     const { endpoint: apiUrl, accessKey, configured } = getFormDeliveryConfig({
       endpoint: import.meta.env.VITE_API_URL,
@@ -381,6 +383,7 @@ function ProjectBrief() {
           email: formData.workEmail,
           phone: formData.phone,
           message: emailContent,
+          botcheck: "",
         }),
       });
 
@@ -392,6 +395,8 @@ function ProjectBrief() {
       resetForm();
       setSubmitState("success");
       setSubmitMessage("Your assessment has been sent. The Timex team will review it and contact you.");
+      trackLead("project_brief");
+      formGuard.current = createFormGuard();
       await Swal.fire({
         title: "Assessment received",
         text: "Thank you. We will review your goals and recommend the right next step.",

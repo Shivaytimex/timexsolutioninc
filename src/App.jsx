@@ -9,6 +9,7 @@ import WhatsAppFloat from "./components/WhatsAppFloat";
 import RouteSeo from "./components/RouteSeo";
 import { RouteMotionSignal } from "./components/ServiceMotion";
 import SplashScreen from "./components/splashScreen/SplashScreen";
+import TrackingConsent from "./components/TrackingConsent";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
@@ -94,6 +95,7 @@ function App() {
         <SplashScreen />
         <div data-timex-site-content>
           <RouteSeo />
+          <TrackingConsent />
           <RouteMotionSignal />
           <a
             href="#main-content"

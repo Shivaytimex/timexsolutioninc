@@ -33,6 +33,8 @@ import {
 import { ServiceMotionBackdrop } from "../components/ServiceMotion";
 import { getFormDeliveryConfig } from "../utils/formDelivery";
 import { getResponsiveSrcSet } from "../utils/responsiveImage";
+import { trackLead } from "../utils/analytics";
+import { createFormGuard, isLikelySpam } from "../utils/spamProtection";
 import "./careers.css";
 
 const premiumEase = [0.22, 1, 0.36, 1];
@@ -243,6 +245,7 @@ export default function Careers() {
   const [openFaq, setOpenFaq] = useState(0);
   const formSectionRef = useRef(null);
   const errorSummaryRef = useRef(null);
+  const formGuard = useRef(createFormGuard());
   const reduceMotion = useReducedMotion();
 
   const emailFallback = useMemo(() => {
@@ -323,8 +326,6 @@ ${formData.coverNote}
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formData.website) return;
-
     const nextErrors = validate();
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
@@ -333,6 +334,7 @@ ${formData.coverNote}
       requestAnimationFrame(() => errorSummaryRef.current?.focus());
       return;
     }
+    if (isLikelySpam({ honeypot: formData.website, startedAt: formGuard.current.startedAt, formName: "careers" })) return;
 
     const { endpoint: apiUrl, accessKey, configured } = getFormDeliveryConfig({
       endpoint: import.meta.env.VITE_CAREERS_API_URL || import.meta.env.VITE_API_URL,
@@ -357,6 +359,7 @@ ${formData.coverNote}
       message: buildApplicationMessage(),
       application_type: "Timex Careers",
       role_interest: formData.roleInterest,
+      botcheck: "",
     };
 
     try {
@@ -372,6 +375,8 @@ ${formData.coverNote}
       setSubmitMessage("Your application has been sent to the Timex team. If your profile matches a relevant need, the team will contact you directly.");
       setFormData(initialForm);
       setErrors({});
+      trackLead("careers");
+      formGuard.current = createFormGuard();
     } catch (error) {
       console.error("Career application error:", error);
       setSubmitState("error");
