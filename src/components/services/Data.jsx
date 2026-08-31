@@ -5,136 +5,77 @@ import {
   FaBrain,
   FaCamera,
   FaChartPie,
-  FaEdit,
   FaEnvelope,
-  FaFileContract,
-  FaFilm,
-  FaHashtag,
-  FaLaravel,
-  FaMagento,
-  FaMobile,
-  FaMoneyCheckAlt,
   FaNetworkWired,
-  FaNodeJs,
-  FaPaintBrush,
-  FaPen,
-  FaPhp,
   FaReact,
   FaSearch,
   FaShopify,
-  FaUserClock,
-  FaUserPlus,
   FaUsers,
-  FaUserTie,
-  FaVideo,
-  FaWrench,
-  FaWordpress,
-  FaYoutube,
 } from "react-icons/fa";
-import { BiMoviePlay } from "react-icons/bi";
 
-const services = [
+export const primaryOutcomes = [
   {
-    title: "AI Automation",
+    eyebrow: "01 / Growth",
+    title: "Grow your business",
     description:
-      "Qualify leads, trigger follow-ups, route enquiries and connect reporting so teams respond faster with less manual work.",
-    src: "/images/timex-ai-automation-founder-1600.webp",
-    link: "/services/ai-automation",
-    flow: ["Capture", "Qualify", "Follow Up", "Report"],
-    subServices: [
-      { title: "AI Lead Qualification", icon: FaBrain },
-      { title: "Automated Follow-Ups", icon: FaEnvelope },
-      { title: "CRM Workflow Automation", icon: FaNetworkWired },
-      { title: "Reporting & Insights", icon: FaChartPie },
-    ],
-  },
-  {
-    title: "Digital Marketing",
-    description:
-      "Connect search, paid media, social and content around qualified attention, stronger conversion and measurable growth.",
+      "Turn attention into qualified demand through a connected marketing system built around measurable business growth.",
     src: "/images/timex-digital-marketing-founder-1600.webp",
     link: "/services/digital-marketing",
+    cta: "Explore growth solutions",
     subServices: [
       { title: "SEO", icon: FaSearch },
-      { title: "Paid Advertising", icon: FaAd },
-      { title: "Social Media", icon: FaHashtag },
-      { title: "Content Strategy", icon: FaPen },
+      { title: "Paid Media", icon: FaAd },
+      { title: "Social & Content", icon: FaChartPie },
       { title: "Email Marketing", icon: FaEnvelope },
     ],
   },
   {
-    title: "Web Development",
+    eyebrow: "02 / Products",
+    title: "Build digital products",
     description:
-      "Build fast business websites, ecommerce experiences and custom web platforms designed for clarity and conversion.",
+      "Design and engineer fast websites, ecommerce experiences and mobile products that people can trust and use.",
     src: "/images/timex-web-development-team-1600.webp",
     link: "/services/web-development",
+    cta: "Explore product development",
     subServices: [
-      { title: "WordPress", icon: FaWordpress },
-      { title: "PHP", icon: FaPhp },
-      { title: "Laravel", icon: FaLaravel },
-      { title: "Node.js", icon: FaNodeJs },
-      { title: "Shopify", icon: FaShopify },
-      { title: "Magento", icon: FaMagento },
-    ],
-  },
-  {
-    title: "App Development",
-    description:
-      "Create mobile and cross-platform products around real users, reliable performance and long-term product growth.",
-    src: "/images/timex-app-development-team-1600.webp",
-    link: "/services/app-development",
-    subServices: [
+      { title: "Web Platforms", icon: FaReact },
+      { title: "Ecommerce", icon: FaShopify },
       { title: "iOS", icon: FaApple },
       { title: "Android", icon: FaAndroid },
-      { title: "React Native", icon: FaReact },
-      { title: "Flutter", icon: FaMobile },
-      { title: "UI/UX Design", icon: FaPaintBrush },
-      { title: "App Maintenance", icon: FaWrench },
     ],
+    secondaryLink: { label: "View app development", to: "/services/app-development" },
   },
   {
-    title: "Back-Office & Billing",
+    eyebrow: "03 / Automation",
+    title: "Automate operations",
     description:
-      "Support business invoicing, payment-status tracking, records and reporting through a documented operating process.",
-    src: "/images/timex-back-office-billing-team-1600.webp",
-    link: "/services/back-office-support",
+      "Connect leads, follow-ups, reporting and repeatable back-office workflows so your team moves faster with less manual work.",
+    src: "/images/timex-ai-automation-founder-1600.webp",
+    link: "/services/ai-automation",
+    cta: "Explore AI automation",
     subServices: [
-      { title: "Business Invoicing", icon: FaMoneyCheckAlt },
-      { title: "Payment Tracking", icon: FaChartPie },
-      { title: "CRM & Data Support", icon: FaNetworkWired },
-      { title: "Document Management", icon: FaFileContract },
+      { title: "AI Workflows", icon: FaBrain },
+      { title: "CRM Automation", icon: FaNetworkWired },
+      { title: "Lead Follow-Up", icon: FaEnvelope },
+      { title: "Operations Support", icon: FaChartPie },
     ],
-  },
-  {
-    title: "Staffing Solutions",
-    description:
-      "Add flexible workforce capacity through defined roles, structured candidate coordination and dependable follow-through.",
-    src: "/images/timex-staffing-solutions-team-1600.webp",
-    link: "/services/staffing-solutions",
-    subServices: [
-      { title: "Business Staffing", icon: FaUsers },
-      { title: "Executive Search", icon: FaUserTie },
-      { title: "Temporary Staffing", icon: FaUserClock },
-      { title: "Permanent Placement", icon: FaUserPlus },
-      { title: "Contract-to-Hire", icon: FaFileContract },
-      { title: "Payroll Services", icon: FaMoneyCheckAlt },
-    ],
-  },
-  {
-    title: "Real Estate Media",
-    description:
-      "Launch listings with property photography, cinematic video, aerial media and agent-focused social content.",
-    src: "/images/timex-real-estate-media-1600.webp",
-    link: "/services/real-estate-media",
-    subServices: [
-      { title: "Property Photography", icon: FaCamera },
-      { title: "Cinematic Video Tours", icon: FaVideo },
-      { title: "Aerial Media", icon: FaFilm },
-      { title: "3D Tours", icon: BiMoviePlay },
-      { title: "Agent Social Content", icon: FaYoutube },
-      { title: "Listing Editing", icon: FaEdit },
-    ],
+    secondaryLink: { label: "View back-office support", to: "/services/back-office-support" },
   },
 ];
 
-export default services;
+export const supportingCapabilities = [
+  {
+    title: "Staffing Solutions",
+    description: "Flexible workforce capacity, structured candidate coordination and dependable follow-through.",
+    link: "/services/staffing-solutions",
+    icon: FaUsers,
+  },
+  {
+    title: "Real Estate Media",
+    description: "Property photography, video, aerial media and social content built to launch listings clearly.",
+    link: "/services/real-estate-media",
+    icon: FaCamera,
+  },
+];
+
+export default primaryOutcomes;

@@ -223,7 +223,7 @@
 .home-v2-mini-flow {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.45rem;
 }
 
@@ -248,7 +248,8 @@
 }
 
 .home-v2-mini-node span,
-.home-v2-mini-node strong {
+.home-v2-mini-node strong,
+.home-v2-mini-node small {
   display: block;
 }
 
@@ -264,6 +265,13 @@
   font-weight: inherit;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.home-v2-mini-node small {
+  margin-top: 0.18rem;
+  color: rgba(243, 232, 255, 0.5);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
 }
 
 .home-v2-orbit {
@@ -336,6 +344,10 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.13em;
+}
+
+.home-v2-capability:last-child {
+  border-right: 0;
 }
 
 .home-v2-core-map {
@@ -1630,7 +1642,7 @@
   .timex-switch-button { width: 100%; }
   .home-v2-hero-panel { min-height: 0; border-radius: 1.7rem; }
   .home-v2-hero-status { flex-wrap: wrap; justify-content: flex-start; }
-  .home-v2-mini-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-v2-mini-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .home-v2-mini-flow::before { display: none; }
   .home-v2-mini-node { min-height: 3.35rem; display: flex; flex-direction: column; justify-content: center; }
   .home-v2-orbit { display: none; }

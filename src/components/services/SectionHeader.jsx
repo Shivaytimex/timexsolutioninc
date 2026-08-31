@@ -36,9 +36,9 @@ const SectionHeader = ({ headingText }) => {
           <span className="h-px w-16 bg-gradient-to-r from-PurpleLight/70 to-transparent" />
         </div>
         <h2 className="max-w-4xl text-4xl font-bold leading-[1.04] text-white sm:text-5xl lg:text-7xl">
-          One connected team.
+          Three clear outcomes.
           <span className="mt-1 block bg-gradient-to-r from-PurpleLight via-purple-300 to-PurpleDark bg-clip-text text-transparent">
-            From growth to operations.
+            One accountable team.
           </span>
         </h2>
       </motion.div>
@@ -51,7 +51,7 @@ const SectionHeader = ({ headingText }) => {
         <CinematicSweep duration={8} delay={0.6} />
         <div className="relative z-10">
           <p className="leading-relaxed text-gray-200">
-            Acquire customers, build conversion-ready experiences, automate repetitive work and support daily operations—with clear ownership from strategy through delivery.
+            Grow demand, build useful digital products and automate repetitive operations—with clear ownership from strategy through delivery.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs uppercase tracking-[0.2em] text-purple-200/75">Strategy → execution → optimization</p>

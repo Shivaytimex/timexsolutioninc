@@ -11,10 +11,10 @@ const cardReveal = {
   visible: { opacity: 1, y: 0, scale: 1 },
 };
 
-const Card = ({ index, title, description, img, subServices, link, featured, flow }) => {
+const Card = ({ title, description, img, subServices, link, eyebrow, cta, secondaryLink }) => {
   const reduceMotion = useReducedMotion();
   const PrimaryIcon = subServices[0]?.icon;
-  const highlights = subServices.slice(0, featured ? 4 : 2);
+  const highlights = subServices.slice(0, 4);
 
   return (
     <motion.article
@@ -22,11 +22,11 @@ const Card = ({ index, title, description, img, subServices, link, featured, flo
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       onPointerMove={handleSpotlightMove}
       whileHover={reduceMotion ? undefined : { y: -6, scale: 1.006 }}
-      className={`group relative flex min-h-[455px] w-[86vw] flex-none snap-center flex-col overflow-hidden rounded-3xl border border-purple-500/25 bg-gradient-to-br from-purple-950/80 via-[#180724] to-indigo-950/75 shadow-xl transition-shadow duration-500 hover:border-purple-300/40 hover:shadow-2xl hover:shadow-purple-500/15 sm:min-h-[490px] sm:w-auto sm:min-w-0 ${featured ? "sm:col-span-2 xl:col-span-2" : ""}`}
+      className="group relative flex min-h-[510px] w-[86vw] flex-none snap-center flex-col overflow-hidden rounded-3xl border border-purple-500/25 bg-gradient-to-br from-purple-950/80 via-[#180724] to-indigo-950/75 shadow-xl transition-shadow duration-500 hover:border-purple-300/40 hover:shadow-2xl hover:shadow-purple-500/15 sm:w-auto sm:min-w-0"
     >
-      <CardSpotlight size={featured ? 620 : 440} opacity={0.16} />
+      <CardSpotlight size={520} opacity={0.16} />
 
-      <div className={`relative overflow-hidden ${featured ? "h-52 sm:h-56" : "h-44 sm:h-48"}`}>
+      <div className="relative h-52 overflow-hidden">
         <motion.img
           src={img || "/placeholder.svg"}
           srcSet={getResponsiveSrcSet(img)}
@@ -44,7 +44,7 @@ const Card = ({ index, title, description, img, subServices, link, featured, flo
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#180724] via-purple-950/20 to-black/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-purple-950/30 via-transparent to-indigo-950/20 mix-blend-color" />
-        {featured ? <CinematicSweep duration={8.4} delay={0.8} /> : null}
+        <CinematicSweep duration={8.4} delay={0.8} />
 
         {PrimaryIcon && (
           <div className="absolute left-5 top-5 z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-200/20 bg-gradient-to-br from-PurpleDark to-PurpleLight shadow-lg shadow-purple-950/50 transition-transform duration-500 group-hover:rotate-3 group-hover:scale-105 sm:left-6 sm:top-6">
@@ -52,16 +52,14 @@ const Card = ({ index, title, description, img, subServices, link, featured, flo
           </div>
         )}
 
-        <span aria-hidden="true" className="absolute right-5 top-5 text-4xl text-white/10 sm:right-6 sm:top-6">
-          0{index + 1}
-        </span>
+        <span className="absolute right-5 top-5 rounded-full border border-white/15 bg-black/45 px-3 py-2 text-xs uppercase tracking-[0.16em] text-purple-100 backdrop-blur-xl sm:right-6 sm:top-6">{eyebrow}</span>
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-PurpleLight/80 to-transparent" />
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col p-5 sm:p-6">
         <div className="mb-3 flex items-center gap-3">
           <span className="h-1.5 w-1.5 rounded-full bg-PurpleLight shadow-[0_0_12px_rgba(204,155,248,0.9)]" />
-          <p className="text-xs uppercase tracking-[0.22em] text-purple-100/80">Focused capability</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-purple-100/80">Primary business outcome</p>
         </div>
 
         <h3 className="text-2xl font-bold leading-tight text-white sm:text-[1.7rem]">
@@ -69,46 +67,24 @@ const Card = ({ index, title, description, img, subServices, link, featured, flo
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-gray-300">{description}</p>
 
-        {featured && flow ? (
-          <ol className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4" aria-label="AI automation workflow">
-            {flow.map((step, flowIndex) => (
-              <li
-                key={step}
-                className="relative rounded-xl border border-purple-300/15 bg-black/30 px-3 py-3 text-center text-xs uppercase tracking-[0.12em] text-purple-100"
-              >
-                <span className="mb-1 block text-xs text-PurpleLight/70">0{flowIndex + 1}</span>
-                {step}
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {highlights.map((service) => (
-              <li
-                key={service.title}
-                className="rounded-full border border-purple-400/15 bg-black/30 px-3 py-2 text-xs text-purple-100 backdrop-blur-sm transition-colors duration-300 group-hover:border-purple-300/25 group-hover:bg-purple-500/10"
-              >
-                {service.title}
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {highlights.map((service) => (
+            <li key={service.title} className="rounded-full border border-purple-400/15 bg-black/30 px-3 py-2 text-xs text-purple-100 backdrop-blur-sm transition-colors duration-300 group-hover:border-purple-300/25 group-hover:bg-purple-500/10">
+              {service.title}
+            </li>
+          ))}
+        </ul>
 
-        <div aria-hidden="true" className="mt-auto flex min-h-12 items-center pt-5 text-sm text-white transition-colors duration-300 group-hover:text-PurpleLight">
-          Explore {title}
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-5">
+          <Link to={link} className="flex min-h-12 items-center text-sm text-white transition-colors duration-300 hover:text-PurpleLight">
+          {cta}
           <span className="ml-3 inline-flex h-10 w-10 items-center justify-center rounded-full border border-purple-300/20 bg-gradient-to-r from-PurpleDark to-PurpleLight shadow-lg shadow-purple-950/50 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-105">
             <FaArrowRight className="h-3.5 w-3.5" />
           </span>
+          </Link>
+          {secondaryLink ? <Link to={secondaryLink.to} className="text-xs text-purple-200/70 underline decoration-purple-300/30 underline-offset-4 transition-colors hover:text-white">{secondaryLink.label}</Link> : null}
         </div>
       </div>
-
-      <Link
-        to={link}
-        className="absolute inset-1 z-20 rounded-[1.35rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-PurpleLight focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-        aria-label={`Explore ${title}`}
-      >
-        <span className="sr-only">Explore {title}</span>
-      </Link>
     </motion.article>
   );
 };
