@@ -33,7 +33,7 @@ const clients = [
   },
   {
     name: "Bridgeline Studios",
-    logo: "/logos/clients/bridgeline-studios.webp",
+    logo: "/logos/clients/bridgeline-studios.png",
     work: "Video production services",
   },
   {
