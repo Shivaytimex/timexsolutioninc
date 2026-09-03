@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ANALYTICS_CONSENT_KEY } from "../utils/analytics";
+import {
+  ANALYTICS_CONSENT_KEY,
+  captureAttribution,
+  trackBooking,
+  trackInteraction,
+} from "../utils/analytics";
 
 const GTM_ID = import.meta.env.VITE_GTM_ID?.trim();
 const GA4_ID = import.meta.env.VITE_GA4_ID?.trim();
@@ -32,7 +37,7 @@ function loadTracking() {
   }
 
   if (META_PIXEL_ID && /^\d+$/.test(META_PIXEL_ID) && !window.fbq) {
-    addScript("timex-meta-pixel", null, `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`);
+    addScript("timex-meta-pixel", null, `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');`);
   }
 
   if (CLARITY_ID && /^[a-z0-9]+$/i.test(CLARITY_ID) && !window.clarity) {
@@ -44,15 +49,38 @@ export default function TrackingConsent() {
   const location = useLocation();
   const [choice, setChoice] = useState(() => localStorage.getItem(ANALYTICS_CONSENT_KEY));
 
-  useEffect(() => { if (choice === "granted") loadTracking(); }, [choice]);
+  useEffect(() => {
+    if (choice !== "granted") return undefined;
+    captureAttribution();
+    loadTracking();
+
+    const handleClick = (event) => trackInteraction(event.target);
+    const handleCalendly = (event) => {
+      if (event.origin !== "https://calendly.com") return;
+      if (event.data?.event === "calendly.event_scheduled") {
+        trackBooking({ booking_provider: "calendly" });
+      }
+    };
+
+    document.addEventListener("click", handleClick, true);
+    window.addEventListener("message", handleCalendly);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+      window.removeEventListener("message", handleCalendly);
+    };
+  }, [choice]);
   useEffect(() => {
     if (choice !== "granted") return;
+    captureAttribution();
     window.dataLayer?.push({ event: "virtual_page_view", page_path: location.pathname + location.search });
     if (typeof window.gtag === "function") window.gtag("event", "page_view", { page_path: location.pathname + location.search });
     if (typeof window.fbq === "function") window.fbq("track", "PageView");
   }, [choice, location.pathname, location.search]);
 
-  const decide = (value) => { localStorage.setItem(ANALYTICS_CONSENT_KEY, value); setChoice(value); };
+  const decide = (value) => {
+    localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
+    setChoice(value);
+  };
   if (choice) return null;
 
   return (
