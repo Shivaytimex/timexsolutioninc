@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { IoChatbubbleEllipsesOutline, IoClose } from "react-icons/io5";
 import PropTypes from "prop-types";
+import { trackEvent } from "../utils/analytics";
 
 /**
  * Floating WhatsApp button + quick chat panel.
@@ -66,6 +67,10 @@ export default function WhatsAppFloat({
   );
 
   const handleWhatsAppClick = () => {
+    trackEvent("whatsapp_click", {
+      cta_location: "floating_chat",
+      link_text: "Start WhatsApp Chat",
+    });
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${String(phoneNumber).replace(
       /\D/g,
