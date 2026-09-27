@@ -136,7 +136,7 @@ export function trackInteraction(target) {
   else if (url.protocol === "mailto:") trackEvent("email_click", context);
   else if (/wa\.me$|whatsapp\.com$/i.test(url.hostname)) trackEvent("whatsapp_click", context);
   else if (/calendly\.com$/i.test(url.hostname)) trackEvent("booking_click", { ...context, booking_provider: "calendly" });
-  else if (["/contact", "/project-brief", "/workflow-audit", "/payments-square"].includes(url.pathname) || url.hash === "#contact-form") {
+  else if (["/contact", "/project-brief", "/automation-demo", "/payments-square"].includes(url.pathname) || url.hash === "#contact-form") {
     trackEvent("cta_click", context);
   } else if (url.origin !== window.location.origin) {
     trackEvent("outbound_click", context);

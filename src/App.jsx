@@ -80,8 +80,9 @@ function AnimatedRoutes() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/video-gallery" element={<VideoGallery />} />
           <Route path="/project-brief" element={<ProjectBrief />} />
-          <Route path="/workflow-audit" element={<WorkflowAudit />} />
-          <Route path="/book-workflow-audit" element={<Navigate to="/workflow-audit" replace />} />
+          <Route path="/automation-demo" element={<WorkflowAudit />} />
+          <Route path="/workflow-audit" element={<Navigate to="/automation-demo" replace />} />
+          <Route path="/book-workflow-audit" element={<Navigate to="/automation-demo" replace />} />
           <Route path="/payments-square" element={<PaymentsSquare />} />
           <Route path="/presentation" element={<Presentation />} />
           <Route path="*" element={<NotFound />} />
