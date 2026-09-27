@@ -127,6 +127,11 @@ export const routeMetadata = {
     description:
       "Tell Timex Solution Inc about your digital growth, AI automation, website, back-office, staffing or real estate media goals.",
   },
+  "/workflow-audit": {
+    title: "Free Workflow Automation Audit | Timex Solution Inc",
+    description:
+      "Request a free 15-minute workflow audit for a real estate, trucking, medical or dental business in Fresno and California's Central Valley.",
+  },
   "/privacy-policy": {
     title: "Privacy Policy | Timex Solution Inc",
     description:
@@ -155,6 +160,7 @@ export const routeAliases = {
   "/staffing": "/services/staffing-solutions",
   "/real-estate-media": "/services/real-estate-media",
   "/services/video-services": "/services/real-estate-media",
+  "/book-workflow-audit": "/workflow-audit",
 };
 
 export function normalizeRoutePath(pathname = "/") {

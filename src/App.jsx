@@ -25,6 +25,7 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const StaffingSolutions = lazy(() => import("./services/staffing-solutions"));
 // const Navbar = lazy(() => import("./components/Navbar"));
 const ProjectBrief = lazy(() => import("./pages/ProjectBrief"));
+const WorkflowAudit = lazy(() => import("./pages/WorkflowAudit"));
 const VideoServices = lazy(() => import("./services/video-services"));
 const VideoGallery = lazy(() => import("./pages/VideoGallery"));
 const PaymentsSquare = lazy(() => import("./pages/PaymentsSquare"));
@@ -79,6 +80,8 @@ function AnimatedRoutes() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/video-gallery" element={<VideoGallery />} />
           <Route path="/project-brief" element={<ProjectBrief />} />
+          <Route path="/workflow-audit" element={<WorkflowAudit />} />
+          <Route path="/book-workflow-audit" element={<Navigate to="/workflow-audit" replace />} />
           <Route path="/payments-square" element={<PaymentsSquare />} />
           <Route path="/presentation" element={<Presentation />} />
           <Route path="*" element={<NotFound />} />
